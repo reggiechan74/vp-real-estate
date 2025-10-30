@@ -1,0 +1,63 @@
+{
+  "deal_name": "Simple Office Lease - 5 Year",
+  "property_info": {
+    "property_type": "office",
+    "building_name": "Downtown Office Tower",
+    "unit_number": "Suite 1200",
+    "area_sf": 5000.0,
+    "gla_building_sf": 100000.0
+  },
+  "tenant_info": {
+    "tenant_name": "Tech Startup LLC",
+    "trade_name": "TechCo",
+    "contact": "Jane Doe",
+    "phone": "555-5678",
+    "email": "jane@techco.com"
+  },
+  "lease_terms": {
+    "lease_start_date": "2024-01-01",
+    "lease_term_months": 60,
+    "fixturing_term_months": 0,
+    "operating_costs_psf": 12.00
+  },
+  "rent_schedule": {
+    "description": "Flat rent: $25/sf for entire term",
+    "rent_psf_by_year": [25.0, 25.0, 25.0, 25.0, 25.0],
+    "months_per_period": [12, 12, 12, 12, 12],
+    "notes": "Net rent - tenant pays proportionate share of operating costs"
+  },
+  "incentives": {
+    "tenant_cash_allowance_psf": 15.0,
+    "landlord_work_total": 0.0,
+    "amortized_tenant_work": 0.0,
+    "net_free_rent_months": 2.0,
+    "gross_free_rent_months": 0.0,
+    "notes": "$15/sf TI, 2 months free"
+  },
+  "leasing_costs": {
+    "listing_agent_commission_psf": 3.0,
+    "tenant_rep_commission_psf": 3.0,
+    "pm_override_fee": 0.0,
+    "other_costs": 0.0,
+    "notes": "6% total commission (3% each side)"
+  },
+  "financial_assumptions": {
+    "nominal_discount_rate": 0.08,
+    "notes": "8% discount rate"
+  },
+  "investment_parameters": {
+    "acquisition_cost": 10000000.0,
+    "going_in_ltv": 0.60,
+    "mortgage_amortization_months": 300,
+    "dividend_yield": 0.065,
+    "interest_cost": 0.035,
+    "principal_payment_rate": 0.025,
+    "notes": "Office investment parameters"
+  },
+  "output_preferences": {
+    "save_report_to_file": true,
+    "output_format": "both",
+    "report_directory": "Reports",
+    "include_detailed_breakdown": true
+  }
+}

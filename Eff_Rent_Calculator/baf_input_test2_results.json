@@ -1,0 +1,73 @@
+{
+  "deal_name": "BAF Test Case 2 - Varied Rent Schedule",
+  "calculation_date": "2025-10-30 18:47:31",
+  "inputs": {
+    "property": {
+      "unit": "Test Unit",
+      "area_sf": 10000.0,
+      "tenant": "Test Tenant 2"
+    },
+    "lease_terms": {
+      "term_months": 120,
+      "fixturing_months": 3,
+      "operating_costs_psf": 14.14
+    },
+    "rent_schedule_psf": [
+      14.5,
+      14.5,
+      15.5,
+      15.5,
+      14.5,
+      16.5,
+      16.5,
+      16.5,
+      17.0,
+      18.0
+    ],
+    "discount_rate": 0.1
+  },
+  "results": {
+    "npv_analysis": {
+      "npv_net_rent_psf": 99.3,
+      "npv_costs_psf": -58.57,
+      "npv_lease_deal_psf": 40.72
+    },
+    "effective_rent": {
+      "ner_lease_term_only": 6.4,
+      "ner_with_fixturing": 5.61,
+      "ger_lease_term_only": 20.86,
+      "ger_with_fixturing": 20.56
+    },
+    "metrics": {
+      "effective_term_years": 6.36,
+      "incentives_pct_year1_gross": 1.8132,
+      "breakeven_months": 21.76
+    },
+    "breakeven_analysis": {
+      "unlevered_breakeven": 7.02,
+      "io_levered_breakeven": 5.04,
+      "fully_levered_breakeven": 6.46,
+      "sinking_fund_requirement_psf": 0.82,
+      "unlevered_with_caprec": 7.85,
+      "fully_levered_with_caprec": 7.28
+    },
+    "investment_assessment": {
+      "proposed_ner": 6.4,
+      "meets_unlevered_breakeven": false,
+      "meets_io_levered_breakeven": true,
+      "meets_fully_levered_breakeven": false,
+      "meets_unlevered_with_caprec": false,
+      "meets_fully_levered_with_caprec": false
+    },
+    "cost_breakdown": {
+      "tenant_cash_allowance": 300000.0,
+      "landlord_work": 125000.0,
+      "amortized_tenant_work": 0.0,
+      "pm_override_fee": 0.0,
+      "listing_agent": 29598.15,
+      "tenant_rep": 36848.15,
+      "net_free_rent_pv": 0.0,
+      "gross_free_rent_pv": 94289.7
+    }
+  }
+}

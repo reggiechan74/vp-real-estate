@@ -1,0 +1,64 @@
+{
+  "deal_name": "Example Industrial Lease - 10 Year",
+  "property_info": {
+    "property_type": "industrial",
+    "building_name": "Industrial Park East",
+    "unit_number": "9",
+    "area_sf": 10000.0,
+    "gla_building_sf": 58679.0
+  },
+  "tenant_info": {
+    "tenant_name": "Example Tenant Corp.",
+    "trade_name": "Example Manufacturing",
+    "contact": "John Smith",
+    "phone": "555-1234",
+    "email": "jsmith@example.com"
+  },
+  "lease_terms": {
+    "lease_start_date": "2019-11-01",
+    "lease_term_months": 120,
+    "fixturing_term_months": 3,
+    "operating_costs_psf": 14.14
+  },
+  "rent_schedule": {
+    "description": "Graduated rent: Years 1-5 at $14.50/sf, Years 6-10 at $16.50/sf",
+    "rent_psf_by_year": [14.5, 14.5, 14.5, 14.5, 14.5, 16.5, 16.5, 16.5, 16.5, 16.5],
+    "months_per_period": [12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+    "notes": "Net rent only - operating costs paid separately"
+  },
+  "incentives": {
+    "tenant_cash_allowance_psf": 30.0,
+    "landlord_work_total": 0.0,
+    "amortized_tenant_work": 0.0,
+    "net_free_rent_months": 3.0,
+    "gross_free_rent_months": 0.0,
+    "notes": "$30/sf TI allowance, 3 months net free rent during fixturing"
+  },
+  "leasing_costs": {
+    "listing_agent_year1_pct": 0.05,
+    "listing_agent_subsequent_pct": 0.025,
+    "tenant_rep_year1_pct": 0.05,
+    "tenant_rep_subsequent_pct": 0.025,
+    "pm_override_fee": 0.0,
+    "notes": "Industrial commissions: 5% year 1, 2.5% subsequent years (percentage of net rent)"
+  },
+  "financial_assumptions": {
+    "nominal_discount_rate": 0.10,
+    "notes": "10% discount rate for NPV calculations"
+  },
+  "investment_parameters": {
+    "acquisition_cost": 6104553.0,
+    "going_in_ltv": 0.5117554,
+    "mortgage_amortization_months": 300,
+    "dividend_yield": 0.0675,
+    "interest_cost": 0.0302,
+    "principal_payment_rate": 0.026713,
+    "notes": "Investment analysis parameters for breakeven calculations"
+  },
+  "output_preferences": {
+    "save_report_to_file": true,
+    "output_format": "both",
+    "report_directory": "Reports",
+    "include_detailed_breakdown": true
+  }
+}

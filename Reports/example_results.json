@@ -1,0 +1,73 @@
+{
+  "deal_name": "Example Industrial Lease - 10 Year",
+  "calculation_date": "2025-10-30 17:37:16",
+  "inputs": {
+    "property": {
+      "unit": "9",
+      "area_sf": 10000.0,
+      "tenant": "Example Tenant Corp."
+    },
+    "lease_terms": {
+      "term_months": 120,
+      "fixturing_months": 3,
+      "operating_costs_psf": 14.14
+    },
+    "rent_schedule_psf": [
+      14.5,
+      14.5,
+      14.5,
+      14.5,
+      14.5,
+      16.5,
+      16.5,
+      16.5,
+      16.5,
+      16.5
+    ],
+    "discount_rate": 0.1
+  },
+  "results": {
+    "npv_analysis": {
+      "npv_net_rent_psf": 98.62,
+      "npv_costs_psf": -41.4,
+      "npv_lease_deal_psf": 57.22
+    },
+    "effective_rent": {
+      "ner_lease_term_only": -9.0,
+      "ner_with_fixturing": -8.11,
+      "ger_lease_term_only": -23.36,
+      "ger_with_fixturing": -23.03
+    },
+    "metrics": {
+      "effective_term_years": -6.36,
+      "incentives_pct_year1_gross": -0.922,
+      "breakeven_months": -11.06
+    },
+    "breakeven_analysis": {
+      "unlevered_breakeven": 7.02,
+      "io_levered_breakeven": 5.04,
+      "fully_levered_breakeven": 6.46,
+      "sinking_fund_requirement_psf": 4.95,
+      "unlevered_with_caprec": 11.97,
+      "fully_levered_with_caprec": 11.41
+    },
+    "investment_assessment": {
+      "proposed_ner": -9.0,
+      "meets_unlevered_breakeven": false,
+      "meets_io_levered_breakeven": false,
+      "meets_fully_levered_breakeven": false,
+      "meets_unlevered_with_caprec": false,
+      "meets_fully_levered_with_caprec": false
+    },
+    "cost_breakdown": {
+      "tenant_cash_allowance": 300000.0,
+      "landlord_work": 0.0,
+      "amortized_tenant_work": 0.0,
+      "listing_agent": 50000.0,
+      "tenant_rep": 100000.0,
+      "pm_override_fee": 0.0,
+      "net_free_rent_pv": -35951.24,
+      "gross_free_rent_pv": 0.0
+    }
+  }
+}
