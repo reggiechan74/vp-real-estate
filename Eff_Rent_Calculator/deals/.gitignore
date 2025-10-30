@@ -1,0 +1,9 @@
+# Ignore all deal-specific files
+*.json
+
+# But track this .gitignore
+!.gitignore
+
+# Optional: Track example/template files
+!*_template.json
+!*_example.json

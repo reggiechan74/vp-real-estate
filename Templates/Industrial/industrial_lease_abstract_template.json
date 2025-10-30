@@ -1,0 +1,537 @@
+{
+  "documentInformation": {
+    "abstractDate": "",
+    "abstractedBy": "",
+    "sourceDocument": "",
+    "lastUpdated": ""
+  },
+  "parties": {
+    "landlord": {
+      "name": "",
+      "address": "",
+      "contact": ""
+    },
+    "tenant": {
+      "name": "",
+      "address": "",
+      "contact": ""
+    },
+    "indemnifier": {
+      "name": "",
+      "address": "",
+      "relationshipToTenant": ""
+    }
+  },
+  "premises": {
+    "propertyInformation": {
+      "projectName": "",
+      "buildingAddress": "",
+      "unitNumber": "",
+      "legalDescription": ""
+    },
+    "area": {
+      "rentableAreaSqFt": null,
+      "measurementStandard": "",
+      "commonFacilities": "",
+      "parkingSpaces": null,
+      "storage": ""
+    },
+    "permittedUse": {
+      "primaryUse": "",
+      "restrictions": [],
+      "prohibitedUses": []
+    }
+  },
+  "term": {
+    "leaseTerm": {
+      "commencementDate": "",
+      "deliveryDate": "",
+      "expiryDate": "",
+      "termLengthYears": null,
+      "termLengthMonths": null,
+      "fixturingPeriod": ""
+    },
+    "renewalOptions": {
+      "numberOfOptions": null,
+      "lengthOfEachOption": "",
+      "noticePeriodRequired": "",
+      "rentDeterminationMethod": ""
+    },
+    "earlyTermination": {
+      "terminationRights": false,
+      "conditions": "",
+      "noticePeriod": "",
+      "penalties": ""
+    }
+  },
+  "rent": {
+    "basicRent": [
+      {
+        "period": "Year 1",
+        "annualRent": null,
+        "monthlyRent": null,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "Year 2",
+        "annualRent": null,
+        "monthlyRent": null,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "Year 3",
+        "annualRent": null,
+        "monthlyRent": null,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "Year 4",
+        "annualRent": null,
+        "monthlyRent": null,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "Year 5",
+        "annualRent": null,
+        "monthlyRent": null,
+        "ratePerSqFt": null
+      }
+    ],
+    "rentEscalations": {
+      "escalationType": "",
+      "frequency": "",
+      "baseYearOrIndex": "",
+      "capPercentage": null,
+      "floorPercentage": null
+    },
+    "additionalRent": {
+      "operatingCosts": {
+        "tenantShare": "",
+        "method": ""
+      },
+      "realtyTaxes": {
+        "tenantShare": "",
+        "method": ""
+      },
+      "managementFee": {
+        "percentage": null,
+        "basis": ""
+      },
+      "utilities": {
+        "separatelyMetered": false,
+        "tenantResponsibility": ""
+      },
+      "camCharges": ""
+    },
+    "proportionateShare": {
+      "calculationMethod": "",
+      "percentage": null,
+      "adjustmentProvisions": ""
+    },
+    "paymentTerms": {
+      "dueDate": "",
+      "paymentMethod": "",
+      "latePaymentPenalty": "",
+      "nsfFee": null
+    }
+  },
+  "depositsAndSecurity": {
+    "rentDeposit": {
+      "amount": null,
+      "heldAs": "",
+      "interest": false,
+      "interestRate": null,
+      "application": "",
+      "returnConditions": ""
+    },
+    "letterOfCredit": {
+      "required": false,
+      "amount": null,
+      "beneficiary": "",
+      "expiry": "",
+      "reductionProvisions": ""
+    },
+    "otherSecurity": {
+      "type": "",
+      "amount": null,
+      "terms": ""
+    }
+  },
+  "operatingCostsAndTaxes": {
+    "netLeaseProvisions": {
+      "leaseType": "",
+      "tenantObligations": []
+    },
+    "operatingCosts": {
+      "includedItems": [],
+      "excludedItems": [],
+      "baseYear": "",
+      "grossUpProvisions": "",
+      "cap": null
+    },
+    "realtyTaxes": {
+      "paymentMethod": "",
+      "tenantShare": "",
+      "contestRights": "",
+      "taxIncreaseLimitations": ""
+    },
+    "businessAndSalesTaxes": {
+      "responsibility": "",
+      "hstGst": ""
+    }
+  },
+  "useAndOperations": {
+    "permittedUse": {
+      "specificUsesAllowed": [],
+      "buildingStandard": "",
+      "complianceRequirements": []
+    },
+    "prohibitedUses": {
+      "specificProhibitions": [],
+      "hazardousSubstances": "",
+      "bioMedicalWaste": ""
+    },
+    "operatingHours": {
+      "businessHours": "",
+      "access": "",
+      "afterHoursHVAC": ""
+    },
+    "signage": {
+      "exteriorSignageRights": "",
+      "interiorSignage": "",
+      "approvalRequirements": "",
+      "costResponsibility": ""
+    }
+  },
+  "maintenanceAndRepairs": {
+    "landlordObligations": {
+      "structural": "",
+      "roof": "",
+      "commonAreas": "",
+      "buildingSystems": "",
+      "hvac": ""
+    },
+    "tenantObligations": {
+      "interiorMaintenance": "",
+      "equipment": "",
+      "janitorial": "",
+      "repairsUnderThreshold": null
+    },
+    "capitalImprovements": {
+      "landlordsRights": "",
+      "tenantObligations": "",
+      "amortization": ""
+    }
+  },
+  "alterationsAndImprovements": {
+    "landlordWork": {
+      "description": "",
+      "completionDate": "",
+      "allowance": null
+    },
+    "tenantWork": {
+      "preApprovalRequired": false,
+      "approvalThreshold": null,
+      "architectEngineerRequirements": "",
+      "insuranceDuringConstruction": "",
+      "permitsResponsibility": ""
+    },
+    "leaseholdImprovements": {
+      "ownership": "",
+      "removalAtEndOfTerm": "",
+      "restorationObligations": ""
+    },
+    "tradeFixtures": {
+      "definition": "",
+      "removalRights": "",
+      "restoration": ""
+    }
+  },
+  "insuranceAndIndemnity": {
+    "landlordInsurance": {
+      "propertyInsurance": "",
+      "liabilityInsurance": "",
+      "other": ""
+    },
+    "tenantInsuranceRequirements": {
+      "commercialGeneralLiability": {
+        "minimumCoverage": null,
+        "namedInsured": ""
+      },
+      "propertyInsurance": {
+        "allRiskCoverage": null,
+        "businessInterruption": null
+      },
+      "otherRequiredCoverage": [],
+      "certificateRequirements": "",
+      "renewalNotice": ""
+    },
+    "waiverOfSubrogation": {
+      "appliesTo": []
+    },
+    "indemnification": {
+      "tenantIndemnifiesLandlordFor": [],
+      "landlordIndemnifiesTenantFor": [],
+      "exceptions": []
+    }
+  },
+  "damageAndDestruction": {
+    "casualtyProvisions": {
+      "landlordRepairObligation": "",
+      "timeToRepair": "",
+      "substantialDamageDefinition": "",
+      "substantialDamageRights": ""
+    },
+    "rentAbatement": {
+      "duringRepairs": "",
+      "conditions": "",
+      "tenantAccess": ""
+    },
+    "uninsuredCasualty": {
+      "landlordObligations": "",
+      "terminationRights": ""
+    }
+  },
+  "assignmentAndSubletting": {
+    "transferRestrictions": {
+      "assignmentAllowed": "",
+      "sublettingAllowed": "",
+      "consentStandard": ""
+    },
+    "landlordRights": {
+      "recaptureRight": false,
+      "profitSharing": null,
+      "processingFee": null
+    },
+    "permittedTransfers": {
+      "affiliateTransfers": "",
+      "changeOfControl": "",
+      "conditions": []
+    },
+    "transferRequirements": {
+      "noticePeriod": "",
+      "informationRequired": [],
+      "financialCovenant": "",
+      "ongoingLiability": ""
+    }
+  },
+  "defaultAndRemedies": {
+    "eventsOfDefault": {
+      "nonPayment": {
+        "gracePeriod": ""
+      },
+      "breachOfCovenants": {
+        "curePeriod": ""
+      },
+      "bankruptcyInsolvency": "",
+      "abandonment": "",
+      "other": []
+    },
+    "landlordRemedies": {
+      "termination": "",
+      "reEntry": "",
+      "damages": "",
+      "distress": "",
+      "other": []
+    },
+    "interestOnLatePayments": {
+      "rate": "",
+      "calculationMethod": ""
+    },
+    "costs": {
+      "legalFeesResponsibility": "",
+      "collectionCosts": ""
+    }
+  },
+  "servicesAndUtilities": {
+    "utilitiesProvidedByLandlord": {
+      "electricity": "",
+      "waterSewer": "",
+      "gas": "",
+      "hvac": "",
+      "other": []
+    },
+    "utilitiesTenantResponsibility": {
+      "separatelyMetered": [],
+      "paymentMethod": "",
+      "afterHoursHVAC": ""
+    },
+    "serviceInterruptions": {
+      "landlordLiability": "",
+      "rentAbatement": "",
+      "forceMajeure": ""
+    }
+  },
+  "environmental": {
+    "environmentalCompliance": {
+      "tenantObligations": [],
+      "hazardousSubstances": "",
+      "phaseRequirements": ""
+    },
+    "environmentalIndemnity": {
+      "scope": "",
+      "survival": ""
+    },
+    "remediation": {
+      "responsibility": "",
+      "costAllocation": "",
+      "accessForTesting": ""
+    }
+  },
+  "subordinationAndAttornment": {
+    "subordination": {
+      "leaseSubordinateTo": "",
+      "sndaRequired": false,
+      "sndaProvided": false,
+      "conditions": []
+    },
+    "registration": {
+      "leaseRegistration": "",
+      "noticeOfLease": ""
+    }
+  },
+  "notices": {
+    "noticeRequirements": {
+      "form": "",
+      "deliveryMethod": [],
+      "deemedReceived": ""
+    },
+    "noticeAddresses": {
+      "landlord": {
+        "address": "",
+        "attention": "",
+        "email": ""
+      },
+      "tenant": {
+        "address": "",
+        "attention": "",
+        "email": ""
+      },
+      "copyTo": []
+    }
+  },
+  "endOfTerm": {
+    "surrenderRequirements": {
+      "condition": "",
+      "removalOfImprovements": [],
+      "removalOfEquipment": "",
+      "cleaning": ""
+    },
+    "overholding": {
+      "permitted": false,
+      "rentDuringOverholding": "",
+      "consequences": ""
+    },
+    "finalStatement": {
+      "reconciliation": "",
+      "timing": ""
+    }
+  },
+  "specialProvisions": {
+    "customTerms": []
+  },
+  "schedulesAndExhibits": {
+    "attachedSchedules": {
+      "scheduleA": {
+        "title": "Legal Description of Project",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleB": {
+        "title": "Outline Plan of Premises",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleC": {
+        "title": "Landlord's and Tenant's Work",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleD": {
+        "title": "Rent Deposit Agreement",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleE": {
+        "title": "Environmental Questionnaire",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleF": {
+        "title": "Rules and Regulations",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleG": {
+        "title": "Special Provisions",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleH": {
+        "title": "Indemnity Agreement",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleI": {
+        "title": "Pre-Authorized Debit (PAD) Authorization",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleJ": {
+        "title": "Letter of Credit Agreement",
+        "attached": false,
+        "summary": ""
+      }
+    },
+    "keyItemsFromSchedules": []
+  },
+  "criticalDates": [
+    {
+      "event": "Lease Commencement",
+      "date": "",
+      "noticeRequired": "",
+      "actionRequired": ""
+    },
+    {
+      "event": "First Rent Payment",
+      "date": "",
+      "noticeRequired": "",
+      "actionRequired": ""
+    },
+    {
+      "event": "Renewal Option Notice",
+      "date": "",
+      "noticeRequired": "",
+      "actionRequired": ""
+    },
+    {
+      "event": "Lease Expiry",
+      "date": "",
+      "noticeRequired": "",
+      "actionRequired": ""
+    }
+  ],
+  "financialObligations": {
+    "initialCosts": {
+      "firstMonthRent": null,
+      "rentDeposit": null,
+      "letterOfCredit": null,
+      "other": null,
+      "total": null
+    },
+    "ongoingMonthlyCosts": {
+      "basicRent": null,
+      "operatingCosts": null,
+      "realtyTaxes": null,
+      "managementFee": null,
+      "utilities": null,
+      "estimatedTotal": null
+    }
+  },
+  "keyIssuesAndRisks": {
+    "favorableTerms": [],
+    "unfavorableTermsRisks": [],
+    "itemsRequiringFurtherReview": []
+  },
+  "notesAndComments": ""
+}

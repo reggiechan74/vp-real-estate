@@ -1,0 +1,782 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/office-lease-abstract.schema.json",
+  "title": "Office Lease Abstract",
+  "description": "Schema for office commercial real estate lease abstracts",
+  "type": "object",
+  "properties": {
+    "documentInformation": {
+      "type": "object",
+      "properties": {
+        "abstractDate": { "type": "string", "format": "date" },
+        "abstractedBy": { "type": "string" },
+        "sourceDocument": { "type": "string" },
+        "lastUpdated": { "type": "string", "format": "date" }
+      },
+      "required": ["abstractDate", "abstractedBy", "sourceDocument"]
+    },
+    "parties": {
+      "type": "object",
+      "properties": {
+        "landlord": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "address": { "type": "string" },
+            "contact": { "type": "string" }
+          },
+          "required": ["name"]
+        },
+        "tenant": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "address": { "type": "string" },
+            "contact": { "type": "string" }
+          },
+          "required": ["name"]
+        },
+        "indemnifier": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "address": { "type": "string" },
+            "relationshipToTenant": { "type": "string" }
+          }
+        }
+      },
+      "required": ["landlord", "tenant"]
+    },
+    "premises": {
+      "type": "object",
+      "properties": {
+        "propertyInformation": {
+          "type": "object",
+          "properties": {
+            "projectName": { "type": "string" },
+            "buildingAddress": { "type": "string" },
+            "unitNumber": { "type": "string" },
+            "legalDescription": { "type": "string" }
+          },
+          "required": ["buildingAddress"]
+        },
+        "area": {
+          "type": "object",
+          "properties": {
+            "rentableAreaSqFt": { "type": "number", "minimum": 0 },
+            "measurementStandard": { "type": "string" },
+            "commonFacilities": { "type": "string" },
+            "parkingSpaces": { "type": ["number", "null"], "minimum": 0 },
+            "storage": { "type": "string" }
+          },
+          "required": ["rentableAreaSqFt"]
+        },
+        "permittedUse": {
+          "type": "object",
+          "properties": {
+            "primaryUse": { "type": "string" },
+            "restrictions": { "type": "array", "items": { "type": "string" } },
+            "prohibitedUses": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": ["primaryUse"]
+        }
+      },
+      "required": ["propertyInformation", "area", "permittedUse"]
+    },
+    "term": {
+      "type": "object",
+      "properties": {
+        "leaseTerm": {
+          "type": "object",
+          "properties": {
+            "commencementDate": { "type": "string", "format": "date" },
+            "deliveryDate": { "type": "string", "format": "date" },
+            "expiryDate": { "type": "string", "format": "date" },
+            "termLengthYears": { "type": ["number", "null"], "minimum": 0 },
+            "termLengthMonths": { "type": ["number", "null"], "minimum": 0 },
+            "fixturingPeriod": { "type": "string" }
+          },
+          "required": ["commencementDate", "expiryDate"]
+        },
+        "renewalOptions": {
+          "type": "object",
+          "properties": {
+            "numberOfOptions": { "type": ["number", "null"], "minimum": 0 },
+            "lengthOfEachOption": { "type": "string" },
+            "noticePeriodRequired": { "type": "string" },
+            "rentDeterminationMethod": { "type": "string" }
+          }
+        },
+        "earlyTermination": {
+          "type": "object",
+          "properties": {
+            "terminationRights": { "type": "boolean" },
+            "conditions": { "type": "string" },
+            "noticePeriod": { "type": "string" },
+            "penalties": { "type": "string" }
+          }
+        }
+      },
+      "required": ["leaseTerm"]
+    },
+    "rent": {
+      "type": "object",
+      "properties": {
+        "basicRent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "period": { "type": "string" },
+              "annualRent": { "type": ["number", "null"], "minimum": 0 },
+              "monthlyRent": { "type": ["number", "null"], "minimum": 0 },
+              "ratePerSqFt": { "type": ["number", "null"], "minimum": 0 }
+            },
+            "required": ["period"]
+          }
+        },
+        "rentEscalations": {
+          "type": "object",
+          "properties": {
+            "escalationType": {
+              "type": "string",
+              "enum": ["Fixed Percentage", "CPI", "Market Review", "None", "Other"]
+            },
+            "frequency": { "type": "string" },
+            "baseYearOrIndex": { "type": "string" },
+            "capPercentage": { "type": ["number", "null"] },
+            "floorPercentage": { "type": ["number", "null"] }
+          }
+        },
+        "additionalRent": {
+          "type": "object",
+          "properties": {
+            "operatingCosts": {
+              "type": "object",
+              "properties": {
+                "tenantShare": { "type": "string" },
+                "method": { "type": "string" }
+              }
+            },
+            "realtyTaxes": {
+              "type": "object",
+              "properties": {
+                "tenantShare": { "type": "string" },
+                "method": { "type": "string" }
+              }
+            },
+            "managementFee": {
+              "type": "object",
+              "properties": {
+                "percentage": { "type": ["number", "null"], "minimum": 0 },
+                "basis": { "type": "string" }
+              }
+            },
+            "utilities": {
+              "type": "object",
+              "properties": {
+                "separatelyMetered": { "type": "boolean" },
+                "tenantResponsibility": { "type": "string" }
+              }
+            },
+            "camCharges": { "type": "string" }
+          }
+        },
+        "proportionateShare": {
+          "type": "object",
+          "properties": {
+            "calculationMethod": { "type": "string" },
+            "percentage": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+            "adjustmentProvisions": { "type": "string" }
+          }
+        },
+        "paymentTerms": {
+          "type": "object",
+          "properties": {
+            "dueDate": { "type": "string" },
+            "paymentMethod": { "type": "string" },
+            "latePaymentPenalty": { "type": "string" },
+            "nsfFee": { "type": ["number", "null"], "minimum": 0 }
+          }
+        }
+      },
+      "required": ["basicRent"]
+    },
+    "depositsAndSecurity": {
+      "type": "object",
+      "properties": {
+        "rentDeposit": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": ["number", "null"], "minimum": 0 },
+            "heldAs": {
+              "type": "string",
+              "enum": ["First Month", "Last Month", "Security", "Prepaid Rent", ""]
+            },
+            "interest": { "type": "boolean" },
+            "interestRate": { "type": ["number", "null"], "minimum": 0 },
+            "application": { "type": "string" },
+            "returnConditions": { "type": "string" }
+          }
+        },
+        "letterOfCredit": {
+          "type": "object",
+          "properties": {
+            "required": { "type": "boolean" },
+            "amount": { "type": ["number", "null"], "minimum": 0 },
+            "beneficiary": { "type": "string" },
+            "expiry": { "type": "string" },
+            "reductionProvisions": { "type": "string" }
+          }
+        },
+        "otherSecurity": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "amount": { "type": ["number", "null"], "minimum": 0 },
+            "terms": { "type": "string" }
+          }
+        }
+      }
+    },
+    "operatingCostsAndTaxes": {
+      "type": "object",
+      "properties": {
+        "netLeaseProvisions": {
+          "type": "object",
+          "properties": {
+            "leaseType": {
+              "type": "string",
+              "enum": ["Gross", "Net", "Triple Net", "Modified Gross", ""]
+            },
+            "tenantObligations": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "operatingCosts": {
+          "type": "object",
+          "properties": {
+            "includedItems": { "type": "array", "items": { "type": "string" } },
+            "excludedItems": { "type": "array", "items": { "type": "string" } },
+            "baseYear": { "type": "string" },
+            "grossUpProvisions": { "type": "string" },
+            "cap": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
+        "realtyTaxes": {
+          "type": "object",
+          "properties": {
+            "paymentMethod": { "type": "string" },
+            "tenantShare": { "type": "string" },
+            "contestRights": { "type": "string" },
+            "taxIncreaseLimitations": { "type": "string" }
+          }
+        },
+        "businessAndSalesTaxes": {
+          "type": "object",
+          "properties": {
+            "responsibility": { "type": "string" },
+            "hstGst": { "type": "string" }
+          }
+        }
+      }
+    },
+    "useAndOperations": {
+      "type": "object",
+      "properties": {
+        "permittedUse": {
+          "type": "object",
+          "properties": {
+            "specificUsesAllowed": { "type": "array", "items": { "type": "string" } },
+            "buildingStandard": { "type": "string" },
+            "complianceRequirements": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "prohibitedUses": {
+          "type": "object",
+          "properties": {
+            "specificProhibitions": { "type": "array", "items": { "type": "string" } },
+            "hazardousSubstances": { "type": "string" },
+            "bioMedicalWaste": { "type": "string" }
+          }
+        },
+        "operatingHours": {
+          "type": "object",
+          "properties": {
+            "businessHours": { "type": "string" },
+            "access": { "type": "string" },
+            "afterHoursHVAC": { "type": "string" }
+          }
+        },
+        "signage": {
+          "type": "object",
+          "properties": {
+            "exteriorSignageRights": { "type": "string" },
+            "interiorSignage": { "type": "string" },
+            "approvalRequirements": { "type": "string" },
+            "costResponsibility": { "type": "string" }
+          }
+        }
+      }
+    },
+    "maintenanceAndRepairs": {
+      "type": "object",
+      "properties": {
+        "landlordObligations": {
+          "type": "object",
+          "properties": {
+            "structural": { "type": "string" },
+            "roof": { "type": "string" },
+            "commonAreas": { "type": "string" },
+            "buildingSystems": { "type": "string" },
+            "hvac": { "type": "string" }
+          }
+        },
+        "tenantObligations": {
+          "type": "object",
+          "properties": {
+            "interiorMaintenance": { "type": "string" },
+            "equipment": { "type": "string" },
+            "janitorial": { "type": "string" },
+            "repairsUnderThreshold": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
+        "capitalImprovements": {
+          "type": "object",
+          "properties": {
+            "landlordsRights": { "type": "string" },
+            "tenantObligations": { "type": "string" },
+            "amortization": { "type": "string" }
+          }
+        }
+      }
+    },
+    "alterationsAndImprovements": {
+      "type": "object",
+      "properties": {
+        "landlordWork": {
+          "type": "object",
+          "properties": {
+            "description": { "type": "string" },
+            "completionDate": { "type": "string", "format": "date" },
+            "allowance": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
+        "tenantWork": {
+          "type": "object",
+          "properties": {
+            "preApprovalRequired": { "type": "boolean" },
+            "approvalThreshold": { "type": ["number", "null"], "minimum": 0 },
+            "architectEngineerRequirements": { "type": "string" },
+            "insuranceDuringConstruction": { "type": "string" },
+            "permitsResponsibility": { "type": "string" }
+          }
+        },
+        "leaseholdImprovements": {
+          "type": "object",
+          "properties": {
+            "ownership": { "type": "string", "enum": ["Landlord", "Tenant", "Shared", ""] },
+            "removalAtEndOfTerm": { "type": "string" },
+            "restorationObligations": { "type": "string" }
+          }
+        },
+        "tradeFixtures": {
+          "type": "object",
+          "properties": {
+            "definition": { "type": "string" },
+            "removalRights": { "type": "string" },
+            "restoration": { "type": "string" }
+          }
+        }
+      }
+    },
+    "insuranceAndIndemnity": {
+      "type": "object",
+      "properties": {
+        "landlordInsurance": {
+          "type": "object",
+          "properties": {
+            "propertyInsurance": { "type": "string" },
+            "liabilityInsurance": { "type": "string" },
+            "other": { "type": "string" }
+          }
+        },
+        "tenantInsuranceRequirements": {
+          "type": "object",
+          "properties": {
+            "commercialGeneralLiability": {
+              "type": "object",
+              "properties": {
+                "minimumCoverage": { "type": ["number", "null"], "minimum": 0 },
+                "namedInsured": { "type": "string" }
+              }
+            },
+            "propertyInsurance": {
+              "type": "object",
+              "properties": {
+                "allRiskCoverage": { "type": ["number", "null"], "minimum": 0 },
+                "businessInterruption": { "type": ["number", "null"], "minimum": 0 }
+              }
+            },
+            "otherRequiredCoverage": { "type": "array", "items": { "type": "string" } },
+            "certificateRequirements": { "type": "string" },
+            "renewalNotice": { "type": "string" }
+          }
+        },
+        "waiverOfSubrogation": {
+          "type": "object",
+          "properties": {
+            "appliesTo": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "indemnification": {
+          "type": "object",
+          "properties": {
+            "tenantIndemnifiesLandlordFor": { "type": "array", "items": { "type": "string" } },
+            "landlordIndemnifiesTenantFor": { "type": "array", "items": { "type": "string" } },
+            "exceptions": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "damageAndDestruction": {
+      "type": "object",
+      "properties": {
+        "casualtyProvisions": {
+          "type": "object",
+          "properties": {
+            "landlordRepairObligation": { "type": "string" },
+            "timeToRepair": { "type": "string" },
+            "substantialDamageDefinition": { "type": "string" },
+            "substantialDamageRights": { "type": "string" }
+          }
+        },
+        "rentAbatement": {
+          "type": "object",
+          "properties": {
+            "duringRepairs": { "type": "string" },
+            "conditions": { "type": "string" },
+            "tenantAccess": { "type": "string" }
+          }
+        },
+        "uninsuredCasualty": {
+          "type": "object",
+          "properties": {
+            "landlordObligations": { "type": "string" },
+            "terminationRights": { "type": "string" }
+          }
+        }
+      }
+    },
+    "assignmentAndSubletting": {
+      "type": "object",
+      "properties": {
+        "transferRestrictions": {
+          "type": "object",
+          "properties": {
+            "assignmentAllowed": { "type": "string" },
+            "sublettingAllowed": { "type": "string" },
+            "consentStandard": { "type": "string", "enum": ["Reasonable", "Absolute Discretion", "Not Required", ""] }
+          }
+        },
+        "landlordRights": {
+          "type": "object",
+          "properties": {
+            "recaptureRight": { "type": "boolean" },
+            "profitSharing": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+            "processingFee": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
+        "permittedTransfers": {
+          "type": "object",
+          "properties": {
+            "affiliateTransfers": { "type": "string" },
+            "changeOfControl": { "type": "string" },
+            "conditions": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "transferRequirements": {
+          "type": "object",
+          "properties": {
+            "noticePeriod": { "type": "string" },
+            "informationRequired": { "type": "array", "items": { "type": "string" } },
+            "financialCovenant": { "type": "string" },
+            "ongoingLiability": { "type": "string" }
+          }
+        }
+      }
+    },
+    "defaultAndRemedies": {
+      "type": "object",
+      "properties": {
+        "eventsOfDefault": {
+          "type": "object",
+          "properties": {
+            "nonPayment": {
+              "type": "object",
+              "properties": {
+                "gracePeriod": { "type": "string" }
+              }
+            },
+            "breachOfCovenants": {
+              "type": "object",
+              "properties": {
+                "curePeriod": { "type": "string" }
+              }
+            },
+            "bankruptcyInsolvency": { "type": "string" },
+            "abandonment": { "type": "string" },
+            "other": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "landlordRemedies": {
+          "type": "object",
+          "properties": {
+            "termination": { "type": "string" },
+            "reEntry": { "type": "string" },
+            "damages": { "type": "string" },
+            "distress": { "type": "string" },
+            "other": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "interestOnLatePayments": {
+          "type": "object",
+          "properties": {
+            "rate": { "type": "string" },
+            "calculationMethod": { "type": "string" }
+          }
+        },
+        "costs": {
+          "type": "object",
+          "properties": {
+            "legalFeesResponsibility": { "type": "string" },
+            "collectionCosts": { "type": "string" }
+          }
+        }
+      }
+    },
+    "servicesAndUtilities": {
+      "type": "object",
+      "properties": {
+        "utilitiesProvidedByLandlord": {
+          "type": "object",
+          "properties": {
+            "electricity": { "type": "string" },
+            "waterSewer": { "type": "string" },
+            "gas": { "type": "string" },
+            "hvac": { "type": "string" },
+            "other": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "utilitiesTenantResponsibility": {
+          "type": "object",
+          "properties": {
+            "separatelyMetered": { "type": "array", "items": { "type": "string" } },
+            "paymentMethod": { "type": "string" },
+            "afterHoursHVAC": { "type": "string" }
+          }
+        },
+        "serviceInterruptions": {
+          "type": "object",
+          "properties": {
+            "landlordLiability": { "type": "string" },
+            "rentAbatement": { "type": "string" },
+            "forceMajeure": { "type": "string" }
+          }
+        }
+      }
+    },
+    "environmental": {
+      "type": "object",
+      "properties": {
+        "environmentalCompliance": {
+          "type": "object",
+          "properties": {
+            "tenantObligations": { "type": "array", "items": { "type": "string" } },
+            "hazardousSubstances": { "type": "string" },
+            "phaseRequirements": { "type": "string" }
+          }
+        },
+        "environmentalIndemnity": {
+          "type": "object",
+          "properties": {
+            "scope": { "type": "string" },
+            "survival": { "type": "string" }
+          }
+        },
+        "remediation": {
+          "type": "object",
+          "properties": {
+            "responsibility": { "type": "string" },
+            "costAllocation": { "type": "string" },
+            "accessForTesting": { "type": "string" }
+          }
+        }
+      }
+    },
+    "subordinationAndAttornment": {
+      "type": "object",
+      "properties": {
+        "subordination": {
+          "type": "object",
+          "properties": {
+            "leaseSubordinateTo": { "type": "string" },
+            "sndaRequired": { "type": "boolean" },
+            "sndaProvided": { "type": "boolean" },
+            "conditions": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "registration": {
+          "type": "object",
+          "properties": {
+            "leaseRegistration": { "type": "string" },
+            "noticeOfLease": { "type": "string" }
+          }
+        }
+      }
+    },
+    "notices": {
+      "type": "object",
+      "properties": {
+        "noticeRequirements": {
+          "type": "object",
+          "properties": {
+            "form": { "type": "string" },
+            "deliveryMethod": { "type": "array", "items": { "type": "string" } },
+            "deemedReceived": { "type": "string" }
+          }
+        },
+        "noticeAddresses": {
+          "type": "object",
+          "properties": {
+            "landlord": {
+              "type": "object",
+              "properties": {
+                "address": { "type": "string" },
+                "attention": { "type": "string" },
+                "email": { "type": "string", "format": "email" }
+              }
+            },
+            "tenant": {
+              "type": "object",
+              "properties": {
+                "address": { "type": "string" },
+                "attention": { "type": "string" },
+                "email": { "type": "string", "format": "email" }
+              }
+            },
+            "copyTo": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "endOfTerm": {
+      "type": "object",
+      "properties": {
+        "surrenderRequirements": {
+          "type": "object",
+          "properties": {
+            "condition": { "type": "string" },
+            "removalOfImprovements": { "type": "array", "items": { "type": "string" } },
+            "removalOfEquipment": { "type": "string" },
+            "cleaning": { "type": "string" }
+          }
+        },
+        "overholding": {
+          "type": "object",
+          "properties": {
+            "permitted": { "type": "boolean" },
+            "rentDuringOverholding": { "type": "string" },
+            "consequences": { "type": "string" }
+          }
+        },
+        "finalStatement": {
+          "type": "object",
+          "properties": {
+            "reconciliation": { "type": "string" },
+            "timing": { "type": "string" }
+          }
+        }
+      }
+    },
+    "specialProvisions": {
+      "type": "object",
+      "properties": {
+        "customTerms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "schedulesAndExhibits": {
+      "type": "object",
+      "properties": {
+        "attachedSchedules": {
+          "type": "object",
+          "patternProperties": {
+            "^schedule[A-Z]$": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "attached": { "type": "boolean" },
+                "summary": { "type": "string" }
+              }
+            }
+          }
+        },
+        "keyItemsFromSchedules": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "criticalDates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event": { "type": "string" },
+          "date": { "type": "string" },
+          "noticeRequired": { "type": "string" },
+          "actionRequired": { "type": "string" }
+        },
+        "required": ["event"]
+      }
+    },
+    "financialObligations": {
+      "type": "object",
+      "properties": {
+        "initialCosts": {
+          "type": "object",
+          "properties": {
+            "firstMonthRent": { "type": ["number", "null"], "minimum": 0 },
+            "rentDeposit": { "type": ["number", "null"], "minimum": 0 },
+            "letterOfCredit": { "type": ["number", "null"], "minimum": 0 },
+            "other": { "type": ["number", "null"], "minimum": 0 },
+            "total": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
+        "ongoingMonthlyCosts": {
+          "type": "object",
+          "properties": {
+            "basicRent": { "type": ["number", "null"], "minimum": 0 },
+            "operatingCosts": { "type": ["number", "null"], "minimum": 0 },
+            "realtyTaxes": { "type": ["number", "null"], "minimum": 0 },
+            "managementFee": { "type": ["number", "null"], "minimum": 0 },
+            "utilities": { "type": ["number", "null"], "minimum": 0 },
+            "estimatedTotal": { "type": ["number", "null"], "minimum": 0 }
+          }
+        }
+      }
+    },
+    "keyIssuesAndRisks": {
+      "type": "object",
+      "properties": {
+        "favorableTerms": { "type": "array", "items": { "type": "string" } },
+        "unfavorableTermsRisks": { "type": "array", "items": { "type": "string" } },
+        "itemsRequiringFurtherReview": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "notesAndComments": { "type": "string" }
+  },
+  "required": [
+    "documentInformation",
+    "parties",
+    "premises",
+    "term",
+    "rent"
+  ]
+}

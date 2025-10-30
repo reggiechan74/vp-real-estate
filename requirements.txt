@@ -1,0 +1,26 @@
+# Requirements for Lease Abstraction Project
+
+# Core dependencies
+anthropic>=0.39.0  # For Claude API if needed
+
+# Document processing
+markitdown>=0.1.0  # For converting Word/PDF documents to markdown
+python-docx>=0.8.11  # For reading Word documents
+openpyxl>=3.1.0  # For Excel file processing
+pandas>=2.0.0  # For data manipulation
+
+# Financial calculations (BAF Calculator)
+numpy>=1.24.0  # For numerical operations
+numpy-financial>=1.0.0  # For financial calculations (NPV, PMT, etc.)
+
+# Optional: Web scraping for SEC EDGAR documents
+requests>=2.31.0  # For HTTP requests
+beautifulsoup4>=4.12.0  # For HTML parsing
+
+# Optional: PDF processing
+pypdf2>=3.0.0  # For PDF file handling
+
+# Development tools
+pytest>=7.4.0  # For testing
+black>=23.0.0  # For code formatting
+mypy>=1.5.0  # For type checking

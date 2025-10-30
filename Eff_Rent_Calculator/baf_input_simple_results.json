@@ -1,0 +1,68 @@
+{
+  "deal_name": "Simple Office Lease - 5 Year",
+  "calculation_date": "2025-10-30 18:46:40",
+  "inputs": {
+    "property": {
+      "unit": "Suite 1200",
+      "area_sf": 5000.0,
+      "tenant": "Tech Startup LLC"
+    },
+    "lease_terms": {
+      "term_months": 60,
+      "fixturing_months": 0,
+      "operating_costs_psf": 12.0
+    },
+    "rent_schedule_psf": [
+      25.0,
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "discount_rate": 0.08
+  },
+  "results": {
+    "npv_analysis": {
+      "npv_net_rent_psf": 103.43,
+      "npv_costs_psf": -25.15,
+      "npv_lease_deal_psf": 78.28
+    },
+    "effective_rent": {
+      "ner_lease_term_only": 18.92,
+      "ner_with_fixturing": 18.92,
+      "ger_lease_term_only": 32.37,
+      "ger_with_fixturing": 32.37
+    },
+    "metrics": {
+      "effective_term_years": 4.14,
+      "incentives_pct_year1_gross": 0.5176,
+      "breakeven_months": 6.21
+    },
+    "breakeven_analysis": {
+      "unlevered_breakeven": 6.5,
+      "io_levered_breakeven": 4.7,
+      "fully_levered_breakeven": 6.2,
+      "sinking_fund_requirement_psf": 0.99,
+      "unlevered_with_caprec": 7.49,
+      "fully_levered_with_caprec": 7.19
+    },
+    "investment_assessment": {
+      "proposed_ner": 18.92,
+      "meets_unlevered_breakeven": true,
+      "meets_io_levered_breakeven": true,
+      "meets_fully_levered_breakeven": true,
+      "meets_unlevered_with_caprec": true,
+      "meets_fully_levered_with_caprec": true
+    },
+    "cost_breakdown": {
+      "tenant_cash_allowance": 75000.0,
+      "landlord_work": 0.0,
+      "amortized_tenant_work": 0.0,
+      "pm_override_fee": 0.0,
+      "listing_agent": 15000.0,
+      "tenant_rep": 15000.0,
+      "net_free_rent_pv": 20764.35,
+      "gross_free_rent_pv": 0.0
+    }
+  }
+}
