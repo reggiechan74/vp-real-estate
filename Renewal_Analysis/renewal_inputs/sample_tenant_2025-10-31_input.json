@@ -1,0 +1,54 @@
+{
+  "tenant_name": "Sample Manufacturing Inc",
+  "current_location": "123 Industrial Way, El Monte, CA",
+  "property_type": "Industrial",
+  "rentable_area": 25000,
+  "discount_rate": 0.10,
+  "renewal_scenario": {
+    "term_years": 5,
+    "rent_schedule": [
+      {"year": 1, "rent_per_sf": 12.00, "operating_costs_per_sf": 3.50},
+      {"year": 2, "rent_per_sf": 12.36, "operating_costs_per_sf": 3.61},
+      {"year": 3, "rent_per_sf": 12.73, "operating_costs_per_sf": 3.72},
+      {"year": 4, "rent_per_sf": 13.11, "operating_costs_per_sf": 3.83},
+      {"year": 5, "rent_per_sf": 13.50, "operating_costs_per_sf": 3.94}
+    ],
+    "ti_allowance_per_sf": -5.00,
+    "free_rent_months": 0,
+    "tenant_funded_ti_per_sf": 3.00,
+    "renovation_cost_per_sf": 2.00,
+    "legal_fees": 5000
+  },
+  "relocation_scenario": {
+    "alternative_location": "456 Commerce Blvd, Industry, CA",
+    "term_years": 5,
+    "rent_schedule": [
+      {"year": 1, "rent_per_sf": 11.50, "operating_costs_per_sf": 3.25},
+      {"year": 2, "rent_per_sf": 11.85, "operating_costs_per_sf": 3.35},
+      {"year": 3, "rent_per_sf": 12.21, "operating_costs_per_sf": 3.45},
+      {"year": 4, "rent_per_sf": 12.57, "operating_costs_per_sf": 3.55},
+      {"year": 5, "rent_per_sf": 12.95, "operating_costs_per_sf": 3.66}
+    ],
+    "ti_allowance_per_sf": -15.00,
+    "free_rent_months": 2,
+    "tenant_funded_ti_per_sf": 8.00,
+    "moving_costs": 75000,
+    "it_relocation_costs": 25000,
+    "furniture_costs": 15000,
+    "downtime_days": 5,
+    "daily_revenue": 50000,
+    "customer_loss_pct": 0.03,
+    "unamortized_improvements": 100000,
+    "restoration_costs": 20000,
+    "commission_rate": 0.05,
+    "legal_fees": 10000
+  },
+  "current_lease_info": {
+    "expiry_date": "2026-06-30",
+    "current_rent_per_sf": 11.50,
+    "current_operating_costs_per_sf": 3.25,
+    "original_ti_per_sf": 20.00,
+    "lease_commencement": "2021-07-01",
+    "years_occupied": 4
+  }
+}

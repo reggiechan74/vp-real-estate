@@ -1,0 +1,70 @@
+{
+  "tenant_name": "Sample Manufacturing Co",
+  "property_address": "456 Industrial Pkwy, El Monte, CA 91731",
+  "commencement_date": "2025-01-01",
+  "lease_term_months": 60,
+  "discount_rate": 0.06,
+  "payment_timing": "beginning",
+  "initial_lease_liability": 1108686.4475526086,
+  "initial_rou_asset": 1073686.4475526086,
+  "total_interest_expense": 176930.66999999998,
+  "total_depreciation": 1073686.2000000002,
+  "total_lease_cost": 1250616.87,
+  "total_cash_payments": 1285617.1,
+  "lease_liability_components": {
+    "present_value_of_payments": 1108686.4475526086,
+    "monthly_discount_rate": 0.004867550565343048,
+    "annual_discount_rate": 0.06,
+    "payment_timing": "beginning"
+  },
+  "rou_asset_components": {
+    "lease_liability": 1108686.4475526086,
+    "initial_direct_costs": 15000.0,
+    "prepaid_rent": 0.0,
+    "lease_incentives": -50000.0,
+    "total_rou_asset": 1073686.4475526086
+  },
+  "monthly_discount_rate": 0.004867550565343048,
+  "annual_summary": [
+    {
+      "Year": 1,
+      "Cash_Paid": 229791.63,
+      "Interest_Expense": 60861.55,
+      "Depreciation_Expense": 214737.24,
+      "Total_Lease_Expense": 275598.79,
+      "Principal_Reduction": 168930.08
+    },
+    {
+      "Year": 2,
+      "Cash_Paid": 258143.71,
+      "Interest_Expense": 49378.63,
+      "Depreciation_Expense": 214737.24,
+      "Total_Lease_Expense": 264115.87,
+      "Principal_Reduction": 208765.08
+    },
+    {
+      "Year": 3,
+      "Cash_Paid": 265888.02,
+      "Interest_Expense": 36642.53,
+      "Depreciation_Expense": 214737.24,
+      "Total_Lease_Expense": 251379.77,
+      "Principal_Reduction": 229245.49
+    },
+    {
+      "Year": 4,
+      "Cash_Paid": 273864.64,
+      "Interest_Expense": 22671.29,
+      "Depreciation_Expense": 214737.24,
+      "Total_Lease_Expense": 237408.53,
+      "Principal_Reduction": 251193.35
+    },
+    {
+      "Year": 5,
+      "Cash_Paid": 257929.1,
+      "Interest_Expense": 7376.67,
+      "Depreciation_Expense": 214737.24,
+      "Total_Lease_Expense": 222113.91,
+      "Principal_Reduction": 250552.43
+    }
+  ]
+}

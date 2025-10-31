@@ -1,0 +1,81 @@
+{
+  "tenant_name": "Sample Manufacturing Co",
+  "property_address": "456 Industrial Pkwy, El Monte, CA 91731",
+  "rentable_area_sf": 25000,
+  "commencement_date": "2025-01-01",
+  "lease_term_months": 60,
+  "annual_discount_rate": 0.06,
+  "monthly_payments": [
+    0, 0,
+    20833.33, 20833.33, 20833.33, 20833.33, 20833.33, 20833.33, 20833.33, 20833.33, 20833.33, 20833.33,
+    21458.33, 21458.33, 21458.33, 21458.33, 21458.33, 21458.33, 21458.33, 21458.33, 21458.33, 21458.33, 21458.33, 21458.33,
+    22102.08, 22102.08, 22102.08, 22102.08, 22102.08, 22102.08, 22102.08, 22102.08, 22102.08, 22102.08, 22102.08, 22102.08,
+    22765.14, 22765.14, 22765.14, 22765.14, 22765.14, 22765.14, 22765.14, 22765.14, 22765.14, 22765.14, 22765.14, 22765.14,
+    23448.10, 23448.10, 23448.10, 23448.10, 23448.10, 23448.10, 23448.10, 23448.10, 23448.10, 23448.10, 23448.10, 23448.10
+  ],
+  "initial_direct_costs": 15000.0,
+  "prepaid_rent": 0.0,
+  "lease_incentives": 50000.0,
+  "payment_timing": "beginning",
+  "rent_schedule_annual": [
+    {
+      "year": 1,
+      "rent_per_sf": 10.0,
+      "start_month": 1,
+      "end_month": 12,
+      "note": "Months 1-2 free rent, months 3-12 paying"
+    },
+    {
+      "year": 2,
+      "rent_per_sf": 10.3,
+      "start_month": 13,
+      "end_month": 24
+    },
+    {
+      "year": 3,
+      "rent_per_sf": 10.61,
+      "start_month": 25,
+      "end_month": 36
+    },
+    {
+      "year": 4,
+      "rent_per_sf": 10.93,
+      "start_month": 37,
+      "end_month": 48
+    },
+    {
+      "year": 5,
+      "rent_per_sf": 11.26,
+      "start_month": 49,
+      "end_month": 60
+    }
+  ],
+  "escalations": [
+    {
+      "effective_date": "2025-01-01",
+      "new_rent_per_sf": 10.0,
+      "note": "Base year"
+    },
+    {
+      "effective_date": "2026-01-01",
+      "new_rent_per_sf": 10.3,
+      "note": "3% escalation"
+    },
+    {
+      "effective_date": "2027-01-01",
+      "new_rent_per_sf": 10.61,
+      "note": "3% escalation"
+    },
+    {
+      "effective_date": "2028-01-01",
+      "new_rent_per_sf": 10.93,
+      "note": "3% escalation"
+    },
+    {
+      "effective_date": "2029-01-01",
+      "new_rent_per_sf": 11.26,
+      "note": "3% escalation"
+    }
+  ],
+  "free_rent_months": [1, 2]
+}

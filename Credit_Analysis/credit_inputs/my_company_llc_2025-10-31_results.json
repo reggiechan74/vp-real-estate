@@ -1,0 +1,50 @@
+{
+  "tenant_name": "My Company, LLC",
+  "analysis_date": "2025-10-31",
+  "credit_rating": "B",
+  "credit_score": 69.0,
+  "financial_ratios": {
+    "current_ratio": 28.735418359057675,
+    "quick_ratio": 28.735418359057675,
+    "cash_ratio": 28.430463038180342,
+    "debt_to_equity": -2.872522041679159,
+    "debt_to_assets": 1.5340391075467734,
+    "interest_coverage": 1.7012666666666667,
+    "net_profit_margin": 0.27315548080544394,
+    "roa": 0.10798936953511093,
+    "roe": -0.20221247472153106,
+    "gross_margin": 0.6271287874488601,
+    "rent_to_revenue": 0.12381920332660926,
+    "ebitda_to_rent": 5.064875,
+    "working_capital": 341423
+  },
+  "credit_score_breakdown": {
+    "current_ratio": 10.0,
+    "debt_to_equity": 10.0,
+    "profitability": 5.0,
+    "ebitda_to_rent": 10.0,
+    "years_in_business": 7.0,
+    "industry_stability": 6.0,
+    "financial_trend": 6.0,
+    "payment_history": 7.0,
+    "credit_score": 5.0,
+    "rent_pct_of_revenue": 0.0,
+    "use_criticality": 3.0
+  },
+  "probability_of_default": 0.1,
+  "expected_loss": 14400.0,
+  "recommended_security": 42400.0,
+  "security_type": "Rent Deposit: $42,400 (10.6 months)",
+  "approval_recommendation": "APPROVE_WITH_CONDITIONS",
+  "recommendation_notes": "Good credit rating (B) but 1 red flags identified. Require additional security of $42,400. Total recommended security: $42,400. Rent Deposit: $42,400 (10.6 months) \n1 red flags identified:   \u26a0 Profitability declining year-over-year \nRisk metrics:   - Probability of default: 10.0%   - Expected loss: $14,400   - Security coverage: 2.9x",
+  "red_flags": [
+    "\u26a0 Profitability declining year-over-year"
+  ],
+  "trend_analysis": {
+    "overall_trend": "stable",
+    "revenue_trend": "stable",
+    "profitability_trend": "deteriorating",
+    "liquidity_trend": "deteriorating",
+    "leverage_trend": "improving"
+  }
+}
