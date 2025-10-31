@@ -1,0 +1,48 @@
+{
+  "tenant_name": "Sample Manufacturing Corp",
+  "analysis_date": "2025-10-31",
+  "credit_rating": "A",
+  "credit_score": 83.5,
+  "financial_ratios": {
+    "current_ratio": 2.125,
+    "quick_ratio": 1.375,
+    "cash_ratio": 0.5,
+    "debt_to_equity": 1.2727272727272727,
+    "debt_to_assets": 0.56,
+    "interest_coverage": 7.428571428571429,
+    "net_profit_margin": 0.06,
+    "roa": 0.156,
+    "roe": 0.35454545454545455,
+    "gross_margin": 0.3,
+    "rent_to_revenue": 0.036923076923076927,
+    "ebitda_to_rent": 2.7083333333333335,
+    "working_capital": 450000
+  },
+  "credit_score_breakdown": {
+    "current_ratio": 10.0,
+    "debt_to_equity": 5.0,
+    "profitability": 7.5,
+    "ebitda_to_rent": 8.0,
+    "years_in_business": 10.0,
+    "industry_stability": 6.0,
+    "financial_trend": 10.0,
+    "payment_history": 10.0,
+    "credit_score": 7.0,
+    "rent_pct_of_revenue": 5.0,
+    "use_criticality": 5.0
+  },
+  "probability_of_default": 0.1,
+  "expected_loss": 72000.0,
+  "recommended_security": 212000.0,
+  "security_type": "Rent Deposit: $212,000 (10.6 months)",
+  "approval_recommendation": "APPROVE_WITH_CONDITIONS",
+  "recommendation_notes": "Excellent/Good credit rating (A, 84/100). Require additional security of $212,000. Total recommended security: $212,000. Rent Deposit: $212,000 (10.6 months) \nRisk metrics:   - Probability of default: 10.0%   - Expected loss: $72,000   - Security coverage: 2.9x",
+  "red_flags": [],
+  "trend_analysis": {
+    "overall_trend": "improving",
+    "revenue_trend": "improving",
+    "profitability_trend": "improving",
+    "liquidity_trend": "improving",
+    "leverage_trend": "improving"
+  }
+}

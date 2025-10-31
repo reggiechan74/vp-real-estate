@@ -1,0 +1,48 @@
+{
+  "tenant_name": "My Company, LLC",
+  "industry": "Property Management / Real Estate",
+  "years_in_business": 8,
+  "credit_score": null,
+  "payment_history": "good",
+  "lease_term_years": 5,
+  "use_criticality": "important",
+  "industry_stability": "moderate",
+  "current_security": 0,
+  "security_type": "None",
+  "financial_data": [
+    {
+      "year": 2024,
+      "current_assets": 353733,
+      "total_assets": 980578,
+      "inventory": 0,
+      "cash_and_equivalents": 349979,
+      "current_liabilities": 12310,
+      "total_liabilities": 1504245,
+      "shareholders_equity": -523667,
+      "revenue": 387662,
+      "gross_profit": 243114,
+      "ebit": 153114,
+      "ebitda": 243114,
+      "net_income": 105892,
+      "interest_expense": 90000,
+      "annual_rent": 48000
+    },
+    {
+      "year": 2023,
+      "current_assets": 201591,
+      "total_assets": 799318,
+      "inventory": 0,
+      "cash_and_equivalents": 200981,
+      "current_liabilities": 371,
+      "total_liabilities": 1265756,
+      "shareholders_equity": -466438,
+      "revenue": 387662,
+      "gross_profit": 243114,
+      "ebit": 140659,
+      "ebitda": 230659,
+      "net_income": 130659,
+      "interest_expense": 85000,
+      "annual_rent": 48000
+    }
+  ]
+}

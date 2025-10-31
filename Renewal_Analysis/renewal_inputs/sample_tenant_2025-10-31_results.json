@@ -1,0 +1,90 @@
+{
+  "tenant_name": "Sample Manufacturing Inc",
+  "analysis_date": "2025-10-31",
+  "recommendation": "RENEW",
+  "renewal_npv": 1763483.5735263983,
+  "relocation_npv": 2653676.5794686154,
+  "npv_difference": 890193.0059422171,
+  "npv_savings_from_renewal": -890193.0059422171,
+  "renewal_ner": 1.4838361020827262,
+  "relocation_ner": 2.2328652055391474,
+  "ner_difference": 0.7490291034564212,
+  "relocation_irr": null,
+  "breakeven_rent_psf": 21.19140625,
+  "current_margin_psf": -9.19140625,
+  "payback_years": 51.89393939393939,
+  "annual_savings": 19800.0,
+  "renewal_details": {
+    "total_cash_outflows": 2112500.0,
+    "rent_payments": 1592500.0,
+    "operating_costs": 465000.0,
+    "ti_costs": 50000.0,
+    "other_costs": 5000
+  },
+  "relocation_details": {
+    "total_cash_outflows": 2986000.0,
+    "rent_payments": 1527000.0,
+    "operating_costs": 431500.00000000006,
+    "ti_costs": 0,
+    "other_costs": 1027500.0
+  },
+  "sensitivity_analysis": {
+    "note": "Sensitivity analysis results from calculator",
+    "summary": {
+      "Variable": {
+        "0": "Base Case",
+        "1": "Renewal Rent",
+        "2": "Renewal Rent",
+        "3": "Relocation TI",
+        "4": "Relocation TI",
+        "5": "Disruption Costs",
+        "6": "Disruption Costs"
+      },
+      "Variation": {
+        "0": "0%",
+        "1": "-10%",
+        "2": "+10%",
+        "3": "-10%",
+        "4": "+10%",
+        "5": "-10%",
+        "6": "+10%"
+      },
+      "Renewal_NPV": {
+        "0": 1763483.57,
+        "1": 1631414.96,
+        "2": 1895552.18,
+        "3": 1763483.57,
+        "4": 1763483.57,
+        "5": 1763483.57,
+        "6": 1763483.57
+      },
+      "Relocation_NPV": {
+        "0": 2653676.58,
+        "1": 2653676.58,
+        "2": 2653676.58,
+        "3": 2653676.58,
+        "4": 2653676.58,
+        "5": 2573926.58,
+        "6": 2733426.58
+      },
+      "NPV_Difference": {
+        "0": 890193.01,
+        "1": 1022261.61,
+        "2": 758124.4,
+        "3": 890193.01,
+        "4": 890193.01,
+        "5": 810443.01,
+        "6": 969943.01
+      },
+      "Recommendation": {
+        "0": "RENEW",
+        "1": "RENEW",
+        "2": "RENEW",
+        "3": "RENEW",
+        "4": "RENEW",
+        "5": "RENEW",
+        "6": "RENEW"
+      }
+    }
+  }
+}
