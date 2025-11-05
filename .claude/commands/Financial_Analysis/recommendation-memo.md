@@ -289,7 +289,7 @@ Generate a checklist of approval documents required:
 
 **Report Structure**:
 ```markdown
-# VTS RECOMMENDATION MEMO FOR APPROVAL
+# RECOMMENDATION MEMO FOR APPROVAL
 
 **Property**: [Address, Unit]
 **Tenant**: [Legal Name]
