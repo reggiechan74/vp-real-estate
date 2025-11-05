@@ -1,1 +1,22 @@
+# Python bytecode
 **/__pycache__/
+*.pyc
+*.pyo
+
+# Archive folders (temporary/development files)
+**/archive/
+
+# Backup files
+*_backup.py
+*.bak
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
