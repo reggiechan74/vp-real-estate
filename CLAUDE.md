@@ -41,7 +41,7 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 
 **Example**: `2025-10-31_143022_lease_abstract_acme_corp.md`
 
-## Slash Commands (21 total)
+## Slash Commands (22 total)
 
 All commands follow **PDF → JSON → Python → Report** automated workflow.
 
@@ -49,7 +49,7 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 - `/abstract-lease` - Extract lease terms using 24-section template
 - `/critical-dates` - Extract timeline and critical dates
 
-### Financial Analysis (7)
+### Financial Analysis (9)
 - `/effective-rent` - NER, NPV, breakeven (Ponzi Rental Rate)
 - `/renewal-economics` - Renewal vs. relocation NPV analysis
 - `/tenant-credit` - Credit scoring and risk assessment
@@ -57,6 +57,8 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 - `/market-comparison` - Market rent benchmarking
 - `/rollover-analysis` - Portfolio lease expiry analysis
 - `/rental-variance` - Rental variance decomposition by rate, area, and term
+- `/relative-valuation` - MCDA competitive positioning with 15 variables
+- `/recommendation-memo` - VTS approval memo with tenant analysis and deal comparison
 
 ### Accounting (1)
 - `/ifrs16-calculation` - IFRS 16/ASC 842 lease accounting

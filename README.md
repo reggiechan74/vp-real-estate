@@ -139,8 +139,8 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
    - Compares renewal vs. relocation scenarios incorporating relocation capex, downtime, IRR, payback, and blended NER.  
    - Guides negotiation stance on expiring leases and capital allocation.
 
-### Automated Workflows (21 Slash Commands)
-Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (8), Accounting (1), Comparison (4), and Compliance (7).
+### Automated Workflows (22 Slash Commands)
+Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (9), Accounting (1), Comparison (4), and Compliance (7).
 
 | Category | Command | Primary Output |
 |----------|---------|----------------|
@@ -154,6 +154,7 @@ Each slash command packages data extraction instructions, domain expertise, calc
 | Financial Analysis | `/option-value` | Real options valuation (renewal, expansion, termination) |
 | Financial Analysis | `/renewal-economics` | Renewal vs. relocation recommendation matrix |
 | Financial Analysis | `/relative-valuation` | Competitive ranking report and pricing adjustments |
+| Financial Analysis | `/recommendation-memo` | VTS approval memo with tenant analysis, financial covenant review, deal comparison |
 | Accounting | `/ifrs16-calculation` | IFRS/ASC 842 schedules and journal entries |
 | Comparison | `/compare-amendment` | Amendment vs. original summary with key deltas |
 | Comparison | `/compare-offers` | Side-by-side economics for multiple offers |
