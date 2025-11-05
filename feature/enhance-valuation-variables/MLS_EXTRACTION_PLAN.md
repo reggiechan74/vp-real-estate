@@ -130,90 +130,175 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 
 ## TECHNICAL APPROACH
 
-### Technology Stack
+### Workflow Architecture
 
-**Option A: CSV Output (Simple)**
-- Python `csv` module
-- Minimal dependencies
-- Fast processing
-- Good for bulk data import
+**Claude Code Extraction Approach** (similar to `/relative-valuation`):
 
-**Option B: Excel Output (Recommended)**
-- Python `openpyxl` library
-- Professional formatting:
-  - Header row: bold, background color, freeze panes
-  - Auto-filter enabled on all columns
-  - Column width auto-sizing
-  - Number formatting (currency for rent/TMI, integers for SF)
-  - Conditional formatting for `is_subject` row (highlight)
-- Better for client delivery
-
-### PDF Extraction Strategy
-
-**Use existing markitdown pipeline**:
-```python
-import subprocess
-import json
-
-# Step 1: Convert PDF to markdown
-subprocess.run(['markitdown', pdf_path, '-o', 'temp.md'])
-
-# Step 2: Parse markdown tables
-# MLS PDFs typically have structured tables - one row per property
-
-# Step 3: Map fields using field mapping table above
-
-# Step 4: Apply extraction logic (regex, conversions, lookups)
-
-# Step 5: Write to CSV or Excel
+```
+PDF → [Claude Code Extraction] → JSON → [Python Formatter] → Excel/CSV
 ```
 
-**Alternative**: If markitdown struggles with MLS table structure, use `pdfplumber` for direct table extraction:
-```python
-import pdfplumber
+### Why Claude Code for Extraction?
 
-with pdfplumber.open(pdf_path) as pdf:
-    for page in pdf.pages:
-        tables = page.extract_tables()
-        # Process tables...
+**Advantages over Python PDF parsing libraries (pdfplumber/markitdown)**:
+
+1. **Robust to format variations**
+   - Different MLS providers use different layouts (CBRE, JLL, Cushman, Colliers)
+   - Field names vary: "Addl Rent" vs "T.M.I." vs "OpEx"
+   - LLM understands context and adapts automatically
+
+2. **Intelligent parsing**
+   - Interprets ambiguous data: "Part A/C" → partial HVAC coverage
+   - Detects ESFR mentions in free-text "Client Remarks"
+   - Converts units intelligently: "484,280 Sq Ft" → 11.112 acres
+
+3. **Better error recovery**
+   - Gracefully handles missing fields
+   - Can flag uncertain extractions
+   - Works with scanned PDFs and complex layouts
+
+4. **No brittle regex/parsing code**
+   - No maintenance burden when MLS formats change
+   - Faster implementation (no complex parsing logic)
+   - Higher quality output
+
+### Technology Stack
+
+**Phase 1: Claude Code Extraction (Slash Command)**
+- Claude Code reads PDF using Read tool
+- LLM extracts all 32 fields with contextual understanding
+- Outputs structured JSON to `Reports/` folder
+- **Dependencies**: None (built into Claude Code)
+
+**Phase 2: Python Excel Formatter**
+- Python `openpyxl` library for professional Excel formatting
+- Takes JSON input from Phase 1
+- Applies formatting:
+  - Header row: bold white text on dark blue background, frozen
+  - Auto-filter enabled on all columns
+  - Column width auto-sizing
+  - Number formatting (currency for rent/TMI, percentages, integers)
+  - Conditional formatting for `is_subject` row (yellow highlight)
+- Outputs CSV (simple) or XLSX (formatted)
+- **Dependencies**: `openpyxl` only
+
+### Extraction Strategy
+
+**Step 1: Slash Command Invocation**
+```bash
+/extract-mls /path/to/mls_report.pdf --format=excel --subject="2550 Stanfield"
+```
+
+**Step 2: Claude Code Extraction**
+```markdown
+1. Read PDF using Read tool
+2. Identify all property listings in the document
+3. For each property, extract all 32 fields:
+   - Core variables (9): address, unit, SF, rent, TMI, etc.
+   - Existing optional (6): shipping doors, power, trailer parking, etc.
+   - New optional (8): bay depth, lot size, HVAC, sprinklers, etc.
+   - Metadata (6): availability date, DOM, MLS#, broker, comments, is_subject
+4. Apply intelligent parsing:
+   - Bay depth: Extract from "55 x 52" → 55.0
+   - Lot size: Convert "484,280 Sq Ft" → 11.112 acres
+   - HVAC: Map "Y"→1, "Part"→2, "N"→3
+   - Sprinklers: Check "Client Remks" for "ESFR" mention → 1
+   - Building age: Calculate from report year
+5. Mark subject property (fuzzy match against --subject parameter)
+6. Write JSON to Reports/ with timestamp
+```
+
+**Step 3: Python Formatting** (automatic, called by slash command)
+```python
+import json
+from openpyxl import Workbook
+
+# Load JSON
+with open(json_path) as f:
+    data = json.load(f)
+
+# Format to Excel or CSV based on --format flag
+if format == 'excel':
+    create_formatted_excel(data, output_path)
+else:
+    create_csv(data, output_path)
 ```
 
 ---
 
 ## IMPLEMENTATION STEPS
 
-### Phase 1: Command Setup
-1. Create `.claude/commands/Financial_Analysis/extract-mls.md`
-2. Define command parameters and workflow
-3. Add command documentation to README
+### Phase 1: Command Setup (2 hours)
+1. Create `.claude/commands/Financial_Analysis/extract-mls.md` slash command
+2. Define command workflow:
+   - **Step 1**: Read PDF using Read tool
+   - **Step 2**: Extract all 32 fields using Claude Code (LLM extraction)
+   - **Step 3**: Create JSON output with all properties
+   - **Step 4**: Call Python formatter to generate Excel/CSV
+   - **Step 5**: Save outputs to Reports/ folder
+3. Document extraction requirements and field mapping
+4. Add command to README
 
-### Phase 2: Extraction Logic
-4. Create `MLS_Extractor/` directory
-5. Implement `extract_mls.py` with:
-   - PDF parsing (markitdown or pdfplumber)
-   - Field extraction using mapping table
-   - Robust parsing functions (bay depth, lot size, etc.)
-   - Subject property matching logic
-   - Report metadata capture (generation timestamp, market name)
-   - `building_age_years` derived from report generation year
-6. Create unit tests for extraction functions
+### Phase 2: Claude Code Extraction Logic (4 hours)
+5. Implement extraction prompt in slash command:
+   - Provide field mapping table (32 fields)
+   - Specify parsing rules:
+     - Bay depth: Parse first number from "Bay Size" (e.g., "55 x 52" → 55.0)
+     - Lot size: Extract acres or convert sq ft to acres (÷ 43,560)
+     - HVAC coverage: Map Y=1, Part=2, N=3
+     - Sprinkler type: Check "Client Remks" for ESFR → 1, else Standard=2, None=3
+     - Building age: Calculate from current year minus year_built
+     - Complete addresses: Format as "Street, City, ON PostalCode, Canada"
+   - Subject property matching: Fuzzy match against --subject parameter
+   - Error handling: Use NULL for missing fields, continue processing
+6. Create JSON schema template:
 
-Example age calculation pattern:
-```python
-from datetime import datetime
-from zoneinfo import ZoneInfo
-
-generated_at = metadata.get('report_generated_at')  # ISO 8601 string captured when command starts
-if generated_at:
-    report_year = datetime.fromisoformat(generated_at).astimezone(ZoneInfo('America/New_York')).year
-else:
-    report_year = datetime.now(ZoneInfo('America/New_York')).year
-
-year_built_raw = property.get('year_built')
-building_age_years = report_year - int(str(year_built_raw).strip()) if year_built_raw else None
+```json
+{
+  "report_metadata": {
+    "analysis_date": "2025-11-05",
+    "market": "Mississauga - Industrial",
+    "report_generated_at": "2025-11-05T18:30:47-05:00",
+    "subject_property": "2550 Stanfield Rd"
+  },
+  "properties": [
+    {
+      "address": "2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada",
+      "unit": "Opt 2",
+      "available_sf": 186559,
+      "net_asking_rent": 13.95,
+      "tmi": 3.01,
+      "year_built": 2020,
+      "clear_height_ft": 34.0,
+      "pct_office_space": 0.03,
+      "parking_ratio": 1.0,
+      "class": 2,
+      "shipping_doors_tl": 16,
+      "shipping_doors_di": 3,
+      "power_amps": 3000,
+      "trailer_parking": false,
+      "secure_shipping": false,
+      "excess_land": false,
+      "bay_depth_ft": null,
+      "lot_size_acres": null,
+      "hvac_coverage": 2,
+      "sprinkler_type": 2,
+      "building_age_years": 5,
+      "rail_access": false,
+      "crane": false,
+      "occupancy_status": 1,
+      "availability_date": "Immediate",
+      "days_on_market": 45,
+      "mls_number": "C1234567",
+      "broker_name": "CBRE Limited",
+      "client_remarks": "Partial A/C, standard sprinklers, excellent access to 401/407",
+      "is_subject": true
+    }
+  ]
+}
 ```
 
-### Phase 3: Output Formatting
+### Phase 3: Python Output Formatting (3 hours)
 7. Implement CSV writer
 8. Implement Excel writer with formatting:
    ```python
@@ -259,17 +344,25 @@ building_age_years = report_year - int(str(year_built_raw).strip()) if year_buil
    # Apply to rows where is_subject = TRUE
    ```
 
-### Phase 4: Integration
-10. Update slash command to call extraction script
-11. Test with Mississauga dataset (23 properties)
-12. Validate all 32 fields extract correctly
+### Phase 4: Integration & Testing (3 hours)
+10. Create `MLS_Extractor/format_mls.py` Python script
+11. Integrate script call into slash command workflow
+12. Test end-to-end with Mississauga dataset (23 properties):
+    - Claude Code extracts to JSON
+    - Python formatter generates Excel/CSV
+    - Validate all 32 fields extracted correctly
+    - Verify subject property marked correctly
 13. Test both CSV and Excel outputs
+14. Validate Excel formatting (headers, filters, highlighting)
+15. Cross-platform testing (Microsoft Excel, Google Sheets, LibreOffice)
 
-### Phase 5: Documentation
-14. Update command help text
-15. Add usage examples to documentation
-16. Document field mapping table
-17. Create troubleshooting guide
+### Phase 5: Documentation (2 hours)
+16. Complete slash command documentation with examples
+17. Create `MLS_Extractor/README.md` with usage guide
+18. Document field mapping table in `MLS_Extractor/FIELD_MAPPING.md`
+19. Add troubleshooting guide (common issues, solutions)
+20. Update `.claude/commands/README.md` to include `/extract-mls`
+21. Create example output files for reference
 
 ---
 
@@ -384,15 +477,15 @@ address,unit,available_sf,net_asking_rent,tmi,year_built,clear_height_ft,pct_off
 ## DEPENDENCIES
 
 ### Python Libraries
-- `markitdown` - Already installed, PDF to markdown conversion
-- `openpyxl` - Excel file creation and formatting
-- `pdfplumber` - Alternative PDF table extraction (if markitdown insufficient)
-- Standard library: `csv`, `json`, `re`, `subprocess`, `datetime`, `zoneinfo`
+- `openpyxl` - Excel file creation and formatting (only external dependency)
+- Standard library: `csv`, `json`, `datetime`, `zoneinfo`
 
 ### Installation
 ```bash
-pip install openpyxl pdfplumber
+pip install openpyxl
 ```
+
+**Note**: No PDF parsing libraries required! Claude Code handles all PDF extraction using the Read tool and LLM understanding.
 
 ---
 
@@ -451,30 +544,38 @@ pip install openpyxl pdfplumber
 
 | Phase | Tasks | Estimated Effort |
 |-------|-------|------------------|
-| Phase 1 | Command setup, documentation | 2 hours |
-| Phase 2 | Extraction logic, parsing functions | 8 hours |
-| Phase 3 | Output formatting (CSV + Excel) | 4 hours |
-| Phase 4 | Integration, testing | 4 hours |
+| Phase 1 | Command setup, workflow definition | 2 hours |
+| Phase 2 | Claude Code extraction prompt & JSON schema | 4 hours |
+| Phase 3 | Python formatting (CSV + Excel) | 3 hours |
+| Phase 4 | Integration, end-to-end testing | 3 hours |
 | Phase 5 | Documentation, examples | 2 hours |
-| **Total** | | **20 hours** |
+| **Total** | | **14 hours** |
+
+**Reduction from original 20-hour estimate**: No complex PDF parsing code to write, test, or maintain. Claude Code handles extraction with LLM intelligence.
 
 ---
 
 ## RISKS & MITIGATION
 
-### Risk 1: MLS PDF Format Variations
-**Impact**: High - Different brokers use different PDF formats
+### Risk 1: LLM Extraction Accuracy
+**Impact**: Medium - Claude Code might misinterpret ambiguous fields
 **Mitigation**:
-- Test with multiple MLS providers (CBRE, JLL, Cushman, Colliers)
-- Build flexible parser with fallback strategies
-- Document known format variations
+- Provide detailed field mapping table in extraction prompt
+- Include examples for each field type
+- Test with diverse MLS formats (CBRE, JLL, Cushman, Colliers)
+- Validate against manual extraction (10% spot check)
+- User reviews Excel output before using for analysis
 
-### Risk 2: Field Mapping Ambiguity
-**Impact**: Medium - Field names vary across MLS systems
+**Advantage over Python parsing**: LLM adapts to format variations automatically, whereas regex/parsing code breaks on unexpected formats.
+
+### Risk 2: API Costs & Latency
+**Impact**: Low - LLM extraction requires API calls
 **Mitigation**:
-- Create field alias dictionary (e.g., "Addl Rent" = "T.M.I." = "OpEx")
-- Allow user to provide custom field mappings via config file
-- Log unmapped fields for manual review
+- Typical MLS PDF (23 properties) = ~50K tokens = ~$0.15 per extraction
+- Latency: ~30-60 seconds for 23 properties (acceptable for batch workflow)
+- Much cheaper than manual data entry ($50-100/hour labor cost)
+
+**Trade-off**: Higher per-extraction cost, but lower maintenance cost (no brittle parsing code to fix when MLS formats change).
 
 ### Risk 3: Excel Library Compatibility
 **Impact**: Low - openpyxl may not support all Excel features
@@ -488,36 +589,37 @@ pip install openpyxl pdfplumber
 ## DELIVERABLES
 
 ### Code
-1. `.claude/commands/Financial_Analysis/extract-mls.md` - Slash command definition
-2. `MLS_Extractor/extract_mls.py` - Main extraction script
-3. `MLS_Extractor/field_parsers.py` - Parsing functions (bay depth, lot size, etc.)
-4. `MLS_Extractor/excel_formatter.py` - Excel formatting utilities
-5. `MLS_Extractor/tests/` - Unit tests
+1. `.claude/commands/Financial_Analysis/extract-mls.md` - Slash command with Claude Code extraction workflow
+2. `MLS_Extractor/format_mls.py` - Python formatter for CSV/Excel output
+3. `MLS_Extractor/json_schema.json` - JSON schema template for extraction
 
 ### Documentation
-6. `MLS_Extractor/README.md` - Usage guide
-7. `MLS_Extractor/FIELD_MAPPING.md` - Complete field reference
-8. Updated `.claude/commands/README.md` - Add `/extract-mls` to command list
-9. Example output files in `Reports/` folder
+4. `MLS_Extractor/README.md` - Usage guide and examples
+5. `MLS_Extractor/FIELD_MAPPING.md` - Complete field reference (32 fields)
+6. Updated `.claude/commands/README.md` - Add `/extract-mls` to command list
+7. Example output files in `Reports/` folder:
+   - `*_mls_extraction.json` - Raw JSON from Claude extraction
+   - `*_mls_extraction.csv` - CSV format
+   - `*_mls_extraction.xlsx` - Formatted Excel
 
-### Testing
-10. Test with Mississauga dataset (23 properties)
-11. Validation report comparing automated vs manual extraction
-12. Excel file sample for review
+### Testing & Validation
+8. End-to-end test with Mississauga dataset (23 properties)
+9. Validation report comparing Claude extraction vs manual extraction (10% spot check)
+10. Cross-platform Excel compatibility test results
 
 ---
 
 ## NEXT STEPS
 
-1. Review and approve this implementation plan
-2. Create GitHub issue to track development
-3. Set up development environment (install openpyxl, pdfplumber)
-4. Implement Phase 1 (command setup)
-5. Prototype extraction logic with Mississauga PDF
-6. Iterate on field parsing accuracy
-7. Build Excel formatter
-8. End-to-end testing
-9. Documentation and examples
+1. ✅ Review and approve this implementation plan
+2. ✅ Create GitHub issue #11 to track development
+3. Install dependencies: `pip install openpyxl`
+4. Implement Phase 1 (slash command setup with extraction workflow)
+5. Implement Phase 2 (Claude Code extraction prompt with field mapping)
+6. Implement Phase 3 (Python Excel/CSV formatter)
+7. Test end-to-end with Mississauga PDF (23 properties)
+8. Validate extraction accuracy (spot check 10%)
+9. Complete documentation and examples
 10. Merge to main branch
 
 ---
