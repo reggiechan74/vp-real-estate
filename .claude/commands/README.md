@@ -4,7 +4,7 @@ Automated workflows for commercial real estate lease analysis.
 
 ## Structure
 
-Commands are organized into 5 categories (20 total):
+Commands are organized into 5 categories (21 total):
 
 ### 1. Abstraction (2 commands)
 
@@ -13,7 +13,7 @@ Extract and structure lease data from documents.
 - **`/abstract-lease`** - Extract key terms using 24-section template (industrial/office)
 - **`/critical-dates`** - Extract timeline and critical dates
 
-### 2. Financial Analysis (6 commands)
+### 2. Financial Analysis (7 commands)
 
 Economic calculations and investment analysis.
 
@@ -23,6 +23,7 @@ Economic calculations and investment analysis.
 - **`/option-value`** - Real options valuation (Black-Scholes)
 - **`/market-comparison`** - Market rent benchmarking
 - **`/rollover-analysis`** - Portfolio lease expiry analysis
+- **`/rental-variance`** - Rental variance decomposition by rate, area, and term
 
 ### 3. Accounting (1 command)
 
@@ -90,6 +91,7 @@ Commands invoke Python calculators in these directories:
 - **IFRS 16**: `IFRS16_Calculator/`
 - **Tenant Credit**: `Credit_Analysis/`
 - **Renewal Economics**: `Renewal_Analysis/`
+- **Rental Variance**: `Rental_Variance/`
 - **Shared Utilities**: `Shared_Utils/`
 
 ## Development

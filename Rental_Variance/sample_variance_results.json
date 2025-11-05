@@ -1,0 +1,163 @@
+{
+  "summary": {
+    "total_budget_revenue": 21633.333333333336,
+    "total_actual_revenue": 19983.333333333336,
+    "total_variance": -1650.0000000000027,
+    "total_rate_variance": -183.33333333333394,
+    "total_area_variance": 4166.666666666667,
+    "total_term_variance": -5633.333333333335,
+    "total_manual_adjustment": 0.0,
+    "reconciliation_check": true,
+    "reconciliation_difference": 9.094947017729282e-13
+  },
+  "tenant_results": [
+    {
+      "tenant_name": "Tenant Row 9",
+      "unit_number": "Unit 9",
+      "actual": {
+        "rate_psf_year": 11.0,
+        "area_sf": 900.0,
+        "term_months": 12.0,
+        "start_date": "2004-01-01",
+        "end_date": "2007-12-31",
+        "revenue": 9900.0
+      },
+      "budget": {
+        "rate_psf_year": 10.0,
+        "area_sf": 1000.0,
+        "term_months": 11.0,
+        "start_date": "2004-02-01",
+        "end_date": "2005-12-31",
+        "revenue": 9166.666666666668
+      },
+      "variances": {
+        "rate_variance": 899.9999999999992,
+        "area_variance": -1000.0,
+        "term_variance": 833.3333333333334,
+        "manual_adjustment": 0.0,
+        "total_variance": 733.3333333333321,
+        "total_with_adjustment": 733.3333333333321,
+        "calculated_total": 733.3333333333326,
+        "reconciliation_diff": 4.547473508864641e-13,
+        "actual_revenue": 9900.0,
+        "budget_revenue": 9166.666666666668,
+        "rate_change_pct": 10.0,
+        "area_change_pct": -10.0,
+        "term_change_pct": 9.090909090909092,
+        "revenue_change_pct": 7.999999999999987
+      },
+      "notes": "First row from spreadsheet - rate up, area down, term up"
+    },
+    {
+      "tenant_name": "Tenant Row 10",
+      "unit_number": "Unit 10",
+      "actual": {
+        "rate_psf_year": 13.0,
+        "area_sf": 1000.0,
+        "term_months": 1.0,
+        "start_date": "2004-06-01",
+        "end_date": "2004-06-30",
+        "revenue": 1083.3333333333333
+      },
+      "budget": {
+        "rate_psf_year": 10.0,
+        "area_sf": 800.0,
+        "term_months": 10.0,
+        "start_date": "2004-03-01",
+        "end_date": "2008-02-29",
+        "revenue": 6666.666666666668
+      },
+      "variances": {
+        "rate_variance": 249.9999999999999,
+        "area_variance": 166.66666666666669,
+        "term_variance": -6000.000000000001,
+        "manual_adjustment": 0.0,
+        "total_variance": -5583.333333333335,
+        "total_with_adjustment": -5583.333333333335,
+        "calculated_total": -5583.333333333334,
+        "reconciliation_diff": 9.094947017729282e-13,
+        "actual_revenue": 1083.3333333333333,
+        "budget_revenue": 6666.666666666668,
+        "rate_change_pct": 30.0,
+        "area_change_pct": 25.0,
+        "term_change_pct": -90.0,
+        "revenue_change_pct": -83.75
+      },
+      "notes": "Row 10 - short actual term (1 month), longer budget"
+    },
+    {
+      "tenant_name": "Tenant Row 12",
+      "unit_number": "Unit 12",
+      "actual": {
+        "rate_psf_year": 12.0,
+        "area_sf": 800.0,
+        "term_months": 5.0,
+        "start_date": "2001-03-01",
+        "end_date": "2004-05-31",
+        "revenue": 4000.0
+      },
+      "budget": {
+        "rate_psf_year": 1.0,
+        "area_sf": 800.0,
+        "term_months": 12.0,
+        "start_date": "2004-01-01",
+        "end_date": "2004-12-31",
+        "revenue": 799.9999999999999
+      },
+      "variances": {
+        "rate_variance": 3666.6666666666665,
+        "area_variance": 0.0,
+        "term_variance": -466.66666666666663,
+        "manual_adjustment": 0.0,
+        "total_variance": 3200.0,
+        "total_with_adjustment": 3200.0,
+        "calculated_total": 3200.0,
+        "reconciliation_diff": 0.0,
+        "actual_revenue": 4000.0,
+        "budget_revenue": 799.9999999999999,
+        "rate_change_pct": 1100.0,
+        "area_change_pct": 0.0,
+        "term_change_pct": -58.333333333333336,
+        "revenue_change_pct": 400.0000000000001
+      },
+      "notes": "Row 12 - huge rate increase from $1 to $12, early termination"
+    },
+    {
+      "tenant_name": "Tenant Row 16",
+      "unit_number": "Unit 16",
+      "actual": {
+        "rate_psf_year": 5.0,
+        "area_sf": 1000.0,
+        "term_months": 12.0,
+        "start_date": "2003-01-01",
+        "end_date": "2005-12-31",
+        "revenue": 5000.0
+      },
+      "budget": {
+        "rate_psf_year": 10.0,
+        "area_sf": 500.0,
+        "term_months": 12.0,
+        "start_date": "2004-01-01",
+        "end_date": "2004-12-31",
+        "revenue": 5000.0
+      },
+      "variances": {
+        "rate_variance": -5000.0,
+        "area_variance": 5000.0,
+        "term_variance": 0.0,
+        "manual_adjustment": 0.0,
+        "total_variance": 0.0,
+        "total_with_adjustment": 0.0,
+        "calculated_total": 0.0,
+        "reconciliation_diff": 0.0,
+        "actual_revenue": 5000.0,
+        "budget_revenue": 5000.0,
+        "rate_change_pct": -50.0,
+        "area_change_pct": 100.0,
+        "term_change_pct": 0.0,
+        "revenue_change_pct": 0.0
+      },
+      "notes": "Row 16 - rate down, area doubled"
+    }
+  ]
+}

@@ -5,6 +5,124 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-11-05
+
+### Added
+
+#### Rental Variance Analysis Module
+
+**New Calculator**: `Rental_Variance/` - Three-way variance decomposition for rental revenue analysis
+
+- **rental_variance_calculator.py** - Command-line calculator with JSON input/output
+- **Variance Decomposition** - Isolates rate, area, and term variance components
+- **Excel Methodology** - Based on proven `Rental Variance Analysis.xlsx` spreadsheet
+- **Mathematical Foundation** - Variance formula: `Total = (BC)(A-D) + (CD)(B-E) + (DE)(C-F)`
+- **Reconciliation Checks** - Validates variance components sum to total (±$0.01 tolerance)
+- **Period-Aware Calculations** - Automatically handles partial periods and lease overlaps
+- **Manual Adjustments** - Support for lease administration overrides
+- **Multiple Output Formats** - Console summary, JSON results, markdown reports
+
+**Sample Data**:
+- `sample_variance_input.json` - 4 tenant scenarios from Excel "Proof of Concept" sheet
+- `sample_variance_results.json` - Expected calculation results matching Excel formulas
+
+**Documentation**:
+- `Rental_Variance/README.md` - Complete module documentation with:
+  - Theoretical foundation and mathematical proof
+  - Usage examples (command-line and slash command)
+  - Input/output format specifications
+  - Interpretation guide for variance analysis
+  - Common scenarios and applications
+  - Excel formula mapping and validation
+
+**Slash Command**:
+- `/rental-variance` - Extract variance data from Excel/CSV/PDF and generate comprehensive analysis report
+- Supports manual data entry when no file provided
+- Automated workflow: Data → JSON → Calculator → Report
+
+**Images and References**:
+- `rentaldecomp.jpg` - Excel spreadsheet visualization
+- `first_tenant*.png` - Sample tenant calculation screenshots
+- `Rental Variance Analysis.xlsx` - Original Excel implementation (6 sheets)
+
+**Key Features**:
+- ✅ Period-aware term calculations using DAYS360 methodology
+- ✅ Three-way decomposition (rate, area, term)
+- ✅ Manual adjustments support
+- ✅ Reconciliation validation
+- ✅ Flexible input (Excel, CSV, PDF, manual)
+- ✅ Professional markdown reports
+- ✅ Zero external dependencies (Python stdlib only)
+
+**Technical Details**:
+- **Input Format**: JSON with actual vs budget data (dates, rates, areas, terms)
+- **Output Format**: Console summary, JSON results, timestamped markdown reports
+- **Calculation Method**: Monthly rate conversion (annual $/sf ÷ 12), variance decomposition
+- **Validation**: Mathematical proof ensures variance components sum correctly
+- **Excel Compatibility**: Python results match Excel formulas exactly
+
+### Changed
+
+#### Slash Commands
+
+- Updated Financial Analysis category to include `/rental-variance` (now 7 commands total)
+- Total slash commands increased from 19 to 20
+
+#### Documentation
+
+- Updated `CLAUDE.md` to include:
+  - `Rental_Variance/` in project structure
+  - `/rental-variance` in Financial Analysis commands list
+  - Added rental variance to quick start examples
+- Updated `.claude/commands/README.md` to document `/rental-variance` command
+
+#### Project Structure
+
+```
+├── Rental_Variance/        # NEW - Variance decomposition analysis
+│   ├── rental_variance_calculator.py
+│   ├── sample_variance_input.json
+│   ├── sample_variance_results.json
+│   └── README.md
+```
+
+### Fixed
+
+#### Sample Data Accuracy
+
+- Replaced generic sample data with actual data from Excel spreadsheet
+- Updated tenant scenarios to match "Proof of Concept" sheet rows 9, 10, 12, 16
+- Validated calculation results against Excel formulas
+- Ensured reconciliation checks pass for all sample tenants
+
+### Technical Notes
+
+**Variance Decomposition Formula**:
+```
+Rate Variance = (B × C) × (A - D)  where A=Actual Rate, B=Actual Area, C=Actual Term
+                                         D=Budget Rate
+
+Area Variance = (C × D) × (B - E)  where E=Budget Area
+
+Term Variance = (D × E) × (C - F)  where F=Budget Term
+
+Total Variance = Rate + Area + Term = ABC - DEF
+```
+
+**Mathematical Proof**:
+```
+(BC)(A-D) + (CD)(B-E) + (DE)(C-F)
+= ABC - BCD + BCD - CDE + CDE - DEF
+= ABC - DEF ✓
+```
+
+**Applications**:
+1. Budget vs Actual Analysis - Monthly/quarterly variance reporting
+2. Lease Negotiation Impact - Quantify negotiation outcomes
+3. Portfolio Performance - Track leasing trends
+4. Forecasting Refinement - Improve budget accuracy
+5. Asset Management - Identify underperforming assets
+
 ## [1.0.0] - 2025-10-31
 
 ### Added
