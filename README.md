@@ -46,6 +46,10 @@ cd leasing-expert
 pip install numpy pandas scipy
 pip install 'markitdown[docx]'        # document conversion
 pip install pytest                    # optional: run test suite
+
+# For PDF report generation (relative valuation, etc.)
+sudo apt-get install -y pandoc wkhtmltopdf  # Linux/Ubuntu
+# Or: brew install pandoc wkhtmltopdf       # macOS
 ```
 
 ### First Workflow: Abstract & Analyze
@@ -80,7 +84,11 @@ python IFRS16_Calculator/run_ifrs16_analysis.py ifrs16_inputs/sample_input.json
 python Rental_Variance/rental_variance_calculator.py sample_variance_input.json -v
 
 # Relative valuation / competitive positioning
-python Relative_Valuation/relative_valuation_calculator.py --input data.json --output report.md
+python Relative_Valuation/relative_valuation_calculator.py \
+  --input data.json \
+  --output report.md \
+  --output-json results.json \
+  --full  # Show all competitors (not just top 10)
 
 # Renewal vs. relocation economics
 python Renewal_Analysis/run_renewal_analysis.py renewal_inputs/sample_input.json
@@ -116,9 +124,11 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
 3. **Rental Variance Analysis** (`Rental_Variance/`)  
    - Decomposes revenue variance into rate, area, and term components using DAYS360 methodology; reconciles budget vs. actuals with audit-ready tables.  
    - Ideal for monthly/quarterly reporting packs and leasing scorecards.
-4. **Relative Valuation Engine** (`Relative_Valuation/`)  
-   - Weighted MCDA rankings across 9 comparables variables (rent, TMI, parking, clear height, etc.) with sensitivity analysis.  
-   - Outputs competitive status, pricing gap to Top 3, and rent/TMI adjustment scenarios.
+4. **Relative Valuation Engine** (`Relative_Valuation/`)
+   - Weighted MCDA rankings across up to 15 variables (9 core + 6 optional) with dynamic weight allocation based on data availability.
+   - Core variables: rent, TMI, parking, clear height, office %, distance, year built, class, area match.
+   - Optional variables: shipping doors (TL/DI), power, trailer parking, secure shipping, excess land.
+   - Outputs competitive status, pricing gap to Top 3, rent/TMI adjustment scenarios, and landscape PDF reports with full property details.
 5. **IFRS 16 / ASC 842 Calculator** (`IFRS16_Calculator/`)  
    - Generates present value of lease liabilities, ROU asset schedules, journal entries, and CSV amortization/depreciation tables.  
    - Used for monthly close, audit support, and disclosure packages.
@@ -129,7 +139,7 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
    - Compares renewal vs. relocation scenarios incorporating relocation capex, downtime, IRR, payback, and blended NER.  
    - Guides negotiation stance on expiring leases and capital allocation.
 
-### Automated Workflows (22 Slash Commands)
+### Automated Workflows (21 Slash Commands)
 Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (8), Accounting (1), Comparison (4), and Compliance (7).
 
 | Category | Command | Primary Output |
@@ -226,7 +236,7 @@ leasing-expert/
 ├── Credit_Analysis/           # Tenant credit scoring
 ├── Renewal_Analysis/          # Renewal vs relocation modelling
 ├── Rental_Variance/           # Variance decomposition
-├── Relative_Valuation/        # Competitive positioning (Phase 1 plan)
+├── Relative_Valuation/        # MCDA competitive positioning (15 variables)
 ├── Templates/                 # Lease abstract templates
 ├── Reports/                   # Timestamped analysis outputs
 └── .claude/                   # Automation commands, skills, agents
@@ -267,9 +277,9 @@ Academic foundations from R. Chan’s work on Ponzi Rental Rate and rental term 
 
 ## Support
 
-**Maintainer**: Claude Code  
-**Version**: 1.2.0 (2025-11-05 release)  
-For issues and feature requests, open a ticket in the repository.  
+**Maintainer**: Claude Code
+**Version**: 1.3.0 (2025-11-05 release)
+For issues and feature requests, open a ticket in the repository.
 For professional services, engage qualified leasing, legal, accounting, or valuation advisors.
 
 ⚠️ Always validate model outputs before reliance on material decisions.

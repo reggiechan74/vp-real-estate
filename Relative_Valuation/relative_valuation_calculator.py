@@ -44,6 +44,15 @@ class Property:
     is_subject: bool = False
     landlord: str = ""
 
+    # Additional property details (used in ranking if available)
+    shipping_doors_tl: int = 0  # Truck-level doors
+    shipping_doors_di: int = 0  # Drive-in doors
+    availability_date: str = ""
+    power_amps: int = 0
+    trailer_parking: bool = False
+    secure_shipping: bool = False
+    excess_land: bool = False
+
     # Ranking results
     rank_year_built: int = 0
     rank_clear_height: int = 0
@@ -54,6 +63,12 @@ class Property:
     rank_tmi: int = 0
     rank_class: int = 0
     rank_area_diff: int = 0
+    rank_shipping_doors_tl: int = 0
+    rank_shipping_doors_di: int = 0
+    rank_power: int = 0
+    rank_trailer_parking: int = 0
+    rank_secure_shipping: int = 0
+    rank_excess_land: int = 0
 
     weighted_score: float = 0.0
     final_rank: int = 0
@@ -179,6 +194,142 @@ def rank_variable(values: List[float], ascending: bool = True) -> List[int]:
     return ranks
 
 
+def detect_available_variables(properties: List[Dict[str, Any]]) -> Dict[str, bool]:
+    """
+    Detect which optional variables have data across the property set.
+
+    A variable is considered "available" if:
+    - For numeric fields: at least 50% of properties have non-zero values
+    - For boolean fields: at least one property has True
+    - For string fields: at least 50% have non-empty strings
+
+    Args:
+        properties: List of property dictionaries
+
+    Returns:
+        Dictionary mapping variable names to availability (True/False)
+    """
+    total = len(properties)
+    threshold = total * 0.5  # 50% threshold
+
+    # Core variables (always included)
+    available = {
+        'year_built': True,
+        'clear_height_ft': True,
+        'pct_office_space': True,
+        'parking_ratio': True,
+        'distance_km': True,
+        'net_asking_rent': True,
+        'tmi': True,
+        'class': True,
+        'area_difference': True
+    }
+
+    # Optional variables - check if data is available
+    # Shipping doors TL
+    tl_count = sum(1 for p in properties if p.get('shipping_doors_tl', 0) > 0)
+    available['shipping_doors_tl'] = tl_count >= threshold
+
+    # Shipping doors DI
+    di_count = sum(1 for p in properties if p.get('shipping_doors_di', 0) > 0)
+    available['shipping_doors_di'] = di_count >= threshold
+
+    # Power
+    power_count = sum(1 for p in properties if p.get('power_amps', 0) > 0)
+    available['power_amps'] = power_count >= threshold
+
+    # Trailer parking (boolean)
+    trailer_count = sum(1 for p in properties if p.get('trailer_parking', False))
+    available['trailer_parking'] = trailer_count > 0
+
+    # Secure shipping (boolean)
+    secure_count = sum(1 for p in properties if p.get('secure_shipping', False))
+    available['secure_shipping'] = secure_count > 0
+
+    # Excess land (boolean)
+    excess_count = sum(1 for p in properties if p.get('excess_land', False))
+    available['excess_land'] = excess_count > 0
+
+    return available
+
+
+def allocate_dynamic_weights(available_vars: Dict[str, bool],
+                            base_weights: Dict[str, float]) -> Dict[str, float]:
+    """
+    Dynamically allocate weights based on which variables have data.
+
+    Base weight allocation (when all optional vars available):
+    - Net Rent: 14%
+    - Parking: 13%
+    - TMI: 12%
+    - Clear Height: 9%
+    - % Office: 9%
+    - Distance: 9%
+    - Area Diff: 9%
+    - Year Built: 7%
+    - Class: 6%
+    - Shipping TL: 4%
+    - Shipping DI: 3%
+    - Power: 3%
+    - Trailer Parking: 2%
+    - Secure Shipping: 2%
+    - Excess Land: 2%
+    Total: 100%
+
+    If optional variables are missing, their weights are redistributed
+    proportionally among available variables.
+
+    Args:
+        available_vars: Dictionary of variable availability
+        base_weights: Base weights from input (may be overridden)
+
+    Returns:
+        Adjusted weights that sum to 1.0
+    """
+    # Define target weights when all variables available
+    full_weights = {
+        'net_asking_rent': 0.14,
+        'parking_ratio': 0.13,
+        'tmi': 0.12,
+        'clear_height_ft': 0.09,
+        'pct_office_space': 0.09,
+        'distance_km': 0.09,
+        'area_difference': 0.09,
+        'year_built': 0.07,
+        'class': 0.06,
+        'shipping_doors_tl': 0.04,
+        'shipping_doors_di': 0.03,
+        'power_amps': 0.03,
+        'trailer_parking': 0.02,
+        'secure_shipping': 0.02,
+        'excess_land': 0.02
+    }
+
+    # Calculate total weight of available variables
+    available_weight = sum(full_weights.get(var, 0.0)
+                          for var, is_avail in available_vars.items()
+                          if is_avail)
+
+    # Calculate weight to redistribute (from missing variables)
+    missing_weight = 1.0 - available_weight
+
+    # Build final weights
+    final_weights = {}
+    for var, is_avail in available_vars.items():
+        if is_avail and var in full_weights:
+            # Proportionally increase weight to compensate for missing vars
+            base = full_weights[var]
+            adjustment = (base / available_weight) * missing_weight if available_weight > 0 else 0
+            final_weights[var] = round(base + adjustment, 4)
+
+    # Normalize to ensure sum = 1.0 (handle rounding)
+    total = sum(final_weights.values())
+    if total > 0:
+        final_weights = {k: round(v / total, 4) for k, v in final_weights.items()}
+
+    return final_weights
+
+
 def calculate_weighted_score(property_data: Dict[str, Any],
                               ranks: Dict[str, int],
                               weights: Dict[str, float]) -> float:
@@ -221,7 +372,13 @@ def calculate_weighted_score(property_data: Dict[str, Any],
         'net_asking_rent': 'net_asking_rent',
         'tmi': 'tmi',
         'class': 'class',
-        'area_difference': 'area_difference'
+        'area_difference': 'area_difference',
+        'shipping_doors_tl': 'shipping_doors_tl',
+        'shipping_doors_di': 'shipping_doors_di',
+        'power_amps': 'power_amps',
+        'trailer_parking': 'trailer_parking',
+        'secure_shipping': 'secure_shipping',
+        'excess_land': 'excess_land'
     }
 
     for weight_key, rank_key in variable_mapping.items():
@@ -387,7 +544,22 @@ def generate_competitive_report(results: CompetitiveAnalysis, output_path: str, 
 | **Net Asking Rent** | ${subject.get('net_asking_rent', 0):.2f}/sf |
 | **TMI** | ${subject.get('tmi', 0):.2f}/sf |
 | **Gross Rent** | ${(subject.get('net_asking_rent', 0) + subject.get('tmi', 0)):.2f}/sf |
-| **Class** | {'A' if subject.get('class', 2) == 1 else 'B' if subject.get('class', 2) == 2 else 'C'} |
+| **Class** | {'A' if subject.get('class', 2) == 1 else 'B' if subject.get('class', 2) == 2 else 'C'} |"""
+
+    # Add optional fields if available
+    if subject.get('shipping_doors_tl'):
+        report += f"\n| **Shipping Doors (Truck-Level)** | {subject.get('shipping_doors_tl', 0)} |"
+    if subject.get('shipping_doors_di'):
+        report += f"\n| **Shipping Doors (Drive-In)** | {subject.get('shipping_doors_di', 0)} |"
+    if subject.get('power_amps'):
+        report += f"\n| **Power** | {subject.get('power_amps', 0)} amps |"
+    if subject.get('availability_date'):
+        report += f"\n| **Availability Date** | {subject.get('availability_date', '')} |"
+    report += f"\n| **Trailer Parking** | {'Yes' if subject.get('trailer_parking', False) else 'No'} |"
+    report += f"\n| **Secure Shipping** | {'Yes' if subject.get('secure_shipping', False) else 'No'} |"
+    report += f"\n| **Excess Land** | {'Yes' if subject.get('excess_land', False) else 'No'} |"
+
+    report += f"""
 
 ### **Variable Rankings**
 
@@ -411,14 +583,23 @@ def generate_competitive_report(results: CompetitiveAnalysis, output_path: str, 
 
 These properties offer the best value propositions in the market:
 
-| Rank | Property | Net Rent | TMI | Gross Rent | Weighted Score |
-|------|----------|----------|-----|------------|----------------|
+| Rank | Property | Net Rent | TMI | Gross Rent | Ship TL | Ship DI | Power | Trailer | Secure | Excess Land | Avail Date | Score |
+|------|----------|----------|-----|------------|---------|---------|-------|---------|--------|-------------|------------|-------|
 """
 
     # Add competitors (top 10 or all based on --full flag)
     competitors_to_show = results.all_properties if full else results.top_competitors
     for comp in competitors_to_show:
-        report += f"| {comp['final_rank']} | {comp['address']} {comp.get('unit', '')} | ${comp.get('net_asking_rent', 0):.2f} | ${comp.get('tmi', 0):.2f} | ${comp.get('gross_rent', 0):.2f} | {comp['weighted_score']:.2f} |\n"
+        # Format optional fields
+        ship_tl = comp.get('shipping_doors_tl', 0) if comp.get('shipping_doors_tl') else '-'
+        ship_di = comp.get('shipping_doors_di', 0) if comp.get('shipping_doors_di') else '-'
+        power = f"{comp.get('power_amps', 0)}" if comp.get('power_amps') else '-'
+        trailer = 'Yes' if comp.get('trailer_parking', False) else 'No'
+        secure = 'Yes' if comp.get('secure_shipping', False) else 'No'
+        excess = 'Yes' if comp.get('excess_land', False) else 'No'
+        avail = comp.get('availability_date', '-')
+
+        report += f"| {comp['final_rank']} | {comp['address']} {comp.get('unit', '')} | ${comp.get('net_asking_rent', 0):.2f} | ${comp.get('tmi', 0):.2f} | ${comp.get('gross_rent', 0):.2f} | {ship_tl} | {ship_di} | {power} | {trailer} | {secure} | {excess} | {avail} | {comp['weighted_score']:.2f} |\n"
 
     # Gap Analysis
     gap = results.gap_analysis
@@ -580,6 +761,18 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     print(f"   Loaded {len(all_properties_data)} properties")
     print(f"   Subject: {subject_data['address']} {subject_data.get('unit', '')}")
 
+    # Detect available optional variables
+    print("\n   Detecting available variables...")
+    available_vars = detect_available_variables(all_properties_data)
+    num_available = sum(1 for v in available_vars.values() if v)
+    print(f"   Using {num_available} of 15 possible variables")
+
+    # Allocate weights dynamically based on available data
+    dynamic_weights = allocate_dynamic_weights(available_vars, weights)
+    print(f"   Dynamic weights calculated:")
+    for var, weight in sorted(dynamic_weights.items(), key=lambda x: -x[1]):
+        print(f"      {var}: {weight:.1%}")
+
     # Extract values for each variable
     year_builts = [p['year_built'] for p in all_properties_data]
     clear_heights = [p['clear_height_ft'] for p in all_properties_data]
@@ -593,7 +786,7 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
 
     # Rank each variable
     # Variables where LOWER = BETTER (ascending=True): rent, TMI, distance, class, area_diff
-    # Variables where HIGHER = BETTER (ascending=False): clear_height, parking, % office, year_built
+    # Variables where HIGHER = BETTER (ascending=False): clear_height, parking, % office, year_built, shipping doors, power, boolean amenities
     print("\n   Ranking variables...")
 
     ranks_year_built = rank_variable(year_builts, ascending=False)  # Newer (higher year) = better
@@ -606,9 +799,42 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     ranks_class = rank_variable(classes, ascending=True)  # Lower class number (A=1) = better
     ranks_area_diff = rank_variable(area_diffs, ascending=True)  # Smaller difference = better
 
+    # Rank optional variables if available
+    ranks_shipping_tl = None
+    ranks_shipping_di = None
+    ranks_power = None
+    ranks_trailer_parking = None
+    ranks_secure_shipping = None
+    ranks_excess_land = None
+
+    if available_vars.get('shipping_doors_tl', False):
+        shipping_tl_values = [p.get('shipping_doors_tl', 0) for p in all_properties_data]
+        ranks_shipping_tl = rank_variable(shipping_tl_values, ascending=False)  # More doors = better
+
+    if available_vars.get('shipping_doors_di', False):
+        shipping_di_values = [p.get('shipping_doors_di', 0) for p in all_properties_data]
+        ranks_shipping_di = rank_variable(shipping_di_values, ascending=False)  # More doors = better
+
+    if available_vars.get('power_amps', False):
+        power_values = [p.get('power_amps', 0) for p in all_properties_data]
+        ranks_power = rank_variable(power_values, ascending=False)  # More power = better
+
+    if available_vars.get('trailer_parking', False):
+        trailer_values = [1 if p.get('trailer_parking', False) else 0 for p in all_properties_data]
+        ranks_trailer_parking = rank_variable(trailer_values, ascending=False)  # True = better
+
+    if available_vars.get('secure_shipping', False):
+        secure_values = [1 if p.get('secure_shipping', False) else 0 for p in all_properties_data]
+        ranks_secure_shipping = rank_variable(secure_values, ascending=False)  # True = better
+
+    if available_vars.get('excess_land', False):
+        excess_values = [1 if p.get('excess_land', False) else 0 for p in all_properties_data]
+        ranks_excess_land = rank_variable(excess_values, ascending=False)  # True = better
+
     # Calculate weighted scores
     print("   Calculating weighted scores...")
     for i, prop in enumerate(all_properties_data):
+        # Build ranks_dict with core variables
         ranks_dict = {
             'year_built': ranks_year_built[i],
             'clear_height_ft': ranks_clear_height[i],
@@ -621,6 +847,21 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
             'area_difference': ranks_area_diff[i]
         }
 
+        # Add optional variable ranks if available
+        if ranks_shipping_tl is not None:
+            ranks_dict['shipping_doors_tl'] = ranks_shipping_tl[i]
+        if ranks_shipping_di is not None:
+            ranks_dict['shipping_doors_di'] = ranks_shipping_di[i]
+        if ranks_power is not None:
+            ranks_dict['power_amps'] = ranks_power[i]
+        if ranks_trailer_parking is not None:
+            ranks_dict['trailer_parking'] = ranks_trailer_parking[i]
+        if ranks_secure_shipping is not None:
+            ranks_dict['secure_shipping'] = ranks_secure_shipping[i]
+        if ranks_excess_land is not None:
+            ranks_dict['excess_land'] = ranks_excess_land[i]
+
+        # Assign core variable ranks to property
         prop['rank_year_built'] = int(ranks_year_built[i])
         prop['rank_clear_height'] = int(ranks_clear_height[i])
         prop['rank_pct_office'] = int(ranks_pct_office[i])
@@ -631,7 +872,16 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         prop['rank_class'] = int(ranks_class[i])
         prop['rank_area_diff'] = int(ranks_area_diff[i])
 
-        prop['weighted_score'] = calculate_weighted_score(prop, ranks_dict, weights)
+        # Assign optional variable ranks to property
+        prop['rank_shipping_doors_tl'] = int(ranks_shipping_tl[i]) if ranks_shipping_tl else 0
+        prop['rank_shipping_doors_di'] = int(ranks_shipping_di[i]) if ranks_shipping_di else 0
+        prop['rank_power'] = int(ranks_power[i]) if ranks_power else 0
+        prop['rank_trailer_parking'] = int(ranks_trailer_parking[i]) if ranks_trailer_parking else 0
+        prop['rank_secure_shipping'] = int(ranks_secure_shipping[i]) if ranks_secure_shipping else 0
+        prop['rank_excess_land'] = int(ranks_excess_land[i]) if ranks_excess_land else 0
+
+        # Calculate weighted score using DYNAMIC weights
+        prop['weighted_score'] = calculate_weighted_score(prop, ranks_dict, dynamic_weights)
 
     # Sort by weighted score (ascending - lower is better)
     all_properties_data.sort(key=lambda x: x['weighted_score'])
