@@ -1,5 +1,12 @@
 # Commercial Real Estate Lease Management Toolkit
 
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
+[![Tests](https://img.shields.io/badge/tests-130%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
+[![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
+[![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
+
 **Version 1.3.0** • Released 2025-11-05
 Built for institutional leasing teams that need production-ready automation across the entire lease lifecycle.
 
