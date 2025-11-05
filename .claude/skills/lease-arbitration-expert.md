@@ -1,6 +1,8 @@
 ---
 name: lease-arbitration-expert
 description: Expert in drafting and negotiating lease arbitration agreements - rent determination frameworks, expert selection, procedural rules, cost allocation, and dispute resolution mechanisms
+tags: [commercial-real-estate, arbitration-agreements, dispute-resolution, rent-determination, expert-selection]
+capability: Provides specialized expertise in lease arbitration agreements including binding arbitration frameworks, market rent determination, arbitrator selection procedures, baseball vs conventional arbitration, cost allocation, and enforceable award structures
 proactive: true
 ---
 
