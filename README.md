@@ -1,8 +1,8 @@
-# Commercial Real Estate Lease Analysis Toolkit
+# Commercial Real Estate Lease Management Toolkit
 
 **Version 1.2.0** | Released 2025-11-05
 
-A comprehensive, production-ready toolkit for commercial real estate lease abstraction, financial analysis, and compliance management. Includes 6 specialized calculators, 13 expert skills, 21 automated workflows, and standardized templates for industrial and office leases.
+A comprehensive, production-ready toolkit for commercial real estate lease management across the entire lease lifecycle. From initial negotiations and drafting through administration, financial analysis, accounting compliance, and lease modifications. Includes 13 expert skills, 6 specialized calculators, 21 automated workflows, and standardized templates for industrial and office leases.
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
@@ -12,94 +12,156 @@ A comprehensive, production-ready toolkit for commercial real estate lease abstr
 
 ## 🎯 Overview
 
+### From Abstraction Tool to Complete Lease Management Platform
+
+**What started as a lease abstraction and financial analysis toolkit has evolved into a comprehensive lease management platform** covering the entire commercial lease lifecycle—from initial deal structuring through execution, administration, modifications, and termination.
+
 ### The Problem
 
-Commercial real estate lease analysis is a complex, time-consuming process that requires expertise across multiple disciplines:
+Commercial real estate lease management is a multifaceted discipline requiring expertise across legal, financial, operational, and strategic domains:
 
-- **Financial Analysis**: Calculating Net Effective Rent (NER), NPV, IRR, and breakeven metrics requires deep understanding of time value of money, discount rates, and cash flow modeling
-- **Lease Accounting**: IFRS 16 and ASC 842 compliance demands precise present value calculations, amortization schedules, and journal entries
-- **Credit Assessment**: Evaluating tenant creditworthiness involves analyzing financial ratios, default probabilities, and expected losses
-- **Document Abstraction**: Extracting critical terms from 50-100 page lease documents into structured, searchable formats is labor-intensive
-- **Portfolio Management**: Tracking renewal deadlines, comparing lease terms, and managing expiry risk across dozens or hundreds of leases
+**Lease Lifecycle Complexity**:
+- **Deal Structuring & Negotiation**: Structuring offers to lease, evaluating deal economics, negotiating key terms, balancing landlord/tenant interests
+- **Legal Drafting & Review**: Reviewing assignments, subleases, indemnities, SNDA agreements, surrender agreements, arbitration clauses
+- **Financial Analysis**: Calculating Net Effective Rent (NER), NPV, IRR, breakeven metrics, option valuations, variance analysis
+- **Lease Accounting**: IFRS 16 and ASC 842 compliance with liability calculations, ROU asset measurement, and amortization schedules
+- **Credit & Risk Assessment**: Evaluating tenant creditworthiness, default probabilities, security requirements, expected losses
+- **Document Abstraction**: Extracting critical terms from 50-100 page lease documents into structured, searchable formats
+- **Portfolio Administration**: Tracking renewals, managing modifications, monitoring compliance, analyzing expiry risk
+- **Specialized Transactions**: Temporary licenses, storage agreements, telecom licenses, share transfer consents
 
-Traditional approaches rely on manual spreadsheet analysis, which is:
-- **Error-prone**: Copy-paste mistakes and formula errors are common
-- **Time-consuming**: Each lease analysis can take 2-4 hours
-- **Inconsistent**: Different analysts use different methodologies
-- **Not scalable**: Portfolio-level analysis becomes impractical
-- **Difficult to audit**: Spreadsheet logic is often opaque
+Traditional approaches rely on fragmented tools and manual processes:
+- **Siloed Expertise**: Legal, financial, and operational teams work in isolation with disconnected tools
+- **Error-prone**: Manual spreadsheets, copy-paste mistakes, inconsistent methodologies
+- **Time-consuming**: Each transaction can take hours or days across multiple departments
+- **Knowledge Gaps**: Junior staff lack access to senior-level expertise on complex provisions
+- **Not scalable**: Portfolio-level analysis and institutional knowledge management impractical
+- **Difficult to audit**: Spreadsheet logic is opaque, decision rationale undocumented
 
 ### The Solution
 
-This toolkit provides **production-ready, automated workflows** that transform lease analysis from a manual, error-prone process into a systematic, repeatable, and auditable pipeline:
+This toolkit provides **an integrated platform with deep expertise and automation** across the complete lease lifecycle:
 
-**PDF → JSON → Python → Report**
+**Three-Tier Architecture**:
 
-1. **Extract** structured data from lease PDFs and financial documents
-2. **Generate** validated JSON inputs with all required parameters
-3. **Calculate** using industry-standard financial models and accounting frameworks
-4. **Report** comprehensive analysis with timestamped markdown reports and CSV exports
+1. **Expert Skills (13 specialists)** - Deep legal and commercial expertise on demand
+   - Instant access to senior-level guidance on complex lease provisions
+   - Structured knowledge for assignments, subleases, indemnities, SNDA, arbitration, temporary licenses, and more
+   - Risk analysis, drafting checklists, negotiation strategies, common pitfalls
+
+2. **Automated Workflows (21 commands)** - PDF → JSON → Python → Report pipeline
+   - Extract structured data from lease PDFs and financial documents
+   - Generate validated JSON inputs with all required parameters
+   - Calculate using industry-standard financial models and accounting frameworks
+   - Produce comprehensive analysis with timestamped markdown reports and CSV exports
+
+3. **Specialized Calculators (6 engines)** - Rigorous financial and accounting analysis
+   - Production-ready Python code with 130+ unit tests
+   - Industry frameworks: Breakeven Rental Rate (BRR), IFRS 16/ASC 842, Black-Scholes options
+   - NPV, IRR, NER, credit scoring, variance decomposition, renewal economics
+
+**Result**: Transform fragmented, manual lease management into a systematic, repeatable, and auditable platform with institutional expertise embedded at every step.
 
 ### Who This Is For
 
 **Primary Users:**
-- **Real Estate Investment Trusts (REITs)**: Portfolio-level lease analysis, financial reporting, and compliance
-- **Institutional Investors**: Due diligence on property acquisitions with complex lease portfolios
-- **Property Managers**: Lease administration, renewal analysis, and tenant credit monitoring
-- **Corporate Real Estate Teams**: Space planning, lease-vs-buy decisions, and IFRS 16/ASC 842 compliance
-- **Commercial Brokers**: Deal analysis, market comparisons, and client presentations
-- **Developers**: Pro forma analysis, leasing strategy, and tenant mix optimization
+- **Real Estate Investment Trusts (REITs)**: Complete lease lifecycle management from deal structuring through portfolio administration, financial reporting, and compliance
+- **Institutional Investors**: Due diligence on acquisitions, lease negotiations, assignment/sublease reviews, and ongoing asset management
+- **Property Managers**: Lease administration, modification requests (assignments, subleases, surrenders), renewal negotiations, and tenant credit monitoring
+- **Corporate Real Estate Teams**: Space planning, lease negotiations, lease-vs-buy decisions, IFRS 16/ASC 842 compliance, and lease modifications
+- **Commercial Brokers**: Deal structuring, offer to lease preparation, financial analysis, market comparisons, and client negotiations
+- **Developers**: Leasing strategy, deal economics, tenant mix optimization, and lease-up management
+- **Asset Managers**: Portfolio optimization, lease expiry management, renewal economics, and value-add strategies
 
-**Secondary Users:**
-- **Accountants & Auditors**: IFRS 16/ASC 842 lease accounting and financial statement preparation
-- **Credit Analysts**: Tenant creditworthiness assessment and security recommendations
-- **Legal Professionals**: Lease abstraction, critical dates tracking, and compliance verification
-- **Academic Researchers**: Real estate finance, lease economics, and options theory
+**Legal & Financial Specialists:**
+- **Real Estate Attorneys**: Lease drafting and review, assignment/sublease consent, indemnities, SNDA agreements, surrender agreements, arbitration clauses
+- **Lease Administrators**: Document abstraction, critical dates tracking, compliance monitoring, modification processing
+- **Accountants & Auditors**: IFRS 16/ASC 842 lease accounting, financial statement preparation, variance analysis
+- **Credit Analysts**: Tenant creditworthiness assessment, security requirements, default probability estimation
+
+**Specialized Use Cases:**
+- **Film/TV Production Companies**: Temporary license agreements for short-term location access
+- **Telecommunications Carriers**: Telecom licensing for building access and equipment installation
+- **Academic Researchers**: Real estate finance, lease economics, options theory, variance decomposition
 
 ### What Makes It Unique
 
-**1. Academically Rigorous**
+**1. Complete Lifecycle Coverage**
 
-Built on peer-reviewed theoretical frameworks:
+Unlike point solutions focused on narrow tasks, this platform covers the **entire lease lifecycle**:
+- **Origination**: Offers to lease, deal structuring, financial analysis, credit assessment
+- **Execution**: Lease drafting guidance, indemnity agreements, SNDA negotiations
+- **Administration**: Document abstraction, critical dates tracking, compliance monitoring
+- **Modifications**: Assignment/sublease consent, share transfer approval, lease surrender, amendments
+- **Specialized Transactions**: Temporary licenses, storage agreements, telecom licenses, arbitration agreements
+- **Financial Reporting**: IFRS 16/ASC 842 accounting, variance analysis, portfolio rollover
+
+**2. Embedded Expertise at Scale**
+
+**13 specialized skills** provide instant access to senior-level expertise:
+- **Knowledge Democratization**: Junior staff get expert-level guidance without waiting for senior review
+- **Consistent Analysis**: Standardized frameworks ensure consistent decision-making across portfolio
+- **Risk Identification**: Built-in checklists flag common pitfalls and unusual provisions
+- **Best Practices**: Negotiation strategies, drafting guidance, and market standards embedded in every skill
+- **Dual Perspective**: Analysis from both landlord and tenant viewpoints
+
+**3. Academically Rigorous + Production-Ready**
+
+Built on peer-reviewed theoretical frameworks, implemented as industrial-grade software:
 - **Breakeven Rental Rate (BRR)**: Proper treatment of free rent, TI allowances, and rent escalations in NPV analysis (Chan, 2015)
 - **Rental Term Structure**: Option-theoretic pricing of lease terms using implied termination options (Chan, 2016)
 - **Real Options Valuation**: Black-Scholes framework for renewal, expansion, and termination options
 - **IFRS 16/ASC 842**: Complete implementation of international lease accounting standards
+- **8,233 lines** of well-documented Python code with **130+ unit tests**
+- **Type hints** and validation for all inputs with clear error handling
 
-**2. Production-Ready Code**
-
-Not academic prototypes—industrial-grade software:
-- **8,233 lines** of well-documented Python code
-- **130+ unit tests** with comprehensive edge case coverage
-- **Type hints** and validation for all inputs
-- **Error handling** with clear diagnostic messages
-- **Modular architecture** for maintainability and extensibility
-
-**3. End-to-End Automation**
+**4. End-to-End Automation**
 
 From document upload to final report in minutes:
 - **13 specialized skills** for deep expertise in specific lease agreement types
 - **21 slash commands** covering abstraction, financial analysis, accounting, comparison, and compliance
 - **6 specialized calculators** with JSON-based APIs for programmatic use
-- **Automated workflows** that extract, validate, calculate, and report
+- **Automated workflows** that extract, validate, calculate, and report (PDF → JSON → Python → Report)
 - **Standardized templates** for industrial and office leases (24 comprehensive sections)
 
-**4. Transparency and Auditability**
+**5. Transparency and Auditability**
 
-Every calculation is documented and traceable:
+Every calculation and recommendation is documented and traceable:
 - **Timestamped reports** with complete methodology documentation
 - **CSV exports** for spreadsheet verification and audit trails
 - **Assumption documentation** in every output
-- **Reference citations** to academic sources and standards
+- **Reference citations** to academic sources, standards, and legal frameworks
 - **Limitation disclosures** for proper risk assessment
+- **Workflow tracking** from initial input through final recommendation
 
 ### Scope and Capabilities
+
+**Deal Structuring & Negotiation:**
+- Offers to lease, letters of intent, and term sheets (binding vs non-binding analysis)
+- Deal economics evaluation (NER, NPV, breakeven, investment recommendations)
+- Conditional waivers and counter-offer analysis
+- Net lease structure guidance (gross, modified gross, net, triple net)
+- Tenant improvement allowances and concession structuring
+- Renewal option pricing and arbitration clause drafting
+
+**Legal Document Expertise:**
+- Commercial lease drafting and review (industrial, office)
+- Assignment and sublease consent agreements (privity analysis, risk allocation)
+- Indemnity agreements (bankruptcy-proof provisions, enforcement strategies)
+- SNDA agreements (foreclosure protection, subordination dynamics)
+- Lease surrender agreements (early termination, consideration structures)
+- Share transfer consent (change of control provisions)
+- Temporary license agreements (short-term occupancy, 1 day - 3 months)
+- Storage agreements (month-to-month, ancillary space)
+- Telecom licensing (carrier access, CRTC compliance)
+- Lease arbitration agreements (rent determination frameworks)
 
 **Financial Analysis:**
 - Net Effective Rent (NER) and Gross Effective Rent (GER) calculations
 - NPV analysis with custom discount rates
 - IRR calculations for relocation investments
 - Breakeven analysis (unlevered, levered, with capital recovery)
+- Rental variance decomposition (rate, area, term components)
 - Sensitivity analysis on key variables
 - Investment recommendations (Approve, Negotiate, Reject)
 
@@ -126,9 +188,12 @@ Every calculation is documented and traceable:
 - Portfolio rollover analysis and expiry risk management
 - Lease-to-lease comparison for consistency
 - Amendment tracking and change detection
+- Assignment/sublease request processing
+- Compliance monitoring and notice generation
 
 **Advanced Analytics:**
 - Rental term structure pricing using implied options
+- Real options valuation for lease options (Black-Scholes framework)
 
 ### Technology Stack
 
