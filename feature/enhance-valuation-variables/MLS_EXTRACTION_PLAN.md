@@ -108,7 +108,7 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 | `lot_size_acres` | Float | Lot Irreg or Lot Size Area | 11.112 | Parse acres or convert sq ft |
 | `hvac_coverage` | Integer | A/C | 1 | Y=1, Part=2, N=3 (ordinal) |
 | `sprinkler_type` | Integer | Sprinklers + Client Remks | 1 | ESFR=1, Standard=2, None=3 |
-| `building_age_years` | Integer | Calculated | 5 | 2025 - year_built |
+| `building_age_years` | Integer | Calculated | 5 | report_year - year_built |
 | `rail_access` | Boolean | Rail | false | Y/N boolean |
 | `crane` | Boolean | Crane | false | Y/N boolean |
 | `occupancy_status` | Integer | Occup | 1 | Vacant=1, Tenant=2 (ordinal) |
@@ -194,7 +194,24 @@ with pdfplumber.open(pdf_path) as pdf:
    - Field extraction using mapping table
    - Robust parsing functions (bay depth, lot size, etc.)
    - Subject property matching logic
+   - Report metadata capture (generation timestamp, market name)
+   - `building_age_years` derived from report generation year
 6. Create unit tests for extraction functions
+
+Example age calculation pattern:
+```python
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+generated_at = metadata.get('report_generated_at')  # ISO 8601 string captured when command starts
+if generated_at:
+    report_year = datetime.fromisoformat(generated_at).astimezone(ZoneInfo('America/New_York')).year
+else:
+    report_year = datetime.now(ZoneInfo('America/New_York')).year
+
+year_built_raw = property.get('year_built')
+building_age_years = report_year - int(str(year_built_raw).strip()) if year_built_raw else None
+```
 
 ### Phase 3: Output Formatting
 7. Implement CSV writer
