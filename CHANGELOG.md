@@ -573,4 +573,6 @@ This is the initial release. Future versions will maintain backward compatibilit
 
 ---
 
-[1.0.0]: https://github.com/anthropics/lease-abstract/releases/tag/v1.0.0
+[1.0.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.0.0
+[1.1.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.1.0
+[1.2.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.2.0
