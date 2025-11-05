@@ -38,11 +38,12 @@ def extract_sample_data(excel_path: str, output_path: str, num_properties: int =
         address_col = df.columns[0]
         print(f"Using first column as address: '{address_col}'")
 
-    # Clean up data - keep only rows with valid addresses, skip first row if it's duplicate
+    # Clean up data - keep only rows with valid addresses
     df = df[df[address_col].notna()].copy()
 
-    # Remove rows where address looks like header text
-    df = df[~df[address_col].astype(str).str.contains('PROPERTY|Address', case=False, na=False)].copy()
+    # Remove rows where address looks like header text (but keep "SUBJECT PROPERTY")
+    # Only filter out if it contains both "Address" (header row indicator)
+    df = df[~df[address_col].astype(str).str.contains('^Address$', case=False, na=False, regex=True)].copy()
 
     print(f"Rows with valid addresses: {len(df)}")
 
@@ -97,8 +98,12 @@ def extract_sample_data(excel_path: str, output_path: str, num_properties: int =
     properties = []
 
     for idx, row in sample_df.iterrows():
-        # Determine if this is the subject property (first property)
-        is_subject = (idx == sample_df.index[0])
+        # Determine if this is the subject property
+        # Subject property is identified by address "SUBJECT PROPERTY" or distance = 0
+        address_val = str(row[col_map['address']]) if col_map['address'] and pd.notna(row[col_map['address']]) else ""
+        distance_val = float(row[col_map['distance']]) if col_map['distance'] and pd.notna(row[col_map['distance']]) else None
+
+        is_subject = (address_val == "SUBJECT PROPERTY") or (distance_val == 0.0)
 
         # Parse class (A=1, B=2, C=3)
         class_col = col_map['class']

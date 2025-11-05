@@ -84,6 +84,44 @@ python relative_valuation_calculator.py \
   --output-json results.json
 ```
 
+### Distance Calculation (Optional)
+
+If your input JSON doesn't have `distance_km` values (common with MLS comp sheets), use the distance calculator:
+
+```bash
+# Set your API key (get free key at https://distancematrix.ai/)
+export DISTANCEMATRIX_API_KEY=your_key_here
+
+# Calculate distances from subject to all comparables
+python calculate_distances.py \
+  --input data.json \
+  --output data_with_distances.json \
+  --verbose
+
+# Then run the relative valuation analysis
+python relative_valuation_calculator.py \
+  --input data_with_distances.json \
+  --output report.md
+```
+
+**API Details:**
+- **Provider**: Distancematrix.ai (https://distancematrix.ai/)
+- **Free Tier**: 1,000 distance calculations/month
+- **Method**: Driving distance via road network
+- **Accuracy**: Uses Google Maps data
+
+**Alternative: Skip Distance Variable**
+If you don't want to use the API, set all distances to 0 and exclude distance from weights:
+```json
+{
+  "weights": {
+    "distance_km": 0.00,  // Exclude distance (0% weight)
+    "net_asking_rent": 0.18,  // Increase other weights to compensate
+    // ... adjust other weights to sum to 1.0
+  }
+}
+```
+
 ### Input JSON Schema
 
 ```json
