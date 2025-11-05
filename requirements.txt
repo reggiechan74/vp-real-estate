@@ -12,6 +12,7 @@ pandas>=2.0.0  # For data manipulation
 # Financial calculations (BAF Calculator)
 numpy>=1.24.0  # For numerical operations
 numpy-financial>=1.0.0  # For financial calculations (NPV, PMT, etc.)
+scipy>=1.11.0  # For numerical solvers (e.g., Newton method in IRR)
 
 # Optional: Web scraping for SEC EDGAR documents
 requests>=2.31.0  # For HTTP requests

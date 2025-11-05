@@ -16,13 +16,8 @@ Run with: pytest test_credit_analysis.py -v
 import pytest
 import numpy as np
 import pandas as pd
-import os
-import sys
 
-# Add Credit_Analysis to path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'Credit_Analysis'))
-
-from credit_analysis import (
+from Credit_Analysis.credit_analysis import (
     FinancialData,
     CreditInputs,
     CreditScore,

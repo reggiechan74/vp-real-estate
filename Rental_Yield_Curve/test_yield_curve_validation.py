@@ -108,7 +108,7 @@ def test_paper_validation():
 
     print("="*100 + "\n")
 
-    return all_pass
+    assert all_pass
 
 
 def test_npv_calculation():
@@ -173,7 +173,7 @@ def test_npv_calculation():
 
     print("="*80 + "\n")
 
-    return npv_match and rate_match
+    assert npv_match and rate_match
 
 
 if __name__ == '__main__':

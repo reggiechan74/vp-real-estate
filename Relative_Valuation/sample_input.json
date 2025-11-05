@@ -357,11 +357,11 @@
     "year_built": 0.08,
     "clear_height_ft": 0.1,
     "pct_office_space": 0.1,
-    "parking_ratio": 0.15,
+    "parking_ratio": 0.2,
     "distance_km": 0.1,
     "net_asking_rent": 0.16,
     "tmi": 0.14,
     "class": 0.07,
-    "area_difference": 0.1
+    "area_difference": 0.05
   }
 }

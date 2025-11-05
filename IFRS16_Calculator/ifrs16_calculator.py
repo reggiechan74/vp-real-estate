@@ -24,12 +24,8 @@ import pandas as pd
 from typing import Dict, List, Tuple, Optional, Literal
 from datetime import datetime
 from dataclasses import dataclass
-import sys
-import os
 
-# Import financial utilities from Shared_Utils
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Shared_Utils'))
-from financial_utils import (
+from Shared_Utils.financial_utils import (
     pv_annuity,
     annual_to_monthly_rate,
     amortization_schedule as create_amortization_schedule,

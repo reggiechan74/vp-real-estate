@@ -1,7 +1,7 @@
 import json
 import sys
 from datetime import datetime
-from renewal_analysis import (
+from Renewal_Analysis.renewal_analysis import (
     RenewalScenario,
     RelocationScenario,
     GeneralInputs,

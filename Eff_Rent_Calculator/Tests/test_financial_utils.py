@@ -15,15 +15,12 @@ Run with: pytest test_financial_utils.py -v
 
 import pytest
 import numpy as np
+import numpy_financial as npf
 import pandas as pd
 from datetime import datetime
-import sys
-import os
 
-# Add Shared_Utils to path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'Shared_Utils'))
-
-from financial_utils import (
+import Shared_Utils.financial_utils as financial_utils_module
+from Shared_Utils.financial_utils import (
     present_value,
     pv_annuity,
     npv,
@@ -188,6 +185,19 @@ class TestIRR:
         cash_flows = [100, 100, 100]
         with pytest.raises(ValueError, match="did not converge"):
             irr(cash_flows)
+
+    def test_irr_fallback_to_numpy_financial(self, monkeypatch):
+        """Ensure IRR falls back gracefully when Newton solver fails."""
+        cash_flows = [-250000, 90000, 110000, 130000, 150000]
+        expected = npf.irr(cash_flows)
+
+        def fail_newton(*args, **kwargs):
+            raise RuntimeError("Force fallback")
+
+        monkeypatch.setattr(financial_utils_module, "newton", fail_newton)
+
+        irr_val = irr(cash_flows)
+        assert irr_val == pytest.approx(expected, rel=1e-7)
 
 
 # ============================================================================
