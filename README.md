@@ -1,8 +1,8 @@
 # Commercial Real Estate Lease Analysis Toolkit
 
-**Version 1.1.0** | Released 2025-11-05
+**Version 1.2.0** | Released 2025-11-05
 
-A comprehensive, production-ready toolkit for commercial real estate lease abstraction, financial analysis, and compliance management. Includes 6 specialized calculators, 21 automated workflows, and standardized templates for industrial and office leases.
+A comprehensive, production-ready toolkit for commercial real estate lease abstraction, financial analysis, and compliance management. Includes 6 specialized calculators, 13 expert skills, 21 automated workflows, and standardized templates for industrial and office leases.
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
@@ -78,6 +78,7 @@ Not academic prototypes—industrial-grade software:
 **3. End-to-End Automation**
 
 From document upload to final report in minutes:
+- **13 specialized skills** for deep expertise in specific lease agreement types
 - **21 slash commands** covering abstraction, financial analysis, accounting, comparison, and compliance
 - **6 specialized calculators** with JSON-based APIs for programmatic use
 - **Automated workflows** that extract, validate, calculate, and report
@@ -186,6 +187,35 @@ These features represent natural extensions of the existing framework and will b
 - [Version History](#version-history)
 
 ## ✨ Features
+
+### 13 Specialized Skills
+
+Deep expertise in specific lease agreement types and provisions:
+
+**Core Lease Agreements**
+- **commercial-lease-expert** - General lease negotiation, net lease structures, deal structuring
+
+**Security & Protection**
+- **indemnity-expert** - Parent company indemnities, bankruptcy-proof provisions
+- **non-disturbance-expert** - SNDA agreements, foreclosure protection
+
+**Lease Modifications & Transfers**
+- **consent-to-assignment-expert** - Assignment consent, privity analysis
+- **consent-to-sublease-expert** - Sublease consent, three-party structures
+- **share-transfer-consent-expert** - Change of control, corporate restructuring
+- **lease-surrender-expert** - Early termination, mutual release provisions
+
+**Preliminary & Ancillary Agreements**
+- **offer-to-lease-expert** - Offers to lease, LOIs, term sheets
+- **waiver-agreement-expert** - Conditional waivers, counter-offers
+- **temporary-license-expert** - Short-term licenses (1 day - 3 months)
+- **storage-agreement-expert** - Storage lockers, ancillary space
+
+**Specialized Licenses**
+- **telecom-licensing-expert** - Carrier access, CRTC compliance
+
+**Dispute Resolution**
+- **lease-arbitration-expert** - Arbitration agreements, rent determination
 
 ### 6 Specialized Calculators
 
@@ -555,34 +585,51 @@ lease-abstract/
 │       ├── office_lease_abstract_template.json         # JSON template
 │       └── office_lease_abstract_schema.json           # JSON Schema
 │
-├── 📁 .claude/commands/                # Slash Commands (20 total)
-│   ├── Abstraction/                    # Lease Abstraction (2 commands)
-│   │   ├── abstract-lease.md           # 24-section lease extraction
-│   │   └── critical-dates.md           # Timeline extraction
-│   ├── Financial_Analysis/             # Financial Analysis (7 commands)
-│   │   ├── effective-rent.md           # NER, NPV, breakeven
-│   │   ├── rental-variance.md          # Variance decomposition (rate, area, term)
-│   │   ├── renewal-economics.md        # Renewal vs. relocation
-│   │   ├── tenant-credit.md            # Credit scoring
-│   │   ├── option-value.md             # Real options valuation
-│   │   ├── market-comparison.md        # Market benchmarking
-│   │   └── rollover-analysis.md        # Portfolio expiry analysis
-│   ├── Accounting/                     # Accounting (1 command)
-│   │   └── ifrs16-calculation.md       # IFRS 16/ASC 842 compliance
-│   ├── Comparison/                     # Document Comparison (4 commands)
-│   │   ├── compare-amendment.md        # Amendment vs. original
-│   │   ├── compare-offers.md           # Inbound vs. outbound
-│   │   ├── compare-precedent.md        # Draft vs. standard form
-│   │   └── lease-vs-lease.md           # General comparison
-│   ├── Compliance/                     # Compliance (7 commands)
-│   │   ├── assignment-consent.md       # Assignment analysis
-│   │   ├── default-analysis.md         # Default provisions
-│   │   ├── environmental-compliance.md # Environmental obligations
-│   │   ├── estoppel-certificate.md     # Estoppel generation
-│   │   ├── insurance-audit.md          # Insurance verification
-│   │   ├── notice-generator.md         # Lease notices
-│   │   └── work-letter.md              # Work letter from TI provisions
-│   └── README.md                       # Commands documentation
+├── 📁 .claude/                         # Claude Code Configuration
+│   ├── commands/                       # Slash Commands (21 total)
+│   │   ├── Abstraction/                # Lease Abstraction (2 commands)
+│   │   │   ├── abstract-lease.md       # 24-section lease extraction
+│   │   │   └── critical-dates.md       # Timeline extraction
+│   │   ├── Financial_Analysis/         # Financial Analysis (7 commands)
+│   │   │   ├── effective-rent.md       # NER, NPV, breakeven
+│   │   │   ├── rental-variance.md      # Variance decomposition (rate, area, term)
+│   │   │   ├── renewal-economics.md    # Renewal vs. relocation
+│   │   │   ├── tenant-credit.md        # Credit scoring
+│   │   │   ├── option-value.md         # Real options valuation
+│   │   │   ├── market-comparison.md    # Market benchmarking
+│   │   │   └── rollover-analysis.md    # Portfolio expiry analysis
+│   │   ├── Accounting/                 # Accounting (1 command)
+│   │   │   └── ifrs16-calculation.md   # IFRS 16/ASC 842 compliance
+│   │   ├── Comparison/                 # Document Comparison (4 commands)
+│   │   │   ├── compare-amendment.md    # Amendment vs. original
+│   │   │   ├── compare-offers.md       # Inbound vs. outbound
+│   │   │   ├── compare-precedent.md    # Draft vs. standard form
+│   │   │   └── lease-vs-lease.md       # General comparison
+│   │   ├── Compliance/                 # Compliance (7 commands)
+│   │   │   ├── assignment-consent.md   # Assignment analysis
+│   │   │   ├── default-analysis.md     # Default provisions
+│   │   │   ├── environmental-compliance.md # Environmental obligations
+│   │   │   ├── estoppel-certificate.md # Estoppel generation
+│   │   │   ├── insurance-audit.md      # Insurance verification
+│   │   │   ├── notice-generator.md     # Lease notices
+│   │   │   └── work-letter.md          # Work letter from TI provisions
+│   │   └── README.md                   # Commands documentation
+│   ├── skills/                         # Expert Skills (13 total)
+│   │   ├── commercial-lease-expert.md  # General lease negotiation
+│   │   ├── indemnity-expert.md         # Indemnity agreements
+│   │   ├── non-disturbance-expert.md   # SNDA agreements
+│   │   ├── consent-to-assignment-expert.md # Assignment consent
+│   │   ├── consent-to-sublease-expert.md   # Sublease consent
+│   │   ├── share-transfer-consent-expert.md # Share transfer consent
+│   │   ├── lease-surrender-expert.md   # Lease surrender
+│   │   ├── offer-to-lease-expert.md    # Offers to lease
+│   │   ├── waiver-agreement-expert.md  # Waiver agreements
+│   │   ├── temporary-license-expert.md # Temporary licenses
+│   │   ├── storage-agreement-expert.md # Storage agreements
+│   │   ├── telecom-licensing-expert.md # Telecom licenses
+│   │   └── lease-arbitration-expert.md # Arbitration agreements
+│   └── agents/                         # Sub-Agents
+│       └── leasing-expert.md           # Leasing specialist agent
 │
 ├── 📁 Planning/                        # Reference Lease Documents
 │   ├── Multi_Tenant_Industrial.md      # Full industrial lease (2,000+ lines)
@@ -602,8 +649,8 @@ lease-abstract/
 
 ────────────────────────────────────────────────────────────────────────────
 
-Total: 9 calculator modules, 4 test suites (130+ tests), 21 slash commands,
-       6 template files, 11+ documentation files, ~150,000 lines of code
+Total: 9 calculator modules, 4 test suites (130+ tests), 13 expert skills,
+       21 slash commands, 6 template files, 1 sub-agent, 25+ documentation files
 ```
 
 ## 📚 Documentation
@@ -629,6 +676,25 @@ Total: 9 calculator modules, 4 test suites (130+ tests), 21 slash commands,
 - **[Planning/Multi_Tenant_Office.md](Planning/Multi_Tenant_Office.md)** - Full office lease template
 
 ## 📊 Version History
+
+### Version 1.2.0 (2025-11-05)
+
+**New Features**:
+- **13 Specialized Skills** - Deep expertise for specific lease agreement types
+  - Core lease agreements, security instruments, lease modifications
+  - Preliminary agreements, specialized licenses, dispute resolution
+- **temporary-license-expert** - New skill for short-term occupancy agreements
+- **leasing-expert agent** - Updated with complete skill inventory and usage guidance
+- **Standardized skill frontmatter** - All skills have consistent metadata structure
+
+**Skills Coverage**:
+- Commercial leases, indemnities, SNDA agreements
+- Assignment/sublease/share transfer consent
+- Lease surrender, offers to lease, waivers
+- Temporary licenses, storage agreements, telecom licenses
+- Lease arbitration agreements
+
+See [CHANGELOG.md](CHANGELOG.md) for complete details.
 
 ### Version 1.1.0 (2025-11-05)
 
@@ -867,7 +933,7 @@ Standard lease templates are provided for reference purposes only. These templat
 
 ## 📞 Support and Contact
 
-**Version**: 1.1.0
+**Version**: 1.2.0
 **Released**: 2025-11-05
 **Maintained by**: Claude Code
 

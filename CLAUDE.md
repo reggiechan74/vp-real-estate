@@ -15,12 +15,22 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ├── Planning/               # Source lease documents
 ├── Templates/              # Industrial/Office lease templates (24 sections, MD/JSON/Schema)
 ├── Reports/                # Generated abstracts & analysis (timestamp prefix required)
-└── .claude/commands/       # Slash commands (21 commands in 5 categories)
-    ├── Abstraction/        # abstract-lease, critical-dates
-    ├── Financial_Analysis/ # effective-rent, renewal-economics, tenant-credit, option-value, rental-variance, etc.
-    ├── Accounting/         # ifrs16-calculation
-    ├── Comparison/         # compare-amendment, compare-offers, compare-precedent, lease-vs-lease
-    └── Compliance/         # assignment-consent, default-analysis, estoppel-certificate, etc.
+└── .claude/                # Claude Code configuration
+    ├── commands/           # Slash commands (21 commands in 5 categories)
+    │   ├── Abstraction/        # abstract-lease, critical-dates
+    │   ├── Financial_Analysis/ # effective-rent, renewal-economics, tenant-credit, option-value, rental-variance, etc.
+    │   ├── Accounting/         # ifrs16-calculation
+    │   ├── Comparison/         # compare-amendment, compare-offers, compare-precedent, lease-vs-lease
+    │   └── Compliance/         # assignment-consent, default-analysis, estoppel-certificate, etc.
+    ├── skills/             # Expert skills (13 specialized skills)
+    │   ├── Core: commercial-lease-expert
+    │   ├── Security: indemnity-expert, non-disturbance-expert
+    │   ├── Transfers: consent-to-assignment, consent-to-sublease, share-transfer-consent, lease-surrender
+    │   ├── Preliminary: offer-to-lease, waiver-agreement, temporary-license, storage-agreement
+    │   ├── Specialized: telecom-licensing-expert
+    │   └── Dispute: lease-arbitration-expert
+    └── agents/             # Sub-agents
+        └── leasing-expert  # Leasing specialist with skill integration
 ```
 
 ## File Naming: Reports Folder
@@ -68,6 +78,35 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 
 **See**: `.claude/commands/README.md` for detailed documentation
 
+## Specialized Skills (13 total)
+
+Use the Skill tool to invoke deep expertise on specific agreement types:
+
+### Core Lease Agreements
+- **commercial-lease-expert** - General lease negotiation, net lease structures, deal structuring
+
+### Security & Protection
+- **indemnity-expert** - Indemnity agreements, bankruptcy-proof provisions
+- **non-disturbance-expert** - SNDA agreements, foreclosure protection
+
+### Lease Modifications & Transfers
+- **consent-to-assignment-expert** - Assignment consent, privity analysis
+- **consent-to-sublease-expert** - Sublease consent, three-party structures
+- **share-transfer-consent-expert** - Change of control, corporate restructuring
+- **lease-surrender-expert** - Early termination, mutual release
+
+### Preliminary & Ancillary Agreements
+- **offer-to-lease-expert** - Offers to lease, LOIs, term sheets
+- **waiver-agreement-expert** - Conditional waivers, counter-offers
+- **temporary-license-expert** - Short-term licenses (1 day - 3 months)
+- **storage-agreement-expert** - Storage lockers, ancillary space
+
+### Specialized Licenses
+- **telecom-licensing-expert** - Carrier access, CRTC compliance
+
+### Dispute Resolution
+- **lease-arbitration-expert** - Arbitration agreements, rent determination
+
 ## Quick Start Examples
 
 ```bash
@@ -84,6 +123,12 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 
 # Renewal economics
 /renewal-economics path/to/current-lease.pdf
+
+# Invoke expert skills
+# (Use Skill tool in Claude Code)
+Skill -> commercial-lease-expert    # For general lease review
+Skill -> temporary-license-expert   # For short-term license agreements
+Skill -> consent-to-assignment-expert # For assignment consent requests
 
 # Convert DOCX to markdown
 markitdown document.docx -o output.md

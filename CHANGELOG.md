@@ -5,6 +5,160 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-11-05
+
+### Added
+
+#### 13 Specialized Skills
+
+**New Skill System**: `.claude/skills/` - Deep expertise for specific lease agreement types and provisions
+
+**Core Lease Agreements (1 skill)**
+- **commercial-lease-expert** - General commercial lease negotiation, drafting, and analysis
+  - Net lease structures (gross, modified gross, net, triple net)
+  - Lease economics fundamentals
+  - Tenant improvements and operating cost recovery
+  - Renewal options, assignment/subletting provisions
+  - Default provisions and risk management
+
+**Security & Protection Instruments (2 skills)**
+- **indemnity-expert** - Indemnity agreements and guarantees
+  - Primary obligations vs secondary guarantees
+  - Absolute and unconditional provisions
+  - Bankruptcy-proof features
+  - Enforcement strategies and landlord protections
+- **non-disturbance-expert** - SNDA (subordination, non-disturbance, attornment) agreements
+  - Tenant protection against foreclosure
+  - Lender/tenant/landlord tripartite agreements
+  - Subordination dynamics and priority issues
+
+**Lease Modifications & Transfers (4 skills)**
+- **consent-to-assignment-expert** - Assignment consent agreements
+  - Assignment vs sublease distinctions
+  - Privity of estate and contract analysis
+  - Joint and several liability
+  - Landlord protections and release provisions
+- **consent-to-sublease-expert** - Sublease consent agreements
+  - Three-party sublease structures
+  - Recapture rights and profit-sharing
+  - Landlord/tenant/subtenant relationships
+- **share-transfer-consent-expert** - Change of control consent
+  - Share transfer vs assignment distinctions
+  - Corporate restructuring scenarios
+  - Privacy consent provisions
+  - New shareholder representations
+- **lease-surrender-expert** - Lease termination and surrender agreements
+  - Early termination by mutual agreement
+  - Partial surrenders and space reduction
+  - Consideration structures
+  - Mutual release provisions
+  - Distressed tenant scenarios
+
+**Preliminary & Ancillary Agreements (4 skills)**
+- **offer-to-lease-expert** - Offers to lease, LOIs, and term sheets
+  - Binding vs non-binding analysis
+  - Conditions precedent
+  - Deposit structures and exclusivity
+  - Deal structuring and negotiation strategies
+- **waiver-agreement-expert** - Landlord waivers of conditions
+  - Conditional vs unconditional waivers
+  - Counter-offer analysis
+  - Acceptance deadlines
+  - Contract formation timelines
+- **temporary-license-expert** - Short-term licenses (1 day to 3 months) **[NEW]**
+  - License vs lease distinctions
+  - Film/TV production, pop-up retail, swing space
+  - Gross rent structures for short terms
+  - "As is" condition and minimal landlord obligations
+  - Insurance and indemnity for short-term use
+- **storage-agreement-expert** - Storage locker and ancillary agreements
+  - Month-to-month storage arrangements
+  - Simplified rent structures
+  - Use restrictions and limited services
+
+**Specialized Licenses & Infrastructure (1 skill)**
+- **telecom-licensing-expert** - Telecommunications carrier access licenses
+  - Carrier building access and equipment installation
+  - Riser/conduit rights
+  - CRTC regulatory compliance
+  - Co-location arrangements
+
+**Dispute Resolution (1 skill)**
+- **lease-arbitration-expert** - Arbitration agreement drafting
+  - Renewal rent determination frameworks
+  - Arbitrator selection procedures
+  - Baseball vs conventional arbitration
+  - Cost allocation and enforceable awards
+
+**Skill Features**:
+- ✅ Standardized frontmatter (name, description, tags, capability, proactive)
+- ✅ Comprehensive legal and practical guidance
+- ✅ Risk analysis from both landlord and tenant perspectives
+- ✅ Drafting checklists and negotiation strategies
+- ✅ Common mistakes to avoid
+- ✅ Sample language and workflow guidance
+
+### Changed
+
+#### Leasing Expert Agent
+
+- **Updated**: `.claude/agents/leasing-expert.md` now includes complete skill inventory
+- **Added**: "Specialized Skills Available" section with 13 skills organized by category
+- **Added**: "When to Use Which Tool" guidance for both skills and slash commands
+- **Added**: Workflow integration examples combining skills with slash commands
+- **Updated**: Agent approach to include skill identification and invocation steps
+
+**Agent Workflow Integration Examples**:
+1. **Assignment Request**: `consent-to-assignment-expert` + `/tenant-credit` + `/compare-offers`
+2. **Renewal Negotiation**: `/renewal-economics` + `lease-arbitration-expert` + `/market-comparison`
+3. **Early Termination**: `lease-surrender-expert` + `/effective-rent` + `/rollover-analysis`
+4. **New Lease**: `offer-to-lease-expert` + `/effective-rent` + `commercial-lease-expert` + `indemnity-expert`
+
+#### Documentation
+
+- Updated README.md to include skills section and version 1.2.0
+- Updated CLAUDE.md with skills structure
+- Reorganized features to list skills before calculators
+- Added skills to project structure diagram
+- Updated statistics: 13 expert skills, 25+ documentation files
+
+### Fixed
+
+#### Skill Frontmatter Standardization
+
+- **6 skills** had missing frontmatter entirely (storage, surrender, share-transfer, sublease-consent, offer-to-lease, temporary-license)
+- **7 skills** had incomplete frontmatter (indemnity, non-disturbance, arbitration, commercial-lease, telecom, waiver, assignment-consent)
+- All 13 skills now have complete, consistent frontmatter:
+  - `name`: Kebab-case identifier
+  - `description`: Brief summary of expertise
+  - `tags`: Array of relevant keywords
+  - `capability`: Detailed description of what the skill provides
+  - `proactive: true`: Enables proactive suggestion
+
+### Technical Details
+
+**Skill Invocation**:
+```bash
+# Invoke skill using Skill tool in Claude Code
+Skill tool -> command: "temporary-license-expert"
+```
+
+**Skill Organization**:
+```
+.claude/skills/
+├── Core: commercial-lease-expert
+├── Security: indemnity-expert, non-disturbance-expert
+├── Transfers: consent-to-assignment, consent-to-sublease, share-transfer-consent, lease-surrender
+├── Preliminary: offer-to-lease, waiver-agreement, temporary-license, storage-agreement
+├── Specialized: telecom-licensing-expert
+└── Dispute: lease-arbitration-expert
+```
+
+**Integration with Existing Tools**:
+- Skills complement slash commands (skills = expertise, commands = automation)
+- Skills work with calculators (skills = analysis, calculators = computation)
+- Skills integrate with leasing-expert agent for comprehensive guidance
+
 ## [1.1.0] - 2025-11-05
 
 ### Added
