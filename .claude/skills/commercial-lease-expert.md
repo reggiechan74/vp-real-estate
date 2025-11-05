@@ -1,6 +1,8 @@
 ---
 name: commercial-lease-expert
 description: Expert in commercial real estate lease agreements - negotiation strategy, lease provisions, deal structuring, tenant/landlord positioning, and comprehensive lease analysis for industrial and office properties
+tags: [commercial-real-estate, lease-negotiation, net-lease, industrial-lease, office-lease, deal-structuring]
+capability: Provides comprehensive expertise in commercial lease agreements including net lease structures, lease economics, tenant improvements, operating cost recovery, renewal options, assignment/subletting, default provisions, and strategic negotiation for both landlords and tenants
 proactive: true
 ---
 

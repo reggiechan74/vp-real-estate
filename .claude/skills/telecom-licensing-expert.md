@@ -1,6 +1,8 @@
 ---
 name: telecom-licensing-expert
 description: Expert in telecommunications licensing agreements - telecom carrier access to buildings, equipment installation rights, CRTC compliance, co-location, and infrastructure sharing
+tags: [commercial-real-estate, telecommunications, licensing-agreements, infrastructure-sharing, CRTC-compliance]
+capability: Provides specialized expertise in telecommunications license agreements including carrier access rights, equipment installation, riser/conduit rights, CRTC regulatory compliance, co-location arrangements, and balancing building owner control with provider access needs
 proactive: true
 ---
 

@@ -1,6 +1,8 @@
 ---
 name: non-disturbance-expert
 description: Expert in commercial lease non-disturbance and attornment agreements (SNDA) - protecting tenant rights through lender foreclosure, subordination dynamics, and lender/tenant positioning
+tags: [commercial-real-estate, SNDA, non-disturbance, attornment, subordination, foreclosure-protection]
+capability: Provides specialized expertise in non-disturbance and attornment agreements including tripartite SNDA structures, tenant protection mechanisms, lender foreclosure scenarios, subordination analysis, and negotiation strategies for tenants and lenders
 proactive: true
 ---
 

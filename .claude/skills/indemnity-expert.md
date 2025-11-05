@@ -1,6 +1,8 @@
 ---
 name: indemnity-expert
 description: Expert in commercial lease indemnity agreements - legal structure, landlord/tenant positioning, risk allocation, negotiation strategies, and enforcement mechanisms
+tags: [commercial-real-estate, indemnity-agreements, guarantees, risk-allocation, bankruptcy-proofing]
+capability: Provides specialized expertise in indemnity agreements including primary obligations vs guarantees, absolute and unconditional provisions, survival clauses, bankruptcy-proof features, and enforcement strategies
 proactive: true
 ---
 
