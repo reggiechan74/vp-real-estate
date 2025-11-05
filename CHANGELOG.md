@@ -5,6 +5,72 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-11-05
+
+### Added
+
+#### Relative Valuation / Competitive Positioning Module
+
+**New Calculator**: `Relative_Valuation/relative_valuation_calculator.py` - Multi-Criteria Decision Analysis (MCDA) for competitive positioning
+
+**Purpose**: Determine where a subject property ranks relative to market comparables and provide strategic pricing recommendations to achieve Top 3 competitive positioning (70-90% deal-winning probability).
+
+**Methodology**: 4-step MCDA framework
+1. **Data Collection** - Extract 9 key variables from comparable properties
+2. **Independent Ranking** - Rank each variable 1 (best) to X (worst)
+3. **Weighted Scoring** - Calculate weighted score = Σ(rank × weight)
+4. **Final Competitive Ranking** - Sort by weighted score ascending
+
+**9 Variables Analyzed** (with weights):
+- Net Asking Rent (16%) - Most critical factor
+- Parking Ratio (15%) - Second most critical
+- TMI/Operating Costs (14%)
+- Clear Height (10%)
+- % Office Space (10%)
+- Distance from Subject (10%)
+- Area Difference (10%)
+- Year Built (8%)
+- Class A/B/C (7%)
+
+**Key Features**:
+- **Competitive Tiers**: Rank #1-3 (Highly Competitive, 70-90% win rate), #4-10 (Moderately Competitive, 50-70%), #11+ (Not Competitive, <50%)
+- **Sensitivity Analysis**: Calculate exact rent/TMI reductions needed to achieve Rank #3 threshold
+- **Strategic Recommendations**: Action-oriented advice based on rank tier (maintain, adjust, or urgent repositioning)
+- **Top 3 Rule**: Must be Rank #1, #2, or #3 to consistently win deals
+
+**Outputs**:
+- Markdown report with executive summary, competitive analysis, gap analysis, and recommendations
+- JSON results with all rankings, weighted scores, and sensitivity scenarios
+- Sample data from May 2020 GTA industrial market (122 properties)
+
+**Validation**: Tested against original Excel template - methodology validated within 6.4% tolerance
+
+**Expert Skill**: `.claude/skills/relative-valuation-expert.md`
+- Methodology guidance and interpretation
+- Strategic recommendations by rank tier
+- Non-price lever alternatives (TI allowance, free rent, operating caps)
+- Tenant persona adjustments (industrial vs office vs flex)
+- Integration with other analyses (effective rent, market comp, credit)
+
+**Slash Command**: `/relative-valuation` - Automated PDF → JSON → Python → Report workflow
+- Extract property data from CoStar reports / broker packages
+- Generate input JSON with 9 variables
+- Run competitive analysis
+- Provide strategic guidance and pricing recommendations
+
+**Documentation**:
+- `Relative_Valuation/README.md` - Complete usage guide and methodology documentation
+- Sample files: `sample_input.json`, `sample_output.json`, `sample_report.md`
+- Methodology framework: `Reports/2025-11-05_122834_relative_valuation_methodology_framework.md`
+
+**Use Cases**:
+1. **Landlord Pricing**: Adjust asking rent to achieve Top 3 market position
+2. **Tenant Evaluation**: Compare multiple offers and negotiate best value
+3. **Renewal Benchmarking**: Ensure renewal offers are competitive with market alternatives
+4. **Portfolio Optimization**: Identify which assets are overpriced and need correction
+
+This brings the total to **7 calculators** and **22 slash commands** (8 Financial Analysis commands).
+
 ## [1.2.0] - 2025-11-05
 
 ### Added
