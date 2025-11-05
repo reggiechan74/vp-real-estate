@@ -1,56 +1,343 @@
 ---
-description: Multi-criteria competitive positioning analysis - ranks subject against comparables using 9 weighted variables, generates strategic pricing recommendations
+description: Multi-criteria competitive positioning analysis - ranks subject against comparables using up to 15 weighted variables (core + optional), generates strategic pricing recommendations with landscape PDF output
 argument-hint: <pdf-or-json-path> [--full]
-allowed-tools: Read, Write, Bash, Skill
+allowed-tools: Read, Write, Bash
 ---
 
 # Relative Valuation: Competitive Positioning Analysis
 
 **Automated PDF → JSON → Python → Report workflow for Multi-Criteria Decision Analysis (MCDA)**
 
-You are executing the **/relative-valuation** slash command. Your task is to perform a complete competitive positioning analysis using the relative valuation methodology.
+You are executing the **/relative-valuation** slash command. You are an expert in **Relative Valuation** and **Competitive Positioning Analysis** for commercial real estate, specializing in Multi-Criteria Decision Analysis (MCDA).
 
 ## Objective
 
 Determine where the subject property ranks relative to market comparables and provide strategic pricing recommendations to achieve Top 3 competitive positioning (70-90% deal-winning probability).
 
+## Core Methodology: MCDA Framework
+
+### The Variable System: Core (9) + Optional (6) = Up to 15 Total
+
+**Dynamic Weighting**: The system uses 9 core variables (always included) plus 6 optional variables (included only if sufficient data is available - 50% threshold for numeric fields, at least one True for boolean fields). When optional variables are missing, their weights are redistributed proportionally among available variables.
+
+#### Full Variable Set (When All Data Available)
+
+| Variable | Weight | Type | Rationale |
+|----------|--------|------|-----------|
+| **Net Asking Rent** | 14% | Core | **Most critical** - Direct impact on tenant budget |
+| **Parking Ratio** | 13% | Core | **Second most critical** - Often deal-breaker for industrial/office |
+| **TMI** | 12% | Core | Affects total occupancy cost |
+| **Clear Height** | 9% | Core | Critical for industrial operations |
+| **% Office Space** | 9% | Core | Mix affects usability |
+| **Distance** | 9% | Core | Location convenience |
+| **Area Difference** | 9% | Core | Size match to tenant needs |
+| **Year Built** | 7% | Core | Building age/condition proxy |
+| **Class** | 6% | Core | A/B/C quality tier |
+| **Shipping Doors (TL)** | 4% | Optional | Truck-level loading capacity |
+| **Shipping Doors (DI)** | 3% | Optional | Drive-in door access |
+| **Power** | 3% | Optional | Electrical capacity (amps) |
+| **Trailer Parking** | 2% | Optional | Trailer storage availability |
+| **Secure Shipping** | 2% | Optional | Secure loading areas |
+| **Excess Land** | 2% | Optional | Expansion/outdoor storage potential |
+
+**Note**: When optional variables are unavailable, the system automatically adjusts weights. For example, if only the 9 core variables are present, they receive proportionally higher weights that still sum to 100%.
+
+### Competitive Tiers
+
+| Rank | Status | Win Probability | Action Required |
+|------|--------|----------------|-----------------|
+| **#1-3** | ✅ Highly Competitive | 70-90% | Maintain position |
+| **#4-10** | ⚠️ Moderately Competitive | 50-70% | Consider adjustments |
+| **#11+** | ❌ Not Competitive | <50% | **Urgent** price reduction needed |
+
+**The "Top 3 Rule"**: You must be Rank #1, #2, or #3 to win deals consistently.
+
+If you're outside the Top 3:
+1. Tenants will prioritize competitors offering better value
+2. Your property becomes "backup option" not primary choice
+3. Longer vacancy periods and weaker negotiating position
+4. May need to offer additional concessions beyond price
+
+### Ranking Rules
+
+**Ascending Rank (Lower Value = Rank 1):**
+- Net Asking Rent - Lower rent wins
+- TMI - Lower operating costs wins
+- Distance - Closer to subject wins
+- Class - 1 (A) beats 2 (B) beats 3 (C)
+- Area Difference - Smaller mismatch wins
+
+**Descending Rank (Higher Value = Rank 1):**
+- Clear Height - Higher ceilings win
+- Parking Ratio - More parking wins
+- Year Built - Newer buildings win
+- % Office Space - More office usually wins
+
+### Tie Handling
+
+Use **average rank method**:
+- If 3 properties tie for ranks 5, 6, 7
+- Assign all three rank = (5 + 6 + 7) / 3 = 6.0
+
+## Sensitivity Analysis
+
+### Pricing Adjustments to Achieve Rank #3
+
+Calculate how much rent and/or TMI must be reduced:
+
+**Three Scenarios:**
+1. **Rent Reduction Only** - Lower net asking rent, TMI unchanged
+2. **TMI Reduction Only** - Lower operating costs, rent unchanged
+3. **Combined Reduction** - Adjust both rent and TMI
+
+**Formula:**
+```
+Points to improve = Subject Score - Rank #3 Score
+Points from rent reduction = (Rank improvement × 0.16)
+Points from TMI reduction = (Rank improvement × 0.14)
+```
+
+### Example Sensitivity Analysis
+
+**Current Position:**
+- Subject Rank: #7, Score: 45.2
+- Rank #3 Score: 38.5
+- Gap: 6.7 points
+
+**Scenario 1: Rent Reduction**
+- Reduce rent from $9.50 to $8.75 (-$0.75)
+- Improves rent rank from 8 to 3
+- Gain: 5 ranks × 0.16 = 0.80 points
+- New score: 44.4 (still rank #6)
+- **Not sufficient** - need more aggressive reduction
+
+**Scenario 2: Combined Approach**
+- Reduce rent from $9.50 to $8.50 (-$1.00)
+- Reduce TMI from $5.50 to $4.75 (-$0.75)
+- Combined gain: 2.1 points
+- New score: 43.1 (achieves rank #3)
+- **Recommended**
+
+## Strategic Recommendations by Rank Tier
+
+### Rank #1-3: Maintain Competitive Position
+
+**Strategy:** Defend market position
+- Monitor competitors closely for price changes
+- Highlight value proposition in marketing
+- Can afford to hold firm on pricing
+- Focus on service quality and tenant experience
+
+**Tactics:**
+- Weekly comp monitoring
+- Emphasize unique advantages (e.g., best parking ratio)
+- Leverage "Top 3" status in negotiations
+- Consider selective rent increases if demand strong
+
+### Rank #4-10: Improve to Top 3
+
+**Strategy:** Tactical adjustments to reach competitive threshold
+- Calculate exact pricing needed for Rank #3
+- Evaluate non-price improvements (e.g., TI allowance, free rent)
+- Reassess if market position sustainable
+
+**Tactics:**
+- Run sensitivity analysis for multiple scenarios
+- Consider 1-2 rank improvement vs. aggressive move to Top 3
+- Package price adjustment with lease term extension
+- Target improvement in highest-weighted variables (rent, parking, TMI)
+
+### Rank #11+: Urgent Repositioning Required
+
+**Strategy:** Aggressive intervention needed
+- Property fundamentally overpriced for market
+- High risk of extended vacancy
+- Need immediate price correction or major incentives
+
+**Tactics:**
+- **Immediate** rent reduction to achieve Top 10
+- Consider substantial TI allowance or free rent periods
+- May need to accept below-market deal to secure tenant
+- Reassess property positioning - wrong market segment?
+
+## Non-Price Levers
+
+### When Price Reduction Not Feasible
+
+If you cannot lower rent/TMI, improve competitive position through:
+
+1. **Tenant Improvements (TI)**
+   - Increase TI allowance by $10-20/SF
+   - Reduces effective rent without changing face rate
+   - Calculated: TI ÷ Lease Term = Effective rent reduction
+
+2. **Free Rent**
+   - Offer 3-6 months free rent
+   - Reduces effective rent while maintaining face rate
+   - Better for landlord accounting vs. lower base rent
+
+3. **Operating Cost Caps**
+   - Cap TMI escalations at 2-3% annually
+   - Reduces tenant's long-term occupancy cost risk
+   - Improves TMI ranking indirectly
+
+4. **Lease Flexibility**
+   - Early termination options
+   - Expansion/contraction rights
+   - Renewal options with fixed rates
+   - Adds value without changing base economics
+
+5. **Service Enhancements**
+   - Improved property management
+   - Enhanced common areas
+   - Better security/parking lot maintenance
+   - Builds goodwill but doesn't change rankings
+
+## Limitations and Cautions
+
+### When Relative Valuation Doesn't Apply
+
+**Not suitable for:**
+- Unique properties with no true comparables
+- Specialized industrial (e.g., cold storage, food processing)
+- Build-to-suit requirements
+- Properties with significant qualitative advantages (e.g., Fortune 500 landlord)
+
+### Methodology Assumptions
+
+1. **Linear Preferences** - Variables ranked independently (no interaction effects)
+2. **Fixed Weights** - Standard weights may not match specific tenant persona
+3. **No Qualitative Factors** - Doesn't account for:
+   - Building condition beyond age
+   - Landlord reputation
+   - Property management quality
+   - Intangible tenant preferences
+
+### Data Quality Requirements
+
+**Garbage in, garbage out:**
+- Comparables must be **truly comparable** (same submarket, property type, size range)
+- Data must be **current** (30-90 days old maximum)
+- Ensure **apples-to-apples** comparison (net vs gross rent, same measurement standards)
+
+## Tenant Persona Adjustments
+
+### Industrial Tenant (Manufacturing/Warehouse)
+
+**Emphasize:**
+- Clear Height (increase weight to 15%)
+- Parking (maintain 15%)
+- Reduce office space weight to 5%
+
+**Rationale:** Industrial users prioritize operational functionality over office amenities
+
+### Office Tenant (Professional Services)
+
+**Emphasize:**
+- % Office Space (increase to 15%)
+- Class (increase to 10%)
+- Reduce clear height to 5%
+
+**Rationale:** Office tenants value professional image and amenities over industrial specs
+
+### Flex Space Tenant (Hybrid)
+
+**Use Standard Weights:** Balanced approach works for hybrid users
+
+## Key Communication Language
+
+### When Communicating Results to Landlord
+
+**If Rank #1-3:**
+> "Your property is **highly competitive** at current pricing. You're well-positioned to win deals at 70-90% probability. Maintain your pricing strategy and focus on execution."
+
+**If Rank #4-10:**
+> "Your property is **moderately competitive** but outside the critical Top 3. Consider tactical adjustments—a $0.50/SF rent reduction could move you from Rank #7 to Rank #3 and improve deal-winning probability from 50% to 85%."
+
+**If Rank #11+:**
+> "Your property is **not competitive** at current pricing. You're asking $1.50/SF above market-leading options. Tenants will default to competitors offering better value. Immediate price correction is required to avoid extended vacancy."
+
+### When Communicating Results to Tenant Representative
+
+**If Subject (Client's Target) Ranks #1-3:**
+> "This property offers **excellent value** relative to market. It ranks in the Top 3 out of X comparables. You're getting competitive pricing—I recommend moving forward with lease negotiations."
+
+**If Subject Ranks #4-10:**
+> "This property is **decent but not optimal**. Several options offer better value at current pricing. Use this analysis to negotiate a rent reduction. That would move it into the competitive Top 3."
+
+**If Subject Ranks #11+:**
+> "This property is **overpriced** for the market. Landlord is asking significantly above competitive alternatives. I recommend pursuing Top 3 properties OR negotiating aggressively for substantial rent reduction."
+
+## Red Flags and Common Mistakes
+
+### Don't Make These Errors
+
+1. **Ignoring the Top 3 Rule**
+   - "We're Rank #5, close enough" → No, you're losing deals to Rank #1-3
+   - Must take action to reach Top 3, not settle for "close"
+
+2. **Focusing Only on Rent**
+   - Rent is 16% weight, TMI is 14% → Combined 30%
+   - Parking (15%) nearly as important as rent
+   - Consider multi-variable improvements
+
+3. **Using Stale Data**
+   - Market changes rapidly
+   - Comps from 6 months ago may not reflect current conditions
+   - Re-run analysis monthly during active leasing
+
+4. **Ignoring Ties**
+   - If Rank #1 and #2 have same weighted score → Dead heat
+   - Winning will come down to non-quantitative factors
+   - Prepare to compete on service, reputation, deal structure
+
+5. **Over-Relying on Model**
+   - RV is a tool, not a crystal ball
+   - Qualitative factors matter: landlord reputation, building condition, location prestige
+   - Use RV to inform strategy, not replace judgment
+
 ## Workflow Steps
 
-### Step 1: Activate Relative Valuation Expert Skill
-
-First, load the relative valuation expert skill to access specialized methodology knowledge:
-
-```
-Use Skill tool: relative-valuation-expert
-```
-
-### Step 2: Extract Data from PDF Documents
+### Step 1: Extract Data from PDF Documents
 
 The user will provide one or more PDF documents containing:
 - Subject property details
 - Comparable property data (CoStar reports, broker packages, market surveys)
 
 **Your tasks:**
-1. Extract all properties with the following attributes:
-   - Address & Unit
-   - Year Built
-   - Clear Height (ft)
-   - % Office Space
-   - Parking Ratio (spaces per 1,000 SF)
-   - Available SF
-   - Distance from Subject (km) - Calculate or estimate if not provided
-   - Net Asking Rent ($/SF/year)
-   - TMI ($/SF/year)
-   - Class (A/B/C)
+1. Extract all properties with the following **core attributes** (always required):
+   - **Address & Unit**
+   - **Year Built**
+   - **Clear Height** (ft)
+   - **% Office Space** - ⚠️ **CRITICAL**: PDF shows "% Warehouse Space" - you MUST convert:
+     - Formula: `% Office = (100 - % Warehouse) / 100`
+     - Example: 89% warehouse → (100-89)/100 = **0.11** (store as decimal)
+     - Never store as whole number (11.0 is WRONG, 0.11 is correct)
+   - **Parking Ratio** (spaces per 1,000 SF)
+   - **Available SF**
+   - **Distance from Subject** (km) - Calculate or estimate if not provided
+   - **Net Asking Rent** ($/SF/year)
+   - **TMI** ($/SF/year)
+   - **Class** (A/B/C) - Map to integers: A=1, B=2, C=3
 
-2. Identify which property is the subject property (distance = 0)
+2. Extract **optional attributes** if available (used in ranking if ≥50% of properties have data):
+   - **Shipping Doors** - Format "X TL Y DI" in PDF:
+     - Extract X as `shipping_doors_tl` (truck-level doors)
+     - Extract Y as `shipping_doors_di` (drive-in doors)
+   - **Power** (amps) - Extract number as `power_amps`
+   - **Availability Date** - Extract as string: "Immediate", "Jan-26", "Q4 2025", etc.
+   - **Trailer Parking** - "Yes" or blank → boolean (true if "Yes", false otherwise)
+   - **Secure Shipping** - "Yes" or "Y" or blank → boolean (true if present, false otherwise)
+   - **Excess Land** - "Yes" or blank → boolean (true if "Yes", false otherwise)
 
-3. If distance data is missing:
+3. Identify which property is the subject property (distance = 0)
+
+4. If distance data is missing:
    - Note: "Distance calculations deferred - using estimated values"
    - Use approximate distances based on address locations
    - Flag for manual review
 
-### Step 3: Create Input JSON File
+### Step 2: Create Input JSON File
 
 Build a properly formatted JSON file following this schema:
 
@@ -63,14 +350,22 @@ Build a properly formatted JSON file following this schema:
     "unit": "...",
     "year_built": 0,
     "clear_height_ft": 0.0,
-    "pct_office_space": 0.0,
+    "pct_office_space": 0.11,  // ⚠️ DECIMAL: 11% = 0.11, NOT 11.0
     "parking_ratio": 0.0,
     "available_sf": 0,
     "distance_km": 0.0,
     "net_asking_rent": 0.0,
     "tmi": 0.0,
     "class": 2,
-    "is_subject": true
+    "is_subject": true,
+    "landlord": "...",
+    "shipping_doors_tl": 0,      // Optional: truck-level doors
+    "shipping_doors_di": 0,      // Optional: drive-in doors
+    "availability_date": "",     // Optional: "Immediate", "Jan-26", etc.
+    "power_amps": 0,             // Optional: electrical capacity
+    "trailer_parking": false,    // Optional: boolean
+    "secure_shipping": false,    // Optional: boolean
+    "excess_land": false         // Optional: boolean
   },
   "comparables": [
     {
@@ -78,14 +373,22 @@ Build a properly formatted JSON file following this schema:
       "unit": "...",
       "year_built": 0,
       "clear_height_ft": 0.0,
-      "pct_office_space": 0.0,
+      "pct_office_space": 0.09,  // ⚠️ DECIMAL: 9% = 0.09, NOT 9.0
       "parking_ratio": 0.0,
       "available_sf": 0,
       "distance_km": 0.0,
       "net_asking_rent": 0.0,
       "tmi": 0.0,
       "class": 2,
-      "is_subject": false
+      "is_subject": false,
+      "landlord": "...",
+      "shipping_doors_tl": 0,
+      "shipping_doors_di": 0,
+      "availability_date": "",
+      "power_amps": 0,
+      "trailer_parking": false,
+      "secure_shipping": false,
+      "excess_land": false
     }
   ],
   "weights": {
@@ -105,12 +408,51 @@ Build a properly formatted JSON file following this schema:
 **Critical Requirements:**
 - Subject property MUST have `distance_km: 0.0` and `is_subject: true`
 - All comparables MUST have `is_subject: false`
+- **pct_office_space MUST be decimal**: 11% = 0.11, NOT 11.0 (PDF shows warehouse %, convert first!)
 - Class values: 1 (A), 2 (B), 3 (C)
 - Weights MUST sum to 1.0
 - All rent/TMI values in $/SF/year (convert monthly to annual if needed)
+- Optional fields can be omitted or set to defaults: 0 for numbers, false for booleans, empty string for dates
 - Parking ratio in spaces per 1,000 SF (convert if needed)
 
 **Save to**: `Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json`
+
+### Step 3: Calculate Distances (If Missing)
+
+If the PDF doesn't contain distance data, automatically calculate driving distances using the distance calculator:
+
+```bash
+# Check if DISTANCEMATRIX_API_KEY is set
+if [ -z "$DISTANCEMATRIX_API_KEY" ]; then
+  echo "WARNING: DISTANCEMATRIX_API_KEY not set. Skipping distance calculations."
+  echo "Set API key: export DISTANCEMATRIX_API_KEY=your_key_here"
+  echo "Get free API key at https://distancematrix.ai/ (1,000 elements/month free)"
+else
+  # Calculate distances and update JSON in place
+  python3 Relative_Valuation/calculate_distances.py \
+    --input Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json \
+    --output Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json \
+    --verbose
+fi
+```
+
+**What this does:**
+- Identifies the subject property (distance_km = 0.0)
+- Calls Distancematrix.ai API to calculate driving distances for all comparables
+- Updates the JSON file in place with accurate distance_km values
+- Shows progress for each property
+
+**API Key Setup:**
+```bash
+# Get free API key at https://distancematrix.ai/
+export DISTANCEMATRIX_API_KEY=your_key_here
+```
+
+**If API key not available:**
+- Script will skip distance calculations
+- Properties will keep initial distance_km values (set to 0.0)
+- Analysis will proceed but distance ranking may be inaccurate
+- **Recommended:** Manually estimate distances or note limitation in report
 
 ### Step 4: Run Python Calculator
 
@@ -224,9 +566,55 @@ All files must use timestamp prefix `YYYY-MM-DD_HHMMSS`:
 1. **Input JSON**: `Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json`
 2. **Output JSON**: `Reports/YYYY-MM-DD_HHMMSS_relative_valuation_output.json`
 3. **Markdown Report**: `Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md`
+4. **PDF Report (Landscape)**: `Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.pdf`
+
+### PDF Generation (Landscape Format)
+
+After generating the markdown report, convert to PDF in **landscape** orientation with professional styling to accommodate the expanded competitor table with all columns:
+
+```bash
+pandoc Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md \
+  -o Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.pdf \
+  --css Relative_Valuation/pdf_style.css \
+  --pdf-engine=wkhtmltopdf \
+  --pdf-engine-opt=--orientation --pdf-engine-opt=Landscape \
+  --pdf-engine-opt=--margin-top --pdf-engine-opt=5mm \
+  --pdf-engine-opt=--margin-bottom --pdf-engine-opt=5mm \
+  --pdf-engine-opt=--margin-left --pdf-engine-opt=8mm \
+  --pdf-engine-opt=--margin-right --pdf-engine-opt=8mm
+```
+
+**Styling Features**:
+- **Landscape orientation**: 11" × 8.5" (US Letter landscape)
+- **Tight margins**: 5mm top/bottom, 8mm left/right (maximizes table width)
+- **Modern sans-serif font**: Segoe UI / Arial (clean, readable)
+- **Compact tables**: 8pt font for table data, zebra striping for readability
+- **Professional headings**: Bold, hierarchical sizing
+
+**Note**: Landscape orientation with tight margins is essential because the competitor table includes 13 columns (Rank, Property, Net Rent, TMI, Gross Rent, Ship TL, Ship DI, Power, Trailer, Secure, Excess Land, Avail Date, Score).
+
+**For wider paper**: If table still doesn't fit, use legal size (8.5" × 14"):
+```bash
+--pdf-engine-opt=--page-size --pdf-engine-opt=Legal
+```
 
 ## Example Usage
 
 ```
-User: "Analyze competitive positioning for 2798 Thamesgate Dr using this CoStar report"
+User: "Analyze competitive positioning for 7381 Pacific Circ using this CoStar report"
 [Attaches PDF]
+
+ARGUMENTS: --full 7381 Pacific Circ Mississauga is subject property /workspaces/lease-abstract/skillsdevdocs/availabilities.pdf
+
+Assistant:
+1. Extracts 70 properties from PDF
+2. Creates relative_valuation_input.json
+3. Runs distance calculator to calculate distances from subject property
+4. Runs Python calculator with --full flag (dataset has 70 comparables)
+5. Interprets results: Subject ranks based on analysis
+6. Provides executive summary with actionable recommendations
+```
+
+---
+
+**You are now executing this slash command. Begin with Step 1 (extract data from PDF).**
