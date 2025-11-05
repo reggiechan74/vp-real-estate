@@ -130,7 +130,10 @@ def calculate_area_differences(properties: List[Dict[str, Any]], subject_sf: flo
 
 def rank_variable(values: List[float], ascending: bool = True) -> List[int]:
     """
-    Rank values from 1 (best) to X (worst), handling ties with average rank.
+    Rank values from 1 (best) to X (worst), handling ties with minimum rank.
+
+    Uses "competition ranking" (1-2-2-4 method) where tied values receive
+    the same rank equal to the minimum position. Matches Excel RANK function.
 
     Args:
         values: List of numeric values to rank
@@ -143,7 +146,7 @@ def rank_variable(values: List[float], ascending: bool = True) -> List[int]:
     Example:
         values = [10.0, 8.5, 9.0, 8.5]
         ascending = True
-        returns = [4, 1.5, 3, 1.5]  # Ties get average rank
+        returns = [4, 1, 3, 1]  # Ties get minimum rank
     """
     n = len(values)
 
@@ -153,7 +156,8 @@ def rank_variable(values: List[float], ascending: bool = True) -> List[int]:
     # Sort by value (ascending or descending based on parameter)
     indexed_values.sort(key=lambda x: x[0], reverse=not ascending)
 
-    # Assign ranks, handling ties
+    # Assign ranks, handling ties with minimum rank (competition ranking)
+    # This matches Excel's RANK function behavior
     ranks = [0] * n
     i = 0
     while i < n:
@@ -163,18 +167,12 @@ def rank_variable(values: List[float], ascending: bool = True) -> List[int]:
         while j < n and indexed_values[j][0] == current_value:
             j += 1
 
-        # Calculate average rank for tied values
-        # Ranks are 1-indexed, so rank = position + 1
-        if j - i == 1:
-            # No tie, assign single rank
-            rank = i + 1
-            ranks[indexed_values[i][1]] = rank
-        else:
-            # Tie: assign average rank
-            sum_ranks = sum(range(i + 1, j + 1))
-            avg_rank = sum_ranks / (j - i)
-            for k in range(i, j):
-                ranks[indexed_values[k][1]] = avg_rank
+        # All tied values get the minimum rank (first position)
+        # This is the "competition ranking" or "1224" method
+        min_rank = i + 1
+
+        for k in range(i, j):
+            ranks[indexed_values[k][1]] = min_rank
 
         i = j
 
