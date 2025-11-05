@@ -1,3 +1,9 @@
+---
+description: Generate work letter from TI provisions - extracts landlord/tenant work, creates timeline, defines approvals, documents cost allocation
+argument-hint: <lease-path> [schedule-c-path] [ti-budget-path]
+allowed-tools: Read, Write, Bash
+---
+
 # Work Letter Generator
 
 Generate comprehensive work letter from Tenant Improvement (TI) provisions in lease documents.

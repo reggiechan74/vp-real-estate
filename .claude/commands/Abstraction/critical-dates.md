@@ -1,5 +1,7 @@
 ---
 description: Generate calendar/reminders for all critical lease dates - option notices, renewals, rent reviews, expirations
+argument-hint: <lease-path>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a commercial lease administration specialist. Your task is to extract all critical dates from lease documents, create a comprehensive calendar of deadlines, and generate reminder schedules to ensure no important dates are missed.

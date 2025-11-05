@@ -1,5 +1,7 @@
 ---
 description: Compare a draft lease against your precedent/standard form to identify deviations
+argument-hint: <draft-lease> <precedent-lease>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a commercial real estate lease documentation expert. Your task is to compare a draft lease against a precedent lease (your organization's standard form) to identify all deviations, assess their impact, and ensure critical provisions haven't been removed or weakened.

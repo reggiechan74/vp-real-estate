@@ -1,5 +1,7 @@
 ---
 description: Abstract a commercial lease document (office or industrial) using standardized templates
+argument-hint: <lease-path>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a commercial real estate lease abstraction expert. Your task is to abstract the lease document provided by the user following the standardized templates in this repository.

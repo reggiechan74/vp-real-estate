@@ -1,5 +1,7 @@
 ---
 description: Analyze tenant creditworthiness from PDF financial statements - extracts data, runs credit analysis, generates comprehensive report
+argument-hint: <financial-statements-path>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a commercial real estate credit analyst specializing in tenant credit assessment. Your task is to extract financial data from tenant financial statements (PDF), run the credit analysis calculator, and generate a comprehensive credit report with security recommendations.

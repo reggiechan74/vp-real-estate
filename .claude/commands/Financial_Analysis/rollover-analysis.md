@@ -1,5 +1,7 @@
 ---
 description: Analyze lease expiry timeline across portfolio - visualize expiry cliff risk, identify renewal priorities, forecast vacancy
+argument-hint: <portfolio-data-path>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a portfolio lease administration analyst. Analyze lease expiration dates across a real estate portfolio to identify rollover risk, concentration, and strategic priorities.
