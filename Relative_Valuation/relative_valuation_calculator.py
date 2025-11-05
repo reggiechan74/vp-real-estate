@@ -286,8 +286,8 @@ def allocate_dynamic_weights(available_vars: Dict[str, bool],
     Returns:
         Adjusted weights that sum to 1.0
     """
-    # Define target weights when all variables available
-    full_weights = {
+    # Define default weights when no custom schema provided
+    default_weights = {
         'net_asking_rent': 0.14,
         'parking_ratio': 0.13,
         'tmi': 0.12,
@@ -305,29 +305,79 @@ def allocate_dynamic_weights(available_vars: Dict[str, bool],
         'excess_land': 0.02
     }
 
-    # Calculate total weight of available variables
-    available_weight = sum(full_weights.get(var, 0.0)
-                          for var, is_avail in available_vars.items()
-                          if is_avail)
+    # Helper to normalise a provided weight mapping to sum to 1.0
+    def normalize_weights(weights: Dict[str, float]) -> Dict[str, float]:
+        clean_weights = {
+            key: float(value)
+            for key, value in weights.items()
+            if value is not None
+        }
 
-    # Calculate weight to redistribute (from missing variables)
-    missing_weight = 1.0 - available_weight
+        if not clean_weights:
+            return {}
 
-    # Build final weights
-    final_weights = {}
-    for var, is_avail in available_vars.items():
-        if is_avail and var in full_weights:
-            # Proportionally increase weight to compensate for missing vars
-            base = full_weights[var]
-            adjustment = (base / available_weight) * missing_weight if available_weight > 0 else 0
-            final_weights[var] = round(base + adjustment, 4)
+        # Detect percentage style inputs (e.g., 16 for 16%)
+        if any(abs(val) > 1 for val in clean_weights.values()):
+            clean_weights = {k: v / 100.0 for k, v in clean_weights.items()}
 
-    # Normalize to ensure sum = 1.0 (handle rounding)
-    total = sum(final_weights.values())
-    if total > 0:
-        final_weights = {k: round(v / total, 4) for k, v in final_weights.items()}
+        total = sum(clean_weights.values())
+        if total <= 0:
+            return {}
 
-    return final_weights
+        return {k: v / total for k, v in clean_weights.items()}
+
+    # Establish baseline weights: either custom (normalised) or defaults
+    normalized_custom = normalize_weights(base_weights or {})
+    if normalized_custom:
+        baseline_weights = normalized_custom.copy()
+        # Ensure all known variables exist in baseline (default to 0 for unspecified)
+        for var in default_weights:
+            baseline_weights.setdefault(var, 0.0)
+    else:
+        baseline_weights = default_weights.copy()
+
+    # Guarantee every available variable has an entry
+    for var in available_vars:
+        baseline_weights.setdefault(var, 0.0)
+
+    # Normalise baseline to avoid drift when defaults are extended
+    baseline_total = sum(baseline_weights.values())
+    if baseline_total <= 0:
+        # If everything zero, fall back to equal weighting among available vars
+        available_count = sum(1 for is_avail in available_vars.values() if is_avail)
+        if available_count == 0:
+            return {}
+        equal_weight = round(1.0 / available_count, 4)
+        return {
+            var: equal_weight
+            for var, is_avail in available_vars.items()
+            if is_avail
+        }
+
+    baseline_weights = {
+        k: v / baseline_total
+        for k, v in baseline_weights.items()
+    }
+
+    # Restrict to variables that are actually available
+    available_weights = {
+        var: baseline_weights.get(var, 0.0)
+        for var, is_avail in available_vars.items()
+        if is_avail
+    }
+
+    total_available = sum(available_weights.values())
+    if total_available <= 0:
+        num_available = len(available_weights)
+        if num_available == 0:
+            return {}
+        equal_weight = round(1.0 / num_available, 4)
+        return {var: equal_weight for var in available_weights}
+
+    return {
+        var: round(weight / total_available, 4)
+        for var, weight in available_weights.items()
+    }
 
 
 def calculate_weighted_score(property_data: Dict[str, Any],

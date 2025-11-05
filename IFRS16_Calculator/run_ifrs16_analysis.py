@@ -20,8 +20,7 @@ import sys
 import os
 from datetime import datetime
 
-# Import from same directory
-from ifrs16_calculator import (
+from IFRS16_Calculator.ifrs16_calculator import (
     LeaseInputs,
     calculate_ifrs16,
     print_summary,

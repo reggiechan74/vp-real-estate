@@ -1,6 +1,6 @@
 import json
 import sys
-from credit_analysis import (
+from Credit_Analysis.credit_analysis import (
     FinancialData,
     CreditInputs,
     analyze_tenant_credit,

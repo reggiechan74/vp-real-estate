@@ -13,6 +13,7 @@ Created: 2025-10-30
 """
 
 import numpy as np
+import numpy_financial as npf
 import pandas as pd
 from typing import List, Dict, Optional, Union, Literal
 from scipy.optimize import newton
@@ -159,7 +160,7 @@ def irr(
     max_iterations: int = 100
 ) -> float:
     """
-    Calculate Internal Rate of Return using Newton's method.
+    Calculate Internal Rate of Return using Newton's method with robust fallbacks.
 
     Args:
         cash_flows: List of cash flows (first typically negative investment)
@@ -184,26 +185,40 @@ def irr(
     if len(cash_flows) < 2:
         raise ValueError("Need at least 2 cash flows to calculate IRR")
 
-    # Define NPV function for given rate
-    def npv_at_rate(r):
-        return sum(cf / (1 + r) ** t for t, cf in enumerate(cash_flows))
+    cash_flows_array = np.asarray(cash_flows, dtype=float)
+    periods = np.arange(len(cash_flows_array), dtype=float)
 
-    # Define derivative for Newton's method
-    def npv_derivative(r):
-        return sum(-t * cf / (1 + r) ** (t + 1) for t, cf in enumerate(cash_flows))
+    def npv_at_rate(r: float) -> float:
+        if r <= -1.0:
+            raise FloatingPointError("IRR cannot evaluate at rates <= -100%")
+        with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
+            discount_factors = np.power(1.0 + r, periods)
+            return float(np.sum(cash_flows_array / discount_factors))
+
+    def npv_derivative(r: float) -> float:
+        if r <= -1.0:
+            raise FloatingPointError("IRR cannot evaluate at rates <= -100%")
+        with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
+            discount_factors = np.power(1.0 + r, periods + 1.0)
+            return float(np.sum(-periods * cash_flows_array / discount_factors))
 
     try:
-        # Use Newton's method to find rate where NPV = 0
-        result = newton(
-            npv_at_rate,
-            guess,
-            fprime=npv_derivative,
-            maxiter=max_iterations,
-            tol=1e-6
-        )
-        return result
-    except RuntimeError as e:
-        raise ValueError(f"IRR calculation did not converge: {e}")
+        with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
+            result = newton(
+                npv_at_rate,
+                guess,
+                fprime=npv_derivative,
+                maxiter=max_iterations,
+                tol=1e-6
+            )
+        if not np.isfinite(result):
+            raise RuntimeError("IRR calculation returned a non-finite value")
+        return float(result)
+    except (RuntimeError, FloatingPointError, OverflowError, ZeroDivisionError):
+        fallback = npf.irr(cash_flows_array)
+        if fallback is None or np.isnan(fallback) or not np.isfinite(fallback) or fallback <= -1.0:
+            raise ValueError("IRR calculation did not converge with provided cash flows")
+        return float(fallback)
 
 
 # ============================================================================

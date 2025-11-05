@@ -16,14 +16,8 @@ Run with: pytest test_renewal_analysis.py -v
 import pytest
 import numpy as np
 import pandas as pd
-import os
-import sys
 
-# Add Renewal_Analysis and Shared_Utils to path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'Renewal_Analysis'))
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'Shared_Utils'))
-
-from renewal_analysis import (
+from Renewal_Analysis.renewal_analysis import (
     RenewalScenario,
     RelocationScenario,
     GeneralInputs,
@@ -34,7 +28,7 @@ from renewal_analysis import (
     sensitivity_analysis,
     generate_recommendation
 )
-from financial_utils import npv
+from Shared_Utils.financial_utils import npv
 
 
 # ============================================================================

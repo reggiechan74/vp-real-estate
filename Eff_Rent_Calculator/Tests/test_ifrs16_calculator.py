@@ -19,13 +19,8 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 import os
-import sys
 
-# Add IFRS16_Calculator and Shared_Utils to path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'IFRS16_Calculator'))
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'Shared_Utils'))
-
-from ifrs16_calculator import (
+from IFRS16_Calculator.ifrs16_calculator import (
     LeaseInputs,
     calculate_lease_liability,
     calculate_rou_asset,
@@ -36,7 +31,7 @@ from ifrs16_calculator import (
     sensitivity_analysis,
     export_to_csv
 )
-from financial_utils import annual_to_monthly_rate
+from Shared_Utils.financial_utils import annual_to_monthly_rate
 
 
 # ============================================================================
