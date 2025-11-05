@@ -311,13 +311,14 @@ def run_sensitivity_analysis(subject: Dict[str, Any],
     return scenarios
 
 
-def generate_competitive_report(results: CompetitiveAnalysis, output_path: str):
+def generate_competitive_report(results: CompetitiveAnalysis, output_path: str, full: bool = False):
     """
     Generate professional markdown report with rankings and recommendations.
 
     Args:
         results: CompetitiveAnalysis dataclass with all analysis results
         output_path: Path to output markdown file
+        full: If True, show all competitors; if False, show top 10 only (default)
     """
     subject = results.subject_property
 
@@ -406,7 +407,7 @@ def generate_competitive_report(results: CompetitiveAnalysis, output_path: str):
 
 ---
 
-## 🏆 TOP 10 COMPETITORS
+## 🏆 {'ALL' if full else 'TOP 10'} COMPETITORS
 
 These properties offer the best value propositions in the market:
 
@@ -414,8 +415,9 @@ These properties offer the best value propositions in the market:
 |------|----------|----------|-----|------------|----------------|
 """
 
-    # Add top 10 competitors
-    for comp in results.top_competitors[:10]:
+    # Add competitors (top 10 or all based on --full flag)
+    competitors_to_show = results.all_properties if full else results.top_competitors
+    for comp in competitors_to_show:
         report += f"| {comp['final_rank']} | {comp['address']} {comp.get('unit', '')} | ${comp.get('net_asking_rent', 0):.2f} | ${comp.get('tmi', 0):.2f} | ${comp.get('gross_rent', 0):.2f} | {comp['weighted_score']:.2f} |\n"
 
     # Gap Analysis
@@ -701,20 +703,24 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Generate markdown report
+  # Generate markdown report (top 10 competitors)
   python relative_valuation_calculator.py --input data.json --output report.md
+
+  # Generate markdown report with ALL competitors
+  python relative_valuation_calculator.py --input data.json --output report.md --full
 
   # Generate JSON results only
   python relative_valuation_calculator.py --input data.json --output-json results.json
 
-  # Generate both markdown and JSON
-  python relative_valuation_calculator.py --input data.json --output report.md --output-json results.json
+  # Generate both markdown and JSON with full competitor list
+  python relative_valuation_calculator.py --input data.json --output report.md --output-json results.json --full
         """
     )
 
     parser.add_argument('--input', required=True, help='Path to JSON input file')
     parser.add_argument('--output', help='Path to output markdown report (optional)')
     parser.add_argument('--output-json', help='Path to output JSON results (optional)')
+    parser.add_argument('--full', action='store_true', help='Show all competitors in report (default: top 10 only)')
     parser.add_argument('--interactive', action='store_true', help='Interactive mode (not implemented in Phase 1)')
 
     args = parser.parse_args()
@@ -741,7 +747,7 @@ Examples:
         print(f"✅ JSON results saved: {args.output_json}")
 
     if args.output:
-        generate_competitive_report(results, args.output)
+        generate_competitive_report(results, args.output, full=args.full)
 
     print("\n✅ Analysis complete!\n")
 

@@ -111,14 +111,24 @@ Build a properly formatted JSON file following this schema:
 Execute the relative valuation calculator:
 
 ```bash
+# Standard report (top 10 competitors)
 python3 Relative_Valuation/relative_valuation_calculator.py \
   --input Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json \
   --output Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md \
   --output-json Reports/YYYY-MM-DD_HHMMSS_relative_valuation_output.json
+
+# Full report (all competitors) - use for large datasets (50+ properties)
+python3 Relative_Valuation/relative_valuation_calculator.py \
+  --input Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json \
+  --output Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md \
+  --output-json Reports/YYYY-MM-DD_HHMMSS_relative_valuation_output.json \
+  --full
 ```
 
 This generates:
 - **Markdown Report**: Complete analysis with recommendations
+  - By default: Shows top 10 competitors
+  - With `--full`: Shows all competitors (useful for large datasets like 123 properties)
 - **JSON Output**: Structured results for programmatic use
 
 ### Step 5: Interpret Results Using Expert Knowledge
