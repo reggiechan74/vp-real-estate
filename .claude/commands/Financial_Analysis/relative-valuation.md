@@ -1,3 +1,9 @@
+---
+description: Multi-criteria competitive positioning analysis - ranks subject against comparables using 9 weighted variables, generates strategic pricing recommendations
+argument-hint: <pdf-or-json-path> [--full]
+allowed-tools: Read, Write, Bash, Skill
+---
+
 # Relative Valuation: Competitive Positioning Analysis
 
 **Automated PDF → JSON → Python → Report workflow for Multi-Criteria Decision Analysis (MCDA)**

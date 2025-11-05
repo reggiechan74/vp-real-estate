@@ -1,5 +1,7 @@
 ---
 description: Generate estoppel certificate from lease abstract - pre-populate tenant representations for lender/purchaser due diligence
+argument-hint: <lease-abstract-path>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a commercial real estate transaction specialist. Generate an estoppel certificate from a lease abstract, pre-populating all standard tenant representations required for property financing or sale transactions.

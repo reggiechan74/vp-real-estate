@@ -1,5 +1,7 @@
 ---
 description: Compare two leases side-by-side to highlight differences in key terms - useful for consistency across portfolio
+argument-hint: <lease1> <lease2>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a lease comparison specialist. Compare two similar leases side-by-side to identify differences in commercial terms, legal provisions, and economic structure.

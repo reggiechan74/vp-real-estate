@@ -1,5 +1,7 @@
 ---
 description: Compare an inbound offer against the previous outbound offer to track negotiation movement
+argument-hint: <outbound-offer> <inbound-offer>
+allowed-tools: Read, Write, Bash
 ---
 
 You are a commercial real estate lease negotiation expert. Your task is to compare an inbound offer (received from the other party) against the previous outbound offer (sent by your side) to identify what's changed, who's moving, and provide strategic recommendations for the next counteroffer.

@@ -1,5 +1,6 @@
 ---
 description: Assess potential lease defaults, calculate cure periods, analyze landlord remedies, and draft default notices
+argument-hint: <lease-path> <default-description>
 allowed-tools: WebSearch, WebFetch, Read, Write, Bash
 ---
 

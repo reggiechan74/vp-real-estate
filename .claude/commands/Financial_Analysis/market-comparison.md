@@ -1,5 +1,7 @@
 ---
 description: Compare lease deal terms against market comparables - benchmark rent, TI, free rent, and concessions
+argument-hint: <subject-lease> [comparable1] [comparable2] ...
+allowed-tools: Read, Write, Bash, WebSearch
 ---
 
 You are a commercial real estate market analyst. Compare a proposed lease deal against market comparables to assess whether terms are competitive and identify negotiation opportunities.
