@@ -255,8 +255,8 @@ All workflows follow **PDF → JSON → Python → Report** automation:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/lease-abstract.git
-cd lease-abstract
+git clone https://github.com/reggiechan74/leasing-expert.git
+cd leasing-expert
 
 # Install dependencies
 pip install 'markitdown[docx]' numpy pandas scipy
@@ -518,7 +518,7 @@ python3 -m pytest Eff_Rent_Calculator/Tests/ -v
 ## 📂 Project Structure
 
 ```
-lease-abstract/
+leasing-expert/
 │
 ├── 📁 Shared_Utils/                    # Shared Financial Utilities
 │   ├── __init__.py                     # Package initialization
