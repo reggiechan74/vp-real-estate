@@ -306,7 +306,18 @@ The user will provide one or more PDF documents containing:
 
 **Your tasks:**
 1. Extract all properties with the following **core attributes** (always required):
-   - **Address & Unit**
+   - **Address & Unit** - ⚠️ **CRITICAL**: Extract COMPLETE addresses for distance API compatibility:
+     - **Required Format**: `"Street Address, City, Province PostalCode, Country"`
+     - **Example**: `"2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada"`
+     - **Components**:
+       - Street address (e.g., "2550 Stanfield Rd")
+       - City (e.g., "Mississauga")
+       - Province as **two-letter code** (e.g., "ON" not "Ontario")
+       - Postal code with space (e.g., "L4Y 1S2" not "L4Y1S2")
+       - Country ("Canada")
+     - **Separators**: Use commas between components
+     - **Unit**: Store separately in "unit" field, NOT appended to address
+     - **Why**: Distance calculation API requires complete geocodable addresses
    - **Year Built**
    - **Clear Height** (ft)
    - **% Office Space** - ⚠️ **CRITICAL**: PDF shows "% Warehouse Space" - you MUST convert:
@@ -315,7 +326,7 @@ The user will provide one or more PDF documents containing:
      - Never store as whole number (11.0 is WRONG, 0.11 is correct)
    - **Parking Ratio** (spaces per 1,000 SF)
    - **Available SF**
-   - **Distance from Subject** (km) - Calculate or estimate if not provided
+   - **Distance from Subject** (km) - Calculate automatically using distance API (Step 3)
    - **Net Asking Rent** ($/SF/year)
    - **TMI** ($/SF/year)
    - **Class** (A/B/C) - Map to integers: A=1, B=2, C=3
@@ -346,8 +357,8 @@ Build a properly formatted JSON file following this schema:
   "analysis_date": "YYYY-MM-DD",
   "market": "Market Name - Property Type",
   "subject_property": {
-    "address": "...",
-    "unit": "...",
+    "address": "2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada",
+    "unit": "Opt 2",
     "year_built": 0,
     "clear_height_ft": 0.0,
     "pct_office_space": 0.11,  // ⚠️ DECIMAL: 11% = 0.11, NOT 11.0
@@ -369,8 +380,8 @@ Build a properly formatted JSON file following this schema:
   },
   "comparables": [
     {
-      "address": "...",
-      "unit": "...",
+      "address": "795 Hazelhurst Rd, Mississauga, ON L5J 2Z6, Canada",
+      "unit": "",
       "year_built": 0,
       "clear_height_ft": 0.0,
       "pct_office_space": 0.09,  // ⚠️ DECIMAL: 9% = 0.09, NOT 9.0
@@ -406,6 +417,11 @@ Build a properly formatted JSON file following this schema:
 ```
 
 **Critical Requirements:**
+- **Address MUST be complete and geocodable**: Format: `"Street, City, Province PostalCode, Country"`
+  - Example: `"2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada"`
+  - Province as two-letter code (ON not Ontario)
+  - Postal code with space (L4Y 1S2 not L4Y1S2)
+  - Unit stored separately, NOT appended to address
 - Subject property MUST have `distance_km: 0.0` and `is_subject: true`
 - All comparables MUST have `is_subject: false`
 - **pct_office_space MUST be decimal**: 11% = 0.11, NOT 11.0 (PDF shows warehouse %, convert first!)
@@ -561,7 +577,10 @@ Create a concise executive summary for the user:
 
 ## Output Files
 
-All files must use timestamp prefix `YYYY-MM-DD_HHMMSS`:
+All files must use timestamp prefix `YYYY-MM-DD_HHMMSS` in **Eastern Time (ET)**:
+
+**Format**: `YYYY-MM-DD_HHMMSS` where timestamp is in Eastern Time (America/New_York)
+**Example**: `2025-11-05_225428` (November 5, 2025 at 10:54:28 PM ET)
 
 1. **Input JSON**: `Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json`
 2. **Output JSON**: `Reports/YYYY-MM-DD_HHMMSS_relative_valuation_output.json`
@@ -591,7 +610,7 @@ pandoc Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md \
 - **Compact tables**: 8pt font for table data, zebra striping for readability
 - **Professional headings**: Bold, hierarchical sizing
 
-**Note**: Landscape orientation with tight margins is essential because the competitor table includes 13 columns (Rank, Property, Net Rent, TMI, Gross Rent, Ship TL, Ship DI, Power, Trailer, Secure, Excess Land, Avail Date, Score).
+**Note**: Landscape orientation with tight margins is essential because the competitor table includes 13 columns (Rank, Property, Area (SF), Net Rent, TMI, Gross Rent, Clear Ht, Ship TL, Ship DI, Power, Trailer, Avail Date, Score).
 
 **For wider paper**: If table still doesn't fit, use legal size (8.5" × 14"):
 ```bash

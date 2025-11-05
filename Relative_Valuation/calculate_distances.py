@@ -34,9 +34,12 @@ def save_json(data: Dict[str, Any], file_path: str):
 
 
 def format_address(address: str, unit: str = None) -> str:
-    """Format address for API call."""
-    if unit and str(unit).strip() and str(unit).lower() != 'nan':
-        return f"{address}, Unit {unit}"
+    """
+    Format address for API call.
+
+    Note: Unit is NOT appended because the building is at the same location
+    regardless of unit, and appending the unit breaks geocoding API calls.
+    """
     return address
 
 
