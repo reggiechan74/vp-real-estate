@@ -84,6 +84,16 @@ python relative_valuation_calculator.py \
   --output-json results.json
 ```
 
+**Show All Competitors (Full Report):**
+```bash
+# By default, reports show top 10 competitors
+# Use --full to show ALL properties (useful for large datasets like 123 properties)
+python relative_valuation_calculator.py \
+  --input data.json \
+  --output report.md \
+  --full
+```
+
 ### Distance Calculation (Optional)
 
 If your input JSON doesn't have `distance_km` values (common with MLS comp sheets), use the distance calculator:
@@ -184,7 +194,9 @@ If you don't want to use the API, set all distances to 0 and exclude distance fr
 **Markdown Report Includes:**
 1. **Executive Summary** - Rank, score, competitive status
 2. **Subject Property Analysis** - Details and variable rankings
-3. **Top 10 Competitors** - Best value propositions in market
+3. **Competitors** - Best value propositions in market
+   - Default: Top 10 competitors
+   - With `--full`: All competitors (entire comparison set)
 4. **Gap Analysis** - Distance to Rank #3 threshold
 5. **Sensitivity Scenarios** - Pricing adjustments needed
 6. **Strategic Recommendations** - Action items based on rank tier
