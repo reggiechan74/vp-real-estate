@@ -1,0 +1,93 @@
+{
+  "analysis_date": "2025-01-04",
+  "period_start": "2025-01-04",
+  "period_end": "2025-12-31",
+  "period_months": 12,
+  "property_info": {
+    "property_name": "Sample Property - Rental Variance Analysis",
+    "total_gla_sf": 10000.0
+  },
+  "variance_items": [
+    {
+      "tenant_name": "Tenant A",
+      "unit_number": "Unit 101",
+      "actual": {
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "term_months": 12.00,
+        "rate_psf_year": 11.00,
+        "area_sf": 900.0
+      },
+      "budget": {
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-05",
+        "term_months": 11.00,
+        "rate_psf_year": 8.00,
+        "area_sf": 1000.0
+      },
+      "manual_adjustment": 0.0,
+      "notes": "Rate increased from $8.00 to $11.00/sf, area decreased from 1,000 sf to 900 sf, term extended by 1 month"
+    },
+    {
+      "tenant_name": "Tenant B",
+      "unit_number": "Unit 102",
+      "actual": {
+        "start_date": "2025-01-01",
+        "end_date": "2025-06-30",
+        "term_months": 6.00,
+        "rate_psf_year": 13.00,
+        "area_sf": 1000.0
+      },
+      "budget": {
+        "start_date": "2025-03-01",
+        "end_date": "2025-10-31",
+        "term_months": 8.00,
+        "rate_psf_year": 10.00,
+        "area_sf": 800.0
+      },
+      "manual_adjustment": 0.0,
+      "notes": "Rate increased, area increased, but term shortened significantly"
+    },
+    {
+      "tenant_name": "Tenant C",
+      "unit_number": "Unit 201",
+      "actual": {
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "term_months": 12.00,
+        "rate_psf_year": 12.00,
+        "area_sf": 800.0
+      },
+      "budget": {
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "term_months": 12.00,
+        "rate_psf_year": 1.00,
+        "area_sf": 800.0
+      },
+      "manual_adjustment": 3666.67,
+      "notes": "Large rate increase from $1.00 to $12.00/sf; manual adjustment for special circumstances"
+    },
+    {
+      "tenant_name": "Tenant D",
+      "unit_number": "Unit 202",
+      "actual": {
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "term_months": 12.00,
+        "rate_psf_year": 10.00,
+        "area_sf": 500.0
+      },
+      "budget": {
+        "start_date": "2025-01-03",
+        "end_date": "2025-12-05",
+        "term_months": 11.00,
+        "rate_psf_year": 6.00,
+        "area_sf": 1000.0
+      },
+      "manual_adjustment": -5000.00,
+      "notes": "Rate increased but area halved; significant unfavorable manual adjustment"
+    }
+  ],
+  "notes": "Sample variance analysis for testing purposes. Demonstrates various combinations of rate, area, and term variances."
+}

@@ -8,15 +8,16 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ├── Shared_Utils/           # Shared financial utilities (NPV, IRR, PV, ratios, statistics)
 ├── Eff_Rent_Calculator/    # Effective rent, NPV, breakeven analysis
 ├── Rental_Yield_Curve/     # Term structure pricing using implied termination options
+├── Rental_Variance/        # Rental variance decomposition (rate, area, term)
 ├── IFRS16_Calculator/      # IFRS 16/ASC 842 lease accounting (liability, ROU asset, schedules)
 ├── Credit_Analysis/        # Tenant credit scoring and financial analysis
 ├── Renewal_Analysis/       # Renewal vs. relocation economic analysis
 ├── Planning/               # Source lease documents
 ├── Templates/              # Industrial/Office lease templates (24 sections, MD/JSON/Schema)
 ├── Reports/                # Generated abstracts & analysis (timestamp prefix required)
-└── .claude/commands/       # Slash commands (20 commands in 5 categories)
+└── .claude/commands/       # Slash commands (21 commands in 5 categories)
     ├── Abstraction/        # abstract-lease, critical-dates
-    ├── Financial_Analysis/ # effective-rent, renewal-economics, tenant-credit, option-value, etc.
+    ├── Financial_Analysis/ # effective-rent, renewal-economics, tenant-credit, option-value, rental-variance, etc.
     ├── Accounting/         # ifrs16-calculation
     ├── Comparison/         # compare-amendment, compare-offers, compare-precedent, lease-vs-lease
     └── Compliance/         # assignment-consent, default-analysis, estoppel-certificate, etc.
@@ -30,7 +31,7 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 
 **Example**: `2025-10-31_143022_lease_abstract_acme_corp.md`
 
-## Slash Commands (20 total)
+## Slash Commands (21 total)
 
 All commands follow **PDF → JSON → Python → Report** automated workflow.
 
@@ -38,13 +39,14 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 - `/abstract-lease` - Extract lease terms using 24-section template
 - `/critical-dates` - Extract timeline and critical dates
 
-### Financial Analysis (6)
+### Financial Analysis (7)
 - `/effective-rent` - NER, NPV, breakeven (Ponzi Rental Rate)
 - `/renewal-economics` - Renewal vs. relocation NPV analysis
 - `/tenant-credit` - Credit scoring and risk assessment
 - `/option-value` - Real options valuation (Black-Scholes)
 - `/market-comparison` - Market rent benchmarking
 - `/rollover-analysis` - Portfolio lease expiry analysis
+- `/rental-variance` - Rental variance decomposition by rate, area, and term
 
 ### Accounting (1)
 - `/ifrs16-calculation` - IFRS 16/ASC 842 lease accounting
@@ -75,6 +77,7 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 # Financial analysis
 /effective-rent path/to/lease.pdf
 /tenant-credit path/to/financials.pdf
+/rental-variance path/to/variance_data.xlsx
 
 # IFRS 16 accounting
 /ifrs16-calculation path/to/lease.pdf 5.5

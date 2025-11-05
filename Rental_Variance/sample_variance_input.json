@@ -1,0 +1,93 @@
+{
+  "analysis_date": "2004-12-31",
+  "period_start": "2004-01-01",
+  "period_end": "2004-12-31",
+  "period_months": 12,
+  "property_info": {
+    "property_name": "Sample Property - From Excel Spreadsheet",
+    "total_gla_sf": 6400.0
+  },
+  "variance_items": [
+    {
+      "tenant_name": "Tenant Row 9",
+      "unit_number": "Unit 9",
+      "actual": {
+        "start_date": "2004-01-01",
+        "end_date": "2007-12-31",
+        "term_months": 12.0,
+        "rate_psf_year": 11.0,
+        "area_sf": 900.0
+      },
+      "budget": {
+        "start_date": "2004-02-01",
+        "end_date": "2005-12-31",
+        "term_months": 11.0,
+        "rate_psf_year": 10.0,
+        "area_sf": 1000.0
+      },
+      "manual_adjustment": 0.0,
+      "notes": "First row from spreadsheet - rate up, area down, term up"
+    },
+    {
+      "tenant_name": "Tenant Row 10",
+      "unit_number": "Unit 10",
+      "actual": {
+        "start_date": "2004-06-01",
+        "end_date": "2004-06-30",
+        "term_months": 1.0,
+        "rate_psf_year": 13.0,
+        "area_sf": 1000.0
+      },
+      "budget": {
+        "start_date": "2004-03-01",
+        "end_date": "2008-02-29",
+        "term_months": 10.0,
+        "rate_psf_year": 10.0,
+        "area_sf": 800.0
+      },
+      "manual_adjustment": 0.0,
+      "notes": "Row 10 - short actual term (1 month), longer budget"
+    },
+    {
+      "tenant_name": "Tenant Row 12",
+      "unit_number": "Unit 12",
+      "actual": {
+        "start_date": "2001-03-01",
+        "end_date": "2004-05-31",
+        "term_months": 5.0,
+        "rate_psf_year": 12.0,
+        "area_sf": 800.0
+      },
+      "budget": {
+        "start_date": "2004-01-01",
+        "end_date": "2004-12-31",
+        "term_months": 12.0,
+        "rate_psf_year": 1.0,
+        "area_sf": 800.0
+      },
+      "manual_adjustment": 0.0,
+      "notes": "Row 12 - huge rate increase from $1 to $12, early termination"
+    },
+    {
+      "tenant_name": "Tenant Row 16",
+      "unit_number": "Unit 16",
+      "actual": {
+        "start_date": "2003-01-01",
+        "end_date": "2005-12-31",
+        "term_months": 12.0,
+        "rate_psf_year": 5.0,
+        "area_sf": 1000.0
+      },
+      "budget": {
+        "start_date": "2004-01-01",
+        "end_date": "2004-12-31",
+        "term_months": 12.0,
+        "rate_psf_year": 10.0,
+        "area_sf": 500.0
+      },
+      "manual_adjustment": 0.0,
+      "notes": "Row 16 - rate down, area doubled"
+    }
+  ],
+  "notes": "Sample data extracted from 'Rental Variance Analysis.xlsx' - Proof of Concept sheet"
+}

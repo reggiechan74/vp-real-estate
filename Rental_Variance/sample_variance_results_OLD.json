@@ -1,0 +1,163 @@
+{
+  "summary": {
+    "total_budget_revenue": 18966.666666666668,
+    "total_actual_revenue": 31000.0,
+    "total_variance": 12033.333333333332,
+    "total_rate_variance": 15000.0,
+    "total_area_variance": -2800.0,
+    "total_term_variance": -166.66666666666686,
+    "total_manual_adjustment": -1333.33,
+    "reconciliation_check": true,
+    "reconciliation_difference": 1.8189894035458565e-12
+  },
+  "tenant_results": [
+    {
+      "tenant_name": "Tenant A",
+      "unit_number": "Unit 101",
+      "actual": {
+        "rate_psf_year": 11.0,
+        "area_sf": 900.0,
+        "term_months": 12.0,
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "revenue": 9900.0
+      },
+      "budget": {
+        "rate_psf_year": 8.0,
+        "area_sf": 1000.0,
+        "term_months": 11.0,
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-05",
+        "revenue": 7333.333333333333
+      },
+      "variances": {
+        "rate_variance": 2700.0,
+        "area_variance": -800.0,
+        "term_variance": 666.6666666666666,
+        "manual_adjustment": 0.0,
+        "total_variance": 2566.666666666667,
+        "total_with_adjustment": 2566.666666666667,
+        "calculated_total": 2566.6666666666665,
+        "reconciliation_diff": 4.547473508864641e-13,
+        "actual_revenue": 9900.0,
+        "budget_revenue": 7333.333333333333,
+        "rate_change_pct": 37.5,
+        "area_change_pct": -10.0,
+        "term_change_pct": 9.090909090909092,
+        "revenue_change_pct": 35.0
+      },
+      "notes": "Rate increased from $8.00 to $11.00/sf, area decreased from 1,000 sf to 900 sf, term extended by 1 month"
+    },
+    {
+      "tenant_name": "Tenant B",
+      "unit_number": "Unit 102",
+      "actual": {
+        "rate_psf_year": 13.0,
+        "area_sf": 1000.0,
+        "term_months": 6.0,
+        "start_date": "2025-01-01",
+        "end_date": "2025-06-30",
+        "revenue": 6500.0
+      },
+      "budget": {
+        "rate_psf_year": 10.0,
+        "area_sf": 800.0,
+        "term_months": 8.0,
+        "start_date": "2025-03-01",
+        "end_date": "2025-10-31",
+        "revenue": 5333.333333333334
+      },
+      "variances": {
+        "rate_variance": 1499.9999999999993,
+        "area_variance": 1000.0,
+        "term_variance": -1333.3333333333335,
+        "manual_adjustment": 0.0,
+        "total_variance": 1166.666666666666,
+        "total_with_adjustment": 1166.666666666666,
+        "calculated_total": 1166.6666666666656,
+        "reconciliation_diff": 4.547473508864641e-13,
+        "actual_revenue": 6500.0,
+        "budget_revenue": 5333.333333333334,
+        "rate_change_pct": 30.0,
+        "area_change_pct": 25.0,
+        "term_change_pct": -25.0,
+        "revenue_change_pct": 21.874999999999986
+      },
+      "notes": "Rate increased, area increased, but term shortened significantly"
+    },
+    {
+      "tenant_name": "Tenant C",
+      "unit_number": "Unit 201",
+      "actual": {
+        "rate_psf_year": 12.0,
+        "area_sf": 800.0,
+        "term_months": 12.0,
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "revenue": 9600.0
+      },
+      "budget": {
+        "rate_psf_year": 1.0,
+        "area_sf": 800.0,
+        "term_months": 12.0,
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "revenue": 799.9999999999999
+      },
+      "variances": {
+        "rate_variance": 8800.0,
+        "area_variance": 0.0,
+        "term_variance": 0.0,
+        "manual_adjustment": 3666.67,
+        "total_variance": 8800.0,
+        "total_with_adjustment": 12466.67,
+        "calculated_total": 8800.0,
+        "reconciliation_diff": 0.0,
+        "actual_revenue": 9600.0,
+        "budget_revenue": 799.9999999999999,
+        "rate_change_pct": 1100.0,
+        "area_change_pct": 0.0,
+        "term_change_pct": 0.0,
+        "revenue_change_pct": 1100.0000000000002
+      },
+      "notes": "Large rate increase from $1.00 to $12.00/sf; manual adjustment for special circumstances"
+    },
+    {
+      "tenant_name": "Tenant D",
+      "unit_number": "Unit 202",
+      "actual": {
+        "rate_psf_year": 10.0,
+        "area_sf": 500.0,
+        "term_months": 12.0,
+        "start_date": "2025-01-04",
+        "end_date": "2025-12-31",
+        "revenue": 5000.0
+      },
+      "budget": {
+        "rate_psf_year": 6.0,
+        "area_sf": 1000.0,
+        "term_months": 11.0,
+        "start_date": "2025-01-03",
+        "end_date": "2025-12-05",
+        "revenue": 5500.0
+      },
+      "variances": {
+        "rate_variance": 2000.0000000000002,
+        "area_variance": -3000.0,
+        "term_variance": 500.0,
+        "manual_adjustment": -5000.0,
+        "total_variance": -500.0,
+        "total_with_adjustment": -5500.0,
+        "calculated_total": -499.9999999999998,
+        "reconciliation_diff": 2.2737367544323206e-13,
+        "actual_revenue": 5000.0,
+        "budget_revenue": 5500.0,
+        "rate_change_pct": 66.66666666666666,
+        "area_change_pct": -50.0,
+        "term_change_pct": 9.090909090909092,
+        "revenue_change_pct": -9.090909090909092
+      },
+      "notes": "Rate increased but area halved; significant unfavorable manual adjustment"
+    }
+  ]
+}

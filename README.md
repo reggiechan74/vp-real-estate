@@ -1,8 +1,8 @@
 # Commercial Real Estate Lease Analysis Toolkit
 
-**Version 1.0.0** | Released 2025-10-31
+**Version 1.1.0** | Released 2025-11-05
 
-A comprehensive, production-ready toolkit for commercial real estate lease abstraction, financial analysis, and compliance management. Includes 5 specialized calculators, 20 automated workflows, and standardized templates for industrial and office leases.
+A comprehensive, production-ready toolkit for commercial real estate lease abstraction, financial analysis, and compliance management. Includes 6 specialized calculators, 21 automated workflows, and standardized templates for industrial and office leases.
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
@@ -78,8 +78,8 @@ Not academic prototypes—industrial-grade software:
 **3. End-to-End Automation**
 
 From document upload to final report in minutes:
-- **20 slash commands** covering abstraction, financial analysis, accounting, comparison, and compliance
-- **5 specialized calculators** with JSON-based APIs for programmatic use
+- **21 slash commands** covering abstraction, financial analysis, accounting, comparison, and compliance
+- **6 specialized calculators** with JSON-based APIs for programmatic use
 - **Automated workflows** that extract, validate, calculate, and report
 - **Standardized templates** for industrial and office leases (24 comprehensive sections)
 
@@ -187,22 +187,23 @@ These features represent natural extensions of the existing framework and will b
 
 ## ✨ Features
 
-### 5 Specialized Calculators
+### 6 Specialized Calculators
 
 1. **Effective Rent Calculator** - NER, NPV, breakeven analysis (Breakeven Rental Rate framework)
 2. **Rental Yield Curve** - Term structure pricing using implied termination options
-3. **IFRS 16/ASC 842 Accounting** - Lease liability, ROU asset, amortization schedules
-4. **Tenant Credit Analysis** - Credit scoring, risk assessment, default probability
-5. **Renewal Economics** - Renewal vs. relocation NPV comparison
+3. **Rental Variance Analysis** - Three-way variance decomposition (rate, area, term)
+4. **IFRS 16/ASC 842 Accounting** - Lease liability, ROU asset, amortization schedules
+5. **Tenant Credit Analysis** - Credit scoring, risk assessment, default probability
+6. **Renewal Economics** - Renewal vs. relocation NPV comparison
 
-### 19 Automated Workflows
+### 21 Automated Workflows
 
 Organized into 5 categories (see [Slash Commands](#slash-commands)):
 - **Abstraction** (2) - Extract and structure lease data
-- **Financial Analysis** (6) - Economic calculations and investment analysis
+- **Financial Analysis** (7) - Economic calculations and investment analysis
 - **Accounting** (1) - IFRS 16/ASC 842 compliance
 - **Comparison** (4) - Compare lease documents for changes
-- **Compliance** (6) - Legal compliance and documentation
+- **Compliance** (7) - Legal compliance and documentation
 
 ### Standardized Templates
 
@@ -247,6 +248,9 @@ python3 -m pytest Eff_Rent_Calculator/Tests/ -v
 # Effective rent analysis
 /effective-rent path/to/lease.pdf
 
+# Rental variance analysis
+/rental-variance path/to/variance_data.xlsx
+
 # Tenant credit assessment
 /tenant-credit path/to/financials.pdf
 
@@ -266,6 +270,10 @@ python3 eff_rent_calculator.py baf_input_example.json
 
 # Rental Yield Curve
 python3 rental_yield_curve.py --base-term 60 --base-rate 8.00
+
+# Rental Variance Analysis
+cd ../Rental_Variance
+python3 rental_variance_calculator.py sample_variance_input.json -v
 
 # IFRS 16 Accounting
 cd ../IFRS16_Calculator
@@ -318,7 +326,32 @@ python3 rental_yield_curve.py --base-term 60 --base-rate 8.00 --mtm-multiplier 1
 
 **Use Case**: Tenant wants 3-year term instead of 5-year? Know the fair premium.
 
-### 3. IFRS 16/ASC 842 Calculator
+### 3. Rental Variance Analysis
+
+**Location**: `Rental_Variance/`
+
+Decompose rental revenue variances into rate, area, and term components.
+
+**Features**:
+- Three-way variance decomposition (rate, area, term)
+- Period-aware term calculations using DAYS360 methodology
+- Reconciliation checks validate variance components sum correctly
+- Manual adjustments support for lease admin overrides
+- Based on proven Excel methodology
+
+**Usage**:
+```bash
+cd Rental_Variance
+python3 rental_variance_calculator.py sample_variance_input.json -v
+```
+
+**Formula**: `Total Variance = (BC)(A-D) + (CD)(B-E) + (DE)(C-F)`
+- A = Actual Rate, B = Actual Area, C = Actual Term
+- D = Budget Rate, E = Budget Area, F = Budget Term
+
+**Applications**: Budget vs actual analysis, lease negotiation tracking, portfolio performance, forecasting refinement
+
+### 4. IFRS 16/ASC 842 Calculator
 
 **Location**: `IFRS16_Calculator/`
 
@@ -340,7 +373,7 @@ python3 run_ifrs16_analysis.py ifrs16_inputs/sample_input.json
 
 **Standards**: IFRS 16 (International), ASC 842 (US GAAP)
 
-### 4. Tenant Credit Analysis
+### 5. Tenant Credit Analysis
 
 **Location**: `Credit_Analysis/`
 
@@ -361,7 +394,7 @@ Comprehensive credit scoring and risk assessment.
 
 **Output**: Credit report with approval recommendation and required security.
 
-### 5. Renewal Economics Calculator
+### 6. Renewal Economics Calculator
 
 **Location**: `Renewal_Analysis/`
 
@@ -389,9 +422,10 @@ Compare renewal vs. relocation economics.
 - **`/abstract-lease`** - Extract lease terms using 24-section template (industrial/office)
 - **`/critical-dates`** - Extract timeline and critical dates
 
-### Financial Analysis (6 commands)
+### Financial Analysis (7 commands)
 
 - **`/effective-rent`** - NER, NPV, breakeven analysis
+- **`/rental-variance`** - Rental variance decomposition (rate, area, term)
 - **`/renewal-economics`** - Renewal vs. relocation economic analysis
 - **`/tenant-credit`** - Credit scoring and risk assessment
 - **`/option-value`** - Real options valuation using Black-Scholes
@@ -480,6 +514,12 @@ lease-abstract/
 ├── 📁 Rental_Yield_Curve/              # Yield Curve Calculator (Standalone)
 │   └── rental_yield_curve.py           # Term structure pricing calculator
 │
+├── 📁 Rental_Variance/                 # Rental Variance Analysis
+│   ├── rental_variance_calculator.py   # Three-way variance decomposition
+│   ├── sample_variance_input.json      # Sample input (from Excel spreadsheet)
+│   ├── sample_variance_results.json    # Sample output
+│   └── README.md                       # Module documentation
+│
 ├── 📁 IFRS16_Calculator/               # IFRS 16/ASC 842 Lease Accounting
 │   ├── ifrs16_calculator.py            # Liability, ROU asset, schedules
 │   ├── run_ifrs16_analysis.py          # Automated workflow runner
@@ -519,8 +559,9 @@ lease-abstract/
 │   ├── Abstraction/                    # Lease Abstraction (2 commands)
 │   │   ├── abstract-lease.md           # 24-section lease extraction
 │   │   └── critical-dates.md           # Timeline extraction
-│   ├── Financial_Analysis/             # Financial Analysis (6 commands)
+│   ├── Financial_Analysis/             # Financial Analysis (7 commands)
 │   │   ├── effective-rent.md           # NER, NPV, breakeven
+│   │   ├── rental-variance.md          # Variance decomposition (rate, area, term)
 │   │   ├── renewal-economics.md        # Renewal vs. relocation
 │   │   ├── tenant-credit.md            # Credit scoring
 │   │   ├── option-value.md             # Real options valuation
@@ -561,8 +602,8 @@ lease-abstract/
 
 ────────────────────────────────────────────────────────────────────────────
 
-Total: 8 calculator modules, 4 test suites (130+ tests), 20 slash commands,
-       6 template files, 10+ documentation files, ~150,000 lines of code
+Total: 9 calculator modules, 4 test suites (130+ tests), 21 slash commands,
+       6 template files, 11+ documentation files, ~150,000 lines of code
 ```
 
 ## 📚 Documentation
@@ -578,6 +619,7 @@ Total: 8 calculator modules, 4 test suites (130+ tests), 20 slash commands,
 - **[Eff_Rent_Calculator/README.md](Eff_Rent_Calculator/README.md)** - Effective rent calculator
 - **[Eff_Rent_Calculator/BAF_INPUT_FORMAT.md](Eff_Rent_Calculator/BAF_INPUT_FORMAT.md)** - JSON input reference
 - **[Eff_Rent_Calculator/RENTAL_YIELD_CURVE_README.md](Eff_Rent_Calculator/RENTAL_YIELD_CURVE_README.md)** - Yield curve guide
+- **[Rental_Variance/README.md](Rental_Variance/README.md)** - Rental variance analysis
 - **[IFRS16_Calculator/README_IFRS16_CALCULATOR.md](IFRS16_Calculator/README_IFRS16_CALCULATOR.md)** - IFRS 16 guide
 - **[Shared_Utils/README_FINANCIAL_UTILS.md](Shared_Utils/README_FINANCIAL_UTILS.md)** - Financial utilities API
 
@@ -588,11 +630,25 @@ Total: 8 calculator modules, 4 test suites (130+ tests), 20 slash commands,
 
 ## 📊 Version History
 
+### Version 1.1.0 (2025-11-05)
+
+**New Features**:
+- **Rental Variance Analysis Module** - Three-way variance decomposition (rate, area, term)
+- `/rental-variance` slash command for automated variance analysis
+- Based on proven Excel methodology with mathematical proof
+- Sample data from original Excel spreadsheet
+- Comprehensive documentation and usage examples
+
+**Updates**:
+- Financial Analysis commands increased from 6 to 7
+- Total slash commands increased from 20 to 21
+- Updated CLAUDE.md and CHANGELOG.md
+
 ### Version 1.0.0 (2025-10-31)
 
 Initial stable release with:
 - 5 specialized calculators (Effective Rent, Yield Curve, IFRS 16, Credit, Renewal)
-- 19 automated slash commands organized in 5 categories
+- 20 automated slash commands organized in 5 categories
 - Standardized templates for industrial and office leases
 - 130+ passing tests
 - Complete documentation
@@ -811,8 +867,8 @@ Standard lease templates are provided for reference purposes only. These templat
 
 ## 📞 Support and Contact
 
-**Version**: 1.0.0
-**Released**: 2025-10-31
+**Version**: 1.1.0
+**Released**: 2025-11-05
 **Maintained by**: Claude Code
 
 **For issues and feature requests**: See the GitHub repository
