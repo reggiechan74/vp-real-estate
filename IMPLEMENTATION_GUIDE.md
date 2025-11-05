@@ -256,8 +256,8 @@ This document focuses on operational excellence: reliable inputs, consistent exe
 
 | Stage | Commands | Primary Output |
 |-------|----------|----------------|
-| Origination | `/abstract-lease`, `/effective-rent`, `/tenant-credit` | Abstract, NER report, credit memo |
-| Negotiation | `/market-comparison`, `/option-value`, `/notice-generator` | Market benchmarks, option valuation, draft notices |
+| Origination | `/abstract-lease`, `/effective-rent`, `/tenant-credit`, `/recommendation-memo` | Abstract, NER report, credit memo, VTS approval memo |
+| Negotiation | `/market-comparison`, `/option-value`, `/notice-generator`, `/relative-valuation` | Market benchmarks, option valuation, draft notices, competitive positioning |
 | Execution | `/assignment-consent`, `/work-letter`, `/environmental-compliance` | Legal checklists & commentaries |
 | Administration | `/critical-dates`, `/rental-variance`, `/rollover-analysis` | Schedules, variance breakdown, expiry dashboard |
 | Accounting | `/ifrs16-calculation` | ROU asset, liability schedules, journal entries |
