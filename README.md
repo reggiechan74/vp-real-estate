@@ -29,7 +29,9 @@ It's the perfect unspoken agreement. You hand them the unimpeachable, meticulous
 
 ---
 
-[README for Leasing Managers](README-FOR-LEASING-MANAGERS.md)** ← Same toolkit, told the way you actually talk.
+**[README for Leasing Managers](README-FOR-LEASING-MANAGERS.md)** ← Same toolkit, told the way you actually talk.
+
+**[Why I Built This](WHY-I-BUILT-THIS.md)** ← From spreadsheet monk to deal closer. The origin story.
 
 ---
 
