@@ -53,13 +53,23 @@ class OptionGreeks:
 
 
 @dataclass
+class OptionGreeksAdjusted(OptionGreeks):
+    """Utilization-adjusted Greeks for expected exposure"""
+
+
+@dataclass
 class OptionValuation:
     """Results of option valuation"""
     option_name: str
     option_type: str
-    option_value: float  # Total option value ($)
-    option_value_per_sf: Optional[float]  # Value per square foot ($/sf)
-    probability_itm: float  # Probability of being in-the-money (%)
+    option_value: float  # Utilization-adjusted option value ($)
+    option_value_per_sf: Optional[float]  # Utilization-adjusted value per square foot ($/sf)
+    probability_itm: float  # Probability ITM (raw, without utilization)
+    probability_itm_adjusted: float  # Probability ITM adjusted for utilization (%)
+
+    # Raw valuation metrics (without utilization adjustment)
+    raw_option_value: float
+    raw_option_value_per_sf: Optional[float]
 
     # Black-Scholes intermediate values
     d1: float
@@ -67,13 +77,16 @@ class OptionValuation:
 
     # Option Greeks
     greeks: OptionGreeks
+    greeks_adjusted: OptionGreeksAdjusted
 
     # Input parameters (for reference)
     underlying_value: float
     strike_price: float
+    effective_strike_price: float
     time_to_expiration: float
     volatility: float
     risk_free_rate: float
+    utilization_probability: float
 
 
 @dataclass
@@ -103,7 +116,9 @@ class PortfolioOptionValuation:
 
     # Total portfolio metrics
     total_option_value: float
+    total_option_value_raw: float
     total_value_per_sf: float
+    total_value_per_sf_raw: float
     total_as_pct_of_property: Optional[float] = None
 
     # Sensitivity analysis
@@ -337,49 +352,76 @@ def value_option(params: OptionParameters) -> OptionValuation:
     r = params.risk_free_rate
     sigma = params.volatility
 
+    utilization = params.utilization_probability if params.utilization_probability is not None else 1.0
+    utilization = max(0.0, min(utilization, 1.0))
+
+    termination_fee = params.termination_fee if params.termination_fee is not None else 0.0
+    effective_strike_price = K
+    if params.option_type == 'put' and termination_fee > 0:
+        effective_strike_price = max(K - termination_fee, 1e-9)
+
     # Calculate d1 and d2
-    d1, d2 = black_scholes_d1_d2(S, K, T, r, sigma)
+    d1, d2 = black_scholes_d1_d2(S, effective_strike_price, T, r, sigma)
 
     # Calculate option value
     if params.option_type == 'call':
-        option_value = black_scholes_call(S, K, T, r, sigma)
+        raw_option_value = black_scholes_call(S, effective_strike_price, T, r, sigma)
     elif params.option_type == 'put':
-        option_value = black_scholes_put(S, K, T, r, sigma)
+        raw_option_value = black_scholes_put(S, effective_strike_price, T, r, sigma)
     else:
         raise ValueError(f"option_type must be 'call' or 'put', got {params.option_type}")
 
-    # Apply utilization probability adjustment (for expansion options)
-    if params.utilization_probability < 1.0:
-        option_value *= params.utilization_probability
+    option_value = raw_option_value * utilization
 
     # Calculate probability of being in-the-money
     if params.option_type == 'call':
-        prob_itm = cumulative_normal_distribution(d2) * 100  # Convert to percentage
+        prob_itm_raw = cumulative_normal_distribution(d2) * 100  # Convert to percentage
     else:  # put
-        prob_itm = cumulative_normal_distribution(-d2) * 100
+        prob_itm_raw = cumulative_normal_distribution(-d2) * 100
+
+    prob_itm_adjusted = max(0.0, prob_itm_raw * utilization)
 
     # Calculate Greeks
-    greeks = calculate_option_greeks(params.option_type, S, K, T, r, sigma, d1, d2)
+    greeks = calculate_option_greeks(
+        params.option_type, S, effective_strike_price, T, r, sigma, d1, d2
+    )
+
+    greeks_adjusted = OptionGreeksAdjusted(
+        delta=greeks.delta * utilization,
+        gamma=greeks.gamma * utilization,
+        vega=greeks.vega * utilization,
+        theta=greeks.theta * utilization,
+        rho=greeks.rho * utilization
+    )
 
     # Calculate per-SF value if area provided
-    option_value_per_sf = None
+    raw_option_value_per_sf = None
     if params.rentable_area_sf and params.rentable_area_sf > 0:
-        option_value_per_sf = option_value / params.rentable_area_sf
+        raw_option_value_per_sf = raw_option_value / params.rentable_area_sf
+
+    option_value_per_sf = (raw_option_value_per_sf * utilization
+                           if raw_option_value_per_sf is not None else None)
 
     return OptionValuation(
         option_name=params.option_name,
         option_type=params.option_type,
         option_value=option_value,
         option_value_per_sf=option_value_per_sf,
-        probability_itm=prob_itm,
+        probability_itm=prob_itm_raw,
+        probability_itm_adjusted=prob_itm_adjusted,
+        raw_option_value=raw_option_value,
+        raw_option_value_per_sf=raw_option_value_per_sf,
         d1=d1,
         d2=d2,
         greeks=greeks,
+        greeks_adjusted=greeks_adjusted,
         underlying_value=S,
         strike_price=K,
+        effective_strike_price=effective_strike_price,
         time_to_expiration=T,
         volatility=sigma,
-        risk_free_rate=r
+        risk_free_rate=r,
+        utilization_probability=utilization
     )
 
 
@@ -614,7 +656,11 @@ def value_option_portfolio(
 
     # Calculate total value
     total_value = sum(v.option_value for v in valuations)
+    total_value_raw = sum(v.raw_option_value for v in valuations)
     total_value_per_sf = total_value / rentable_area_sf if rentable_area_sf > 0 else 0
+    total_value_per_sf_raw = (
+        total_value_raw / rentable_area_sf if rentable_area_sf > 0 else 0
+    )
 
     # Calculate rent premium if market rent provided
     rent_premium_psf = None
@@ -632,7 +678,9 @@ def value_option_portfolio(
         rentable_area_sf=rentable_area_sf,
         options=valuations,
         total_option_value=total_value,
+        total_option_value_raw=total_value_raw,
         total_value_per_sf=total_value_per_sf,
+        total_value_per_sf_raw=total_value_per_sf_raw,
         sensitivity=sensitivity,
         market_rent_psf=market_rent_psf,
         base_rent_psf=base_rent_psf,
@@ -783,21 +831,36 @@ def main():
     print(f"Rentable Area: {results.rentable_area_sf:,.0f} SF")
     print(f"Analysis Date: {results.analysis_date}")
     print()
-    print(f"Total Option Value: ${results.total_option_value:,.2f}")
-    print(f"Value per SF: ${results.total_value_per_sf:.2f}/sf")
+    print(f"Total Option Value (Raw): ${results.total_option_value_raw:,.2f}")
+    print(f"Value per SF (Raw): ${results.total_value_per_sf_raw:.2f}/sf")
+    print(f"Total Option Value (Expected): ${results.total_option_value:,.2f}")
+    print(f"Value per SF (Expected): ${results.total_value_per_sf:.2f}/sf")
     print()
 
     print("Individual Options:")
     print("-" * 70)
     for opt in results.options:
         print(f"{opt.option_name} ({opt.option_type}):")
-        print(f"  Value: ${opt.option_value:,.2f}", end='')
+        print(f"  Raw Value: ${opt.raw_option_value:,.2f}", end='')
+        if opt.raw_option_value_per_sf:
+            print(f" (${opt.raw_option_value_per_sf:.2f}/sf)", end='')
+        print()
+
+        utilization_pct = opt.utilization_probability * 100
+        print(f"  Expected Value (Utilization {utilization_pct:.0f}%): "
+              f"${opt.option_value:,.2f}", end='')
         if opt.option_value_per_sf:
             print(f" (${opt.option_value_per_sf:.2f}/sf)", end='')
         print()
-        print(f"  Probability ITM: {opt.probability_itm:.1f}%")
-        print(f"  Greeks: Δ={opt.greeks.delta:.3f}, Γ={opt.greeks.gamma:.6f}, "
+
+        print(f"  Probability ITM (Raw): {opt.probability_itm:.1f}%")
+        print(f"  Probability ITM (Expected): {opt.probability_itm_adjusted:.1f}%")
+        print(f"  Greeks (Raw): Δ={opt.greeks.delta:.3f}, Γ={opt.greeks.gamma:.6f}, "
               f"ν=${opt.greeks.vega:,.0f}/1%, θ=${opt.greeks.theta:,.0f}/yr")
+        print(f"  Greeks (Expected): Δ={opt.greeks_adjusted.delta:.3f}, "
+              f"Γ={opt.greeks_adjusted.gamma:.6f}, "
+              f"ν=${opt.greeks_adjusted.vega:,.0f}/1%, "
+              f"θ=${opt.greeks_adjusted.theta:,.0f}/yr")
         print()
 
     if args.verbose and results.sensitivity:
