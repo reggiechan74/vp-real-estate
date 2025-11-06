@@ -52,15 +52,44 @@ It's the perfect unspoken agreement. You hand them the unimpeachable, meticulous
 ## Getting Started
 
 ### Requirements
-- Python 3.12+
-- `pip`
-- Claude Code (or another automation host) for slash-command workflows
+- **Claude Code** - Anthropic's official CLI (required for slash-command workflows)
+- Python 3.12+ (installed automatically via Claude Code)
 
 ### Installation
+
+**Step 1: Install Claude Code**
+
+```bash
+# Install Claude Code from https://docs.claude.com/claude-code
+# For most systems:
+npm install -g @anthropic-ai/claude-code
+```
+
+**Step 2: Clone the Repository**
 
 ```bash
 git clone https://github.com/reggiechan74/leasing-expert.git
 cd leasing-expert
+```
+
+**Step 3: Install Dependencies via Claude Code**
+
+Open Claude Code in the repository directory and run:
+
+```
+Install all the dependencies for this project
+```
+
+Claude Code will install:
+- Python dependencies: `numpy`, `pandas`, `scipy`, `openpyxl`, `pytest`, `markitdown[docx]`
+- PDF generation tools: `pandoc`, `wkhtmltopdf`
+- All other required packages
+
+**Alternative: Manual Installation**
+
+If you prefer to install dependencies manually without Claude Code:
+
+```bash
 pip install numpy pandas scipy
 pip install 'markitdown[docx]'        # document conversion
 pip install openpyxl                  # Excel export for MLS extraction
@@ -70,6 +99,8 @@ pip install pytest                    # optional: run test suite
 sudo apt-get install -y pandoc wkhtmltopdf  # Linux/Ubuntu
 # Or: brew install pandoc wkhtmltopdf       # macOS
 ```
+
+*Note: Manual installation limits you to direct calculator usage. Slash commands require Claude Code.*
 
 ### First Workflow: Abstract & Analyze
 

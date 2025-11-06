@@ -330,18 +330,37 @@ Or just play more golf. We don't judge.
 
 ### Installation (5 minutes)
 
+**Step 1: Install Claude Code**
+
+This toolkit runs on Claude Code, Anthropic's official CLI. Install it first:
+
+```bash
+# Install Claude Code (follow instructions at https://docs.claude.com/claude-code)
+# For most systems:
+npm install -g @anthropic-ai/claude-code
+```
+
+**Step 2: Clone the Repository**
+
 ```bash
 git clone https://github.com/reggiechan74/leasing-expert.git
 cd leasing-expert
-pip install numpy pandas scipy openpyxl pytest
-pip install 'markitdown[docx]'
-
-# For PDF reports (optional but recommended)
-sudo apt-get install -y pandoc wkhtmltopdf  # Linux
-# Or: brew install pandoc wkhtmltopdf       # macOS
 ```
 
-That's it. No cloud dependencies. No API keys. No subscription fees. Just clone and run.
+**Step 3: Let Claude Code Install Everything Else**
+
+Open Claude Code in the repository directory and tell it:
+
+```
+Install all the dependencies for this project
+```
+
+Claude Code will automatically install:
+- Python dependencies (numpy, pandas, scipy, openpyxl, pytest, markitdown)
+- PDF generation tools (pandoc, wkhtmltopdf)
+- Everything else you need
+
+That's it. No manual pip commands. No hunting for dependencies. No "works on my machine" problems. Claude Code handles it all.
 
 ---
 
