@@ -8,7 +8,7 @@
 
 ## EXECUTIVE SUMMARY
 
-Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 23 valuation variables plus broker comments and metadata from MLS PDF reports into a structured spreadsheet format (CSV or Excel).
+Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 24 valuation variables plus broker comments and metadata from MLS PDF reports into a structured spreadsheet format (CSV or Excel).
 
 **Key Benefits**:
 - Streamlines data entry for comparative analysis
@@ -22,7 +22,7 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 ## SCOPE
 
 ### In Scope
-- Extract all 23 valuation variables (9 core + 14 optional)
+- Extract all 24 valuation variables (10 core + 14 optional)
 - Extract broker comments/remarks fields
 - Support both CSV (simple) and Excel (formatted) output
 - Handle multiple properties from single PDF (batch extraction)
@@ -171,7 +171,7 @@ PDF → [Claude Code Extraction] → JSON → [Python Formatter] → Excel/CSV
 
 **Phase 1: Claude Code Extraction (Slash Command)**
 - Claude Code reads PDF using Read tool
-- LLM extracts all 32 fields with contextual understanding
+- LLM extracts all 33 fields with contextual understanding
 - Outputs structured JSON to `Reports/` folder
 - **Dependencies**: None (built into Claude Code)
 
@@ -372,7 +372,7 @@ else:
 17. Create `MLS_Extractor/README.md` with usage guide
 18. Document field mapping table in `MLS_Extractor/FIELD_MAPPING.md`
 19. Add troubleshooting guide (common issues, solutions)
-20. Update `.claude/commands/README.md` to include `/extract-mls`
+20. Update `.claude/commands/README.md` to include `/Financial_Analysis:extract-mls`
 21. Create example output files for reference
 
 ---
@@ -471,15 +471,15 @@ address,unit,available_sf,net_asking_rent,tmi,year_built,clear_height_ft,pct_off
 3. JSON fed to Python calculator
 4. Calculator generates report
 
-### Enhanced Workflow with `/extract-mls`
-1. User runs `/extract-mls` to create Excel spreadsheet
+### Enhanced Workflow with `/Financial_Analysis:extract-mls`
+1. User runs `/Financial_Analysis:extract-mls` to create Excel spreadsheet
 2. User reviews/edits spreadsheet (manual QA step)
 3. User converts Excel to JSON (new utility script or manual)
 4. User runs `/relative-valuation` with JSON input (skip PDF extraction)
 5. Calculator generates report
 
 **Alternative**: Direct integration
-1. `/extract-mls` generates both Excel (for review) AND JSON (for automation)
+1. `/Financial_Analysis:extract-mls` generates both Excel (for review) AND JSON (for automation)
 2. JSON automatically fed to distance calculator
 3. User can run `/relative-valuation` immediately or review Excel first
 
@@ -607,7 +607,7 @@ pip install openpyxl
 ### Documentation
 4. `MLS_Extractor/README.md` - Usage guide and examples
 5. `MLS_Extractor/FIELD_MAPPING.md` - Complete field reference (33 fields)
-6. Updated `.claude/commands/README.md` - Add `/extract-mls` to command list
+6. Updated `.claude/commands/README.md` - Add `/Financial_Analysis:extract-mls` to command list
 7. Example output files in `Reports/` folder:
    - `*_mls_extraction.json` - Raw JSON from Claude extraction
    - `*_mls_extraction.csv` - CSV format
