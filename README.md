@@ -25,7 +25,11 @@ Every great deal is a war fought on two fronts: one against the market, and the 
 *   **Have the Answer Before They Can Even Form the Question.**
     Get ready for the lightning round of impossible questions. *"What's the three-scenario NPV on our portfolio rollover risk for Q3 2026?"* *"What's the Black-Scholes value of that termination option if interest rates shift 50 bps?"* Before, you'd stall. Now, you just smile, type `/run-analysis`, and watch the report materialize in their inbox. It’s the ultimate power move.
 
-It’s the perfect unspoken agreement. You hand them the unimpeachable, meticulously documented data they worship. So sure, they win. But you win even more on the back nine.
+It's the perfect unspoken agreement. You hand them the unimpeachable, meticulously documented data they worship. So sure, they win. But you win even more on the back nine.
+
+---
+
+[README for Leasing Managers](README-FOR-LEASING-MANAGERS.md)** ← Same toolkit, told the way you actually talk.
 
 ---
 
