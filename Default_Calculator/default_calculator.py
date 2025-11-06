@@ -363,7 +363,7 @@ def calculate_bankruptcy_claims(
     statutory_cap = max(one_year_rent, fifteen_pct_rent)
 
     # Unsecured claim limited to statutory cap
-    unsecured_claim = min(gross_damages - priority_claim, statutory_cap)
+    unsecured_claim = max(0.0, min(gross_damages - priority_claim, statutory_cap))
 
     scenario = BankruptcyScenario(
         scenario_name="Trustee Rejection",
