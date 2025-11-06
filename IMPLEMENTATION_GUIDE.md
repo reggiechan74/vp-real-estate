@@ -19,8 +19,10 @@ This document focuses on operational excellence: reliable inputs, consistent exe
 
 ## 2. Toolkit Components (Detailed)
 
+**Prerequisites**: This toolkit requires **Claude Code** (Anthropic's official CLI) to run slash commands and automated workflows. See `README.md` for installation instructions. Direct calculator usage via Python is possible without Claude Code, but slash commands provide the complete integrated experience.
+
 ### 2.1 Automation Spine
-- **Slash Commands** (`.claude/commands/`): 21 commands organized by Abstraction, Financial Analysis, Accounting, Comparison, Compliance. Each command encapsulates extraction prompts, JSON templates, script execution, and reporting instructions.
+- **Slash Commands** (`.claude/commands/`): 24 commands organized by Abstraction, Financial Analysis, Accounting, Comparison, Compliance. Each command encapsulates extraction prompts, JSON templates, script execution, and reporting instructions.
 - **Expert Skills** (`.claude/skills/`): 13 senior-level knowledge bases that supply negotiation guidance, checklists, and risk commentary.
 - **Python Calculators**:
   - `Eff_Rent_Calculator/eff_rent_calculator.py` – Net/Gross Effective Rent, Ponzi Rental Rate (PRR), breakeven.
@@ -29,7 +31,7 @@ This document focuses on operational excellence: reliable inputs, consistent exe
   - `Renewal_Analysis/renewal_analysis.py` – Renewal vs relocation economics.
   - `Rental_Variance/rental_variance_calculator.py` – Three-way variance decomposition.
   - `Rental_Yield_Curve/rental_yield_curve.py` – Term structure modelling.
-  - `Relative_Valuation/relative_valuation_calculator.py` – MCDA competitive positioning with up to 15 variables and dynamic weighting.
+  - `Relative_Valuation/relative_valuation_calculator.py` – MCDA competitive positioning with up to 25 variables (9 core + 16 optional) and dynamic weighting.
 - **Templates** (`Templates/Industrial`, `Templates/Office`): 24-section abstract formats in Markdown, JSON, and JSON Schema ensure consistent reporting.
 - **Reports Folder** (`Reports/`): All outputs must be timestamped using `YYYY-MM-DD_HHMMSS_[description].md`.
 
@@ -132,9 +134,9 @@ This document focuses on operational excellence: reliable inputs, consistent exe
    - **Landscape PDF** with 13-column comparison table.
 
 5. **Dynamic Weighting**:
-   - System uses up to 15 variables (9 core + 6 optional).
+   - System uses up to 25 variables (9 core + 16 optional).
    - If optional variables missing, weights redistribute proportionally among available variables.
-   - Report shows which variables were used in analysis.
+   - Report shows which variables were used in analysis and their weights.
 
 6. **Interpretation**:
    - **Rank #1-3**: Highly competitive (70-90% deal-winning probability) - maintain pricing.
