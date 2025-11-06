@@ -1,24 +1,24 @@
 # Commercial Real Estate Lease Management Toolkit
 
-[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.6.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-130%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
+[![Tests](https://img.shields.io/badge/tests-199%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
 
-**Version 1.5.0** • Released 2025-11-06
+**Version 1.6.0** • Released 2025-11-06
 Built for institutional leasing teams that need production-ready automation across the entire lease lifecycle.
 
 ---
 
 ## TL;DR
 
-- **End-to-end coverage** across the lease lifecycle: automate abstraction, deal modelling, credit underwriting, IFRS accounting, compliance checklists, renewal strategy, and competitive positioning.  
+- **End-to-end coverage** across the lease lifecycle: automate abstraction, deal modelling, credit underwriting, IFRS accounting, compliance checklists, renewal strategy, and competitive positioning, portfolio rollover analysis, and default damage quantification.  
 - **Single pipeline** from raw lease PDFs to board-ready reports—capture key terms, normalize cash flows, benchmark market comps, and generate audit-ready schedules without leaving the toolkit.  
-- **40–50% weekly time savings** for leasing managers: 21 automated workflows + 6 calculators handle ~70–80% of desk-side analysis.  
+- **40–50% weekly time savings** for leasing managers: 24 automated workflows + 10 calculators handle ~70–80% of desk-side analysis.  
 - **Embedded expertise** via 13 senior-level skills and standardized templates that keep negotiations, drafting, and approvals moving.  
-- **Production-grade codebase** (Python 3.12+, 130+ unit tests) with a predictable PDF → JSON → Python → report pipeline.
+- **Production-grade codebase** (Python 3.12+, 199+ unit tests) with a predictable PDF → JSON → Python → report pipeline.
 
 ---
 
@@ -107,6 +107,29 @@ python Relative_Valuation/relative_valuation_calculator.py \
   --output report.md \
   --persona 3pl  # Optimized for distribution/logistics tenants
 
+# With statistical analysis (regression, correlation, outliers)
+python Relative_Valuation/relative_valuation_calculator.py \
+  --input data.json \
+  --output report.md \
+  --stats  # Adds traditional statistical analysis section
+
+# Portfolio rollover analysis
+python Rollover_Analysis/rollover_calculator.py \
+  Rollover_Analysis/rollover_inputs/sample_portfolio.json
+
+python Rollover_Analysis/report_generator.py \
+  Rollover_Analysis/rollover_inputs/sample_portfolio.json \
+  Reports/YYYY-MM-DD_HHMMSS_rollover_analysis_report.md
+
+# Default damage quantification
+python Default_Calculator/default_calculator.py \
+  Default_Calculator/default_inputs/sample_default.json
+
+python Default_Calculator/notice_generator.py \
+  Default_Calculator/default_inputs/sample_default.json \
+  Reports/YYYY-MM-DD_HHMMSS_default_notice.md \
+  ontario  # Jurisdiction for legal framework
+
 # Renewal vs. relocation economics
 python Renewal_Analysis/run_renewal_analysis.py renewal_inputs/sample_input.json
 ```
@@ -130,7 +153,7 @@ python -m pytest Eff_Rent_Calculator/Tests/ -v
 
 Each skill provides checklists, negotiation angles, risk flags, and recommended language—effectively bringing a senior advisor into the workflow on demand.
 
-### Calculators (7 Engines)
+### Calculators (10 Engines)
 1. **Effective Rent Calculator** (`Eff_Rent_Calculator/`)  
    - Inputs: rent schedule (annual $/sf), incentives (TI, cash allowances, free rent), leasing costs, REIT capital assumptions.  
    - Outputs: Net/Gross Effective Rent, NPV vs. costs, breakeven rents, Ponzi Rental Rate comparison, payback, sensitivity tables.  
@@ -155,9 +178,28 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
 6. **Tenant Credit Analysis** (`Credit_Analysis/`)  
    - Calculates 15+ ratios, produces a 100-point credit score, assigns rating band, estimates PD/LGD, and recommends security amounts.  
    - Supports underwriting, renewal risk reviews, and portfolio credit surveillance.
-7. **Renewal Economics** (`Renewal_Analysis/`)  
-   - Compares renewal vs. relocation scenarios incorporating relocation capex, downtime, IRR, payback, and blended NER.  
+7. **Renewal Economics** (`Renewal_Analysis/`)
+   - Compares renewal vs. relocation scenarios incorporating relocation capex, downtime, IRR, payback, and blended NER.
    - Guides negotiation stance on expiring leases and capital allocation.
+8. **Portfolio Rollover Calculator** (`Rollover_Analysis/`)
+   - Aggregates lease expiries by year/quarter with concentration risk flags (>20% HIGH, >30% CRITICAL).
+   - Priority scoring (0-1 normalized) based on rent contribution, urgency, below-market status, and credit rating.
+   - Three-scenario modeling (optimistic/base/pessimistic) with scenario-specific downtime and NPV discounting.
+   - Use Cases: Portfolio planning, renewal prioritization, budget forecasting, expiry cliff risk management.
+   - **37 tests passing** (100% coverage) including edge cases (empty portfolio, 0%/100% renewal rates).
+9. **Default Damage Calculator** (`Default_Calculator/`)
+   - Quantifies landlord damages from tenant defaults: arrears (with interest), future rent NPV, re-letting costs, mitigation credits.
+   - Business day cure period calculations with jurisdiction-aware legal framework.
+   - Bankruptcy cap analysis (§502(b)(6)) for Chapter 11 scenarios.
+   - Net exposure calculation after security deposits and letters of credit.
+   - Use Cases: Default notices, settlement negotiations, litigation support, security adequacy reviews.
+   - **32 tests passing** (100% coverage) with comprehensive METHODOLOGY.md documentation (1,850 lines).
+10. **Statistical Analysis Module** (`Relative_Valuation/statistics_module.py`)
+    - Supplements MCDA rankings with traditional statistical analysis (multiple linear regression, correlation, z-scores).
+    - Identifies rent drivers, data quality issues, and market outliers.
+    - Activated via `--stats` flag on relative valuation calculator.
+    - Key Insights: Most variable factor (CV), rent predictability (R²), strongest driver, strongest correlation.
+    - Use Cases: Large datasets (20+ properties), understanding rent drivers, validating MCDA results, data quality checks.
 
 ### Automated Workflows (24 Slash Commands)
 Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (10), Accounting (1), Comparison (4), and Compliance (7).
@@ -258,7 +300,9 @@ leasing-expert/
 ├── Credit_Analysis/           # Tenant credit scoring
 ├── Renewal_Analysis/          # Renewal vs relocation modelling
 ├── Rental_Variance/           # Variance decomposition
-├── Relative_Valuation/        # MCDA competitive positioning (15 variables)
+├── Relative_Valuation/        # MCDA competitive positioning (25 variables) + statistical analysis
+├── Rollover_Analysis/         # Portfolio lease expiry and renewal prioritization
+├── Default_Calculator/        # Tenant default damage quantification
 ├── MLS_Extractor/             # MLS PDF to Excel with subject highlighting
 ├── Templates/                 # Lease abstract templates
 ├── Reports/                   # Timestamped analysis outputs
