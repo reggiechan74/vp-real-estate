@@ -8,7 +8,7 @@
 
 ## EXECUTIVE SUMMARY
 
-Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 23 valuation variables plus broker comments from MLS PDF reports into a structured spreadsheet format (CSV or Excel).
+Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 23 valuation variables plus broker comments and metadata from MLS PDF reports into a structured spreadsheet format (CSV or Excel).
 
 **Key Benefits**:
 - Streamlines data entry for comparative analysis
@@ -43,7 +43,7 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 
 ### Command Syntax
 ```bash
-/extract-mls <pdf-path> [--format=csv|excel] [--subject=<address>]
+/Financial_Analysis:extract-mls <pdf-path> [--format=csv|excel] [--subject=<address>]
 ```
 
 **Parameters**:
@@ -55,7 +55,7 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 
 **Example**:
 ```bash
-/extract-mls /path/to/Mississauga_100-400k_sf_for_lease.pdf --format=excel --subject="2550 Stanfield"
+/Financial_Analysis:extract-mls /path/to/Mississauga_100-400k_sf_for_lease.pdf --format=excel --subject="2550 Stanfield"
 ```
 
 ---
@@ -74,7 +74,7 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 
 ## FIELD MAPPING
 
-### Core Variables (9 fields)
+### Core Variables (10 fields)
 
 | Column Name | Data Type | MLS Source Field | Example | Notes |
 |-------------|-----------|------------------|---------|-------|
@@ -113,7 +113,7 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 | `crane` | Boolean | Crane | false | Y/N boolean |
 | `occupancy_status` | Integer | Occup | 1 | Vacant=1, Tenant=2 (ordinal) |
 
-### Metadata & Comments (6 fields)
+### Metadata & Comments (9 fields)
 
 | Column Name | Data Type | MLS Source Field | Example | Notes |
 |-------------|-----------|------------------|---------|-------|
@@ -123,8 +123,13 @@ Create a new slash command `/Financial_Analysis:extract-mls` that extracts all 2
 | `broker_name` | String | List Off or Agent | "CBRE Limited" | Listing broker |
 | `client_remarks` | Text | Client Remks | "ESFR sprinklers, new LED..." | Marketing description |
 | `is_subject` | Boolean | Derived | true | Matched against --subject parameter |
+| `reported_market` | String | Derived | "Mississauga, ON" | Market name inferred from PDF |
+| `report_generated_at` | String (ISO 8601) | Derived | "2025-11-05T18:30:47-05:00" | Command run timestamp (ET) |
+| `source_pdf` | String | Derived | "Mississauga_100-400k_sf_for_lease.pdf" | Original PDF filename |
 
-**Total Columns**: 32
+**Total Columns**: 33 (10 core + 6 existing optional + 8 new optional + 9 metadata)
+
+**Note**: The 3 report-level metadata fields (`reported_market`, `report_generated_at`, `source_pdf`) are stored in the JSON `report_metadata` object but duplicated as columns in each CSV/Excel row for convenience.
 
 ---
 
@@ -186,18 +191,18 @@ PDF → [Claude Code Extraction] → JSON → [Python Formatter] → Excel/CSV
 
 **Step 1: Slash Command Invocation**
 ```bash
-/extract-mls /path/to/mls_report.pdf --format=excel --subject="2550 Stanfield"
+/Financial_Analysis:extract-mls /path/to/mls_report.pdf --format=excel --subject="2550 Stanfield"
 ```
 
 **Step 2: Claude Code Extraction**
 ```markdown
 1. Read PDF using Read tool
 2. Identify all property listings in the document
-3. For each property, extract all 32 fields:
-   - Core variables (9): address, unit, SF, rent, TMI, etc.
-   - Existing optional (6): shipping doors, power, trailer parking, etc.
-   - New optional (8): bay depth, lot size, HVAC, sprinklers, etc.
-   - Metadata (6): availability date, DOM, MLS#, broker, comments, is_subject
+3. For each property, extract all 33 fields:
+   - Core variables (10): address, unit, SF, rent, TMI, year built, clear height, % office, parking ratio, class
+   - Existing optional (6): shipping doors (TL/DI), power, trailer parking, secure shipping, excess land
+   - New optional (8): bay depth, lot size, HVAC, sprinklers, building age, rail, crane, occupancy
+   - Metadata (9): availability date, DOM, MLS#, broker, comments, is_subject, market, timestamp, source PDF
 4. Apply intelligent parsing:
    - Bay depth: Extract from "55 x 52" → 55.0
    - Lot size: Convert "484,280 Sq Ft" → 11.112 acres
@@ -232,7 +237,7 @@ else:
 1. Create `.claude/commands/Financial_Analysis/extract-mls.md` slash command
 2. Define command workflow:
    - **Step 1**: Read PDF using Read tool
-   - **Step 2**: Extract all 32 fields using Claude Code (LLM extraction)
+   - **Step 2**: Extract all 33 fields using Claude Code (LLM extraction)
    - **Step 3**: Create JSON output with all properties
    - **Step 4**: Call Python formatter to generate Excel/CSV
    - **Step 5**: Save outputs to Reports/ folder
@@ -241,13 +246,13 @@ else:
 
 ### Phase 2: Claude Code Extraction Logic (4 hours)
 5. Implement extraction prompt in slash command:
-   - Provide field mapping table (32 fields)
+   - Provide field mapping table (33 fields)
    - Specify parsing rules:
      - Bay depth: Parse first number from "Bay Size" (e.g., "55 x 52" → 55.0)
      - Lot size: Extract acres or convert sq ft to acres (÷ 43,560)
      - HVAC coverage: Map Y=1, Part=2, N=3
      - Sprinkler type: Check "Client Remks" for ESFR → 1, else Standard=2, None=3
-     - Building age: Calculate from current year minus year_built
+     - Building age: Calculate from report year (derived from report_generated_at) minus year_built
      - Complete addresses: Format as "Street, City, ON PostalCode, Canada"
    - Subject property matching: Fuzzy match against --subject parameter
    - Error handling: Use NULL for missing fields, continue processing
@@ -259,7 +264,8 @@ else:
     "analysis_date": "2025-11-05",
     "market": "Mississauga - Industrial",
     "report_generated_at": "2025-11-05T18:30:47-05:00",
-    "subject_property": "2550 Stanfield Rd"
+    "subject_property": "2550 Stanfield Rd",
+    "source_pdf": "Mississauga_100-400k_sf_for_lease.pdf"
   },
   "properties": [
     {
@@ -292,11 +298,16 @@ else:
       "mls_number": "C1234567",
       "broker_name": "CBRE Limited",
       "client_remarks": "Partial A/C, standard sprinklers, excellent access to 401/407",
-      "is_subject": true
+      "is_subject": true,
+      "reported_market": "Mississauga, ON",
+      "report_generated_at": "2025-11-05T18:30:47-05:00",
+      "source_pdf": "Mississauga_100-400k_sf_for_lease.pdf"
     }
   ]
 }
 ```
+
+**Note**: The 3 report-level metadata fields are stored at the top level in `report_metadata` AND duplicated in each property object for CSV/Excel export convenience.
 
 ### Phase 3: Python Output Formatting (3 hours)
 7. Implement CSV writer
@@ -350,7 +361,7 @@ else:
 12. Test end-to-end with Mississauga dataset (23 properties):
     - Claude Code extracts to JSON
     - Python formatter generates Excel/CSV
-    - Validate all 32 fields extracted correctly
+    - Validate all 33 fields extracted correctly
     - Verify subject property marked correctly
 13. Test both CSV and Excel outputs
 14. Validate Excel formatting (headers, filters, highlighting)
@@ -370,10 +381,10 @@ else:
 
 ### CSV Format (first 3 rows)
 ```csv
-address,unit,available_sf,net_asking_rent,tmi,year_built,clear_height_ft,pct_office_space,parking_ratio,class,shipping_doors_tl,shipping_doors_di,power_amps,trailer_parking,secure_shipping,excess_land,bay_depth_ft,lot_size_acres,hvac_coverage,sprinkler_type,building_age_years,rail_access,crane,occupancy_status,availability_date,days_on_market,mls_number,broker_name,client_remarks,is_subject
-"2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada",Opt 2,186559,13.95,3.01,2020,34.0,0.03,1.0,2,16,3,3000,False,False,False,,,2,2,5,False,False,1,Immediate,45,C1234567,CBRE Limited,"Partial A/C, standard sprinklers, excellent access to 401/407",True
-"795 Hazelhurst Rd, Mississauga, ON L5J 2Z6, Canada",,215124,1.00,4.00,2021,36.0,0.05,1.2,1,34,2,2000,False,False,False,55.0,6.5,1,1,4,False,False,1,Q2 2026,89,C7654321,JLL,"ESFR sprinklers, full A/C, deep 55' bays ideal for racking",False
-"560 Slate Dr, Mississauga, ON L5T 0A1, Canada",,160485,1.00,0.00,2019,40.0,0.02,1.5,1,26,2,,True,False,False,52.0,11.112,1,1,6,False,False,1,Q3 2025,119,C9876543,Cushman & Wakefield,"ESFR, 40' clear, trailer parking, large lot",False
+address,unit,available_sf,net_asking_rent,tmi,year_built,clear_height_ft,pct_office_space,parking_ratio,class,shipping_doors_tl,shipping_doors_di,power_amps,trailer_parking,secure_shipping,excess_land,bay_depth_ft,lot_size_acres,hvac_coverage,sprinkler_type,building_age_years,rail_access,crane,occupancy_status,availability_date,days_on_market,mls_number,broker_name,client_remarks,is_subject,reported_market,report_generated_at,source_pdf
+"2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada",Opt 2,186559,13.95,3.01,2020,34.0,0.03,1.0,2,16,3,3000,False,False,False,,,2,2,5,False,False,1,Immediate,45,C1234567,CBRE Limited,"Partial A/C, standard sprinklers, excellent access to 401/407",True,"Mississauga, ON",2025-11-05T18:30:47-05:00,Mississauga_100-400k_sf_for_lease.pdf
+"795 Hazelhurst Rd, Mississauga, ON L5J 2Z6, Canada",,215124,1.00,4.00,2021,36.0,0.05,1.2,1,34,2,2000,False,False,False,55.0,6.5,1,1,4,False,False,1,Q2 2026,89,C7654321,JLL,"ESFR sprinklers, full A/C, deep 55' bays ideal for racking",False,"Mississauga, ON",2025-11-05T18:30:47-05:00,Mississauga_100-400k_sf_for_lease.pdf
+"560 Slate Dr, Mississauga, ON L5T 0A1, Canada",,160485,1.00,0.00,2019,40.0,0.02,1.5,1,26,2,,True,False,False,52.0,11.112,1,1,6,False,False,1,Q3 2025,119,C9876543,Cushman & Wakefield,"ESFR, 40' clear, trailer parking, large lot",False,"Mississauga, ON",2025-11-05T18:30:47-05:00,Mississauga_100-400k_sf_for_lease.pdf
 ```
 
 ### Excel Format
@@ -399,7 +410,7 @@ address,unit,available_sf,net_asking_rent,tmi,year_built,clear_height_ft,pct_off
 
 ### Test Case 1: Mississauga Dataset (23 properties)
 **Input**: `skillsdevdocs/Mississauga_100-400k_sf_for_lease.pdf`
-**Expected**: 23 rows extracted, all 32 fields populated
+**Expected**: 23 rows extracted, all 33 fields populated
 **Validation**:
 - All addresses in correct geocodable format
 - Bay depth parsed for properties with "Bay Size" field
@@ -522,7 +533,7 @@ pip install openpyxl
 ## SUCCESS CRITERIA
 
 ### Functional Requirements
-- ✅ Extract all 32 fields from MLS PDF
+- ✅ Extract all 33 fields from MLS PDF
 - ✅ Support CSV and Excel output formats
 - ✅ Handle 20+ properties per PDF
 - ✅ Robust parsing with 95%+ field accuracy
@@ -595,7 +606,7 @@ pip install openpyxl
 
 ### Documentation
 4. `MLS_Extractor/README.md` - Usage guide and examples
-5. `MLS_Extractor/FIELD_MAPPING.md` - Complete field reference (32 fields)
+5. `MLS_Extractor/FIELD_MAPPING.md` - Complete field reference (33 fields)
 6. Updated `.claude/commands/README.md` - Add `/extract-mls` to command list
 7. Example output files in `Reports/` folder:
    - `*_mls_extraction.json` - Raw JSON from Claude extraction
