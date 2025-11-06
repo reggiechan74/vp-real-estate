@@ -1,13 +1,13 @@
 # Commercial Real Estate Lease Management Toolkit
 
-[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-130%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
 
-**Version 1.3.0** • Released 2025-11-05
+**Version 1.4.0** • Released 2025-11-06
 Built for institutional leasing teams that need production-ready automation across the entire lease lifecycle.
 
 ---
@@ -97,6 +97,12 @@ python Relative_Valuation/relative_valuation_calculator.py \
   --output-json results.json \
   --full  # Show all competitors (not just top 10)
 
+# Use tenant persona weights (3pl, manufacturing, office, default)
+python Relative_Valuation/relative_valuation_calculator.py \
+  --input data.json \
+  --output report.md \
+  --persona 3pl  # Optimized for distribution/logistics tenants
+
 # Renewal vs. relocation economics
 python Renewal_Analysis/run_renewal_analysis.py renewal_inputs/sample_input.json
 ```
@@ -132,10 +138,13 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
    - Decomposes revenue variance into rate, area, and term components using DAYS360 methodology; reconciles budget vs. actuals with audit-ready tables.  
    - Ideal for monthly/quarterly reporting packs and leasing scorecards.
 4. **Relative Valuation Engine** (`Relative_Valuation/`)
-   - Weighted MCDA rankings across up to 15 variables (9 core + 6 optional) with dynamic weight allocation based on data availability.
-   - Core variables: rent, TMI, parking, clear height, office %, distance, year built, class, area match.
-   - Optional variables: shipping doors (TL/DI), power, trailer parking, secure shipping, excess land.
-   - Outputs competitive status, pricing gap to Top 3, rent/TMI adjustment scenarios, and landscape PDF reports with full property details.
+   - Weighted MCDA rankings across up to 25 variables (9 core + 16 optional) with dynamic weight allocation based on data availability.
+   - Core variables: rent, TMI, parking, clear height, office %, distance, building age, class, area match.
+   - Optional variables: shipping doors (TL/DI), power, trailer parking, secure shipping, excess land, bay depth, lot size, HVAC, sprinkler, rail, crane, occupancy, grade-level doors, days on market, zoning.
+   - **External Weights Configuration** - JSON-based weight management with 4 tenant personas (default, 3pl, manufacturing, office).
+   - **Auto-Load Defaults** - Weights automatically loaded when not provided in input JSON.
+   - **Complete Transparency** - All weights displayed in reports with mathematical 100% verification.
+   - Outputs competitive status, pricing gap to Top 3, rent/TMI adjustment scenarios, and landscape PDF reports with professional formatting and page break controls.
 5. **IFRS 16 / ASC 842 Calculator** (`IFRS16_Calculator/`)  
    - Generates present value of lease liabilities, ROU asset schedules, journal entries, and CSV amortization/depreciation tables.  
    - Used for monthly close, audit support, and disclosure packages.
@@ -227,10 +236,10 @@ See `.claude/commands/README.md` for full instructions and input templates.
 ## Roadmap
 
 Short-term priorities:
-1. Comparative market analytics (automated comps ingestion and benchmarking).  
-2. Tenant mix optimisation and portfolio-level dashboards.  
-3. Expanded API integrations (Distancematrix.ai, CoStar/LoopNet) for automated data refresh.  
-4. Optional persona-driven weighting for the relative valuation model.
+1. Comparative market analytics (automated comps ingestion and benchmarking).
+2. Tenant mix optimisation and portfolio-level dashboards.
+3. Expanded API integrations (Distancematrix.ai, CoStar/LoopNet) for automated data refresh.
+4. Machine learning-based weight optimization from historical deal outcomes.
 
 ---
 
@@ -286,7 +295,7 @@ Academic foundations from R. Chan’s work on Ponzi Rental Rate and rental term 
 ## Support
 
 **Maintainer**: Claude Code
-**Version**: 1.3.0 (2025-11-05 release)
+**Version**: 1.4.0 (2025-11-06 release)
 For issues and feature requests, open a ticket in the repository.
 For professional services, engage qualified leasing, legal, accounting, or valuation advisors.
 

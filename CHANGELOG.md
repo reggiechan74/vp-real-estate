@@ -5,6 +5,173 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2025-11-06
+
+### Added
+
+#### Relative Valuation Enhancements
+
+**Weights Configuration System** - External JSON-based weight management with tenant persona support
+
+- **weights_loader.py** - External weights configuration loader module
+  - Loads persona-specific weights from `weights_config.json`
+  - Schema validation using `weights_config_schema.json`
+  - Supports 4 built-in personas: default, 3pl, manufacturing, office
+  - Custom config file path support via `--weights-config` parameter
+  - Automatic fallback to hardcoded defaults if config unavailable
+
+- **weights_config.json** - Weight configuration with tenant personas
+  - **Default/Balanced** (11 variables, 65-17-12-6% allocation)
+  - **3PL/Distribution** - Emphasizes bay depth, clear height, shipping doors, trailer parking
+  - **Manufacturing** - Emphasizes clear height, power, crane, rail access
+  - **Office** - Emphasizes office space, class, HVAC, distance, parking
+
+- **weights_config_schema.json** - JSON Schema for weight validation
+  - Enforces structure: persona, name, description, weights object
+  - Validates all 25 variable fields with float values
+  - Ensures proper weight normalization
+
+- **WEIGHTS_CONFIG_GUIDE.md** - Comprehensive configuration documentation
+  - How to create custom weight profiles
+  - Persona comparison matrix
+  - Weight allocation philosophy
+  - Testing and validation procedures
+
+- **RANKING_METHODOLOGY.md** - Detailed methodology documentation
+  - Competition ranking (1-2-2-4 method) explanation
+  - Tie handling and Excel RANK function equivalence
+  - Dynamic weight redistribution algorithm
+  - Mathematical proofs and examples
+
+**Auto-Load Default Weights** - Eliminates "Missing required field: weights" error
+
+- Modified `load_comparable_data()` to automatically load default weights when not provided in input JSON
+- Weights field now optional in input JSON (auto-loads default persona if missing)
+- Seamless workflow: no need to manually add weights to JSON files
+- Clear informational messages when defaults are loaded
+
+**Complete Weights Transparency in Reports**
+
+- Added `weights_used` field to `CompetitiveAnalysis` dataclass
+- **Methodology section** now displays all weights in sortable table (highest to lowest)
+- Mathematical verification: "✅ Weights sum to 100.0% - calculation verified"
+- Shows actual dynamic weights used after redistribution (not just base weights)
+
+**Improved PDF Report Formatting**
+
+- **Page Break Controls** (`pdf_style.css`)
+  - Headers (h1, h2, h3) stay with their content (`page-break-after: avoid`)
+  - Tables remain intact without breaking (`page-break-inside: avoid`)
+  - Table rows won't break mid-row
+  - `.no-break` CSS class for critical sections
+
+- **GAP ANALYSIS Section Protection**
+  - Wrapped entire section in `<div class="no-break">` container
+  - Ensures gap analysis table and recommendations stay together on same page
+
+- **Increased White Space**
+  - Major section headers (h2) now have 20px top margin (up from 8px)
+  - Improved visual separation between SUBJECT PROPERTY ANALYSIS, GAP ANALYSIS, RECOMMENDED ACTIONS, METHODOLOGY, and LIMITATIONS sections
+
+**Command-Line Persona Support**
+
+- `--persona` flag: Choose from default, 3pl, manufacturing, office
+- `--weights-config` flag: Path to custom weights configuration file
+- Persona weights override JSON weights (highest priority)
+- Examples:
+  ```bash
+  # Use 3PL persona weights
+  python relative_valuation_calculator.py --input data.json --output report.md --persona 3pl
+
+  # Use custom config file
+  python relative_valuation_calculator.py --input data.json --output report.md --weights-config custom.json
+  ```
+
+### Changed
+
+#### Relative Valuation Calculator
+
+- **Weight Loading Priority** (lowest to highest):
+  1. Auto-loaded defaults (if no weights in JSON)
+  2. Explicit JSON weights (if provided)
+  3. Command-line persona override (--persona flag, highest priority)
+
+- Updated `get_tenant_persona_weights()` function:
+  - Added `config_path` optional parameter
+  - Attempts to load from weights_loader module (relative then absolute import)
+  - Falls back to hardcoded defaults if external config unavailable
+  - Returns informative messages about weight source
+
+- Removed "weights" from required fields in `load_comparable_data()`
+- Added `Optional` type hint import for better type safety
+
+#### Report Generation
+
+- Methodology section now includes complete weights table instead of summary
+- Added weight sum verification in every report
+- Improved visual hierarchy with consistent spacing
+- Professional landscape PDF output with proper page breaks
+
+### Fixed
+
+#### Workflow Issues
+
+- **Eliminated recurring "Missing required field: weights" error**
+  - Was caused by required validation before auto-loading logic
+  - Now loads defaults first, then validates other required fields
+  - Users no longer need to manually add weights to input JSON
+
+#### PDF Formatting
+
+- **Tables breaking across pages** - Now kept intact with `page-break-inside: avoid`
+- **GAP ANALYSIS splitting** - Now wrapped in no-break container
+- **Insufficient spacing between sections** - Increased h2 margin-top to 20px
+- **Headers orphaned from content** - Added `page-break-after: avoid` to all headers
+
+### Documentation
+
+- Updated README.md to version 1.4.0
+- Added weights configuration system to capabilities section
+- Updated relative valuation examples with persona flags
+- Removed "persona-driven weighting" from roadmap (now implemented)
+- Updated CLAUDE.md with weights configuration references
+
+### Technical Details
+
+**File Changes**:
+- `Relative_Valuation/relative_valuation_calculator.py` - 101 insertions, 18 deletions
+- `Relative_Valuation/pdf_style.css` - 29 insertions, 1 deletion
+- `Relative_Valuation/weights_loader.py` - NEW (436 lines)
+- `Relative_Valuation/weights_config.json` - NEW (134 lines)
+- `Relative_Valuation/weights_config_schema.json` - NEW (67 lines)
+- `Relative_Valuation/WEIGHTS_CONFIG_GUIDE.md` - NEW (1,098 lines)
+- `Relative_Valuation/RANKING_METHODOLOGY.md` - NEW (1,262 lines)
+
+**Integration Architecture**:
+```
+Input JSON (optional weights)
+    ↓
+load_comparable_data()
+    ↓
+Auto-load default weights if missing → get_tenant_persona_weights()
+    ↓                                        ↓
+Validate required fields              weights_loader.py
+    ↓                                        ↓
+Run analysis                          weights_config.json
+    ↓                                        ↓
+Generate report                       Persona-specific weights
+    ↓
+Display all weights + 100% verification
+    ↓
+Professional PDF with proper page breaks
+```
+
+**Backwards Compatibility**:
+- Existing JSON input files continue to work (weights now optional)
+- Command-line interface unchanged (--persona and --weights-config are new optional flags)
+- Report output format enhanced but maintains structure
+- All existing workflows and slash commands function identically
+
 ## [1.3.0] - 2025-11-05
 
 ### Added
@@ -642,3 +809,5 @@ This is the initial release. Future versions will maintain backward compatibilit
 [1.0.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.0.0
 [1.1.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.1.0
 [1.2.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.2.0
+[1.3.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.3.0
+[1.4.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.4.0
