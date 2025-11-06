@@ -1,0 +1,206 @@
+{
+  "portfolio_name": "ABC Industrial Portfolio",
+  "analysis_date": "2025-11-06",
+  "total_area_sf": 670000.0,
+  "total_annual_rent": 9300000.0,
+  "expiry_schedule": [
+    {
+      "year": 2026,
+      "lease_count": 4,
+      "total_sf": 235000.0,
+      "total_annual_rent": 3205000.0,
+      "pct_of_portfolio_sf": 35.07,
+      "pct_of_portfolio_rent": 34.46,
+      "cumulative_pct_sf": 35.07,
+      "cumulative_pct_rent": 34.46,
+      "risk_level": "CRITICAL"
+    },
+    {
+      "year": 2027,
+      "lease_count": 3,
+      "total_sf": 170000.0,
+      "total_annual_rent": 2430000.0,
+      "pct_of_portfolio_sf": 25.37,
+      "pct_of_portfolio_rent": 26.13,
+      "cumulative_pct_sf": 60.45,
+      "cumulative_pct_rent": 60.59,
+      "risk_level": "HIGH"
+    },
+    {
+      "year": 2028,
+      "lease_count": 2,
+      "total_sf": 145000.0,
+      "total_annual_rent": 1985000.0,
+      "pct_of_portfolio_sf": 21.64,
+      "pct_of_portfolio_rent": 21.34,
+      "cumulative_pct_sf": 82.09,
+      "cumulative_pct_rent": 81.94,
+      "risk_level": "HIGH"
+    },
+    {
+      "year": 2029,
+      "lease_count": 1,
+      "total_sf": 120000.0,
+      "total_annual_rent": 1680000.0,
+      "pct_of_portfolio_sf": 17.91,
+      "pct_of_portfolio_rent": 18.06,
+      "cumulative_pct_sf": 100.0,
+      "cumulative_pct_rent": 100.0,
+      "risk_level": "MODERATE"
+    }
+  ],
+  "priority_ranking": [
+    {
+      "property_address": "888 Logistics Crt, Oakville, ON",
+      "tenant_name": "Regional Distributor",
+      "lease_expiry_date": "2026-03-31",
+      "annual_rent": 560000.0,
+      "rent_pct": 0.0602,
+      "urgency": 0.8333,
+      "below_market": 0.25,
+      "credit_risk": 0.45,
+      "priority_score": 0.3691,
+      "rank": 1
+    },
+    {
+      "property_address": "777 Warehouse Rd, Burlington, ON",
+      "tenant_name": "Cold Storage Inc",
+      "lease_expiry_date": "2026-06-30",
+      "annual_rent": 825000.0,
+      "rent_pct": 0.0887,
+      "urgency": 0.7083,
+      "below_market": 0.4,
+      "credit_risk": 0.2,
+      "priority_score": 0.348,
+      "rank": 2
+    },
+    {
+      "property_address": "111 Import Blvd, Guelph, ON",
+      "tenant_name": "Specialty Importer",
+      "lease_expiry_date": "2027-03-31",
+      "annual_rent": 490000.0,
+      "rent_pct": 0.0527,
+      "urgency": 0.3333,
+      "below_market": 0.5,
+      "credit_risk": 0.75,
+      "priority_score": 0.2961,
+      "rank": 3
+    },
+    {
+      "property_address": "200 Fulfillment Ave, Hamilton, ON",
+      "tenant_name": "E-commerce Fulfillment",
+      "lease_expiry_date": "2027-12-31",
+      "annual_rent": 1190000.0,
+      "rent_pct": 0.128,
+      "urgency": 0.0,
+      "below_market": 0.925,
+      "credit_risk": 0.55,
+      "priority_score": 0.2912,
+      "rank": 4
+    },
+    {
+      "property_address": "123 Main St, Mississauga, ON",
+      "tenant_name": "Acme Distribution",
+      "lease_expiry_date": "2027-06-30",
+      "annual_rent": 750000.0,
+      "rent_pct": 0.0806,
+      "urgency": 0.2083,
+      "below_market": 0.775,
+      "credit_risk": 0.4,
+      "priority_score": 0.2898,
+      "rank": 5
+    },
+    {
+      "property_address": "321 Supply Chain Blvd, Vaughan, ON",
+      "tenant_name": "Warehouse Solutions",
+      "lease_expiry_date": "2026-09-30",
+      "annual_rent": 845000.0,
+      "rent_pct": 0.0909,
+      "urgency": 0.5833,
+      "below_market": 0.125,
+      "credit_risk": 0.35,
+      "priority_score": 0.2713,
+      "rank": 6
+    },
+    {
+      "property_address": "456 Industrial Pkwy, Brampton, ON",
+      "tenant_name": "Logistics Inc",
+      "lease_expiry_date": "2026-12-31",
+      "annual_rent": 975000.0,
+      "rent_pct": 0.1048,
+      "urgency": 0.4583,
+      "below_market": 0.26,
+      "credit_risk": 0.2,
+      "priority_score": 0.2514,
+      "rank": 7
+    },
+    {
+      "property_address": "555 Distribution Way, Milton, ON",
+      "tenant_name": "3PL Provider",
+      "lease_expiry_date": "2029-12-31",
+      "annual_rent": 1680000.0,
+      "rent_pct": 0.1806,
+      "urgency": 0.0,
+      "below_market": 0.6,
+      "credit_risk": 0.25,
+      "priority_score": 0.2173,
+      "rank": 8
+    },
+    {
+      "property_address": "789 Commerce Dr, Mississauga, ON",
+      "tenant_name": "Manufacturing Co",
+      "lease_expiry_date": "2028-03-31",
+      "annual_rent": 1400000.0,
+      "rent_pct": 0.1505,
+      "urgency": 0.0,
+      "below_market": 0.4,
+      "credit_risk": 0.6,
+      "priority_score": 0.2002,
+      "rank": 9
+    },
+    {
+      "property_address": "999 Transport Dr, Cambridge, ON",
+      "tenant_name": "Freight Forwarder",
+      "lease_expiry_date": "2028-09-30",
+      "annual_rent": 585000.0,
+      "rent_pct": 0.0629,
+      "urgency": 0.0,
+      "below_market": 0.0,
+      "credit_risk": 0.7,
+      "priority_score": 0.0952,
+      "rank": 10
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario_name": "Optimistic",
+      "renewal_rate": 0.8,
+      "downtime_months": 1,
+      "leases_renewed": 8,
+      "leases_new_tenant": 2,
+      "expected_vacancy_sf": 670000.0,
+      "expected_vacancy_rent": 775000.0,
+      "noi_impact_npv": -630060.0
+    },
+    {
+      "scenario_name": "Base",
+      "renewal_rate": 0.65,
+      "downtime_months": 3,
+      "leases_renewed": 6,
+      "leases_new_tenant": 4,
+      "expected_vacancy_sf": 670000.0,
+      "expected_vacancy_rent": 2325000.0,
+      "noi_impact_npv": -1890181.0
+    },
+    {
+      "scenario_name": "Pessimistic",
+      "renewal_rate": 0.5,
+      "downtime_months": 6,
+      "leases_renewed": 5,
+      "leases_new_tenant": 5,
+      "expected_vacancy_sf": 670000.0,
+      "expected_vacancy_rent": 4650000.0,
+      "noi_impact_npv": -3780362.0
+    }
+  ]
+}
