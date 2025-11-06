@@ -398,6 +398,7 @@ class TestOptionValuation:
 
         # Value should be adjusted by utilization
         assert result.option_value > 0
+        assert result.raw_option_value > 0
 
         # Compare to 100% utilization
         params_full = OptionParameters(
@@ -416,6 +417,32 @@ class TestOptionValuation:
 
         # 60% utilization should be 60% of full value
         assert approx_equal(result.option_value, result_full.option_value * 0.60, 0.01)
+        assert approx_equal(result.raw_option_value, result_full.raw_option_value, 0.01)
+        assert approx_equal(
+            result.probability_itm_adjusted,
+            result.probability_itm * params.utilization_probability,
+            0.01
+        )
+        assert approx_equal(
+            result.greeks_adjusted.delta,
+            result.greeks.delta * params.utilization_probability,
+            0.01
+        )
+        assert approx_equal(
+            result.greeks_adjusted.gamma,
+            result.greeks.gamma * params.utilization_probability,
+            0.01
+        )
+        assert approx_equal(
+            result.greeks_adjusted.vega,
+            result.greeks.vega * params.utilization_probability,
+            0.01
+        )
+        assert approx_equal(
+            result.greeks_adjusted.theta,
+            result.greeks.theta * params.utilization_probability,
+            0.01
+        )
 
     def test_termination_option_valuation(self):
         """Test termination option (put)"""
@@ -445,6 +472,24 @@ class TestOptionValuation:
 
         # Put delta should be negative
         assert result.greeks.delta < 0
+
+        params_no_fee = OptionParameters(
+            option_type='put',
+            option_name='Early Termination Option - No Fee',
+            underlying_value=50000 * 15 * 7,
+            strike_price=50000 * 17 * 7,
+            time_to_expiration=3.0,
+            volatility=0.12,
+            risk_free_rate=0.05,
+            termination_fee=0.0,
+            rentable_area_sf=50000
+        )
+
+        result_no_fee = value_option(params_no_fee)
+
+        # Termination fee should reduce the option value
+        assert result.raw_option_value < result_no_fee.raw_option_value
+        assert result.option_value < result_no_fee.option_value
 
 
 # =============================================================================

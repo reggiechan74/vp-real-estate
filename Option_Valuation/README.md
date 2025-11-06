@@ -14,6 +14,7 @@ Python module for valuing embedded options in commercial real estate leases usin
 - ✅ **Option Greeks** - Delta, Gamma, Vega, Theta, Rho for sensitivity analysis
 - ✅ **Portfolio Valuation** - Value multiple options simultaneously
 - ✅ **Sensitivity Analysis** - Volatility, market rent, and time decay analysis
+- ✅ **Utilization-Adjusted Metrics** - Raw outputs plus utilization-weighted values, probabilities, and Greeks
 - ✅ **JSON Input/Output** - Structured data format for automation
 - ✅ **Comprehensive Testing** - 36 tests covering edge cases and real-world scenarios
 - ✅ **Command-Line Interface** - Easy integration with workflows
@@ -73,10 +74,14 @@ python Option_Valuation/option_valuation.py input.json --output results.json --v
 ### 3. View Results
 
 ```
-Total Option Value: $1,082,682.09 ($21.65/sf)
-Probability ITM: 81.9%
-Greeks: Δ=0.881, ν=$18,331/1%, θ=$-149,591/yr
+Total Option Value (Raw): $1,082,682.09 ($21.65/sf)
+Total Option Value (Expected): $1,082,682.09 ($21.65/sf)
+Probability ITM (Raw): 81.9% | Probability ITM (Expected): 81.9%
+Greeks (Raw): Δ=0.881, ν=$18,331/1%, θ=$-149,591/yr
+Greeks (Expected): Δ=0.881, ν=$18,331/1%, θ=$-149,591/yr
 ```
+
+CLI output automatically highlights utilization assumptions and the utilization-adjusted metrics when the probability is below 100%.
 
 ## Option Types
 
@@ -186,15 +191,20 @@ Tenant has right to purchase property.
   "analysis_date": "YYYY-MM-DD",
   "property_address": "string",
   "rentable_area_sf": "number",
-  "total_option_value": "number ($)",
-  "total_value_per_sf": "number ($/sf)",
+  "total_option_value": "number ($, utilization-adjusted)",
+  "total_option_value_raw": "number ($, raw)",
+  "total_value_per_sf": "number ($/sf, utilization-adjusted)",
+  "total_value_per_sf_raw": "number ($/sf, raw)",
   "options": [
     {
       "option_name": "string",
       "option_type": "string",
-      "option_value": "number ($)",
-      "option_value_per_sf": "number ($/sf)",
-      "probability_itm": "number (0-100%)",
+      "option_value": "number ($, utilization-adjusted)",
+      "option_value_per_sf": "number ($/sf, utilization-adjusted)",
+      "raw_option_value": "number ($)",
+      "raw_option_value_per_sf": "number ($/sf)",
+      "probability_itm": "number (0-100%, raw)",
+      "probability_itm_adjusted": "number (0-100%, utilization-adjusted)",
       "d1": "number",
       "d2": "number",
       "greeks": {
@@ -203,7 +213,16 @@ Tenant has right to purchase property.
         "vega": "number ($ per 1% volatility change)",
         "theta": "number ($ per year time decay)",
         "rho": "number ($ per 1% rate change)"
-      }
+      },
+      "greeks_adjusted": {
+        "delta": "number (utilization-adjusted)",
+        "gamma": "number (utilization-adjusted)",
+        "vega": "number ($ per 1% volatility change, utilization-adjusted)",
+        "theta": "number ($ per year, utilization-adjusted)",
+        "rho": "number ($ per 1% rate change, utilization-adjusted)"
+      },
+      "effective_strike_price": "number ($)",
+      "utilization_probability": "number (0-1)"
     }
   ],
   "sensitivity": {
