@@ -12,6 +12,10 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ├── IFRS16_Calculator/      # IFRS 16/ASC 842 lease accounting (liability, ROU asset, schedules)
 ├── Credit_Analysis/        # Tenant credit scoring and financial analysis
 ├── Renewal_Analysis/       # Renewal vs. relocation economic analysis
+├── Option_Valuation/       # Real options valuation (Black-Scholes) for lease flexibility
+├── Rollover_Analysis/      # Portfolio lease expiry and renewal prioritization
+├── Default_Calculator/     # Tenant default damage quantification
+├── Relative_Valuation/     # MCDA competitive positioning (25 variables) + statistical analysis
 ├── MLS_Extractor/          # MLS PDF to Excel extraction with subject highlighting
 ├── Planning/               # Source lease documents
 ├── Templates/              # Industrial/Office lease templates (24 sections, MD/JSON/Schema)
@@ -121,6 +125,7 @@ Use the Skill tool to invoke deep expertise on specific agreement types:
 /effective-rent path/to/lease.pdf
 /tenant-credit path/to/financials.pdf
 /rental-variance path/to/variance_data.xlsx
+/option-value path/to/lease.pdf
 
 # MLS extraction to Excel
 /extract-mls path/to/mls_report.pdf --subject="2550 Stanfield"
@@ -130,6 +135,12 @@ Use the Skill tool to invoke deep expertise on specific agreement types:
 
 # Renewal economics
 /renewal-economics path/to/current-lease.pdf
+
+# Real options valuation (direct calculator usage)
+python Option_Valuation/option_valuation.py \
+  Option_Valuation/option_inputs/example_industrial_warehouse.json \
+  --output results.json \
+  --verbose
 
 # Invoke expert skills
 # (Use Skill tool in Claude Code)

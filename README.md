@@ -1,24 +1,24 @@
 # Commercial Real Estate Lease Management Toolkit
 
-[![Version](https://img.shields.io/badge/version-1.6.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-199%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
+[![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
 
-**Version 1.6.0** • Released 2025-11-06
+**Version 1.7.0** • Released 2025-11-06
 Built for institutional leasing teams that need production-ready automation across the entire lease lifecycle.
 
 ---
 
 ## TL;DR
 
-- **End-to-end coverage** across the lease lifecycle: automate abstraction, deal modelling, credit underwriting, IFRS accounting, compliance checklists, renewal strategy, and competitive positioning, portfolio rollover analysis, and default damage quantification.  
+- **End-to-end coverage** across the lease lifecycle: automate abstraction, deal modelling, credit underwriting, IFRS accounting, compliance checklists, renewal strategy, competitive positioning, portfolio rollover analysis, default damage quantification, and real options valuation.  
 - **Single pipeline** from raw lease PDFs to board-ready reports—capture key terms, normalize cash flows, benchmark market comps, and generate audit-ready schedules without leaving the toolkit.  
-- **40–50% weekly time savings** for leasing managers: 24 automated workflows + 10 calculators handle ~70–80% of desk-side analysis.  
+- **40–50% weekly time savings** for leasing managers: 24 automated workflows + 11 calculators handle ~70–80% of desk-side analysis.  
 - **Embedded expertise** via 13 senior-level skills and standardized templates that keep negotiations, drafting, and approvals moving.  
-- **Production-grade codebase** (Python 3.12+, 199+ unit tests) with a predictable PDF → JSON → Python → report pipeline.
+- **Production-grade codebase** (Python 3.12+, 235+ unit tests) with a predictable PDF → JSON → Python → report pipeline.
 
 ---
 
@@ -132,6 +132,12 @@ python Default_Calculator/notice_generator.py \
 
 # Renewal vs. relocation economics
 python Renewal_Analysis/run_renewal_analysis.py renewal_inputs/sample_input.json
+
+# Real options valuation (Black-Scholes)
+python Option_Valuation/option_valuation.py \
+  Option_Valuation/sample_option_input.json \
+  --output results.json \
+  --verbose
 ```
 
 ### Run the Test Suite
@@ -153,7 +159,7 @@ python -m pytest Eff_Rent_Calculator/Tests/ -v
 
 Each skill provides checklists, negotiation angles, risk flags, and recommended language—effectively bringing a senior advisor into the workflow on demand.
 
-### Calculators (10 Engines)
+### Calculators (11 Engines)
 1. **Effective Rent Calculator** (`Eff_Rent_Calculator/`)  
    - Inputs: rent schedule (annual $/sf), incentives (TI, cash allowances, free rent), leasing costs, REIT capital assumptions.  
    - Outputs: Net/Gross Effective Rent, NPV vs. costs, breakeven rents, Ponzi Rental Rate comparison, payback, sensitivity tables.  
@@ -200,6 +206,13 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
     - Activated via `--stats` flag on relative valuation calculator.
     - Key Insights: Most variable factor (CV), rent predictability (R²), strongest driver, strongest correlation.
     - Use Cases: Large datasets (20+ properties), understanding rent drivers, validating MCDA results, data quality checks.
+11. **Real Options Valuation Calculator** (`Option_Valuation/`)
+    - Black-Scholes option pricing for lease flexibility (renewal, expansion, termination, purchase options).
+    - Calculates option value, Greeks (Delta, Gamma, Vega, Theta, Rho), and probability in-the-money.
+    - Portfolio valuation for multiple concurrent options with sensitivity analysis.
+    - JSON input/output with command-line interface for automation.
+    - Use Cases: Valuing embedded lease options, negotiation support, lease vs. purchase decisions, portfolio option value aggregation.
+    - **36 tests passing** (100% coverage) validated against published Black-Scholes calculators.
 
 ### Automated Workflows (24 Slash Commands)
 Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (10), Accounting (1), Comparison (4), and Compliance (7).
@@ -244,10 +257,10 @@ See `.claude/commands/README.md` for full instructions and input templates.
 
 ## Architecture & Tech Stack
 
-- **Language**: Python 3.12+, type hinted, modular packages.  
-- **Core Libraries**: NumPy, Pandas, SciPy, NumPy-Financial.  
-- **Testing**: Pytest with 130+ passing tests (unit + regression).  
-- **Workflow Pattern**: PDF → markitdown conversion → structured JSON → calculator → report.  
+- **Language**: Python 3.12+, type hinted, modular packages.
+- **Core Libraries**: NumPy, Pandas, SciPy, NumPy-Financial.
+- **Testing**: Pytest with 235+ passing tests (unit + regression).
+- **Workflow Pattern**: PDF → markitdown conversion → structured JSON → calculator → report.
 - **Repository Layout**: Shared utilities plus dedicated folders for each calculator. See `CLAUDE.md` for a directory map and automation tooling.
 
 ---
@@ -303,6 +316,7 @@ leasing-expert/
 ├── Relative_Valuation/        # MCDA competitive positioning (25 variables) + statistical analysis
 ├── Rollover_Analysis/         # Portfolio lease expiry and renewal prioritization
 ├── Default_Calculator/        # Tenant default damage quantification
+├── Option_Valuation/          # Real options valuation (Black-Scholes)
 ├── MLS_Extractor/             # MLS PDF to Excel with subject highlighting
 ├── Templates/                 # Lease abstract templates
 ├── Reports/                   # Timestamped analysis outputs
@@ -345,7 +359,7 @@ Academic foundations from R. Chan’s work on Ponzi Rental Rate and rental term 
 ## Support
 
 **Maintainer**: Claude Code
-**Version**: 1.5.0 (2025-11-06 release)
+**Version**: 1.7.0 (2025-11-06 release)
 For issues and feature requests, open a ticket in the repository.
 For professional services, engage qualified leasing, legal, accounting, or valuation advisors.
 
