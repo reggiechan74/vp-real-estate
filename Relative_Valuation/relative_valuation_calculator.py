@@ -54,7 +54,7 @@ class Property:
     secure_shipping: bool = False
     excess_land: bool = False
 
-    # New optional fields (Phase 2 enhancements)
+    # New optional fields (Phase 2 enhancements - Batch 1)
     bay_depth_ft: float = 0.0  # Bay depth from Bay Size field
     lot_size_acres: float = 0.0  # Lot size in acres
     hvac_coverage: int = 3  # Ordinal: Y=1, Part=2, N=3
@@ -63,6 +63,11 @@ class Property:
     rail_access: bool = False  # Rail siding availability
     crane: bool = False  # Overhead crane capability
     occupancy_status: int = 2  # Ordinal: Vacant=1, Tenant=2
+
+    # Phase 2 enhancements - Batch 2
+    grade_level_doors: int = 0  # Grade-level doors (courier/small truck access)
+    days_on_market: int = 0  # Days on market (landlord motivation)
+    zoning: str = ""  # Zoning classification
 
     # Ranking results
     rank_year_built: int = 0
@@ -88,6 +93,9 @@ class Property:
     rank_rail_access: int = 0
     rank_crane: int = 0
     rank_occupancy_status: int = 0
+    rank_grade_level_doors: int = 0
+    rank_days_on_market: int = 0
+    rank_zoning: int = 0
 
     weighted_score: float = 0.0
     final_rank: int = 0
@@ -298,7 +306,152 @@ def detect_available_variables(properties: List[Dict[str, Any]]) -> Dict[str, bo
     occupancy_count = sum(1 for p in properties if p.get('occupancy_status', 2) < 2)
     available['occupancy_status'] = occupancy_count >= threshold
 
+    # Phase 2 fields - Batch 2
+    # Grade level doors
+    grade_level_count = sum(1 for p in properties if p.get('grade_level_doors', 0) > 0)
+    available['grade_level_doors'] = grade_level_count >= threshold
+
+    # Days on market
+    dom_count = sum(1 for p in properties if p.get('days_on_market', 0) > 0)
+    available['days_on_market'] = dom_count >= threshold
+
+    # Zoning (string - available if at least 50% have non-empty values)
+    zoning_count = sum(1 for p in properties if p.get('zoning', '').strip())
+    available['zoning'] = zoning_count >= threshold
+
     return available
+
+
+def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
+    """
+    Get weight profiles tailored to specific tenant personas.
+
+    Args:
+        persona: Tenant type - "default", "3pl", "manufacturing", "office"
+
+    Returns:
+        Dictionary of variable weights optimized for the tenant persona
+    """
+    # Default/balanced weights (26 variables)
+    default_weights = {
+        # Core variables
+        'net_asking_rent': 0.11,
+        'parking_ratio': 0.09,
+        'tmi': 0.09,
+        'clear_height_ft': 0.07,
+        'pct_office_space': 0.06,
+        'distance_km': 0.07,
+        'area_difference': 0.07,
+        'building_age_years': 0.04,
+        'class': 0.05,
+        # Optional variables
+        'shipping_doors_tl': 0.04,
+        'shipping_doors_di': 0.03,
+        'power_amps': 0.03,
+        'trailer_parking': 0.02,
+        'bay_depth_ft': 0.04,
+        'lot_size_acres': 0.03,
+        'hvac_coverage': 0.03,
+        'sprinkler_type': 0.03,
+        'rail_access': 0.02,
+        'crane': 0.02,
+        'grade_level_doors': 0.02,
+        'days_on_market': 0.02,
+        'zoning': 0.02
+    }
+
+    # 3PL/Distribution tenant profile
+    # Emphasizes: Bay depth, clear height, shipping doors, trailer parking
+    # De-emphasizes: Office space, class, HVAC
+    threepl_weights = {
+        'net_asking_rent': 0.12,
+        'parking_ratio': 0.08,
+        'tmi': 0.09,
+        'clear_height_ft': 0.10,  # +3%
+        'pct_office_space': 0.02,  # -4%
+        'distance_km': 0.08,
+        'area_difference': 0.07,
+        'building_age_years': 0.03,
+        'class': 0.02,  # -3%
+        'shipping_doors_tl': 0.06,  # +2%
+        'shipping_doors_di': 0.04,  # +1%
+        'power_amps': 0.02,
+        'trailer_parking': 0.04,  # +2%
+        'bay_depth_ft': 0.07,  # +3%
+        'lot_size_acres': 0.04,
+        'hvac_coverage': 0.01,  # -2%
+        'sprinkler_type': 0.04,  # +1%
+        'rail_access': 0.01,
+        'crane': 0.01,
+        'grade_level_doors': 0.01,
+        'days_on_market': 0.02,
+        'zoning': 0.02
+    }
+
+    # Manufacturing tenant profile
+    # Emphasizes: Clear height, power, crane, rail access, bay depth
+    # De-emphasizes: Office space, class, distance
+    manufacturing_weights = {
+        'net_asking_rent': 0.10,
+        'parking_ratio': 0.08,
+        'tmi': 0.08,
+        'clear_height_ft': 0.10,  # +3%
+        'pct_office_space': 0.03,  # -3%
+        'distance_km': 0.04,  # -3%
+        'area_difference': 0.07,
+        'building_age_years': 0.05,
+        'class': 0.03,  # -2%
+        'shipping_doors_tl': 0.05,  # +1%
+        'shipping_doors_di': 0.03,
+        'power_amps': 0.06,  # +3%
+        'trailer_parking': 0.02,
+        'bay_depth_ft': 0.07,  # +3%
+        'lot_size_acres': 0.04,
+        'hvac_coverage': 0.02,  # -1%
+        'sprinkler_type': 0.03,
+        'rail_access': 0.04,  # +2%
+        'crane': 0.05,  # +3%
+        'grade_level_doors': 0.01,
+        'days_on_market': 0.02,
+        'zoning': 0.02
+    }
+
+    # Office tenant profile
+    # Emphasizes: Office space, class, HVAC, distance, parking
+    # De-emphasizes: Clear height, bay depth, shipping doors, crane, rail
+    office_weights = {
+        'net_asking_rent': 0.13,  # +2%
+        'parking_ratio': 0.12,  # +3%
+        'tmi': 0.10,  # +1%
+        'clear_height_ft': 0.02,  # -5%
+        'pct_office_space': 0.12,  # +6%
+        'distance_km': 0.10,  # +3%
+        'area_difference': 0.08,
+        'building_age_years': 0.05,
+        'class': 0.08,  # +3%
+        'shipping_doors_tl': 0.01,  # -3%
+        'shipping_doors_di': 0.01,  # -2%
+        'power_amps': 0.02,
+        'trailer_parking': 0.00,  # -2%
+        'bay_depth_ft': 0.00,  # -4%
+        'lot_size_acres': 0.02,
+        'hvac_coverage': 0.06,  # +3%
+        'sprinkler_type': 0.02,  # -1%
+        'rail_access': 0.00,  # -2%
+        'crane': 0.00,  # -2%
+        'grade_level_doors': 0.02,
+        'days_on_market': 0.02,
+        'zoning': 0.02
+    }
+
+    personas = {
+        "default": default_weights,
+        "3pl": threepl_weights,
+        "manufacturing": manufacturing_weights,
+        "office": office_weights
+    }
+
+    return personas.get(persona.lower(), default_weights)
 
 
 def allocate_dynamic_weights(available_vars: Dict[str, bool],
@@ -334,17 +487,18 @@ def allocate_dynamic_weights(available_vars: Dict[str, bool],
     Returns:
         Adjusted weights that sum to 1.0
     """
-    # Define default weights when no custom schema provided (23 variables total)
-    # Core variables (9): 67% total
+    # Define default weights when no custom schema provided (26 variables total)
+    # Core variables (9): 65% total
     # Existing optional (6): 12% total
-    # New optional (8): 21% total
+    # Phase 2 Batch 1 (8): 17% total
+    # Phase 2 Batch 2 (3): 6% total
     default_weights = {
-        # Core variables (67%)
+        # Core variables (65% - reduced 2% for Phase 2 Batch 2)
         'net_asking_rent': 0.11,
-        'parking_ratio': 0.10,
+        'parking_ratio': 0.09,  # Reduced from 0.10
         'tmi': 0.09,
         'clear_height_ft': 0.07,
-        'pct_office_space': 0.07,
+        'pct_office_space': 0.06,  # Reduced from 0.07
         'distance_km': 0.07,
         'area_difference': 0.07,
         'building_age_years': 0.04,  # Replaces year_built
@@ -356,14 +510,18 @@ def allocate_dynamic_weights(available_vars: Dict[str, bool],
         'trailer_parking': 0.02,
         'secure_shipping': 0.00,  # No data in typical datasets
         'excess_land': 0.00,  # No data in typical datasets
-        # New optional variables (21%)
-        'bay_depth_ft': 0.05,
-        'lot_size_acres': 0.04,
+        # Phase 2 Batch 1 optional variables (17% - reduced from 21%)
+        'bay_depth_ft': 0.04,  # Reduced from 0.05
+        'lot_size_acres': 0.03,  # Reduced from 0.04
         'hvac_coverage': 0.03,
         'sprinkler_type': 0.03,
         'rail_access': 0.02,
         'crane': 0.02,
-        'occupancy_status': 0.02
+        'occupancy_status': 0.00,  # Moved to 0% (less important)
+        # Phase 2 Batch 2 optional variables (6%)
+        'grade_level_doors': 0.02,
+        'days_on_market': 0.02,
+        'zoning': 0.02
     }
 
     # Helper to normalise a provided weight mapping to sum to 1.0
@@ -496,7 +654,10 @@ def calculate_weighted_score(property_data: Dict[str, Any],
         'sprinkler_type': 'sprinkler_type',
         'rail_access': 'rail_access',
         'crane': 'crane',
-        'occupancy_status': 'occupancy_status'
+        'occupancy_status': 'occupancy_status',
+        'grade_level_doors': 'grade_level_doors',
+        'days_on_market': 'days_on_market',
+        'zoning': 'zoning'
     }
 
     for weight_key, rank_key in variable_mapping.items():
@@ -850,6 +1011,76 @@ This analysis uses a **multi-criteria weighted ranking system** to objectively a
     print(f"\n✅ Report generated: {output_path}")
 
 
+def apply_must_have_filters(properties: List[Dict[str, Any]], filters: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    """
+    Filter properties based on must-have requirements.
+
+    Args:
+        properties: List of property dictionaries
+        filters: Dictionary of minimum requirements (e.g., {"rail_access": True, "clear_height_ft_min": 32})
+
+    Returns:
+        Tuple of (filtered properties, excluded properties)
+    """
+    if not filters:
+        return properties, []
+
+    filtered = []
+    excluded = []
+
+    for prop in properties:
+        include = True
+        exclusion_reasons = []
+
+        # Check each filter criterion
+        for field, required_value in filters.items():
+            # Handle minimum value filters (e.g., clear_height_ft_min)
+            if field.endswith('_min'):
+                base_field = field[:-4]  # Remove '_min' suffix
+                actual_value = prop.get(base_field, 0)
+                if actual_value < required_value:
+                    include = False
+                    exclusion_reasons.append(f"{base_field} {actual_value} < {required_value} (minimum)")
+
+            # Handle maximum value filters (e.g., days_on_market_max)
+            elif field.endswith('_max'):
+                base_field = field[:-4]  # Remove '_max' suffix
+                actual_value = prop.get(base_field, float('inf'))
+                if actual_value > required_value:
+                    include = False
+                    exclusion_reasons.append(f"{base_field} {actual_value} > {required_value} (maximum)")
+
+            # Handle boolean filters (must be True)
+            elif isinstance(required_value, bool) and required_value:
+                actual_value = prop.get(field, False)
+                if not actual_value:
+                    include = False
+                    exclusion_reasons.append(f"{field} is required")
+
+            # Handle exact match filters (e.g., zoning must equal "M1")
+            elif isinstance(required_value, str):
+                actual_value = prop.get(field, '').strip().upper()
+                required_str = str(required_value).strip().upper()
+                if actual_value != required_str:
+                    include = False
+                    exclusion_reasons.append(f"{field} '{actual_value}' != '{required_str}'")
+
+            # Handle ordinal filters (e.g., sprinkler_type must be <= 1 for ESFR)
+            elif isinstance(required_value, (int, float)) and not field.endswith('_min') and not field.endswith('_max'):
+                actual_value = prop.get(field, float('inf'))
+                if actual_value > required_value:
+                    include = False
+                    exclusion_reasons.append(f"{field} {actual_value} > {required_value}")
+
+        if include:
+            filtered.append(prop)
+        else:
+            prop['exclusion_reasons'] = exclusion_reasons
+            excluded.append(prop)
+
+    return filtered, excluded
+
+
 def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     """
     Run complete relative valuation analysis.
@@ -872,18 +1103,28 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     # Combine subject + comparables into single list
     all_properties_data = [subject_data] + comparables_data
 
+    # Apply must-have filters if specified
+    filters = data.get('filters', {})
+    if filters:
+        print(f"\n   Applying must-have filters...")
+        filtered_properties, excluded_properties = apply_must_have_filters(all_properties_data, filters)
+        print(f"   {len(excluded_properties)} properties excluded by filters")
+        for excl in excluded_properties:
+            print(f"      - {excl['address']}: {', '.join(excl['exclusion_reasons'])}")
+        all_properties_data = filtered_properties
+
     # Calculate area differences
     subject_sf = subject_data['available_sf']
     all_properties_data = calculate_area_differences(all_properties_data, subject_sf)
 
-    print(f"   Loaded {len(all_properties_data)} properties")
+    print(f"\n   Loaded {len(all_properties_data)} properties for analysis")
     print(f"   Subject: {subject_data['address']} {subject_data.get('unit', '')}")
 
     # Detect available optional variables
     print("\n   Detecting available variables...")
     available_vars = detect_available_variables(all_properties_data)
     num_available = sum(1 for v in available_vars.values() if v)
-    print(f"   Using {num_available} of 23 possible variables")
+    print(f"   Using {num_available} of 26 possible variables")
 
     # Allocate weights dynamically based on available data
     dynamic_weights = allocate_dynamic_weights(available_vars, weights)
@@ -986,6 +1227,31 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         occupancy_values = [p.get('occupancy_status', 2) for p in all_properties_data]
         ranks_occupancy_status = rank_variable(occupancy_values, ascending=True)  # Vacant=1 better than Tenant=2
 
+    # Rank Phase 2 Batch 2 variables
+    ranks_grade_level_doors = None
+    ranks_days_on_market = None
+    ranks_zoning = None
+
+    if available_vars.get('grade_level_doors', False):
+        grade_level_values = [p.get('grade_level_doors', 0) for p in all_properties_data]
+        ranks_grade_level_doors = rank_variable(grade_level_values, ascending=False)  # More doors = better
+
+    if available_vars.get('days_on_market', False):
+        dom_values = [p.get('days_on_market', 0) for p in all_properties_data]
+        ranks_days_on_market = rank_variable(dom_values, ascending=False)  # Higher DOM = more motivated landlord = better for tenant
+
+    if available_vars.get('zoning', False):
+        # For zoning, we'll treat it as a categorical variable
+        # Properties with the same zoning get the same rank
+        # Lower alphabetical order = better rank (e.g., M1 better than M3)
+        zoning_values = [p.get('zoning', '').strip().upper() for p in all_properties_data]
+        # Create a mapping of unique zoning types to ranks
+        unique_zonings = sorted(set(z for z in zoning_values if z))
+        zoning_rank_map = {z: i + 1 for i, z in enumerate(unique_zonings)}
+        # Assign ranks, with empty zoning getting worst rank
+        worst_rank = len(unique_zonings) + 1
+        ranks_zoning = [zoning_rank_map.get(z, worst_rank) if z else worst_rank for z in zoning_values]
+
     # Calculate weighted scores
     print("   Calculating weighted scores...")
     for i, prop in enumerate(all_properties_data):
@@ -1032,6 +1298,14 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         if ranks_occupancy_status is not None:
             ranks_dict['occupancy_status'] = ranks_occupancy_status[i]
 
+        # Add Phase 2 Batch 2 variable ranks if available
+        if ranks_grade_level_doors is not None:
+            ranks_dict['grade_level_doors'] = ranks_grade_level_doors[i]
+        if ranks_days_on_market is not None:
+            ranks_dict['days_on_market'] = ranks_days_on_market[i]
+        if ranks_zoning is not None:
+            ranks_dict['zoning'] = ranks_zoning[i]
+
         # Assign core variable ranks to property
         prop['rank_building_age'] = int(ranks_building_age[i])
         prop['rank_clear_height'] = int(ranks_clear_height[i])
@@ -1059,6 +1333,11 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         prop['rank_rail_access'] = int(ranks_rail_access[i]) if ranks_rail_access else 0
         prop['rank_crane'] = int(ranks_crane[i]) if ranks_crane else 0
         prop['rank_occupancy_status'] = int(ranks_occupancy_status[i]) if ranks_occupancy_status else 0
+
+        # Assign Phase 2 Batch 2 variable ranks to property
+        prop['rank_grade_level_doors'] = int(ranks_grade_level_doors[i]) if ranks_grade_level_doors else 0
+        prop['rank_days_on_market'] = int(ranks_days_on_market[i]) if ranks_days_on_market else 0
+        prop['rank_zoning'] = int(ranks_zoning[i]) if ranks_zoning else 0
 
         # Calculate weighted score using DYNAMIC weights
         prop['weighted_score'] = calculate_weighted_score(prop, ranks_dict, dynamic_weights)
@@ -1151,6 +1430,8 @@ Examples:
     parser.add_argument('--output', help='Path to output markdown report (optional)')
     parser.add_argument('--output-json', help='Path to output JSON results (optional)')
     parser.add_argument('--full', action='store_true', help='Show all competitors in report (default: top 10 only)')
+    parser.add_argument('--persona', choices=['default', '3pl', 'manufacturing', 'office'], default='default',
+                        help='Tenant persona for weight optimization: default (balanced), 3pl (distribution focus), manufacturing (heavy industry), office (professional services)')
     parser.add_argument('--interactive', action='store_true', help='Interactive mode (not implemented in Phase 1)')
 
     args = parser.parse_args()
@@ -1166,6 +1447,12 @@ Examples:
     # Load data
     print(f"\n📂 Loading data from: {args.input}")
     data = load_comparable_data(args.input)
+
+    # Apply tenant persona weights if specified
+    if args.persona != 'default':
+        persona_weights = get_tenant_persona_weights(args.persona)
+        data['weights'] = persona_weights
+        print(f"   Using {args.persona.upper()} tenant persona weight profile")
 
     # Run analysis
     results = run_analysis(data)

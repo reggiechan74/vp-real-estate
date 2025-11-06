@@ -16,11 +16,11 @@ Determine where the subject property ranks relative to market comparables and pr
 
 ## Core Methodology: MCDA Framework
 
-### The Variable System: Core (9) + Optional (14) = Up to 23 Total
+### The Variable System: Core (9) + Optional (17) = Up to 26 Total
 
-**Dynamic Weighting**: The system uses 9 core variables (always included) plus 14 optional variables (included only if sufficient data is available - 50% threshold for numeric fields, at least one True for boolean fields). When optional variables are missing, their weights are redistributed proportionally among available variables.
+**Dynamic Weighting**: The system uses 9 core variables (always included) plus 17 optional variables (included only if sufficient data is available - 50% threshold for numeric fields, at least one True for boolean fields). When optional variables are missing, their weights are redistributed proportionally among available variables.
 
-#### Full Variable Set (When All Data Available - 23 Variables)
+#### Full Variable Set (When All Data Available - 26 Variables)
 
 | Variable | Weight | Type | Rationale |
 |----------|--------|------|-----------|
@@ -43,7 +43,10 @@ Determine where the subject property ranks relative to market comparables and pr
 | **Trailer Parking** | 2% | Optional | Trailer storage availability |
 | **Rail Access** | 2% | Optional | Deal-breaker for bulk commodities |
 | **Crane** | 2% | Optional | Heavy manufacturing essential |
-| **Occupancy Status** | 2% | Optional | Vacant = immediate occupancy |
+| **Occupancy Status** | 0% | Optional | Vacant = immediate occupancy (low priority) |
+| **Grade Level Doors** | 2% | Optional | Courier vans, small truck access |
+| **Days on Market** | 2% | Optional | Landlord motivation indicator |
+| **Zoning** | 2% | Optional | Permitted use restrictions |
 | **Secure Shipping** | 0% | Optional | Secure loading areas (rarely available) |
 | **Excess Land** | 0% | Optional | Expansion/outdoor storage (rarely available) |
 
@@ -227,29 +230,87 @@ If you cannot lower rent/TMI, improve competitive position through:
 - Data must be **current** (30-90 days old maximum)
 - Ensure **apples-to-apples** comparison (net vs gross rent, same measurement standards)
 
-## Tenant Persona Adjustments
+## Tenant Persona Weight Profiles
 
-### Industrial Tenant (Manufacturing/Warehouse)
+The calculator includes built-in weight profiles optimized for different tenant types. Use the `--persona` CLI parameter or specify persona in analysis request.
 
-**Emphasize:**
-- Clear Height (increase weight to 15%)
-- Parking (maintain 15%)
-- Reduce office space weight to 5%
+### Available Personas:
 
-**Rationale:** Industrial users prioritize operational functionality over office amenities
+#### 1. **Default (Balanced)**
+- Standard weights suitable for mixed-use or when tenant type unknown
+- Balanced emphasis across all variables
 
-### Office Tenant (Professional Services)
+#### 2. **3PL/Distribution** (`--persona 3pl`)
+- **Emphasizes**: Bay depth (7%), clear height (10%), shipping doors TL (6%), trailer parking (4%)
+- **De-emphasizes**: Office space (2%), class (2%), HVAC (1%)
+- **Rationale**: Distribution users prioritize operational efficiency and logistics infrastructure
 
-**Emphasize:**
-- % Office Space (increase to 15%)
-- Class (increase to 10%)
-- Reduce clear height to 5%
+#### 3. **Manufacturing** (`--persona manufacturing`)
+- **Emphasizes**: Clear height (10%), power (6%), crane (5%), bay depth (7%), rail access (4%)
+- **De-emphasizes**: Office space (3%), class (3%), distance (4%)
+- **Rationale**: Manufacturing users need power, lifting capability, and less concern for office amenities or commute distance
 
-**Rationale:** Office tenants value professional image and amenities over industrial specs
+#### 4. **Office** (`--persona office`)
+- **Emphasizes**: Office space (12%), parking (12%), rent (13%), HVAC (6%), class (8%), distance (10%)
+- **De-emphasizes**: Clear height (2%), bay depth (0%), shipping doors (1% each), crane (0%), rail (0%), trailer parking (0%)
+- **Rationale**: Office tenants prioritize professional image, employee amenities, commute convenience
 
-### Flex Space Tenant (Hybrid)
+### Usage Example:
+```bash
+python relative_valuation_calculator.py --input data.json --output report.md --persona 3pl
+```
 
-**Use Standard Weights:** Balanced approach works for hybrid users
+## Must-Have Filters
+
+Filter out properties that don't meet minimum requirements **before** ranking. This ensures the analysis only considers viable options.
+
+### Filter Types:
+
+1. **Minimum Value Filters** (suffix: `_min`)
+   - Example: `"clear_height_ft_min": 32` - Excludes properties with <32 ft clear height
+   - Example: `"bay_depth_ft_min": 54` - Requires 54'+ bays for 53' trailers
+
+2. **Maximum Value Filters** (suffix: `_max`)
+   - Example: `"days_on_market_max": 180` - Excludes stale listings >180 days
+
+3. **Boolean Filters**
+   - Example: `"rail_access": true` - Only includes properties with rail sidings
+   - Example: `"crane": true` - Requires overhead crane
+
+4. **Exact Match Filters** (strings)
+   - Example: `"zoning": "M1"` - Only M1 zoned properties
+
+5. **Ordinal Filters** (integers)
+   - Example: `"sprinkler_type": 1` - Only ESFR sprinklers (1=ESFR, 2=Standard, 3=None)
+   - Example: `"hvac_coverage": 1` - Full HVAC only (1=Y, 2=Part, 3=N)
+
+### JSON Schema:
+```json
+{
+  "filters": {
+    "rail_access": true,
+    "clear_height_ft_min": 36,
+    "sprinkler_type": 1,
+    "zoning": "M2",
+    "days_on_market_max": 90
+  }
+}
+```
+
+### Example Output:
+```
+Applying must-have filters...
+3 properties excluded by filters
+   - 520 Abilene Dr: clear_height_ft 30.0 < 36.0 (minimum)
+   - 6975 Pacific Cir: rail_access is required
+   - 2550 Stanfield Rd: zoning 'M1' != 'M2'
+```
+
+**When to Use Filters:**
+- **Rail users**: Filter `"rail_access": true` (eliminates 98% of market)
+- **High-piled storage**: Filter `"sprinkler_type": 1` (ESFR only)
+- **Heavy manufacturing**: Filter `"crane": true`, `"power_amps_min": 1000`
+- **53' trailer operations**: Filter `"bay_depth_ft_min": 54`
 
 ## Key Communication Language
 
@@ -355,6 +416,9 @@ The user will provide one or more PDF documents containing:
    - **Rail Access** - Extract from "Rail" field: Y/N → boolean as `rail_access`
    - **Crane** - Extract from "Crane" field: Y/N → boolean as `crane`
    - **Occupancy Status** - Extract from "Occup" field: Vacant=1, Tenant=2 (ordinal) as `occupancy_status`
+   - **Grade Level Doors** - Extract from "Grade Level" field as integer as `grade_level_doors`
+   - **Days on Market** - Extract from "DOM" field as integer as `days_on_market`
+   - **Zoning** - Extract from "Zoning" field as string as `zoning`
 
 3. Identify which property is the subject property (distance = 0)
 
@@ -399,7 +463,10 @@ Build a properly formatted JSON file following this schema:
     "building_age_years": 0,     // Optional: analysis_year - year_built
     "rail_access": false,        // Optional: boolean
     "crane": false,              // Optional: boolean
-    "occupancy_status": 2        // Optional: Vacant=1, Tenant=2 (ordinal)
+    "occupancy_status": 2,       // Optional: Vacant=1, Tenant=2 (ordinal)
+    "grade_level_doors": 0,      // Optional: grade-level doors count
+    "days_on_market": 0,         // Optional: days on market
+    "zoning": ""                 // Optional: zoning classification (e.g., "M1", "M2")
   },
   "comparables": [
     {
@@ -430,14 +497,26 @@ Build a properly formatted JSON file following this schema:
       "building_age_years": 0,
       "rail_access": false,
       "crane": false,
-      "occupancy_status": 2
+      "occupancy_status": 2,
+      "grade_level_doors": 0,
+      "days_on_market": 0,
+      "zoning": ""
     }
   ],
+  "filters": {
+    // Optional: Must-have requirements (Phase 2)
+    // Example filters (remove or adjust as needed):
+    // "rail_access": true,             // Only properties with rail access
+    // "clear_height_ft_min": 36,       // Minimum 36 ft clear height
+    // "sprinkler_type": 1,             // Only ESFR sprinklers
+    // "days_on_market_max": 180,       // Exclude stale listings
+    // "zoning": "M2"                   // Only M2 zoning
+  },
   "weights": {
     "building_age_years": 0.04,
     "clear_height_ft": 0.07,
-    "pct_office_space": 0.07,
-    "parking_ratio": 0.10,
+    "pct_office_space": 0.06,
+    "parking_ratio": 0.09,
     "distance_km": 0.07,
     "net_asking_rent": 0.11,
     "tmi": 0.09,
@@ -447,13 +526,16 @@ Build a properly formatted JSON file following this schema:
     "shipping_doors_di": 0.03,
     "power_amps": 0.03,
     "trailer_parking": 0.02,
-    "bay_depth_ft": 0.05,
-    "lot_size_acres": 0.04,
+    "bay_depth_ft": 0.04,
+    "lot_size_acres": 0.03,
     "hvac_coverage": 0.03,
     "sprinkler_type": 0.03,
     "rail_access": 0.02,
     "crane": 0.02,
-    "occupancy_status": 0.02
+    "occupancy_status": 0.00,
+    "grade_level_doors": 0.02,
+    "days_on_market": 0.02,
+    "zoning": 0.02
   }
 }
 ```
