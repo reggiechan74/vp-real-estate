@@ -544,13 +544,37 @@ python3 Relative_Valuation/relative_valuation_calculator.py \
   --output Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md \
   --output-json Reports/YYYY-MM-DD_HHMMSS_relative_valuation_output.json \
   --full
+
+# With statistical analysis (Phase 3 - regression, correlation, z-scores)
+python3 Relative_Valuation/relative_valuation_calculator.py \
+  --input Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json \
+  --output Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md \
+  --output-json Reports/YYYY-MM-DD_HHMMSS_relative_valuation_output.json \
+  --stats
+
+# Full report with statistical analysis (comprehensive)
+python3 Relative_Valuation/relative_valuation_calculator.py \
+  --input Reports/YYYY-MM-DD_HHMMSS_relative_valuation_input.json \
+  --output Reports/YYYY-MM-DD_HHMMSS_relative_valuation_report.md \
+  --output-json Reports/YYYY-MM-DD_HHMMSS_relative_valuation_output.json \
+  --full \
+  --stats
 ```
 
 This generates:
 - **Markdown Report**: Complete analysis with recommendations
   - By default: Shows top 10 competitors
   - With `--full`: Shows all competitors (useful for large datasets like 123 properties)
+  - With `--stats`: Appends statistical analysis section (regression, correlation, outliers)
 - **JSON Output**: Structured results for programmatic use
+  - With `--stats`: Includes statistical analysis in JSON output
+
+**When to use `--stats`**:
+- **Large datasets** (20+ properties): Statistical patterns become meaningful
+- **Rent modeling**: Understand which variables drive rent (R² and coefficients)
+- **Data quality**: Identify outliers and anomalies (z-scores)
+- **Market understanding**: Discover correlations between variables
+- **NOT recommended** for small datasets (<10 properties): Statistical significance is limited
 
 ### Step 5: Interpret Results Using Expert Knowledge
 
@@ -582,6 +606,13 @@ After the calculator runs, analyze the results and provide strategic guidance:
      - Free rent periods
      - Operating cost caps
      - Lease flexibility (termination rights, expansion options)
+
+6. **Interpret Statistical Analysis** (if `--stats` flag used)
+   - **R-squared**: How well variables predict rent (>0.70 = strong model)
+   - **Regression Coefficients**: Which variables drive rent most strongly
+   - **Correlations**: Understand relationships (e.g., newer buildings → higher rent)
+   - **Outliers**: Flag properties with unusual characteristics (z-score > 2.0)
+   - **Key Insights**: Auto-generated insights highlight most important patterns
 
 ### Step 6: Generate Executive Summary
 
