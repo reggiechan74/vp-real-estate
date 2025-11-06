@@ -1,13 +1,13 @@
 # Commercial Real Estate Lease Management Toolkit
 
-[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-130%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
 
-**Version 1.4.0** • Released 2025-11-06
+**Version 1.5.0** • Released 2025-11-06
 Built for institutional leasing teams that need production-ready automation across the entire lease lifecycle.
 
 ---
@@ -52,6 +52,7 @@ git clone https://github.com/reggiechan74/leasing-expert.git
 cd leasing-expert
 pip install numpy pandas scipy
 pip install 'markitdown[docx]'        # document conversion
+pip install openpyxl                  # Excel export for MLS extraction
 pip install pytest                    # optional: run test suite
 
 # For PDF report generation (relative valuation, etc.)
@@ -67,6 +68,9 @@ sudo apt-get install -y pandoc wkhtmltopdf  # Linux/Ubuntu
 
 # 2. Run an effective-rent analysis on the same deal
 /effective-rent path/to/lease.pdf
+
+# 3. Extract MLS data to Excel for competitive analysis
+/extract-mls path/to/mls_report.pdf --subject="2550 Stanfield"
 ```
 
 Each command follows the same pipeline:
@@ -155,8 +159,8 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
    - Compares renewal vs. relocation scenarios incorporating relocation capex, downtime, IRR, payback, and blended NER.  
    - Guides negotiation stance on expiring leases and capital allocation.
 
-### Automated Workflows (22 Slash Commands)
-Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (9), Accounting (1), Comparison (4), and Compliance (7).
+### Automated Workflows (24 Slash Commands)
+Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (10), Accounting (1), Comparison (4), and Compliance (7).
 
 | Category | Command | Primary Output |
 |----------|---------|----------------|
@@ -171,6 +175,7 @@ Each slash command packages data extraction instructions, domain expertise, calc
 | Financial Analysis | `/renewal-economics` | Renewal vs. relocation recommendation matrix |
 | Financial Analysis | `/relative-valuation` | Competitive ranking report and pricing adjustments |
 | Financial Analysis | `/recommendation-memo` | VTS approval memo with tenant analysis, financial covenant review, deal comparison |
+| Financial Analysis | `/extract-mls` | Extract MLS data to professionally formatted Excel with subject property highlighting |
 | Accounting | `/ifrs16-calculation` | IFRS/ASC 842 schedules and journal entries |
 | Comparison | `/compare-amendment` | Amendment vs. original summary with key deltas |
 | Comparison | `/compare-offers` | Side-by-side economics for multiple offers |
@@ -254,6 +259,7 @@ leasing-expert/
 ├── Renewal_Analysis/          # Renewal vs relocation modelling
 ├── Rental_Variance/           # Variance decomposition
 ├── Relative_Valuation/        # MCDA competitive positioning (15 variables)
+├── MLS_Extractor/             # MLS PDF to Excel with subject highlighting
 ├── Templates/                 # Lease abstract templates
 ├── Reports/                   # Timestamped analysis outputs
 └── .claude/                   # Automation commands, skills, agents
@@ -295,7 +301,7 @@ Academic foundations from R. Chan’s work on Ponzi Rental Rate and rental term 
 ## Support
 
 **Maintainer**: Claude Code
-**Version**: 1.4.0 (2025-11-06 release)
+**Version**: 1.5.0 (2025-11-06 release)
 For issues and feature requests, open a ticket in the repository.
 For professional services, engage qualified leasing, legal, accounting, or valuation advisors.
 

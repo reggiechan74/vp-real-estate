@@ -12,11 +12,12 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ├── IFRS16_Calculator/      # IFRS 16/ASC 842 lease accounting (liability, ROU asset, schedules)
 ├── Credit_Analysis/        # Tenant credit scoring and financial analysis
 ├── Renewal_Analysis/       # Renewal vs. relocation economic analysis
+├── MLS_Extractor/          # MLS PDF to Excel extraction with subject highlighting
 ├── Planning/               # Source lease documents
 ├── Templates/              # Industrial/Office lease templates (24 sections, MD/JSON/Schema)
 ├── Reports/                # Generated abstracts & analysis (timestamp prefix required)
 └── .claude/                # Claude Code configuration
-    ├── commands/           # Slash commands (21 commands in 5 categories)
+    ├── commands/           # Slash commands (24 commands in 5 categories)
     │   ├── Abstraction/        # abstract-lease, critical-dates
     │   ├── Financial_Analysis/ # effective-rent, renewal-economics, tenant-credit, option-value, rental-variance, etc.
     │   ├── Accounting/         # ifrs16-calculation
@@ -41,7 +42,7 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 
 **Example**: `2025-10-31_143022_lease_abstract_acme_corp.md`
 
-## Slash Commands (22 total)
+## Slash Commands (24 total)
 
 All commands follow **PDF → JSON → Python → Report** automated workflow.
 
@@ -49,7 +50,7 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 - `/abstract-lease` - Extract lease terms using 24-section template
 - `/critical-dates` - Extract timeline and critical dates
 
-### Financial Analysis (9)
+### Financial Analysis (10)
 - `/effective-rent` - NER, NPV, breakeven (Ponzi Rental Rate)
 - `/renewal-economics` - Renewal vs. relocation NPV analysis
 - `/tenant-credit` - Credit scoring and risk assessment
@@ -59,6 +60,7 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 - `/rental-variance` - Rental variance decomposition by rate, area, and term
 - `/relative-valuation` - MCDA competitive positioning with 25 variables, personas, and filters
 - `/recommendation-memo` - VTS approval memo with tenant analysis and deal comparison
+- `/extract-mls` - Extract MLS data to professionally formatted Excel with subject highlighting
 
 ### Accounting (1)
 - `/ifrs16-calculation` - IFRS 16/ASC 842 lease accounting
@@ -119,6 +121,9 @@ Use the Skill tool to invoke deep expertise on specific agreement types:
 /effective-rent path/to/lease.pdf
 /tenant-credit path/to/financials.pdf
 /rental-variance path/to/variance_data.xlsx
+
+# MLS extraction to Excel
+/extract-mls path/to/mls_report.pdf --subject="2550 Stanfield"
 
 # IFRS 16 accounting
 /ifrs16-calculation path/to/lease.pdf 5.5
