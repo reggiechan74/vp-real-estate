@@ -8,17 +8,17 @@
 
 ## EXECUTIVE SUMMARY
 
-After analyzing the Mississauga industrial MLS dataset (23 properties), we've identified **8 high-impact fields** consistently available in MLS reports that should be added to the relative valuation model to improve competitive positioning accuracy.
+After analyzing the Mississauga industrial MLS dataset (23 properties), we've enhanced the relative valuation model to include **all 8 high-impact MLS fields** identified in Phase 1 plus **3 operational controls** delivered in Phase 2. The model now reflects the actual data coverage observed in-market while supporting persona-specific weighting and must-have filters.
 
-**Current Variables**: 15 (9 core + 6 optional)
-**Proposed Total**: 23 (9 core + 14 optional)
-**New Variables**: 8
+**Current Variables**: 25 (9 core + 16 optional)
+**Phase 1 Adds**: 8 optional variables
+**Phase 2 Adds**: 3 optional variables + persona weights + must-have filters
 
 ---
 
 ## CURRENT STATE
 
-### Currently Tracked (15 variables)
+### Baseline (Pre-Enhancement) Coverage – 15 Variables
 
 **Core Variables (9):**
 1. Net Asking Rent ($/SF) - 16% weight
@@ -41,6 +41,45 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
 
 ---
 
+### Current Model Coverage – 25 Variables
+
+**Core Variables (9):**
+1. Net Asking Rent ($/SF) - 11%
+2. Parking Ratio (spaces/1,000 SF) - 9%
+3. TMI ($/SF) - 9%
+4. Clear Height (ft) - 7%
+5. % Office Space - 6%
+6. Distance (km) - 7%
+7. Area Difference (SF) - 7%
+8. Building Age (Years) - 4%
+9. Class (A/B/C) - 5%
+
+**Optional Variables – Existing (6):**
+10. Shipping Doors - Truck Level (TL) - 4%
+11. Shipping Doors - Drive-In (DI) - 3%
+12. Power (Amps) - 3%
+13. Trailer Parking (Y/N) - 2%
+14. Secure Shipping (Y/N) - 0%
+15. Excess Land (Y/N) - 0%
+
+**Optional Variables – Phase 1 (7):**
+16. Bay Depth (ft) - 4%
+17. Lot Size (Acres) - 3%
+18. HVAC Coverage - 3%
+19. Sprinkler Type - 3%
+20. Rail Access (Y/N) - 2%
+21. Crane (Y/N) - 2%
+22. Occupancy Status - 0% (tracked but currently unweighted)
+
+**Optional Variables – Phase 2 (3):**
+23. Grade Level Doors - 2%
+24. Days on Market - 2%
+25. Zoning Classification - 2%
+
+> Fields with 0% weight remain in the dataset for completeness and filtering but do not affect scoring until business priorities change.
+
+---
+
 ## RECOMMENDED ADDITIONS
 
 ### HIGH PRIORITY (Add Immediately)
@@ -49,7 +88,7 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
 **MLS Field**: `Bay Size` (e.g., "55 x 52" → 55 ft)
 **Extraction**: Parse first number from "Bay Size" field
 **Sample Values**: 40 ft, 44 ft, 52 ft, 55 ft, 56 ft
-**Proposed Weight**: 5%
+**Proposed Weight**: 4%
 
 **Rationale**:
 - Directly impacts racking efficiency and storage density
@@ -65,7 +104,7 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
 #### 2. **Lot Size (Acres)** - HIGH IMPACT
 **MLS Field**: `Lot Irreg` or `Lot Size Area`
 **Sample Values**: 4.95 acres, 6 acres, 11.112 acres, 37.6 acres
-**Proposed Weight**: 4%
+**Proposed Weight**: 3%
 
 **Rationale**:
 - Expansion potential - critical for growing tenants
@@ -169,8 +208,8 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
 #### 8. **Occupancy Status** - IMMEDIATE AVAILABILITY
 **MLS Field**: `Occup` (Vacant/Tenant)
 **Sample Values**: Vacant, Tenant
-**Proposed Weight**: 2%
-**Data Type**: Binary (Vacant=1, Tenant=2)
+**Proposed Weight**: 0% (monitored for future weighting once data density improves)
+**Data Type**: Ordinal (Vacant=1, Tenant=2)
 
 **Rationale**:
 - Vacant = immediate occupancy (30-60 days)
@@ -183,12 +222,12 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
 
 ---
 
-## MEDIUM PRIORITY (Consider for Phase 2)
+## PHASE 2 ENHANCEMENTS (DELIVERED)
 
 #### 9. **Grade Level Doors**
 **Field**: `Grade Level`
 **Weight**: 2%
-**Rationale**: Courier vans, small trucks, less critical than TL doors
+**Rationale**: Courier vans, small trucks, less critical than TL doors but differentiates light industrial users
 
 #### 10. **Days on Market (DOM)**
 **Field**: `DOM`
@@ -198,22 +237,22 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
 #### 11. **Zoning Classification**
 **Field**: `Zoning`
 **Weight**: 2%
-**Rationale**: Permitted use restrictions, but usually pre-screened
+**Rationale**: Permitted use restrictions, but usually pre-screened; supports persona filtering and compliance reviews
 
 ---
 
 ## REVISED WEIGHTING SCHEME
 
-### Option A: Add 8 new variables, redistribute weights
+### Option A: Redistributed weights across 25-variable schema
 
 | Variable | Current | Proposed | Change |
 |----------|---------|----------|--------|
 | **CORE VARIABLES (9)** | | | |
 | Net Asking Rent | 16% | 11% | -5% |
-| Parking Ratio | 15% | 10% | -5% |
+| Parking Ratio | 15% | 9% | -6% |
 | TMI | 14% | 9% | -5% |
 | Clear Height | 8% | 7% | -1% |
-| % Office Space | 8% | 7% | -1% |
+| % Office Space | 8% | 6% | -2% |
 | Distance | 8% | 7% | -1% |
 | Area Difference | 8% | 7% | -1% |
 | Building Age (was Year Built) | 6% | 4% | -2% |
@@ -225,18 +264,21 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
 | Trailer Parking | 2% | 2% | 0% |
 | Secure Shipping | 0% | 0% | 0% |
 | Excess Land | 0% | 0% | 0% |
-| **OPTIONAL - NEW (8)** | | | |
-| Bay Depth | - | 5% | +5% |
-| Lot Size (Acres) | - | 4% | +4% |
+| **OPTIONAL - PHASE 1 (7)** | | | |
+| Bay Depth | - | 4% | +4% |
+| Lot Size (Acres) | - | 3% | +3% |
 | HVAC Coverage | - | 3% | +3% |
 | Sprinkler Type | - | 3% | +3% |
 | Rail Access | - | 2% | +2% |
 | Crane | - | 2% | +2% |
-| Occupancy Status | - | 2% | +2% |
-| Grade Level Doors | - | 0% | +0% (Phase 2) |
+| Occupancy Status | - | 0% | +0% (tracked) |
+| **OPTIONAL - PHASE 2 (3)** | | | |
+| Grade Level Doors | - | 2% | +2% |
+| Days on Market | - | 2% | +2% |
+| Zoning Classification | - | 2% | +2% |
 | **TOTAL** | **100%** | **100%** | |
 
-**Allocation check**: Core variables move from 88% → 67% (−21%), existing optional fields remain at 12%, and the seven new optional fields receive the reallocated 21%. Building Age replaces Year Built within the core bucket, so its 6% → 4% adjustment is already included in the core reduction. Totals reconcile to 100%.
+**Allocation check**: Core variables move from 88% → 65% (−23%), existing optional fields remain at 12%, Phase 1 variables receive 17%, and Phase 2 Batch 2 variables receive 6%. Building Age replaces Year Built within the core bucket. Totals reconcile to 100%.
 
 ---
 
@@ -253,9 +295,10 @@ After analyzing the Mississauga industrial MLS dataset (23 properties), we've id
   "building_age_years": 5,        // Calculated: 2025 - year_built
   "rail_access": false,           // Boolean
   "crane": false,                 // Boolean
-  "occupancy_status": 1,          // Vacant=1, Tenant=2 (ordinal)
+  "occupancy_status": 1,          // Vacant=1, Tenant=2 (ordinal, currently 0% weight)
   "grade_level_doors": 0,         // Integer (Phase 2)
-  "days_on_market": 119           // Integer (Phase 2)
+  "days_on_market": 119,          // Integer (Phase 2)
+  "zoning": "E2-21"               // String (Phase 2)
 }
 ```
 
@@ -325,6 +368,22 @@ else:
 
 Always prefer sourcing `analysis_year` from the comparable file's `analysis_date` field so results remain consistent regardless of when the code runs.
 
+#### Grade Level Doors (Phase 2)
+```python
+grade_level_doors = int(property.get('Grade Level', 0) or 0)
+```
+
+#### Days on Market (Phase 2)
+```python
+dom_raw = property.get('DOM')
+days_on_market = int(dom_raw) if dom_raw not in (None, '') else 0
+```
+
+#### Zoning (Phase 2)
+```python
+zoning = (property.get('Zoning') or '').strip()
+```
+
 ---
 
 ## IMPACT ANALYSIS
@@ -369,11 +428,11 @@ Based on the Mississauga dataset, adding these 8 variables will likely:
 5. ✅ Compare old vs new rankings to validate model
 
 ### Phase 2: Future Enhancement
-6. Add Days on Market (DOM) - landlord motivation
-7. Add Grade Level Doors - alternative shipping
-8. Add Zoning classification - use restrictions
-9. Create tenant persona weights (3PL vs Manufacturing vs Office)
-10. Add "must-have" filters (e.g., Rail=Y for certain users)
+6. Monitor data availability for secure shipping, excess land, and occupancy status to determine when to assign non-zero weights
+7. Expand persona libraries beyond 3PL / Manufacturing / Office (e.g., cold storage, light industrial)
+8. Introduce scenario toggles to test optional field emphasis (e.g., boost rail for specific mandates)
+9. Automate documentation sync between calculator and slash command schemas
+10. Publish guidance on when to activate must-have filters in client deliverables
 
 ---
 
@@ -391,7 +450,7 @@ Based on the Mississauga dataset, adding these 8 variables will likely:
 - 2550 Stanfield (2020) should rank higher than 6975 Pacific (16-30 years old)
 
 **Test 4**: Vacant should rank higher than Tenant-occupied
-- All else equal, vacant properties receive 2% of the total weighting via the Occupancy Status variable
+- Currently monitored as a zero-weight metric; promote to non-zero weight once dataset coverage improves
 
 ---
 
