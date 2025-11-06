@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lease-abstract.local/schemas/weights_config.json",
+  "title": "Relative Valuation Weights Configuration",
+  "description": "Schema for tenant persona weight configurations",
+  "type": "object",
+  "required": ["version", "personas"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Configuration version",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last update date (YYYY-MM-DD)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Overall description of this configuration"
+    },
+    "personas": {
+      "type": "object",
+      "description": "Tenant persona weight profiles",
+      "minProperties": 1,
+      "patternProperties": {
+        "^[a-z0-9_]+$": {
+          "type": "object",
+          "required": ["name", "weights"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Human-readable persona name"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of this persona"
+            },
+            "rationale": {
+              "type": "string",
+              "description": "Explanation of weight allocation strategy"
+            },
+            "weights": {
+              "type": "object",
+              "required": ["core_variables"],
+              "properties": {
+                "core_variables": {
+                  "type": "object",
+                  "description": "Core variable weights (required)",
+                  "required": [
+                    "net_asking_rent",
+                    "parking_ratio",
+                    "tmi",
+                    "clear_height_ft",
+                    "pct_office_space",
+                    "distance_km",
+                    "area_difference",
+                    "building_age_years",
+                    "class"
+                  ],
+                  "properties": {
+                    "net_asking_rent": { "$ref": "#/$defs/weight" },
+                    "parking_ratio": { "$ref": "#/$defs/weight" },
+                    "tmi": { "$ref": "#/$defs/weight" },
+                    "clear_height_ft": { "$ref": "#/$defs/weight" },
+                    "pct_office_space": { "$ref": "#/$defs/weight" },
+                    "distance_km": { "$ref": "#/$defs/weight" },
+                    "area_difference": { "$ref": "#/$defs/weight" },
+                    "building_age_years": { "$ref": "#/$defs/weight" },
+                    "class": { "$ref": "#/$defs/weight" }
+                  },
+                  "additionalProperties": false
+                },
+                "optional_variables": {
+                  "type": "object",
+                  "description": "Optional variable weights",
+                  "properties": {
+                    "shipping_doors_tl": { "$ref": "#/$defs/weight" },
+                    "shipping_doors_di": { "$ref": "#/$defs/weight" },
+                    "power_amps": { "$ref": "#/$defs/weight" },
+                    "trailer_parking": { "$ref": "#/$defs/weight" },
+                    "secure_shipping": { "$ref": "#/$defs/weight" },
+                    "excess_land": { "$ref": "#/$defs/weight" },
+                    "bay_depth_ft": { "$ref": "#/$defs/weight" },
+                    "lot_size_acres": { "$ref": "#/$defs/weight" },
+                    "hvac_coverage": { "$ref": "#/$defs/weight" },
+                    "sprinkler_type": { "$ref": "#/$defs/weight" },
+                    "rail_access": { "$ref": "#/$defs/weight" },
+                    "crane": { "$ref": "#/$defs/weight" },
+                    "occupancy_status": { "$ref": "#/$defs/weight" },
+                    "grade_level_doors": { "$ref": "#/$defs/weight" },
+                    "days_on_market": { "$ref": "#/$defs/weight" },
+                    "zoning": { "$ref": "#/$defs/weight" }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Validation rules for weights",
+      "properties": {
+        "total_weight_tolerance": {
+          "type": "number",
+          "description": "Maximum deviation from 1.0 for total weights",
+          "minimum": 0,
+          "maximum": 0.01,
+          "default": 0.001
+        },
+        "min_weight": {
+          "type": "number",
+          "description": "Minimum allowed weight for any variable",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.00
+        },
+        "max_weight": {
+          "type": "number",
+          "description": "Maximum allowed weight for any variable",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.25
+        },
+        "required_core_variables": {
+          "type": "array",
+          "description": "List of required core variables",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "minItems": 9
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Metadata about weight calibration",
+      "properties": {
+        "calibration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "calibration_dataset": {
+          "type": "string",
+          "description": "Dataset used for calibration"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "weight": {
+      "type": "number",
+      "description": "Weight as decimal (0.0 to 1.0) or percentage (0 to 100)",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

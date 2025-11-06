@@ -21,7 +21,7 @@ import json
 import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from typing import List, Dict, Tuple, Any
+from typing import List, Dict, Tuple, Any, Optional
 from dataclasses import dataclass, asdict
 from pathlib import Path
 import sys
@@ -112,11 +112,14 @@ class CompetitiveAnalysis:
     gap_analysis: Dict[str, Any]
     sensitivity_scenarios: List[Dict[str, Any]]
     all_properties: List[Dict[str, Any]]
+    weights_used: Dict[str, float]  # Actual weights used in analysis
 
 
 def load_comparable_data(json_path: str) -> Dict[str, Any]:
     """
     Load comparable data from JSON file.
+
+    Automatically loads default weights if not provided in the input JSON.
 
     Args:
         json_path: Path to JSON file containing comparable data
@@ -132,11 +135,16 @@ def load_comparable_data(json_path: str) -> Dict[str, Any]:
         with open(json_path, 'r') as f:
             data = json.load(f)
 
-        # Validate required fields
-        required_fields = ['analysis_date', 'market', 'subject_property', 'comparables', 'weights']
+        # Validate required fields (except weights - will be auto-loaded if missing)
+        required_fields = ['analysis_date', 'market', 'subject_property', 'comparables']
         for field in required_fields:
             if field not in data:
                 raise ValueError(f"Missing required field: {field}")
+
+        # AUTO-LOAD DEFAULT WEIGHTS IF MISSING
+        if 'weights' not in data or not data['weights']:
+            print("[INFO] No weights specified in input JSON - loading default persona weights")
+            data['weights'] = get_tenant_persona_weights(persona="default")
 
         return data
 
@@ -322,16 +330,50 @@ def detect_available_variables(properties: List[Dict[str, Any]]) -> Dict[str, bo
     return available
 
 
-def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
+def get_tenant_persona_weights(persona: str = "default",
+                               config_path: Optional[str] = None) -> Dict[str, float]:
     """
     Get weight profiles tailored to specific tenant personas.
 
+    Now loads from weights_config.json. Falls back to hardcoded defaults
+    if config file unavailable.
+
     Args:
         persona: Tenant type - "default", "3pl", "manufacturing", "office"
+        config_path: Optional path to custom weights configuration file
 
     Returns:
         Dictionary of variable weights optimized for the tenant persona
     """
+    # Try loading from external config (package-relative first, then absolute)
+    get_weights = None
+    import_error: Optional[Exception] = None
+
+    try:
+        from .weights_loader import get_persona_weights as get_weights  # type: ignore
+    except ImportError as exc:
+        try:
+            from weights_loader import get_persona_weights as get_weights  # type: ignore
+        except ImportError as exc_abs:
+            import_error = exc_abs
+        else:
+            import_error = exc
+    else:
+        import_error = None
+
+    if get_weights:
+        try:
+            weights = get_weights(persona, config_path)
+            print(f"[INFO] Loaded persona '{persona}' from weights_config.json")
+            return weights
+        except Exception as e:
+            print(f"[WARNING] Could not load weights config: {e}")
+    else:
+        detail = f" ({import_error})" if import_error else ""
+        print(f"[WARNING] weights_loader module not found{detail}")
+
+    # Fallback to hardcoded defaults
+    print("[INFO] Using hardcoded default weights")
     # Default/balanced weights (25 variables)
     default_weights = {
         # Core variables
@@ -892,11 +934,13 @@ These properties offer the best value propositions in the market:
 
         report += f"| {comp['final_rank']} | {comp['address']} {comp.get('unit', '')} | {area_sf} | ${comp.get('net_asking_rent', 0):.2f} | ${comp.get('tmi', 0):.2f} | ${comp.get('gross_rent', 0):.2f} | {clear_ht} | {ship_tl} | {ship_di} | {power} | {trailer} | {avail} | {comp['weighted_score']:.2f} |\n"
 
-    # Gap Analysis
+    # Gap Analysis - wrap in no-break div to keep together
     gap = results.gap_analysis
     report += f"""
 
 ---
+
+<div class="no-break">
 
 ## 📉 GAP ANALYSIS
 
@@ -910,6 +954,8 @@ These properties offer the best value propositions in the market:
 | **Gap to Close** | **{gap.get('gap_to_rank_3', 0):.2f} points** |
 
 **To achieve Rank #3 and become competitive, subject must improve weighted score by {gap.get('gap_to_rank_3', 0):.2f} points.**
+
+</div>
 
 ---
 
@@ -974,6 +1020,22 @@ Price reduction alone may not be sufficient to overcome structural disadvantages
     report += recommendation
 
     # Methodology footnote
+    # Calculate total weight to prove it equals 100%
+    total_weight = sum(results.weights_used.values())
+
+    # Sort weights by importance (descending)
+    sorted_weights = sorted(results.weights_used.items(), key=lambda x: -x[1])
+
+    # Build weights table
+    weights_table = "\n| Variable | Weight |\n|----------|--------|\n"
+    for var_name, weight in sorted_weights:
+        # Format variable name for display
+        display_name = var_name.replace('_', ' ').title()
+        weights_table += f"| {display_name} | {weight:.1%} |\n"
+
+    # Add total row
+    weights_table += f"| **TOTAL** | **{total_weight:.1%}** |\n"
+
     report += f"""
 ---
 
@@ -981,18 +1043,17 @@ Price reduction alone may not be sufficient to overcome structural disadvantages
 
 This analysis uses a **multi-criteria weighted ranking system** to objectively assess competitive position:
 
-1. **Data Collection**: Extract 9 key variables from comparable evidence
-2. **Variable Weighting**: Assign importance weights totaling 100% (Net Rent 16%, Parking 15%, TMI 14%, etc.)
+1. **Data Collection**: Extract property attributes from comparable evidence
+2. **Variable Weighting**: Assign importance weights based on tenant priorities
 3. **Independent Ranking**: Rank each variable 1 (best) to X (worst) across all properties
 4. **Weighted Score Calculation**: Sum of (rank × weight) for all variables
 5. **Final Re-Ranking**: Sort properties by weighted score (lower = better)
 
-**Key Variables**:
-- **Net Asking Rent** (16%) - Most critical factor
-- **Parking Ratio** (15%) - Essential for industrial/suburban office
-- **TMI** (14%) - Total occupancy cost driver
-- **Clear Height, % Office, Distance, Year Built, Area Match** (8-10% each)
-- **Class** (7%) - Quality tier
+### **Weights Used in This Analysis**
+
+{weights_table}
+
+✅ **Weights sum to {total_weight:.1%}** - calculation verified
 
 **Lower weighted score = fewer negative rank points = better competitive position**
 
@@ -1420,7 +1481,8 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         top_competitors=top_10,
         gap_analysis=gap_analysis,
         sensitivity_scenarios=sensitivity_scenarios,
-        all_properties=all_properties_data
+        all_properties=all_properties_data,
+        weights_used=dynamic_weights
     )
 
     return results
@@ -1453,6 +1515,8 @@ Examples:
     parser.add_argument('--full', action='store_true', help='Show all competitors in report (default: top 10 only)')
     parser.add_argument('--persona', choices=['default', '3pl', 'manufacturing', 'office'], default='default',
                         help='Tenant persona for weight optimization: default (balanced), 3pl (distribution focus), manufacturing (heavy industry), office (professional services)')
+    parser.add_argument('--weights-config', type=str,
+                        help='Path to custom weights configuration file (default: weights_config.json)')
     parser.add_argument('--interactive', action='store_true', help='Interactive mode (not implemented in Phase 1)')
 
     args = parser.parse_args()
@@ -1470,10 +1534,13 @@ Examples:
     data = load_comparable_data(args.input)
 
     # Apply tenant persona weights if specified
-    if args.persona != 'default':
-        persona_weights = get_tenant_persona_weights(args.persona)
+    if args.persona != 'default' or args.weights_config:
+        persona_weights = get_tenant_persona_weights(args.persona, args.weights_config)
         data['weights'] = persona_weights
-        print(f"   Using {args.persona.upper()} tenant persona weight profile")
+        if args.weights_config:
+            print(f"   Using {args.persona.upper()} tenant persona weight profile from {args.weights_config}")
+        else:
+            print(f"   Using {args.persona.upper()} tenant persona weight profile")
 
     # Run analysis
     results = run_analysis(data)

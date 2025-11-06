@@ -1,0 +1,183 @@
+{
+  "$schema": "./weights_config_schema.json",
+  "version": "2.0",
+  "last_updated": "2025-11-06",
+  "description": "Weight configurations for relative valuation tenant personas",
+
+  "personas": {
+    "default": {
+      "name": "Default/Balanced",
+      "description": "Balanced weight profile for general industrial tenants",
+      "weights": {
+        "core_variables": {
+          "net_asking_rent": 0.11,
+          "parking_ratio": 0.09,
+          "tmi": 0.09,
+          "clear_height_ft": 0.07,
+          "pct_office_space": 0.06,
+          "distance_km": 0.07,
+          "area_difference": 0.07,
+          "building_age_years": 0.04,
+          "class": 0.05
+        },
+        "optional_variables": {
+          "shipping_doors_tl": 0.04,
+          "shipping_doors_di": 0.03,
+          "power_amps": 0.03,
+          "trailer_parking": 0.02,
+          "secure_shipping": 0.00,
+          "excess_land": 0.00,
+          "bay_depth_ft": 0.04,
+          "lot_size_acres": 0.03,
+          "hvac_coverage": 0.03,
+          "sprinkler_type": 0.03,
+          "rail_access": 0.02,
+          "crane": 0.02,
+          "occupancy_status": 0.00,
+          "grade_level_doors": 0.02,
+          "days_on_market": 0.02,
+          "zoning": 0.02
+        }
+      }
+    },
+
+    "3pl": {
+      "name": "3PL/Distribution",
+      "description": "Optimized for third-party logistics and distribution operations",
+      "rationale": "Emphasizes bay depth, clear height, shipping doors, and trailer parking. De-emphasizes office space and class.",
+      "weights": {
+        "core_variables": {
+          "net_asking_rent": 0.12,
+          "parking_ratio": 0.08,
+          "tmi": 0.09,
+          "clear_height_ft": 0.10,
+          "pct_office_space": 0.02,
+          "distance_km": 0.08,
+          "area_difference": 0.07,
+          "building_age_years": 0.03,
+          "class": 0.02
+        },
+        "optional_variables": {
+          "shipping_doors_tl": 0.06,
+          "shipping_doors_di": 0.04,
+          "power_amps": 0.02,
+          "trailer_parking": 0.04,
+          "secure_shipping": 0.00,
+          "excess_land": 0.00,
+          "bay_depth_ft": 0.07,
+          "lot_size_acres": 0.04,
+          "hvac_coverage": 0.01,
+          "sprinkler_type": 0.04,
+          "rail_access": 0.01,
+          "crane": 0.01,
+          "occupancy_status": 0.00,
+          "grade_level_doors": 0.01,
+          "days_on_market": 0.02,
+          "zoning": 0.02
+        }
+      }
+    },
+
+    "manufacturing": {
+      "name": "Manufacturing",
+      "description": "Optimized for manufacturing operations requiring heavy power, crane, and rail access",
+      "rationale": "Emphasizes clear height, power, crane, rail access, and bay depth. De-emphasizes office space and distance.",
+      "weights": {
+        "core_variables": {
+          "net_asking_rent": 0.09,
+          "parking_ratio": 0.08,
+          "tmi": 0.08,
+          "clear_height_ft": 0.09,
+          "pct_office_space": 0.03,
+          "distance_km": 0.04,
+          "area_difference": 0.07,
+          "building_age_years": 0.05,
+          "class": 0.03
+        },
+        "optional_variables": {
+          "shipping_doors_tl": 0.05,
+          "shipping_doors_di": 0.03,
+          "power_amps": 0.05,
+          "trailer_parking": 0.02,
+          "secure_shipping": 0.00,
+          "excess_land": 0.00,
+          "bay_depth_ft": 0.06,
+          "lot_size_acres": 0.04,
+          "hvac_coverage": 0.02,
+          "sprinkler_type": 0.03,
+          "rail_access": 0.04,
+          "crane": 0.05,
+          "occupancy_status": 0.00,
+          "grade_level_doors": 0.01,
+          "days_on_market": 0.02,
+          "zoning": 0.02
+        }
+      }
+    },
+
+    "office": {
+      "name": "Office/Flex",
+      "description": "Optimized for office or flex space with high office component",
+      "rationale": "Emphasizes office space, class, HVAC, distance, and parking. De-emphasizes clear height, bay depth, and crane.",
+      "weights": {
+        "core_variables": {
+          "net_asking_rent": 0.13,
+          "parking_ratio": 0.12,
+          "tmi": 0.10,
+          "clear_height_ft": 0.02,
+          "pct_office_space": 0.12,
+          "distance_km": 0.10,
+          "area_difference": 0.08,
+          "building_age_years": 0.05,
+          "class": 0.08
+        },
+        "optional_variables": {
+          "shipping_doors_tl": 0.01,
+          "shipping_doors_di": 0.01,
+          "power_amps": 0.02,
+          "trailer_parking": 0.00,
+          "secure_shipping": 0.00,
+          "excess_land": 0.00,
+          "bay_depth_ft": 0.00,
+          "lot_size_acres": 0.02,
+          "hvac_coverage": 0.06,
+          "sprinkler_type": 0.02,
+          "rail_access": 0.00,
+          "crane": 0.00,
+          "occupancy_status": 0.00,
+          "grade_level_doors": 0.02,
+          "days_on_market": 0.02,
+          "zoning": 0.02
+        }
+      }
+    }
+  },
+
+  "validation": {
+    "total_weight_tolerance": 0.001,
+    "min_weight": 0.00,
+    "max_weight": 0.25,
+    "required_core_variables": [
+      "net_asking_rent",
+      "parking_ratio",
+      "tmi",
+      "clear_height_ft",
+      "pct_office_space",
+      "distance_km",
+      "area_difference",
+      "building_age_years",
+      "class"
+    ]
+  },
+
+  "metadata": {
+    "calibration_date": "2025-11-06",
+    "calibration_dataset": "Mississauga Industrial 100-400k SF (23 properties)",
+    "notes": [
+      "Weights optimized based on GTA industrial market (Nov 2025)",
+      "Core variables (9) represent 65% of total weight",
+      "Optional variables (16) represent 35% of total weight",
+      "Weights automatically redistribute when optional variables unavailable"
+    ]
+  }
+}

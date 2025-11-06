@@ -19,7 +19,7 @@ h2 {
   font-size: 13pt;
   font-weight: bold;
   color: #2c3e50;
-  margin-top: 8px;
+  margin-top: 20px;
   margin-bottom: 6px;
 }
 
@@ -72,4 +72,31 @@ code, pre {
 strong {
   font-weight: 600;
   color: #1a1a1a;
+}
+
+/* Page break controls */
+h1, h2, h3 {
+  page-break-after: avoid;
+  page-break-inside: avoid;
+}
+
+/* Keep tables together - avoid breaking them across pages */
+table {
+  page-break-inside: avoid;
+}
+
+/* Keep table rows together */
+tr {
+  page-break-inside: avoid;
+  page-break-after: auto;
+}
+
+/* Force page break before major sections if needed */
+.page-break-before {
+  page-break-before: always;
+}
+
+/* Avoid breaking these elements */
+.no-break {
+  page-break-inside: avoid;
 }
