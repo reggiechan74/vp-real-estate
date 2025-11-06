@@ -511,6 +511,31 @@ class TestScenarioModeling(unittest.TestCase):
         self.assertEqual(base.downtime_months, 3)
         self.assertEqual(pessimistic.downtime_months, 6)
 
+        total_sf = sum(lease.rentable_area_sf for lease in portfolio.leases)
+        total_rent = sum(lease.current_annual_rent for lease in portfolio.leases)
+
+        # Expected vacancy SF should always match portfolio total
+        self.assertEqual(optimistic.expected_vacancy_sf, total_sf)
+        self.assertEqual(base.expected_vacancy_sf, total_sf)
+        self.assertEqual(pessimistic.expected_vacancy_sf, total_sf)
+
+        # Expected vacancy rent scales with downtime months
+        self.assertAlmostEqual(
+            optimistic.expected_vacancy_rent,
+            total_rent * (optimistic.downtime_months / 12.0),
+            places=2
+        )
+        self.assertAlmostEqual(
+            base.expected_vacancy_rent,
+            total_rent * (base.downtime_months / 12.0),
+            places=2
+        )
+        self.assertAlmostEqual(
+            pessimistic.expected_vacancy_rent,
+            total_rent * (pessimistic.downtime_months / 12.0),
+            places=2
+        )
+
     def test_scenario_specific_renewal_rates(self):
         """Scenarios should use different renewal rates"""
         portfolio = PortfolioInput(
@@ -564,6 +589,48 @@ class TestScenarioModeling(unittest.TestCase):
 
         # Pessimistic should be more negative (worse)
         self.assertLess(pessimistic.noi_impact_npv, optimistic.noi_impact_npv)
+
+    def test_multi_lease_renewal_counts(self):
+        """Multi-lease portfolios should floor renewal counts per scenario"""
+        leases = [
+            Lease(
+                property_address=f"Property {i}",
+                tenant_name=f"Tenant {i}",
+                rentable_area_sf=50000,
+                current_annual_rent=250000,
+                lease_expiry_date=date(2026 + i, 12, 31),
+                renewal_options=[],
+                tenant_credit_rating="BBB",
+                below_market_pct=0.0
+            )
+            for i in range(3)
+        ]
+
+        portfolio = PortfolioInput(
+            portfolio_name="Multi Lease",
+            analysis_date=self.analysis_date,
+            leases=leases,
+            assumptions=Assumptions()
+        )
+
+        schedule = calculate_expiry_schedule(portfolio)
+        scenarios = calculate_scenario_analysis(portfolio, schedule)
+
+        optimistic = [s for s in scenarios if s.scenario_name == "Optimistic"][0]
+        base = [s for s in scenarios if s.scenario_name == "Base"][0]
+        pessimistic = [s for s in scenarios if s.scenario_name == "Pessimistic"][0]
+
+        # int(3 × 0.80) = 2 renewals, remaining lease rolls to new tenant
+        self.assertEqual(optimistic.leases_renewed, 2)
+        self.assertEqual(optimistic.leases_new_tenant, 1)
+
+        # int(3 × 0.65) = 1 renewal, 2 new tenants
+        self.assertEqual(base.leases_renewed, 1)
+        self.assertEqual(base.leases_new_tenant, 2)
+
+        # int(3 × 0.50) = 1 renewal after flooring, 2 new tenants
+        self.assertEqual(pessimistic.leases_renewed, 1)
+        self.assertEqual(pessimistic.leases_new_tenant, 2)
 
 
 class TestEdgeCases(unittest.TestCase):
