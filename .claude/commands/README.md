@@ -4,7 +4,7 @@ Automated workflows for commercial real estate lease analysis.
 
 ## Structure
 
-Commands are organized into 5 categories (22 total):
+Commands are organized into 5 categories (24 total):
 
 ### 1. Abstraction (2 commands)
 
@@ -13,7 +13,7 @@ Extract and structure lease data from documents.
 - **`/abstract-lease`** - Extract key terms using 24-section template (industrial/office)
 - **`/critical-dates`** - Extract timeline and critical dates
 
-### 2. Financial Analysis (8 commands)
+### 2. Financial Analysis (10 commands)
 
 Economic calculations and investment analysis.
 
@@ -24,6 +24,8 @@ Economic calculations and investment analysis.
 - **`/market-comparison`** - Market rent benchmarking
 - **`/rollover-analysis`** - Portfolio lease expiry analysis
 - **`/rental-variance`** - Rental variance decomposition by rate, area, and term
+- **`/relative-valuation`** - MCDA competitive positioning with 25 variables, tenant personas, and landscape PDF reports
+- **`/extract-mls`** - Extract MLS property data to professional Excel spreadsheet (auto-detect subject, perfect formatting)
 - **`/recommendation-memo`** - VTS approval memo with tenant analysis, financial covenant review, and deal terms comparison
 
 ### 3. Accounting (1 command)
