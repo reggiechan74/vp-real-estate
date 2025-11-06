@@ -16,29 +16,36 @@ Determine where the subject property ranks relative to market comparables and pr
 
 ## Core Methodology: MCDA Framework
 
-### The Variable System: Core (9) + Optional (6) = Up to 15 Total
+### The Variable System: Core (9) + Optional (14) = Up to 23 Total
 
-**Dynamic Weighting**: The system uses 9 core variables (always included) plus 6 optional variables (included only if sufficient data is available - 50% threshold for numeric fields, at least one True for boolean fields). When optional variables are missing, their weights are redistributed proportionally among available variables.
+**Dynamic Weighting**: The system uses 9 core variables (always included) plus 14 optional variables (included only if sufficient data is available - 50% threshold for numeric fields, at least one True for boolean fields). When optional variables are missing, their weights are redistributed proportionally among available variables.
 
-#### Full Variable Set (When All Data Available)
+#### Full Variable Set (When All Data Available - 23 Variables)
 
 | Variable | Weight | Type | Rationale |
 |----------|--------|------|-----------|
-| **Net Asking Rent** | 14% | Core | **Most critical** - Direct impact on tenant budget |
-| **Parking Ratio** | 13% | Core | **Second most critical** - Often deal-breaker for industrial/office |
-| **TMI** | 12% | Core | Affects total occupancy cost |
-| **Clear Height** | 9% | Core | Critical for industrial operations |
-| **% Office Space** | 9% | Core | Mix affects usability |
-| **Distance** | 9% | Core | Location convenience |
-| **Area Difference** | 9% | Core | Size match to tenant needs |
-| **Year Built** | 7% | Core | Building age/condition proxy |
-| **Class** | 6% | Core | A/B/C quality tier |
+| **Net Asking Rent** | 11% | Core | **Most critical** - Direct impact on tenant budget |
+| **Parking Ratio** | 10% | Core | **Second most critical** - Often deal-breaker for industrial/office |
+| **TMI** | 9% | Core | Affects total occupancy cost |
+| **Clear Height** | 7% | Core | Critical for industrial operations |
+| **% Office Space** | 7% | Core | Mix affects usability |
+| **Distance** | 7% | Core | Location convenience |
+| **Area Difference** | 7% | Core | Size match to tenant needs |
+| **Building Age** | 4% | Core | Replaces Year Built - more intuitive condition proxy |
+| **Class** | 5% | Core | A/B/C quality tier |
+| **Bay Depth** | 5% | Optional | Racking efficiency, trailer access |
 | **Shipping Doors (TL)** | 4% | Optional | Truck-level loading capacity |
+| **Lot Size (Acres)** | 4% | Optional | Expansion potential, outdoor storage |
 | **Shipping Doors (DI)** | 3% | Optional | Drive-in door access |
 | **Power** | 3% | Optional | Electrical capacity (amps) |
+| **HVAC Coverage** | 3% | Optional | Climate control for products/workers |
+| **Sprinkler Type** | 3% | Optional | ESFR = insurance savings + high-piled storage |
 | **Trailer Parking** | 2% | Optional | Trailer storage availability |
-| **Secure Shipping** | 2% | Optional | Secure loading areas |
-| **Excess Land** | 2% | Optional | Expansion/outdoor storage potential |
+| **Rail Access** | 2% | Optional | Deal-breaker for bulk commodities |
+| **Crane** | 2% | Optional | Heavy manufacturing essential |
+| **Occupancy Status** | 2% | Optional | Vacant = immediate occupancy |
+| **Secure Shipping** | 0% | Optional | Secure loading areas (rarely available) |
+| **Excess Land** | 0% | Optional | Expansion/outdoor storage (rarely available) |
 
 **Note**: When optional variables are unavailable, the system automatically adjusts weights. For example, if only the 9 core variables are present, they receive proportionally higher weights that still sum to 100%.
 
@@ -340,6 +347,14 @@ The user will provide one or more PDF documents containing:
    - **Trailer Parking** - "Yes" or blank → boolean (true if "Yes", false otherwise)
    - **Secure Shipping** - "Yes" or "Y" or blank → boolean (true if present, false otherwise)
    - **Excess Land** - "Yes" or blank → boolean (true if "Yes", false otherwise)
+   - **Bay Depth** - Parse from "Bay Size" field (e.g., "55 x 52" → 55.0) as `bay_depth_ft`
+   - **Lot Size** - Extract from "Lot Irreg" or "Lot Size Area", convert to acres as `lot_size_acres`
+   - **HVAC Coverage** - Extract from "A/C" field: Y=1, Part=2, N=3 (ordinal) as `hvac_coverage`
+   - **Sprinkler Type** - Check "Sprinklers" + "Client Remks" for ESFR: ESFR=1, Standard=2, None=3 (ordinal) as `sprinkler_type`
+   - **Building Age** - Calculate from `analysis_year - year_built` as `building_age_years`
+   - **Rail Access** - Extract from "Rail" field: Y/N → boolean as `rail_access`
+   - **Crane** - Extract from "Crane" field: Y/N → boolean as `crane`
+   - **Occupancy Status** - Extract from "Occup" field: Vacant=1, Tenant=2 (ordinal) as `occupancy_status`
 
 3. Identify which property is the subject property (distance = 0)
 
@@ -376,7 +391,15 @@ Build a properly formatted JSON file following this schema:
     "power_amps": 0,             // Optional: electrical capacity
     "trailer_parking": false,    // Optional: boolean
     "secure_shipping": false,    // Optional: boolean
-    "excess_land": false         // Optional: boolean
+    "excess_land": false,        // Optional: boolean
+    "bay_depth_ft": 0.0,         // Optional: bay depth in feet
+    "lot_size_acres": 0.0,       // Optional: lot size in acres
+    "hvac_coverage": 3,          // Optional: Y=1, Part=2, N=3 (ordinal)
+    "sprinkler_type": 3,         // Optional: ESFR=1, Standard=2, None=3 (ordinal)
+    "building_age_years": 0,     // Optional: analysis_year - year_built
+    "rail_access": false,        // Optional: boolean
+    "crane": false,              // Optional: boolean
+    "occupancy_status": 2        // Optional: Vacant=1, Tenant=2 (ordinal)
   },
   "comparables": [
     {
@@ -399,19 +422,38 @@ Build a properly formatted JSON file following this schema:
       "power_amps": 0,
       "trailer_parking": false,
       "secure_shipping": false,
-      "excess_land": false
+      "excess_land": false,
+      "bay_depth_ft": 0.0,
+      "lot_size_acres": 0.0,
+      "hvac_coverage": 3,
+      "sprinkler_type": 3,
+      "building_age_years": 0,
+      "rail_access": false,
+      "crane": false,
+      "occupancy_status": 2
     }
   ],
   "weights": {
-    "year_built": 0.08,
-    "clear_height_ft": 0.10,
-    "pct_office_space": 0.10,
-    "parking_ratio": 0.15,
-    "distance_km": 0.10,
-    "net_asking_rent": 0.16,
-    "tmi": 0.14,
-    "class": 0.07,
-    "area_difference": 0.10
+    "building_age_years": 0.04,
+    "clear_height_ft": 0.07,
+    "pct_office_space": 0.07,
+    "parking_ratio": 0.10,
+    "distance_km": 0.07,
+    "net_asking_rent": 0.11,
+    "tmi": 0.09,
+    "class": 0.05,
+    "area_difference": 0.07,
+    "shipping_doors_tl": 0.04,
+    "shipping_doors_di": 0.03,
+    "power_amps": 0.03,
+    "trailer_parking": 0.02,
+    "bay_depth_ft": 0.05,
+    "lot_size_acres": 0.04,
+    "hvac_coverage": 0.03,
+    "sprinkler_type": 0.03,
+    "rail_access": 0.02,
+    "crane": 0.02,
+    "occupancy_status": 0.02
   }
 }
 ```
