@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lease-abstract.example.com/schemas/rollover-input.schema.json",
+  "title": "Industrial Portfolio Rollover Input",
+  "description": "Schema for rollover analysis input portfolios used in the Rollover_Analysis tool.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "portfolio_name",
+    "analysis_date",
+    "leases",
+    "assumptions"
+  ],
+  "$defs": {
+    "percentageRate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "nonNegativeNumber": {
+      "type": "number",
+      "minimum": 0
+    },
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "properties": {
+    "portfolio_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name for the portfolio being analyzed."
+    },
+    "analysis_date": {
+      "type": "string",
+      "format": "date",
+      "description": "As-of date for the rollover analysis in ISO-8601 (YYYY-MM-DD) format."
+    },
+    "leases": {
+      "type": "array",
+      "description": "Collection of tenant leases included in the portfolio.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "property_address",
+          "tenant_name",
+          "rentable_area_sf",
+          "current_annual_rent",
+          "lease_expiry_date",
+          "renewal_options",
+          "tenant_credit_rating",
+          "below_market_pct"
+        ],
+        "properties": {
+          "property_address": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Street address and city for the property."
+          },
+          "tenant_name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Legal or commonly-used tenant name."
+          },
+          "rentable_area_sf": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Rentable area of the space in square feet."
+          },
+          "current_annual_rent": {
+            "$ref": "#/$defs/nonNegativeNumber",
+            "description": "Current contractual annual rent obligation."
+          },
+          "lease_expiry_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Lease expiry date in ISO-8601 format."
+          },
+          "renewal_options": {
+            "type": "array",
+            "description": "Optional renewal option expiry dates (can be empty).",
+            "items": {
+              "type": "string",
+              "format": "date"
+            },
+            "uniqueItems": true
+          },
+          "tenant_credit_rating": {
+            "type": "string",
+            "description": "Tenant credit quality using standard letter ratings or NR when not rated.",
+            "pattern": "^(AAA|AA\\+|AA|AA-|A\\+|A|A-|BBB\\+|BBB|BBB-|BB\\+|BB|BB-|B\\+|B|B-|CCC\\+|CCC|CCC-|CC|C|D|NR)$"
+          },
+          "below_market_pct": {
+            "type": "number",
+            "minimum": -100,
+            "maximum": 100,
+            "description": "Percent difference versus market rent; negative values indicate below market."
+          }
+        }
+      }
+    },
+    "assumptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Discounting, renewal, and market parameters applied in rollover scenarios.",
+      "required": [
+        "discount_rate",
+        "renewal_rate_optimistic",
+        "renewal_rate_base",
+        "renewal_rate_pessimistic",
+        "downtime_months",
+        "market_rent_sf",
+        "market_rent_growth_annual",
+        "ti_allowance_sf",
+        "leasing_commission_pct"
+      ],
+      "properties": {
+        "discount_rate": {
+          "$ref": "#/$defs/percentageRate",
+          "description": "Portfolio-level discount rate applied to cash flows."
+        },
+        "renewal_rate_optimistic": {
+          "$ref": "#/$defs/percentageRate",
+          "description": "Assumed renewal probability in the optimistic scenario."
+        },
+        "renewal_rate_base": {
+          "$ref": "#/$defs/percentageRate",
+          "description": "Assumed renewal probability in the base scenario."
+        },
+        "renewal_rate_pessimistic": {
+          "$ref": "#/$defs/percentageRate",
+          "description": "Assumed renewal probability in the pessimistic scenario."
+        },
+        "downtime_months": {
+          "type": "object",
+          "description": "Expected vacancy downtime between leases by scenario.",
+          "additionalProperties": false,
+          "required": [
+            "optimistic",
+            "base",
+            "pessimistic"
+          ],
+          "properties": {
+            "optimistic": {
+              "$ref": "#/$defs/nonNegativeInteger",
+              "description": "Vacancy downtime in months under the optimistic case."
+            },
+            "base": {
+              "$ref": "#/$defs/nonNegativeInteger",
+              "description": "Vacancy downtime in months under the base case."
+            },
+            "pessimistic": {
+              "$ref": "#/$defs/nonNegativeInteger",
+              "description": "Vacancy downtime in months under the pessimistic case."
+            }
+          }
+        },
+        "market_rent_sf": {
+          "$ref": "#/$defs/nonNegativeNumber",
+          "description": "Current market rent per square foot."
+        },
+        "market_rent_growth_annual": {
+          "$ref": "#/$defs/percentageRate",
+          "description": "Expected annual market rent growth rate."
+        },
+        "ti_allowance_sf": {
+          "$ref": "#/$defs/nonNegativeNumber",
+          "description": "Tenant improvement allowance per square foot."
+        },
+        "leasing_commission_pct": {
+          "$ref": "#/$defs/percentageRate",
+          "description": "Leasing commission as a share of total consideration."
+        }
+      }
+    }
+  }
+}
