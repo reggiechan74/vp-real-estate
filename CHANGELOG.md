@@ -5,6 +5,122 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2025-11-06
+
+### Added
+
+#### Real Options Valuation Calculator - Issue #4 ✅
+
+**New Calculator**: `Option_Valuation/` - Black-Scholes option pricing for commercial real estate lease flexibility
+
+- **option_valuation.py** (794 lines) - Complete Black-Scholes implementation
+  - Black-Scholes call option pricing: `C = S × N(d1) - K × e^(-rT) × N(d2)`
+  - Black-Scholes put option pricing: `P = K × e^(-rT) × N(-d2) - S × N(-d1)`
+  - Cumulative normal distribution using `scipy.stats.norm.cdf()` (15+ decimal accuracy)
+  - d1/d2 calculation: `d1 = [ln(S/K) + (r + σ²/2)T] / (σ√T)`, `d2 = d1 - σ√T`
+  - All option Greeks (Delta, Gamma, Vega, Theta, Rho) with analytical formulas
+  - Portfolio valuation for multiple concurrent options
+  - Comprehensive sensitivity analysis (volatility, market rent, time decay)
+  - JSON input/output with structured schema
+  - Command-line interface with verbose and output control
+
+**Option Greeks Calculations**:
+```python
+# Delta (∂V/∂S) - Sensitivity to underlying price
+Delta_Call = N(d1)                    # Range: 0 to 1
+Delta_Put = N(d1) - 1                 # Range: -1 to 0
+
+# Gamma (∂²V/∂S²) - Rate of delta change (always positive)
+Gamma = φ(d1) / (S × σ × √T)
+
+# Vega (∂V/∂σ) - Sensitivity to volatility (per 1%)
+Vega = S × φ(d1) × √T / 100
+
+# Theta (∂V/∂T) - Time decay (per year)
+Theta_Call = -(S × φ(d1) × σ) / (2√T) - r × K × e^(-rT) × N(d2)
+Theta_Put = -(S × φ(d1) × σ) / (2√T) + r × K × e^(-rT) × N(-d2)
+
+# Rho (∂V/∂r) - Interest rate sensitivity (per 1%)
+Rho_Call = K × T × e^(-rT) × N(d2) / 100
+Rho_Put = -K × T × e^(-rT) × N(-d2) / 100
+```
+
+**Option Types Supported**:
+1. **Renewal Options** (Call): Tenant right to renew at predetermined rent
+   - Underlying: Market rent × Area × Renewal term
+   - Strike: Renewal rent × Area × Renewal term
+2. **Expansion Options** (Call): Tenant right to lease additional space
+   - Adjusts for utilization probability (0.4-0.8 typical)
+3. **Termination Options** (Put): Tenant right to exit early (with penalty)
+   - Provides downside protection in declining markets
+4. **Purchase Options** (Call): Tenant right to purchase property
+   - Uses property value volatility (8-12%, lower than rent)
+
+- **Tests/test_option_valuation.py** (680 lines) - **36 tests passing (100%)**
+  - Cumulative normal distribution accuracy (3 tests)
+  - d1/d2 calculations and relationship verification (4 tests)
+  - Black-Scholes call options with known results (6 tests)
+  - Black-Scholes put options and put-call parity (4 tests)
+  - All Greeks calculations and range validation (7 tests)
+  - Complete option valuation workflow (3 tests)
+  - Sensitivity analysis (volatility, market rent, time decay) (3 tests)
+  - Real estate scenarios (industrial, office) (2 tests)
+  - Edge cases (deep ITM/OTM, very short/long terms) (4 tests)
+
+**Validation**:
+- ✅ Validated against published Black-Scholes calculators (exact match)
+- ✅ Put-call parity verified: `C - P = S - K×e^(-rT)` (tolerance < $0.01)
+- ✅ Greeks ranges and properties confirmed
+- ✅ Real estate examples match manual calculations
+
+- **README.md** (514 lines) - Comprehensive documentation
+  - Installation and dependencies (scipy, numpy)
+  - Quick start guide with JSON examples
+  - Option types and parameter guidance
+  - JSON input/output schema documentation
+  - Parameters guide: volatility (8-18%), risk-free rate, time to expiration, utilization probability
+  - Command-line interface reference
+  - Interpreting results: option value, Greeks, sensitivity, probability ITM
+  - Real-world commercial real estate examples (industrial, office)
+  - Validation methodology and accuracy section
+  - Academic references (Black & Scholes 1973, Grenadier 1995)
+
+**Example Output**:
+```
+Industrial Warehouse (50,000 SF) - 4 Options:
+- First Renewal (5 years): $1,082,682 ($21.65/sf) - 81.9% ITM
+- Second Renewal (5 years): $781,390 ($15.63/sf) - 52.9% ITM
+- Expansion (10,000 SF): $127,398 ($12.74/sf) - 76.7% ITM
+- Termination (Year 3): $957,358 ($19.15/sf) - 31.6% ITM
+Total Embedded Value: $2,948,828 ($58.98/sf)
+```
+
+**Sample Files**:
+- `sample_option_input.json` - Industrial warehouse example with 4 options
+- `sample_option_output.json` - Complete valuation results with Greeks and sensitivity
+- `option_inputs/example_industrial_warehouse.json` - Ready-to-use template
+
+**Slash Command Integration**:
+- Updated `.claude/commands/Financial_Analysis/option-value.md`
+- Added "Automated Calculator Workflow (Recommended)" section
+- Step 11: Generate JSON Input from lease provisions
+- Step 12: Run Calculator (`python Option_Valuation/option_valuation.py input.json`)
+- Step 13: Incorporate Results into Report
+- Documents advantages: accuracy, speed, validation, reproducibility
+
+**Use Cases**:
+1. Valuing embedded lease options (renewal, expansion, termination, purchase)
+2. Negotiation support - quantify option value for landlord/tenant discussions
+3. Lease vs. purchase decisions - compare leasing flexibility value
+4. Portfolio option value aggregation across multiple properties
+5. Sensitivity analysis for volatility assumptions and market scenarios
+
+**Commits**: `03e5edd` (implementation), `db9da45` (merge to main)
+
+**Total Implementation**: 1,988 lines (794 calculator + 680 tests + 514 docs)
+
+---
+
 ## [1.6.0] - 2025-11-06
 
 ### Added
