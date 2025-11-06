@@ -19,6 +19,7 @@ Version: 1.0.0 (Phase 1 - MVP)
 
 import json
 import argparse
+from statistics_module import analyze_properties_statistics, generate_statistics_markdown
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from typing import List, Dict, Tuple, Any, Optional
@@ -801,7 +802,7 @@ def run_sensitivity_analysis(subject: Dict[str, Any],
     return scenarios
 
 
-def generate_competitive_report(results: CompetitiveAnalysis, output_path: str, full: bool = False):
+def generate_competitive_report(results: CompetitiveAnalysis, output_path: str, full: bool = False, stats_report=None):
     """
     Generate professional markdown report with rankings and recommendations.
 
@@ -809,6 +810,7 @@ def generate_competitive_report(results: CompetitiveAnalysis, output_path: str, 
         results: CompetitiveAnalysis dataclass with all analysis results
         output_path: Path to output markdown file
         full: If True, show all competitors; if False, show top 10 only (default)
+        stats_report: Optional StatisticalReport to append statistical analysis section
     """
     subject = results.subject_property
 
@@ -1076,6 +1078,12 @@ This analysis uses a **multi-criteria weighted ranking system** to objectively a
 *Analysis Date: {results.analysis_date}*
 *Report Generated: {datetime.now(ZoneInfo('America/New_York')).strftime('%Y-%m-%d %H:%M:%S')} ET*
 """
+
+    # Append statistical analysis if provided
+    if stats_report:
+        stats_markdown = generate_statistics_markdown(stats_report)
+        report += "\n\n---\n\n"
+        report += stats_markdown
 
     # Write report to file
     with open(output_path, 'w') as f:
@@ -1518,6 +1526,7 @@ Examples:
     parser.add_argument('--weights-config', type=str,
                         help='Path to custom weights configuration file (default: weights_config.json)')
     parser.add_argument('--interactive', action='store_true', help='Interactive mode (not implemented in Phase 1)')
+    parser.add_argument('--stats', action='store_true', help='Include traditional statistical analysis (regression, correlation, z-scores)')
 
     args = parser.parse_args()
 
@@ -1545,14 +1554,29 @@ Examples:
     # Run analysis
     results = run_analysis(data)
 
+    # Run statistical analysis if requested
+    stats_report = None
+    if args.stats:
+        print("📊 Running statistical analysis...")
+        all_properties = [data['subject_property']] + data['comparables']
+        stats_report = analyze_properties_statistics(
+            properties=all_properties,
+            analysis_date=data.get('analysis_date', datetime.now().strftime('%Y-%m-%d')),
+            market=data.get('market', 'Unknown Market')
+        )
+        print(f"   ✓ Statistical analysis complete ({stats_report.sample_size} properties)")
+
     # Generate outputs
     if args.output_json:
+        output_data = asdict(results)
+        if stats_report:
+            output_data['statistical_analysis'] = asdict(stats_report)
         with open(args.output_json, 'w') as f:
-            json.dump(asdict(results), f, indent=2, default=str)
+            json.dump(output_data, f, indent=2, default=str)
         print(f"✅ JSON results saved: {args.output_json}")
 
     if args.output:
-        generate_competitive_report(results, args.output, full=args.full)
+        generate_competitive_report(results, args.output, full=args.full, stats_report=stats_report)
 
     print("\n✅ Analysis complete!\n")
 
