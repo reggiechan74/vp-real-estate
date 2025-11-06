@@ -16,11 +16,11 @@ Determine where the subject property ranks relative to market comparables and pr
 
 ## Core Methodology: MCDA Framework
 
-### The Variable System: Core (9) + Optional (17) = Up to 26 Total
+### The Variable System: Core (9) + Optional (16) = Up to 25 Total
 
-**Dynamic Weighting**: The system uses 9 core variables (always included) plus 17 optional variables (included only if sufficient data is available - 50% threshold for numeric fields, at least one True for boolean fields). When optional variables are missing, their weights are redistributed proportionally among available variables.
+**Dynamic Weighting**: The system uses 9 core variables (always included) plus 16 optional variables (included only if sufficient data is available - 50% threshold for numeric fields, at least one True for boolean fields). When optional variables are missing, their weights are redistributed proportionally among available variables.
 
-#### Full Variable Set (When All Data Available - 26 Variables)
+#### Full Variable Set (When All Data Available - 25 Variables)
 
 | Variable | Weight | Type | Rationale |
 |----------|--------|------|-----------|
