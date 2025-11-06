@@ -332,7 +332,7 @@ def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
     Returns:
         Dictionary of variable weights optimized for the tenant persona
     """
-    # Default/balanced weights (26 variables)
+    # Default/balanced weights (25 variables)
     default_weights = {
         # Core variables
         'net_asking_rent': 0.11,
@@ -349,12 +349,15 @@ def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
         'shipping_doors_di': 0.03,
         'power_amps': 0.03,
         'trailer_parking': 0.02,
+        'secure_shipping': 0.00,
+        'excess_land': 0.00,
         'bay_depth_ft': 0.04,
         'lot_size_acres': 0.03,
         'hvac_coverage': 0.03,
         'sprinkler_type': 0.03,
         'rail_access': 0.02,
         'crane': 0.02,
+        'occupancy_status': 0.00,
         'grade_level_doors': 0.02,
         'days_on_market': 0.02,
         'zoning': 0.02
@@ -377,12 +380,15 @@ def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
         'shipping_doors_di': 0.04,  # +1%
         'power_amps': 0.02,
         'trailer_parking': 0.04,  # +2%
+        'secure_shipping': 0.00,
+        'excess_land': 0.00,
         'bay_depth_ft': 0.07,  # +3%
         'lot_size_acres': 0.04,
         'hvac_coverage': 0.01,  # -2%
         'sprinkler_type': 0.04,  # +1%
         'rail_access': 0.01,
         'crane': 0.01,
+        'occupancy_status': 0.00,
         'grade_level_doors': 0.01,
         'days_on_market': 0.02,
         'zoning': 0.02
@@ -392,10 +398,10 @@ def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
     # Emphasizes: Clear height, power, crane, rail access, bay depth
     # De-emphasizes: Office space, class, distance
     manufacturing_weights = {
-        'net_asking_rent': 0.10,
+        'net_asking_rent': 0.09,
         'parking_ratio': 0.08,
         'tmi': 0.08,
-        'clear_height_ft': 0.10,  # +3%
+        'clear_height_ft': 0.09,  # +2%
         'pct_office_space': 0.03,  # -3%
         'distance_km': 0.04,  # -3%
         'area_difference': 0.07,
@@ -403,14 +409,17 @@ def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
         'class': 0.03,  # -2%
         'shipping_doors_tl': 0.05,  # +1%
         'shipping_doors_di': 0.03,
-        'power_amps': 0.06,  # +3%
+        'power_amps': 0.05,  # +2%
         'trailer_parking': 0.02,
-        'bay_depth_ft': 0.07,  # +3%
+        'secure_shipping': 0.00,
+        'excess_land': 0.00,
+        'bay_depth_ft': 0.06,  # +2%
         'lot_size_acres': 0.04,
         'hvac_coverage': 0.02,  # -1%
         'sprinkler_type': 0.03,
         'rail_access': 0.04,  # +2%
         'crane': 0.05,  # +3%
+        'occupancy_status': 0.00,
         'grade_level_doors': 0.01,
         'days_on_market': 0.02,
         'zoning': 0.02
@@ -433,12 +442,15 @@ def get_tenant_persona_weights(persona: str = "default") -> Dict[str, float]:
         'shipping_doors_di': 0.01,  # -2%
         'power_amps': 0.02,
         'trailer_parking': 0.00,  # -2%
+        'secure_shipping': 0.00,
+        'excess_land': 0.00,
         'bay_depth_ft': 0.00,  # -4%
         'lot_size_acres': 0.02,
         'hvac_coverage': 0.06,  # +3%
         'sprinkler_type': 0.02,  # -1%
         'rail_access': 0.00,  # -2%
         'crane': 0.00,  # -2%
+        'occupancy_status': 0.00,
         'grade_level_doors': 0.02,
         'days_on_market': 0.02,
         'zoning': 0.02
@@ -487,18 +499,18 @@ def allocate_dynamic_weights(available_vars: Dict[str, bool],
     Returns:
         Adjusted weights that sum to 1.0
     """
-    # Define default weights when no custom schema provided (26 variables total)
+    # Define default weights when no custom schema provided (25 variables total)
     # Core variables (9): 65% total
     # Existing optional (6): 12% total
-    # Phase 2 Batch 1 (8): 17% total
-    # Phase 2 Batch 2 (3): 6% total
+    # Phase 1 optional (7): 17% total
+    # Phase 2 optional (3): 6% total
     default_weights = {
-        # Core variables (65% - reduced 2% for Phase 2 Batch 2)
+        # Core variables (65%)
         'net_asking_rent': 0.11,
-        'parking_ratio': 0.09,  # Reduced from 0.10
+        'parking_ratio': 0.09,
         'tmi': 0.09,
         'clear_height_ft': 0.07,
-        'pct_office_space': 0.06,  # Reduced from 0.07
+        'pct_office_space': 0.06,
         'distance_km': 0.07,
         'area_difference': 0.07,
         'building_age_years': 0.04,  # Replaces year_built
@@ -510,15 +522,15 @@ def allocate_dynamic_weights(available_vars: Dict[str, bool],
         'trailer_parking': 0.02,
         'secure_shipping': 0.00,  # No data in typical datasets
         'excess_land': 0.00,  # No data in typical datasets
-        # Phase 2 Batch 1 optional variables (17% - reduced from 21%)
-        'bay_depth_ft': 0.04,  # Reduced from 0.05
-        'lot_size_acres': 0.03,  # Reduced from 0.04
+        # Phase 1 optional variables (17%)
+        'bay_depth_ft': 0.04,
+        'lot_size_acres': 0.03,
         'hvac_coverage': 0.03,
         'sprinkler_type': 0.03,
         'rail_access': 0.02,
         'crane': 0.02,
-        'occupancy_status': 0.00,  # Moved to 0% (less important)
-        # Phase 2 Batch 2 optional variables (6%)
+        'occupancy_status': 0.00,  # Tracked for filtering
+        # Phase 2 optional variables (6%)
         'grade_level_doors': 0.02,
         'days_on_market': 0.02,
         'zoning': 0.02
@@ -1133,7 +1145,7 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     print("\n   Detecting available variables...")
     available_vars = detect_available_variables(all_properties_data)
     num_available = sum(1 for v in available_vars.values() if v)
-    print(f"   Using {num_available} of 26 possible variables")
+    print(f"   Using {num_available} of 25 possible variables")
 
     # Allocate weights dynamically based on available data
     dynamic_weights = allocate_dynamic_weights(available_vars, weights)
