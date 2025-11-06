@@ -11,16 +11,11 @@ The Relative Valuation Calculator is a Python-based ranking engine that performs
 The calculator implements a 4-step Multi-Criteria Decision Analysis (MCDA) framework:
 
 ### 1. Data Collection
-Extract 9 key variables from comparable properties:
-- **Year Built** (8% weight)
-- **Clear Height** (10% weight)
-- **% Office Space** (10% weight)
-- **Parking Ratio** (15% weight) - spaces per 1,000 SF
-- **Distance from Subject** (10% weight)
-- **Net Asking Rent** (16% weight - highest)
-- **TMI** (14% weight) - tenant operating costs
-- **Class** (7% weight) - A/B/C
-- **Area Difference** (10% weight) - size match to subject
+Extract up to **25 variables** from comparable properties:
+- **9 Core Variables** (65% weight) - Required: building age, clear height, office %, parking, distance, rent, TMI, class, area difference
+- **16 Optional Variables** (35% weight) - Shipping doors, power, bay depth, lot size, HVAC, sprinklers, rail, crane, occupancy, grade-level doors, days on market, zoning, trailer parking, secure shipping, excess land
+
+Variables with insufficient data in comparables automatically redistribute their weight to remaining variables.
 
 ### 2. Independent Ranking
 Each variable is ranked independently from 1 (best) to X (worst):
@@ -33,7 +28,7 @@ Ties are handled using average rank methodology.
 Calculate aggregate score for each property:
 
 ```
-Weighted Score = Σ(rank × weight) for all 9 variables
+Weighted Score = Σ(rank × weight) for all available variables (up to 25)
 ```
 
 **Lower weighted score = better competitive position**
@@ -134,60 +129,16 @@ If you don't want to use the API, set all distances to 0 and exclude distance fr
 
 ### Input JSON Schema
 
-```json
-{
-  "analysis_date": "2025-11-05",
-  "market": "Greater Toronto Area - Industrial",
-  "subject_property": {
-    "address": "123 Main Street",
-    "unit": "Unit 5",
-    "year_built": 1985,
-    "clear_height_ft": 16,
-    "pct_office_space": 0.20,
-    "parking_ratio": 1.5,
-    "available_sf": 2200,
-    "distance_km": 0.0,
-    "net_asking_rent": 9.50,
-    "tmi": 5.50,
-    "class": 2,
-    "is_subject": true
-  },
-  "comparables": [
-    {
-      "address": "456 Industrial Ave",
-      "unit": "Suite 100",
-      "year_built": 1990,
-      "clear_height_ft": 18,
-      "pct_office_space": 0.15,
-      "parking_ratio": 2.0,
-      "available_sf": 2500,
-      "distance_km": 2.5,
-      "net_asking_rent": 9.00,
-      "tmi": 5.00,
-      "class": 2,
-      "is_subject": false
-    }
-  ],
-  "weights": {
-    "year_built": 0.08,
-    "clear_height_ft": 0.10,
-    "pct_office_space": 0.10,
-    "parking_ratio": 0.15,
-    "distance_km": 0.10,
-    "net_asking_rent": 0.16,
-    "tmi": 0.14,
-    "class": 0.07,
-    "area_difference": 0.10
-  }
-}
-```
+**📄 Schema Template:** See `schema_template.json` for complete JSON template with all 25 variables
 
-**Important Field Requirements:**
-- `distance_km`: Must be `0.0` for subject property (center point)
-- `is_subject`: Must be `true` for subject, `false` for comparables
-- `class`: 1 (Class A), 2 (Class B), 3 (Class C)
-- `weights`: Must sum to 1.0
-- All rent values in $/SF/year
+**📖 Field Documentation:** See `SCHEMA.md` for:
+- Complete field reference tables (core + optional variables)
+- Filter types and usage
+- Weight distribution explanation
+- Critical requirements and validation rules
+- Usage examples with tenant personas
+
+**Quick Start:** Copy `schema_template.json` and populate with your data, or use the simplified structure below for core variables only.
 
 ### Output
 
@@ -209,33 +160,35 @@ If you don't want to use the API, set all distances to 0 and exclude distance fr
 - Sensitivity scenarios
 - Full methodology for transparency
 
-## Sample Data
+## Getting Started
 
-Sample files are included for testing:
-- `sample_input.json` - 25 properties from May 2020 GTA industrial market
-- `sample_output.json` - Pre-calculated results
-- `sample_report.md` - Generated markdown report
+To create your first analysis:
 
-**Run sample analysis:**
-```bash
-python relative_valuation_calculator.py \
-  --input sample_input.json \
-  --output test_report.md
-```
+1. **Copy the schema template:**
+   ```bash
+   cp schema_template.json my_analysis.json
+   ```
+
+2. **Populate with your data** - See `SCHEMA.md` for field documentation
+
+3. **Run the analysis:**
+   ```bash
+   python relative_valuation_calculator.py \
+     --input my_analysis.json \
+     --output report.md
+   ```
+
+4. **Optional: Use tenant persona weights:**
+   ```bash
+   python relative_valuation_calculator.py \
+     --input my_analysis.json \
+     --output report.md \
+     --persona 3pl
+   ```
 
 ## Validation
 
 The calculator has been validated against the original Excel template used to develop the methodology. Results match within ±0.01 tolerance for weighted scores and rankings.
-
-**Test against Excel:**
-```bash
-python relative_valuation_calculator.py \
-  --input sample_input.json \
-  --output-json test_output.json
-
-# Compare test_output.json against sample_output.json
-# Weighted scores should match within 0.01
-```
 
 ## Ranking Rules
 
@@ -264,13 +217,18 @@ python relative_valuation_calculator.py \
 4. **Market-Specific**: Weights calibrated for GTA industrial market (May 2020)
 5. **Point-in-Time**: Reflects market conditions at analysis date
 
-## Phase 2 Enhancements (Future)
+## Enhancements (Implemented)
 
-The following features are planned for future versions:
-- **Custom Weights**: Tenant persona-based weight adjustments
-- **ML Calibration**: Outcome-based weight optimization
-- **Qualitative Overrides**: Manual adjustments for special factors
-- **Distance API**: Automated distance calculations via Distancematrix.ai
+The following enhancements have been implemented:
+- ✅ **25-Variable Model**: Expanded from 9 to 25 variables (9 core + 16 optional)
+- ✅ **Tenant Personas**: Pre-configured weight profiles (default, 3PL, manufacturing, office)
+- ✅ **Must-Have Filters**: Pre-ranking filters for deal-breaker requirements
+- ✅ **Dynamic Weights**: Automatic weight redistribution when optional variables unavailable
+- ✅ **Distance API**: Automated distance calculations via Distancematrix.ai
+
+## Future Enhancements
+
+- **ML Calibration**: Outcome-based weight optimization from historical deals
 - **PDF Extraction**: Automated data extraction from comp packages
 - **Database Integration**: Portfolio tracking and historical analysis
 
@@ -309,9 +267,10 @@ For issues or questions about the calculator:
 
 ## Version
 
-**Phase 1 MVP** - Released 2025-11-05
-- Core ranking engine
+**Phase 2** - Released 2025-11-06
+- 25-variable MCDA ranking engine (9 core + 16 optional)
+- Tenant persona weight profiles (default, 3PL, manufacturing, office)
+- Must-have filters with 5 filter types
+- Dynamic weight redistribution
 - PDF → JSON → Report workflow
-- 9 variables with standard weights
-- Command-line interface
-- Sample data validation
+- Command-line interface with persona support

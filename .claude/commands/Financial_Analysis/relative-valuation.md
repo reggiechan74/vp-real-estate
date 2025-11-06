@@ -429,114 +429,45 @@ The user will provide one or more PDF documents containing:
 
 ### Step 2: Create Input JSON File
 
-Build a properly formatted JSON file following this schema:
+Build a properly formatted JSON file following the schema.
+
+**📄 Schema Reference:** See `Relative_Valuation/schema_template.json` for complete JSON template
+**📖 Field Documentation:** See `Relative_Valuation/SCHEMA.md` for detailed field descriptions
+
+**Quick Start Template:**
 
 ```json
 {
   "analysis_date": "YYYY-MM-DD",
   "market": "Market Name - Property Type",
-  "subject_property": {
-    "address": "2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada",
-    "unit": "Opt 2",
-    "year_built": 0,
-    "clear_height_ft": 0.0,
-    "pct_office_space": 0.11,  // ⚠️ DECIMAL: 11% = 0.11, NOT 11.0
-    "parking_ratio": 0.0,
-    "available_sf": 0,
-    "distance_km": 0.0,
-    "net_asking_rent": 0.0,
-    "tmi": 0.0,
-    "class": 2,
-    "is_subject": true,
-    "landlord": "...",
-    "shipping_doors_tl": 0,      // Optional: truck-level doors
-    "shipping_doors_di": 0,      // Optional: drive-in doors
-    "availability_date": "",     // Optional: "Immediate", "Jan-26", etc.
-    "power_amps": 0,             // Optional: electrical capacity
-    "trailer_parking": false,    // Optional: boolean
-    "secure_shipping": false,    // Optional: boolean
-    "excess_land": false,        // Optional: boolean
-    "bay_depth_ft": 0.0,         // Optional: bay depth in feet
-    "lot_size_acres": 0.0,       // Optional: lot size in acres
-    "hvac_coverage": 3,          // Optional: Y=1, Part=2, N=3 (ordinal)
-    "sprinkler_type": 3,         // Optional: ESFR=1, Standard=2, None=3 (ordinal)
-    "rail_access": false,        // Optional: boolean
-    "crane": false,              // Optional: boolean
-    "occupancy_status": 2,       // Optional: Vacant=1, Tenant=2 (ordinal)
-    "grade_level_doors": 0,      // Optional: grade-level doors count
-    "days_on_market": 0,         // Optional: days on market
-    "zoning": ""                 // Optional: zoning classification (e.g., "M1", "M2")
-  },
-  "comparables": [
-    {
-      "address": "795 Hazelhurst Rd, Mississauga, ON L5J 2Z6, Canada",
-      "unit": "",
-      "year_built": 0,
-      "clear_height_ft": 0.0,
-      "pct_office_space": 0.09,  // ⚠️ DECIMAL: 9% = 0.09, NOT 9.0
-      "parking_ratio": 0.0,
-      "available_sf": 0,
-      "distance_km": 0.0,
-      "net_asking_rent": 0.0,
-      "tmi": 0.0,
-      "class": 2,
-      "is_subject": false,
-      "landlord": "...",
-      "shipping_doors_tl": 0,
-      "shipping_doors_di": 0,
-      "availability_date": "",
-      "power_amps": 0,
-      "trailer_parking": false,
-      "secure_shipping": false,
-      "excess_land": false,
-      "bay_depth_ft": 0.0,
-      "lot_size_acres": 0.0,
-      "hvac_coverage": 3,
-      "sprinkler_type": 3,
-      "rail_access": false,
-      "crane": false,
-      "occupancy_status": 2,
-      "grade_level_doors": 0,
-      "days_on_market": 0,
-      "zoning": ""
-    }
-  ],
-  "filters": {
-    // Optional: Must-have requirements (Phase 2)
-    // Example filters (remove or adjust as needed):
-    // "rail_access": true,             // Only properties with rail access
-    // "clear_height_ft_min": 36,       // Minimum 36 ft clear height
-    // "sprinkler_type": 1,             // Only ESFR sprinklers
-    // "days_on_market_max": 180,       // Exclude stale listings
-    // "zoning": "M2"                   // Only M2 zoning
-  },
-  "weights": {
-    "building_age_years": 0.04,
-    "clear_height_ft": 0.07,
-    "pct_office_space": 0.06,
-    "parking_ratio": 0.09,
-    "distance_km": 0.07,
-    "net_asking_rent": 0.11,
-    "tmi": 0.09,
-    "class": 0.05,
-    "area_difference": 0.07,
-    "shipping_doors_tl": 0.04,
-    "shipping_doors_di": 0.03,
-    "power_amps": 0.03,
-    "trailer_parking": 0.02,
-    "bay_depth_ft": 0.04,
-    "lot_size_acres": 0.03,
-    "hvac_coverage": 0.03,
-    "sprinkler_type": 0.03,
-    "rail_access": 0.02,
-    "crane": 0.02,
-    "occupancy_status": 0.00,
-    "grade_level_doors": 0.02,
-    "days_on_market": 0.02,
-    "zoning": 0.02
-  }
+  "subject_property": { /* ... 25 fields ... */ },
+  "comparables": [ /* array of comparable properties */ ],
+  "filters": { /* optional must-have filters */ },
+  "weights": { /* optional custom weights, uses defaults if omitted */ }
 }
 ```
+
+**Key Fields Summary:**
+
+**Core Required Fields (13):**
+- `address` - Complete geocodable address: "Street, City, Province PostalCode, Country"
+- `year_built` - Year built (building age calculated automatically)
+- `clear_height_ft`, `pct_office_space` (⚠️ DECIMAL: 0.11 not 11.0), `parking_ratio`
+- `available_sf`, `distance_km` (0.0 for subject), `net_asking_rent`, `tmi`
+- `class` (1=A, 2=B, 3=C), `is_subject` (true/false), `landlord`, `unit`
+
+**Optional Fields (12 existing + Phase 1 & 2):**
+- Existing: `shipping_doors_tl/di`, `power_amps`, `trailer_parking`, `availability_date`, etc.
+- Phase 1: `bay_depth_ft`, `lot_size_acres`, `hvac_coverage`, `sprinkler_type`, `rail_access`, `crane`, `occupancy_status`
+- Phase 2: `grade_level_doors`, `days_on_market`, `zoning`
+
+**Filters (Optional):** Must-have requirements to exclude properties before ranking
+- `"field_name_min": value` - Minimum value (e.g., `"clear_height_ft_min": 32`)
+- `"field_name_max": value` - Maximum value (e.g., `"days_on_market_max": 180`)
+- `"boolean_field": true` - Require feature (e.g., `"rail_access": true`)
+- `"string_field": "value"` - Exact match (e.g., `"zoning": "M2"`)
+
+**Weights (Optional):** Leave empty `{}` to use default weights, or specify custom weights that sum to 1.0
 
 **Critical Requirements:**
 - **Address MUST be complete and geocodable**: Format: `"Street, City, Province PostalCode, Country"`
