@@ -1,0 +1,85 @@
+{
+  "property_address": "123 Industrial Parkway, Toronto, ON M1H 3G3",
+  "rentable_area_sf": 50000,
+  "market_rent_psf": 16.50,
+  "base_rent_psf": 17.00,
+  "options": [
+    {
+      "option_type": "call",
+      "option_name": "First Renewal Option - 5 Years",
+      "underlying_value": 4125000,
+      "strike_price": 4000000,
+      "time_to_expiration": 5.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05,
+      "option_term_years": 5.0,
+      "comments": {
+        "calculation": "Market rent $16.50 × 50,000 SF × 5 years = $4,125,000",
+        "strike_calculation": "Renewal rent $16.00 × 50,000 SF × 5 years = $4,000,000",
+        "rationale": "Below-market renewal rate provides significant tenant value"
+      }
+    },
+    {
+      "option_type": "call",
+      "option_name": "Second Renewal Option - 5 Years",
+      "underlying_value": 4125000,
+      "strike_price": 4125000,
+      "time_to_expiration": 10.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05,
+      "option_term_years": 5.0,
+      "comments": {
+        "calculation": "Market rent $16.50 × 50,000 SF × 5 years = $4,125,000",
+        "strike_calculation": "Market rent at renewal (no discount)",
+        "rationale": "Market-rate renewal still valuable for flexibility to walk away"
+      }
+    },
+    {
+      "option_type": "call",
+      "option_name": "Expansion Option - 10,000 SF",
+      "underlying_value": 825000,
+      "strike_price": 800000,
+      "time_to_expiration": 3.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05,
+      "utilization_probability": 0.60,
+      "option_term_years": 5.0,
+      "comments": {
+        "calculation": "Market rent $16.50 × 10,000 SF × 5 years = $825,000",
+        "strike_calculation": "Expansion rent $16.00 × 10,000 SF × 5 years = $800,000",
+        "utilization": "60% probability tenant needs expansion space",
+        "rationale": "Valuable if business grows, but uncertain"
+      }
+    },
+    {
+      "option_type": "put",
+      "option_name": "Early Termination Option (Year 3)",
+      "underlying_value": 2887500,
+      "strike_price": 2975000,
+      "time_to_expiration": 3.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05,
+      "termination_fee": 50000,
+      "comments": {
+        "calculation": "Market rent $16.50 × 50,000 SF × 3.5 years (remaining) = $2,887,500",
+        "strike_calculation": "Contract rent $17.00 × 50,000 SF × 3.5 years = $2,975,000",
+        "termination_fee": "$50,000 penalty to exit",
+        "rationale": "Provides downside protection if market deteriorates or tenant relocates"
+      }
+    }
+  ],
+  "metadata": {
+    "base_lease_term": "10 years",
+    "base_rent_schedule": [
+      {"year": "1-2", "rent_psf": 16.00},
+      {"year": "3-5", "rent_psf": 16.80},
+      {"year": "6-10", "rent_psf": 17.60}
+    ],
+    "analysis_notes": [
+      "Industrial warehouse with renewal, expansion, and termination flexibility",
+      "Market rent volatility assumed at 12% based on GTA industrial market",
+      "Risk-free rate based on 5-year Government of Canada bond yield",
+      "Tenant has significant embedded option value due to flexible lease structure"
+    ]
+  }
+}

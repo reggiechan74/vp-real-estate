@@ -1,0 +1,188 @@
+{
+  "analysis_date": "2025-11-06",
+  "property_address": "123 Industrial Parkway, Toronto, ON M1H 3G3",
+  "rentable_area_sf": 50000,
+  "options": [
+    {
+      "option_name": "First Renewal Option - 5 Years",
+      "option_type": "call",
+      "option_value": 1082682.0890890444,
+      "option_value_per_sf": 21.653641781780887,
+      "probability_itm": 81.91709393277624,
+      "d1": 1.1805382702070362,
+      "d2": 0.9122101129070614,
+      "greeks": {
+        "delta": 0.8811069006449075,
+        "gamma": 1.795511278630374e-07,
+        "vega": 18331.047960266973,
+        "theta": -149591.4513558803,
+        "rho": 127594.19380355993
+      },
+      "underlying_value": 4125000,
+      "strike_price": 4000000,
+      "time_to_expiration": 5.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05
+    },
+    {
+      "option_name": "Second Renewal Option - 5 Years",
+      "option_type": "call",
+      "option_value": 1675852.994441724,
+      "option_value_per_sf": 33.51705988883448,
+      "probability_itm": 87.0314494890941,
+      "d1": 1.5073523513469276,
+      "d2": 1.127879032126722,
+      "greeks": {
+        "delta": 0.9341398173356028,
+        "gamma": 8.183181955929905e-08,
+        "vega": 16709.03465626438,
+        "theta": -118899.10839714052,
+        "rho": 217747.37520676377
+      },
+      "underlying_value": 4125000,
+      "strike_price": 4125000,
+      "time_to_expiration": 10.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05
+    },
+    {
+      "option_name": "Expansion Option - 10,000 SF",
+      "option_type": "call",
+      "option_value": 91802.43962387493,
+      "option_value_per_sf": 1.8360487924774986,
+      "probability_itm": 77.81068061052147,
+      "d1": 0.973661096730011,
+      "d2": 0.7658149998217457,
+      "greeks": {
+        "delta": 0.8348875801940594,
+        "gamma": 1.448288892800194e-06,
+        "vega": 3548.669859583675,
+        "theta": -33886.24910018272,
+        "rho": 16073.345628609219
+      },
+      "underlying_value": 825000,
+      "strike_price": 800000,
+      "time_to_expiration": 3.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05
+    },
+    {
+      "option_name": "Early Termination Option (Year 3)",
+      "option_type": "put",
+      "option_value": 98490.76893044903,
+      "option_value_per_sf": 1.9698153786089807,
+      "probability_itm": 31.770194472981295,
+      "d1": 0.681980749019695,
+      "d2": 0.4741346521114297,
+      "greeks": {
+        "delta": -0.24762556189949514,
+        "gamma": 5.268069648212867e-07,
+        "vega": 15812.407378028629,
+        "theta": 9050.664189704788,
+        "rho": -24405.28736745723
+      },
+      "underlying_value": 2887500,
+      "strike_price": 2975000,
+      "time_to_expiration": 3.0,
+      "volatility": 0.12,
+      "risk_free_rate": 0.05
+    }
+  ],
+  "total_option_value": 2948828.2920850925,
+  "total_value_per_sf": 58.97656584170185,
+  "total_as_pct_of_property": null,
+  "sensitivity": {
+    "base_value": 1082682.0890890444,
+    "volatility_scenarios": [
+      {
+        "volatility": 0.05,
+        "volatility_pct": 5.0,
+        "option_value": 1010571.4111210965
+      },
+      {
+        "volatility": 0.1,
+        "volatility_pct": 10.0,
+        "option_value": 1049698.7678212118
+      },
+      {
+        "volatility": 0.15,
+        "volatility_pct": 15.0,
+        "option_value": 1143981.5556742237
+      },
+      {
+        "volatility": 0.2,
+        "volatility_pct": 20.0,
+        "option_value": 1264675.7926887993
+      }
+    ],
+    "market_rent_scenarios": [
+      {
+        "change_pct": -0.2,
+        "change_pct_display": -20.0,
+        "new_underlying_value": 3300000.0,
+        "option_value": 442551.8570517702
+      },
+      {
+        "change_pct": -0.1,
+        "change_pct_display": -10.0,
+        "new_underlying_value": 3712500.0,
+        "option_value": 737505.1646174574
+      },
+      {
+        "change_pct": 0,
+        "change_pct_display": 0,
+        "new_underlying_value": 4125000,
+        "option_value": 1082682.0890890444
+      },
+      {
+        "change_pct": 0.1,
+        "change_pct_display": 10.0,
+        "new_underlying_value": 4537500.0,
+        "option_value": 1458926.6030160747
+      },
+      {
+        "change_pct": 0.2,
+        "change_pct_display": 20.0,
+        "new_underlying_value": 4950000.0,
+        "option_value": 1852763.0600702204
+      },
+      {
+        "change_pct": 0.5,
+        "change_pct_display": 50.0,
+        "new_underlying_value": 6187500.0,
+        "option_value": 3074255.268082526
+      }
+    ],
+    "time_decay_schedule": [
+      {
+        "years_remaining": 5.0,
+        "option_value": 1082682.0890890444,
+        "annual_decay": 0
+      },
+      {
+        "years_remaining": 4.0,
+        "option_value": 928756.0556171001,
+        "annual_decay": 153926.03347194428
+      },
+      {
+        "years_remaining": 3.0,
+        "option_value": 765020.330198958,
+        "annual_decay": 163735.72541814204
+      },
+      {
+        "years_remaining": 2.0,
+        "option_value": 588469.5562167582,
+        "annual_decay": 176550.77398219984
+      },
+      {
+        "years_remaining": 1.0,
+        "option_value": 391085.5619526333,
+        "annual_decay": 197383.9942641249
+      }
+    ]
+  },
+  "market_rent_psf": 16.5,
+  "base_rent_psf": 17.0,
+  "rent_premium_psf": 0.5,
+  "annualized_option_value": null
+}
