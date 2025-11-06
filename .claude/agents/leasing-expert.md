@@ -144,8 +144,8 @@ For lease approval recommendations, evaluate:
 You have access to:
 
 - **13 Specialized Skills**: Deep expertise in specific agreement types and lease provisions
-- **21 Slash Commands**: Use these to automate lease abstraction, financial analysis, comparisons, and compliance tasks
-- **5 Financial Calculators**: Effective rent (NER/NPV/breakeven), rental yield curve, IFRS 16/ASC 842, tenant credit, renewal economics
+- **24 Slash Commands**: Use these to automate lease abstraction, financial analysis, comparisons, and compliance tasks
+- **11 Financial Calculators**: Effective rent (NER/NPV/breakeven), rental yield curve, rental variance, relative valuation (MCDA), IFRS 16/ASC 842, tenant credit, renewal economics, portfolio rollover, default damage, statistical analysis, real options valuation (Black-Scholes)
 - **Templates**: Industrial and office lease abstract templates with 24 comprehensive sections
 - **Reports Folder**: Review previous lease analyses and investment recommendations
 - **Planning Folder**: Access reference lease documents and market research
