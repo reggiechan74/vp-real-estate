@@ -57,7 +57,7 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 - `/market-comparison` - Market rent benchmarking
 - `/rollover-analysis` - Portfolio lease expiry analysis
 - `/rental-variance` - Rental variance decomposition by rate, area, and term
-- `/relative-valuation` - MCDA competitive positioning with 15 variables
+- `/relative-valuation` - MCDA competitive positioning with 25 variables, personas, and filters
 - `/recommendation-memo` - VTS approval memo with tenant analysis and deal comparison
 
 ### Accounting (1)
@@ -142,6 +142,48 @@ markitdown document.docx -o output.md
 **Office**: `Templates/Office/` (ANSI/BOMA Office Buildings Standard)
 
 Each has: `*_template.md`, `*_template.json`, `*_schema.json`
+
+## JSON Schema Standards
+
+When creating JSON schema validation documents (not data templates), follow these requirements:
+
+**Schema Version**: Use JSON Schema **Draft 2020-12** or **Draft-07**
+- Specify `"$schema"` at document root
+- Draft 2020-12: `"$schema": "https://json-schema.org/draft/2020-12/schema"`
+- Draft-07: `"$schema": "http://json-schema.org/draft-07/schema#"`
+
+**Required Elements**:
+1. **Object Structure**: Define `type`, `properties`, `additionalProperties`
+2. **Type Definitions**: Specify data types for all fields (string, number, integer, boolean, array, object)
+3. **Required Properties**: List mandatory fields in `required` array
+4. **Validation Rules**: Add constraints appropriate to field type:
+   - Numbers: `minimum`, `maximum`, `exclusiveMinimum`, `exclusiveMaximum`
+   - Strings: `minLength`, `maxLength`, `pattern`, `format`, `enum`
+   - Arrays: `minItems`, `maxItems`, `uniqueItems`
+   - Objects: `minProperties`, `maxProperties`
+
+**Example Structure**:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/my-schema.json",
+  "title": "Schema Title",
+  "description": "Schema description",
+  "type": "object",
+  "required": ["field1", "field2"],
+  "properties": {
+    "field1": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Field description"
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+**Naming Convention**: Use `*_schema.json` suffix for validation schemas, `*_template.json` for data templates
 
 ## Key Lease Provisions
 
