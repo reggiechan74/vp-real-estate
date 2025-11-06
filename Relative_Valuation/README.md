@@ -129,7 +129,7 @@ If you don't want to use the API, set all distances to 0 and exclude distance fr
 
 ### Input JSON Schema
 
-**📄 Schema Template:** See `schema_template.json` for complete JSON template with all 25 variables
+**📄 Schema Reference:** See `schema_template.json` (Draft 2020-12 JSON Schema) for the authoritative input specification covering all 25 variables.
 
 **📖 Field Documentation:** See `SCHEMA.md` for:
 - Complete field reference tables (core + optional variables)
@@ -138,7 +138,7 @@ If you don't want to use the API, set all distances to 0 and exclude distance fr
 - Critical requirements and validation rules
 - Usage examples with tenant personas
 
-**Quick Start:** Copy `schema_template.json` and populate with your data, or use the simplified structure below for core variables only.
+**Quick Start:** Copy `schema_template.json`, validate your data against it (e.g., with `jsonschema`), and populate the required fields. A simplified core-only example is shown below.
 
 ### Output
 

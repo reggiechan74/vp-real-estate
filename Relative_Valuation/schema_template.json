@@ -1,98 +1,353 @@
 {
-  "analysis_date": "YYYY-MM-DD",
-  "market": "Market Name - Property Type",
-  "subject_property": {
-    "address": "2550 Stanfield Rd, Mississauga, ON L4Y 1S2, Canada",
-    "unit": "Opt 2",
-    "year_built": 0,
-    "clear_height_ft": 0.0,
-    "pct_office_space": 0.11,
-    "parking_ratio": 0.0,
-    "available_sf": 0,
-    "distance_km": 0.0,
-    "net_asking_rent": 0.0,
-    "tmi": 0.0,
-    "class": 2,
-    "is_subject": true,
-    "landlord": "...",
-    "shipping_doors_tl": 0,
-    "shipping_doors_di": 0,
-    "availability_date": "",
-    "power_amps": 0,
-    "trailer_parking": false,
-    "secure_shipping": false,
-    "excess_land": false,
-    "bay_depth_ft": 0.0,
-    "lot_size_acres": 0.0,
-    "hvac_coverage": 3,
-    "sprinkler_type": 3,
-    "rail_access": false,
-    "crane": false,
-    "occupancy_status": 2,
-    "grade_level_doors": 0,
-    "days_on_market": 0,
-    "zoning": ""
-  },
-  "comparables": [
-    {
-      "address": "795 Hazelhurst Rd, Mississauga, ON L5J 2Z6, Canada",
-      "unit": "",
-      "year_built": 0,
-      "clear_height_ft": 0.0,
-      "pct_office_space": 0.09,
-      "parking_ratio": 0.0,
-      "available_sf": 0,
-      "distance_km": 0.0,
-      "net_asking_rent": 0.0,
-      "tmi": 0.0,
-      "class": 2,
-      "is_subject": false,
-      "landlord": "...",
-      "shipping_doors_tl": 0,
-      "shipping_doors_di": 0,
-      "availability_date": "",
-      "power_amps": 0,
-      "trailer_parking": false,
-      "secure_shipping": false,
-      "excess_land": false,
-      "bay_depth_ft": 0.0,
-      "lot_size_acres": 0.0,
-      "hvac_coverage": 3,
-      "sprinkler_type": 3,
-      "rail_access": false,
-      "crane": false,
-      "occupancy_status": 2,
-      "grade_level_doors": 0,
-      "days_on_market": 0,
-      "zoning": ""
-    }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lease-abstract.internal/relative-valuation.schema.json",
+  "title": "Relative Valuation Analysis Input",
+  "description": "Schema for the relative valuation calculator input (subject property, comparables, dynamic weights, optional filters).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "analysis_date",
+    "market",
+    "subject_property",
+    "comparables",
+    "weights"
   ],
-  "filters": {},
-  "weights": {
-    "building_age_years": 0.04,
-    "clear_height_ft": 0.07,
-    "pct_office_space": 0.06,
-    "parking_ratio": 0.09,
-    "distance_km": 0.07,
-    "net_asking_rent": 0.11,
-    "tmi": 0.09,
-    "class": 0.05,
-    "area_difference": 0.07,
-    "shipping_doors_tl": 0.04,
-    "shipping_doors_di": 0.03,
-    "power_amps": 0.03,
-    "trailer_parking": 0.02,
-    "secure_shipping": 0.00,
-    "excess_land": 0.00,
-    "bay_depth_ft": 0.04,
-    "lot_size_acres": 0.03,
-    "hvac_coverage": 0.03,
-    "sprinkler_type": 0.03,
-    "rail_access": 0.02,
-    "crane": 0.02,
-    "occupancy_status": 0.00,
-    "grade_level_doors": 0.02,
-    "days_on_market": 0.02,
-    "zoning": 0.02
+  "properties": {
+    "analysis_date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO-8601 analysis date used for reporting (YYYY-MM-DD)."
+    },
+    "market": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Market name and asset type (e.g., Greater Toronto Area - Industrial)."
+    },
+    "subject_property": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/property"
+        },
+        {
+          "properties": {
+            "is_subject": {
+              "const": true
+            }
+          }
+        }
+      ],
+      "description": "Subject property to be ranked against comparables."
+    },
+    "comparables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/property"
+          },
+          {
+            "properties": {
+              "is_subject": {
+                "const": false
+              }
+            }
+          }
+        ]
+      },
+      "description": "Comparable properties used for competitive ranking."
+    },
+    "filters": {
+      "type": "object",
+      "description": "Optional must-have filters applied prior to ranking.",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      }
+    },
+    "weights": {
+      "type": "object",
+      "description": "Weight allocation for ranking variables. Values should sum to 1.0.",
+      "additionalProperties": false,
+      "required": [
+        "net_asking_rent",
+        "parking_ratio",
+        "tmi",
+        "clear_height_ft",
+        "pct_office_space",
+        "distance_km",
+        "area_difference",
+        "building_age_years",
+        "class",
+        "shipping_doors_tl",
+        "shipping_doors_di",
+        "power_amps",
+        "trailer_parking",
+        "secure_shipping",
+        "excess_land",
+        "bay_depth_ft",
+        "lot_size_acres",
+        "hvac_coverage",
+        "sprinkler_type",
+        "rail_access",
+        "crane",
+        "occupancy_status",
+        "grade_level_doors",
+        "days_on_market",
+        "zoning"
+      ],
+      "properties": {
+        "net_asking_rent": {
+          "$ref": "#/$defs/weight"
+        },
+        "parking_ratio": {
+          "$ref": "#/$defs/weight"
+        },
+        "tmi": {
+          "$ref": "#/$defs/weight"
+        },
+        "clear_height_ft": {
+          "$ref": "#/$defs/weight"
+        },
+        "pct_office_space": {
+          "$ref": "#/$defs/weight"
+        },
+        "distance_km": {
+          "$ref": "#/$defs/weight"
+        },
+        "area_difference": {
+          "$ref": "#/$defs/weight"
+        },
+        "building_age_years": {
+          "$ref": "#/$defs/weight"
+        },
+        "class": {
+          "$ref": "#/$defs/weight"
+        },
+        "shipping_doors_tl": {
+          "$ref": "#/$defs/weight"
+        },
+        "shipping_doors_di": {
+          "$ref": "#/$defs/weight"
+        },
+        "power_amps": {
+          "$ref": "#/$defs/weight"
+        },
+        "trailer_parking": {
+          "$ref": "#/$defs/weight"
+        },
+        "secure_shipping": {
+          "$ref": "#/$defs/weight"
+        },
+        "excess_land": {
+          "$ref": "#/$defs/weight"
+        },
+        "bay_depth_ft": {
+          "$ref": "#/$defs/weight"
+        },
+        "lot_size_acres": {
+          "$ref": "#/$defs/weight"
+        },
+        "hvac_coverage": {
+          "$ref": "#/$defs/weight"
+        },
+        "sprinkler_type": {
+          "$ref": "#/$defs/weight"
+        },
+        "rail_access": {
+          "$ref": "#/$defs/weight"
+        },
+        "crane": {
+          "$ref": "#/$defs/weight"
+        },
+        "occupancy_status": {
+          "$ref": "#/$defs/weight"
+        },
+        "grade_level_doors": {
+          "$ref": "#/$defs/weight"
+        },
+        "days_on_market": {
+          "$ref": "#/$defs/weight"
+        },
+        "zoning": {
+          "$ref": "#/$defs/weight"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "property": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "address",
+        "year_built",
+        "clear_height_ft",
+        "pct_office_space",
+        "parking_ratio",
+        "available_sf",
+        "distance_km",
+        "net_asking_rent",
+        "tmi",
+        "class",
+        "is_subject"
+      ],
+      "properties": {
+        "address": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string"
+        },
+        "year_built": {
+          "type": "integer",
+          "minimum": 1800,
+          "maximum": 2100
+        },
+        "building_age_years": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "clear_height_ft": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pct_office_space": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "parking_ratio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "available_sf": {
+          "type": "number",
+          "minimum": 0
+        },
+        "distance_km": {
+          "type": "number",
+          "minimum": 0
+        },
+        "net_asking_rent": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tmi": {
+          "type": "number",
+          "minimum": 0
+        },
+        "class": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "is_subject": {
+          "type": "boolean"
+        },
+        "landlord": {
+          "type": "string"
+        },
+        "shipping_doors_tl": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "shipping_doors_di": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "availability_date": {
+          "type": "string"
+        },
+        "power_amps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "trailer_parking": {
+          "type": "boolean"
+        },
+        "secure_shipping": {
+          "type": "boolean"
+        },
+        "excess_land": {
+          "type": "boolean"
+        },
+        "bay_depth_ft": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lot_size_acres": {
+          "type": "number",
+          "minimum": 0
+        },
+        "hvac_coverage": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "description": "1=Full building, 2=Partial, 3=None"
+        },
+        "sprinkler_type": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "description": "1=ESFR, 2=Standard, 3=None"
+        },
+        "rail_access": {
+          "type": "boolean"
+        },
+        "crane": {
+          "type": "boolean"
+        },
+        "occupancy_status": {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ],
+          "description": "1=Vacant, 2=Tenant occupied"
+        },
+        "grade_level_doors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "days_on_market": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "zoning": {
+          "type": "string"
+        },
+        "area_difference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "analysis_year": {
+          "type": "integer",
+          "minimum": 1800,
+          "maximum": 2100
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
   }
 }

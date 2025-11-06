@@ -284,7 +284,11 @@ Filter out properties that don't meet minimum requirements **before** ranking. T
    - Example: `"sprinkler_type": 1` - Only ESFR sprinklers (1=ESFR, 2=Standard, 3=None)
    - Example: `"hvac_coverage": 1` - Full HVAC only (1=Y, 2=Part, 3=N)
 
-### JSON Schema:
+### JSON Schema Reference
+- Full input specification: `Relative_Valuation/schema_template.json` (Draft 2020-12 JSON Schema).  
+  Validate incoming payloads against this file so future schema changes only require updating one location.
+
+**Filter Snippet Example**
 ```json
 {
   "filters": {
