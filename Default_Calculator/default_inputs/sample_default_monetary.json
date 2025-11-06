@@ -1,0 +1,39 @@
+{
+  "lease_terms": {
+    "property_address": "123 Industrial Parkway, Mississauga, ON L5T 2K9",
+    "tenant_name": "Acme Distribution Ltd.",
+    "landlord_name": "Industrial Properties Inc.",
+
+    "current_monthly_rent": 25000.00,
+    "current_annual_rent": 300000.00,
+    "rentable_area_sf": 50000,
+    "rent_per_sf": 6.00,
+
+    "lease_commencement_date": "2023-01-01",
+    "lease_expiry_date": "2028-12-31",
+    "remaining_months": 36,
+
+    "additional_rent_annual": 75000.00,
+    "security_deposit": 50000.00,
+
+    "monetary_default_cure_days": 5,
+    "non_monetary_default_cure_days": 15,
+
+    "market_rent_sf": 7.00,
+    "ti_allowance_sf": 15.00,
+    "leasing_commission_pct": 0.05,
+    "legal_fees": 5000.00,
+    "downtime_months": 6,
+
+    "discount_rate_annual": 0.10
+  },
+
+  "default_event": {
+    "default_date": "2025-11-01",
+    "default_type": "monetary",
+    "description": "Failure to pay base rent for November 2025 within 5 days of due date",
+    "amount_owing": 25000.00,
+    "cure_period_days": 5,
+    "cure_deadline": "2025-11-11"
+  }
+}

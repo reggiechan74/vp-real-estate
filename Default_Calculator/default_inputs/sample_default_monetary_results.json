@@ -1,0 +1,60 @@
+{
+  "analysis_date": "2025-11-06",
+  "lease_terms": {
+    "property_address": "123 Industrial Parkway, Mississauga, ON L5T 2K9",
+    "tenant_name": "Acme Distribution Ltd.",
+    "landlord_name": "Industrial Properties Inc.",
+    "current_monthly_rent": 25000.0,
+    "remaining_months": 36
+  },
+  "default_event": {
+    "default_date": "2025-11-01",
+    "default_type": "monetary",
+    "description": "Failure to pay base rent for November 2025 within 5 days of due date",
+    "amount_owing": 25000.0
+  },
+  "damages": {
+    "immediate": {
+      "unpaid_rent": 25000.0,
+      "unpaid_additional_rent": 0.0,
+      "late_fees": 0.0
+    },
+    "future": {
+      "accelerated_rent_npv": 974576.8263193329,
+      "lost_rent_downtime": 150000.0
+    },
+    "re_leasing_costs": {
+      "ti_costs": 750000.0,
+      "leasing_commissions": 52500.0,
+      "legal_fees": 5000.0
+    },
+    "credits": {
+      "security_deposit": 50000.0,
+      "re_lease_rent_npv": 739387.174404742
+    },
+    "totals": {
+      "gross_damages": 1957076.826319333,
+      "total_credits": 789387.174404742,
+      "net_damages": 1167689.651914591
+    }
+  },
+  "bankruptcy_scenarios": [
+    {
+      "scenario_name": "Trustee Rejection",
+      "priority_claim_60_days": 62500.0,
+      "unsecured_claim": 375000.0,
+      "expected_recovery": 137500.0,
+      "expected_loss": 1819576.826319333,
+      "payments_at_risk_90_days": 93750.0
+    }
+  ],
+  "analysis_notes": [
+    "Default date: November 01, 2025",
+    "Default type: monetary",
+    "Remaining lease term: 36 months",
+    "Current monthly rent: $25,000.00",
+    "Discount rate: 10.0%",
+    "Expected downtime: 6 months",
+    "Market rent: $7.00/SF ($350,000/year)"
+  ]
+}
