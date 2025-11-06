@@ -1103,6 +1103,15 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     # Combine subject + comparables into single list
     all_properties_data = [subject_data] + comparables_data
 
+    # Calculate building_age_years from year_built if not already provided
+    from datetime import datetime
+    analysis_year = int(analysis_date.split('-')[0]) if analysis_date else datetime.now().year
+    for prop in all_properties_data:
+        if 'year_built' in prop and prop.get('year_built'):
+            # Calculate building age if not already provided
+            if not prop.get('building_age_years'):
+                prop['building_age_years'] = analysis_year - prop['year_built']
+
     # Apply must-have filters if specified
     filters = data.get('filters', {})
     if filters:
