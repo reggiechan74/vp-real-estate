@@ -370,6 +370,18 @@ class TestBankruptcyClaims(unittest.TestCase):
         expected_loss = gross_damages - scenario.expected_recovery
         self.assertAlmostEqual(scenario.expected_loss, expected_loss, places=2)
 
+    def test_unsecured_claim_floors_at_zero(self):
+        """Unsecured claim should never be negative when priority exceeds damages"""
+        scenario = calculate_bankruptcy_claims(
+            monthly_rent=1000,
+            additional_rent_monthly=0,
+            remaining_months=12,
+            gross_damages=1500  # Less than 60-day priority claim
+        )
+
+        self.assertEqual(scenario.priority_claim_60_days, 2000)
+        self.assertEqual(scenario.unsecured_claim, 0.0)
+
 
 # ============================================================================
 # INTEGRATION TESTS: FULL DAMAGE CALCULATION
@@ -434,7 +446,7 @@ class TestFullDamageCalculation(unittest.TestCase):
         self.assertLess(results.damage_calculation.accelerated_rent_npv, 100000)
 
     def test_zero_remaining_term(self):
-        """Zero remaining term should have minimal future damages"""
+        """Zero remaining term still carries downtime and re-leasing costs"""
         lease = create_sample_lease(remaining_months=0)
         default = create_monetary_default()
 
@@ -445,6 +457,11 @@ class TestFullDamageCalculation(unittest.TestCase):
 
         # Should have no mitigation credit
         self.assertEqual(results.damage_calculation.re_lease_rent_credit_npv, 0.0)
+
+        # Re-leasing costs and downtime remain applicable despite zero term
+        self.assertGreater(results.damage_calculation.ti_costs, 0.0)
+        self.assertGreater(results.damage_calculation.lost_rent_downtime, 0.0)
+        self.assertGreater(results.damage_calculation.net_damages, 0.0)
 
     def test_higher_market_rent_increases_mitigation(self):
         """Higher market rent should increase mitigation credit"""
