@@ -54,6 +54,16 @@ class Property:
     secure_shipping: bool = False
     excess_land: bool = False
 
+    # New optional fields (Phase 2 enhancements)
+    bay_depth_ft: float = 0.0  # Bay depth from Bay Size field
+    lot_size_acres: float = 0.0  # Lot size in acres
+    hvac_coverage: int = 3  # Ordinal: Y=1, Part=2, N=3
+    sprinkler_type: int = 3  # Ordinal: ESFR=1, Standard=2, None=3
+    building_age_years: int = 0  # Calculated: analysis_year - year_built
+    rail_access: bool = False  # Rail siding availability
+    crane: bool = False  # Overhead crane capability
+    occupancy_status: int = 2  # Ordinal: Vacant=1, Tenant=2
+
     # Ranking results
     rank_year_built: int = 0
     rank_clear_height: int = 0
@@ -70,6 +80,14 @@ class Property:
     rank_trailer_parking: int = 0
     rank_secure_shipping: int = 0
     rank_excess_land: int = 0
+    rank_bay_depth: int = 0
+    rank_lot_size: int = 0
+    rank_hvac_coverage: int = 0
+    rank_sprinkler_type: int = 0
+    rank_building_age: int = 0
+    rank_rail_access: int = 0
+    rank_crane: int = 0
+    rank_occupancy_status: int = 0
 
     weighted_score: float = 0.0
     final_rank: int = 0
@@ -215,7 +233,7 @@ def detect_available_variables(properties: List[Dict[str, Any]]) -> Dict[str, bo
 
     # Core variables (always included)
     available = {
-        'year_built': True,
+        'building_age_years': True,  # Replaces year_built - more intuitive
         'clear_height_ft': True,
         'pct_office_space': True,
         'parking_ratio': True,
@@ -226,7 +244,7 @@ def detect_available_variables(properties: List[Dict[str, Any]]) -> Dict[str, bo
         'area_difference': True
     }
 
-    # Optional variables - check if data is available
+    # Optional variables (existing) - check if data is available
     # Shipping doors TL
     tl_count = sum(1 for p in properties if p.get('shipping_doors_tl', 0) > 0)
     available['shipping_doors_tl'] = tl_count >= threshold
@@ -250,6 +268,35 @@ def detect_available_variables(properties: List[Dict[str, Any]]) -> Dict[str, bo
     # Excess land (boolean)
     excess_count = sum(1 for p in properties if p.get('excess_land', False))
     available['excess_land'] = excess_count > 0
+
+    # Optional variables (new) - Phase 2 enhancements
+    # Bay depth
+    bay_count = sum(1 for p in properties if p.get('bay_depth_ft', 0) > 0)
+    available['bay_depth_ft'] = bay_count >= threshold
+
+    # Lot size
+    lot_count = sum(1 for p in properties if p.get('lot_size_acres', 0) > 0)
+    available['lot_size_acres'] = lot_count >= threshold
+
+    # HVAC coverage (ordinal - always include if at least 50% have non-default values)
+    hvac_count = sum(1 for p in properties if p.get('hvac_coverage', 3) < 3)
+    available['hvac_coverage'] = hvac_count >= threshold
+
+    # Sprinkler type (ordinal - always include if at least 50% have non-default values)
+    sprinkler_count = sum(1 for p in properties if p.get('sprinkler_type', 3) < 3)
+    available['sprinkler_type'] = sprinkler_count >= threshold
+
+    # Rail access (boolean)
+    rail_count = sum(1 for p in properties if p.get('rail_access', False))
+    available['rail_access'] = rail_count > 0
+
+    # Crane (boolean)
+    crane_count = sum(1 for p in properties if p.get('crane', False))
+    available['crane'] = crane_count > 0
+
+    # Occupancy status (ordinal - always include if at least 50% have non-default values)
+    occupancy_count = sum(1 for p in properties if p.get('occupancy_status', 2) < 2)
+    available['occupancy_status'] = occupancy_count >= threshold
 
     return available
 
@@ -287,23 +334,36 @@ def allocate_dynamic_weights(available_vars: Dict[str, bool],
     Returns:
         Adjusted weights that sum to 1.0
     """
-    # Define default weights when no custom schema provided
+    # Define default weights when no custom schema provided (23 variables total)
+    # Core variables (9): 67% total
+    # Existing optional (6): 12% total
+    # New optional (8): 21% total
     default_weights = {
-        'net_asking_rent': 0.14,
-        'parking_ratio': 0.13,
-        'tmi': 0.12,
-        'clear_height_ft': 0.09,
-        'pct_office_space': 0.09,
-        'distance_km': 0.09,
-        'area_difference': 0.09,
-        'year_built': 0.07,
-        'class': 0.06,
+        # Core variables (67%)
+        'net_asking_rent': 0.11,
+        'parking_ratio': 0.10,
+        'tmi': 0.09,
+        'clear_height_ft': 0.07,
+        'pct_office_space': 0.07,
+        'distance_km': 0.07,
+        'area_difference': 0.07,
+        'building_age_years': 0.04,  # Replaces year_built
+        'class': 0.05,
+        # Existing optional variables (12%)
         'shipping_doors_tl': 0.04,
         'shipping_doors_di': 0.03,
         'power_amps': 0.03,
         'trailer_parking': 0.02,
-        'secure_shipping': 0.02,
-        'excess_land': 0.02
+        'secure_shipping': 0.00,  # No data in typical datasets
+        'excess_land': 0.00,  # No data in typical datasets
+        # New optional variables (21%)
+        'bay_depth_ft': 0.05,
+        'lot_size_acres': 0.04,
+        'hvac_coverage': 0.03,
+        'sprinkler_type': 0.03,
+        'rail_access': 0.02,
+        'crane': 0.02,
+        'occupancy_status': 0.02
     }
 
     # Helper to normalise a provided weight mapping to sum to 1.0
@@ -415,7 +475,7 @@ def calculate_weighted_score(property_data: Dict[str, Any],
     # Variable name mapping from weights dict to ranks dict
     # Weights use shortened names, ranks use full field names from property
     variable_mapping = {
-        'year_built': 'year_built',
+        'building_age_years': 'building_age_years',
         'clear_height_ft': 'clear_height_ft',
         'pct_office_space': 'pct_office_space',
         'parking_ratio': 'parking_ratio',
@@ -429,7 +489,14 @@ def calculate_weighted_score(property_data: Dict[str, Any],
         'power_amps': 'power_amps',
         'trailer_parking': 'trailer_parking',
         'secure_shipping': 'secure_shipping',
-        'excess_land': 'excess_land'
+        'excess_land': 'excess_land',
+        'bay_depth_ft': 'bay_depth_ft',
+        'lot_size_acres': 'lot_size_acres',
+        'hvac_coverage': 'hvac_coverage',
+        'sprinkler_type': 'sprinkler_type',
+        'rail_access': 'rail_access',
+        'crane': 'crane',
+        'occupancy_status': 'occupancy_status'
     }
 
     for weight_key, rank_key in variable_mapping.items():
@@ -616,7 +683,7 @@ def generate_competitive_report(results: CompetitiveAnalysis, output_path: str, 
 
 | Variable | Rank | Interpretation |
 |----------|------|----------------|
-| Year Built | {subject.get('rank_year_built', 'N/A')} | {'Excellent' if subject.get('rank_year_built', 999) <= 20 else 'Good' if subject.get('rank_year_built', 999) <= 50 else 'Moderate' if subject.get('rank_year_built', 999) <= 80 else 'Poor'} |
+| Building Age | {subject.get('rank_building_age', 'N/A')} | {'Excellent' if subject.get('rank_building_age', 999) <= 20 else 'Good' if subject.get('rank_building_age', 999) <= 50 else 'Moderate' if subject.get('rank_building_age', 999) <= 80 else 'Poor'} |
 | Clear Height | {subject.get('rank_clear_height', 'N/A')} | {'Excellent' if subject.get('rank_clear_height', 999) <= 20 else 'Good' if subject.get('rank_clear_height', 999) <= 50 else 'Moderate' if subject.get('rank_clear_height', 999) <= 80 else 'Poor'} |
 | % Office Space | {subject.get('rank_pct_office', 'N/A')} | {'Excellent' if subject.get('rank_pct_office', 999) <= 20 else 'Good' if subject.get('rank_pct_office', 999) <= 50 else 'Moderate' if subject.get('rank_pct_office', 999) <= 80 else 'Poor'} |
 | Parking Ratio | {subject.get('rank_parking', 'N/A')} | {'Excellent' if subject.get('rank_parking', 999) <= 20 else 'Good' if subject.get('rank_parking', 999) <= 50 else 'Moderate' if subject.get('rank_parking', 999) <= 80 else 'Poor'} |
@@ -816,7 +883,7 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     print("\n   Detecting available variables...")
     available_vars = detect_available_variables(all_properties_data)
     num_available = sum(1 for v in available_vars.values() if v)
-    print(f"   Using {num_available} of 15 possible variables")
+    print(f"   Using {num_available} of 23 possible variables")
 
     # Allocate weights dynamically based on available data
     dynamic_weights = allocate_dynamic_weights(available_vars, weights)
@@ -825,7 +892,7 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         print(f"      {var}: {weight:.1%}")
 
     # Extract values for each variable
-    year_builts = [p['year_built'] for p in all_properties_data]
+    building_ages = [p.get('building_age_years', 0) for p in all_properties_data]
     clear_heights = [p['clear_height_ft'] for p in all_properties_data]
     pct_offices = [p['pct_office_space'] for p in all_properties_data]
     parking_ratios = [p['parking_ratio'] for p in all_properties_data]
@@ -836,11 +903,11 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     area_diffs = [p['area_difference'] for p in all_properties_data]
 
     # Rank each variable
-    # Variables where LOWER = BETTER (ascending=True): rent, TMI, distance, class, area_diff
-    # Variables where HIGHER = BETTER (ascending=False): clear_height, parking, % office, year_built, shipping doors, power, boolean amenities
+    # Variables where LOWER = BETTER (ascending=True): rent, TMI, distance, class, area_diff, building_age, hvac_coverage, sprinkler_type, occupancy_status
+    # Variables where HIGHER = BETTER (ascending=False): clear_height, parking, % office, shipping doors, power, boolean amenities, bay_depth, lot_size
     print("\n   Ranking variables...")
 
-    ranks_year_built = rank_variable(year_builts, ascending=False)  # Newer (higher year) = better
+    ranks_building_age = rank_variable(building_ages, ascending=True)  # Newer (lower age) = better
     ranks_clear_height = rank_variable(clear_heights, ascending=False)  # Higher = better
     ranks_pct_office = rank_variable(pct_offices, ascending=False)  # Higher = better (for office users)
     ranks_parking = rank_variable(parking_ratios, ascending=False)  # More parking = better
@@ -882,12 +949,49 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         excess_values = [1 if p.get('excess_land', False) else 0 for p in all_properties_data]
         ranks_excess_land = rank_variable(excess_values, ascending=False)  # True = better
 
+    # Rank new optional variables (Phase 2 enhancements)
+    ranks_bay_depth = None
+    ranks_lot_size = None
+    ranks_hvac_coverage = None
+    ranks_sprinkler_type = None
+    ranks_rail_access = None
+    ranks_crane = None
+    ranks_occupancy_status = None
+
+    if available_vars.get('bay_depth_ft', False):
+        bay_depth_values = [p.get('bay_depth_ft', 0) for p in all_properties_data]
+        ranks_bay_depth = rank_variable(bay_depth_values, ascending=False)  # Deeper = better
+
+    if available_vars.get('lot_size_acres', False):
+        lot_size_values = [p.get('lot_size_acres', 0) for p in all_properties_data]
+        ranks_lot_size = rank_variable(lot_size_values, ascending=False)  # Larger = better
+
+    if available_vars.get('hvac_coverage', False):
+        hvac_values = [p.get('hvac_coverage', 3) for p in all_properties_data]
+        ranks_hvac_coverage = rank_variable(hvac_values, ascending=True)  # Y=1 better than N=3
+
+    if available_vars.get('sprinkler_type', False):
+        sprinkler_values = [p.get('sprinkler_type', 3) for p in all_properties_data]
+        ranks_sprinkler_type = rank_variable(sprinkler_values, ascending=True)  # ESFR=1 better than None=3
+
+    if available_vars.get('rail_access', False):
+        rail_values = [1 if p.get('rail_access', False) else 0 for p in all_properties_data]
+        ranks_rail_access = rank_variable(rail_values, ascending=False)  # True = better
+
+    if available_vars.get('crane', False):
+        crane_values = [1 if p.get('crane', False) else 0 for p in all_properties_data]
+        ranks_crane = rank_variable(crane_values, ascending=False)  # True = better
+
+    if available_vars.get('occupancy_status', False):
+        occupancy_values = [p.get('occupancy_status', 2) for p in all_properties_data]
+        ranks_occupancy_status = rank_variable(occupancy_values, ascending=True)  # Vacant=1 better than Tenant=2
+
     # Calculate weighted scores
     print("   Calculating weighted scores...")
     for i, prop in enumerate(all_properties_data):
         # Build ranks_dict with core variables
         ranks_dict = {
-            'year_built': ranks_year_built[i],
+            'building_age_years': ranks_building_age[i],
             'clear_height_ft': ranks_clear_height[i],
             'pct_office_space': ranks_pct_office[i],
             'parking_ratio': ranks_parking[i],
@@ -898,7 +1002,7 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
             'area_difference': ranks_area_diff[i]
         }
 
-        # Add optional variable ranks if available
+        # Add existing optional variable ranks if available
         if ranks_shipping_tl is not None:
             ranks_dict['shipping_doors_tl'] = ranks_shipping_tl[i]
         if ranks_shipping_di is not None:
@@ -912,8 +1016,24 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         if ranks_excess_land is not None:
             ranks_dict['excess_land'] = ranks_excess_land[i]
 
+        # Add new optional variable ranks if available
+        if ranks_bay_depth is not None:
+            ranks_dict['bay_depth_ft'] = ranks_bay_depth[i]
+        if ranks_lot_size is not None:
+            ranks_dict['lot_size_acres'] = ranks_lot_size[i]
+        if ranks_hvac_coverage is not None:
+            ranks_dict['hvac_coverage'] = ranks_hvac_coverage[i]
+        if ranks_sprinkler_type is not None:
+            ranks_dict['sprinkler_type'] = ranks_sprinkler_type[i]
+        if ranks_rail_access is not None:
+            ranks_dict['rail_access'] = ranks_rail_access[i]
+        if ranks_crane is not None:
+            ranks_dict['crane'] = ranks_crane[i]
+        if ranks_occupancy_status is not None:
+            ranks_dict['occupancy_status'] = ranks_occupancy_status[i]
+
         # Assign core variable ranks to property
-        prop['rank_year_built'] = int(ranks_year_built[i])
+        prop['rank_building_age'] = int(ranks_building_age[i])
         prop['rank_clear_height'] = int(ranks_clear_height[i])
         prop['rank_pct_office'] = int(ranks_pct_office[i])
         prop['rank_parking'] = int(ranks_parking[i])
@@ -923,13 +1043,22 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
         prop['rank_class'] = int(ranks_class[i])
         prop['rank_area_diff'] = int(ranks_area_diff[i])
 
-        # Assign optional variable ranks to property
+        # Assign existing optional variable ranks to property
         prop['rank_shipping_doors_tl'] = int(ranks_shipping_tl[i]) if ranks_shipping_tl else 0
         prop['rank_shipping_doors_di'] = int(ranks_shipping_di[i]) if ranks_shipping_di else 0
         prop['rank_power'] = int(ranks_power[i]) if ranks_power else 0
         prop['rank_trailer_parking'] = int(ranks_trailer_parking[i]) if ranks_trailer_parking else 0
         prop['rank_secure_shipping'] = int(ranks_secure_shipping[i]) if ranks_secure_shipping else 0
         prop['rank_excess_land'] = int(ranks_excess_land[i]) if ranks_excess_land else 0
+
+        # Assign new optional variable ranks to property
+        prop['rank_bay_depth'] = int(ranks_bay_depth[i]) if ranks_bay_depth else 0
+        prop['rank_lot_size'] = int(ranks_lot_size[i]) if ranks_lot_size else 0
+        prop['rank_hvac_coverage'] = int(ranks_hvac_coverage[i]) if ranks_hvac_coverage else 0
+        prop['rank_sprinkler_type'] = int(ranks_sprinkler_type[i]) if ranks_sprinkler_type else 0
+        prop['rank_rail_access'] = int(ranks_rail_access[i]) if ranks_rail_access else 0
+        prop['rank_crane'] = int(ranks_crane[i]) if ranks_crane else 0
+        prop['rank_occupancy_status'] = int(ranks_occupancy_status[i]) if ranks_occupancy_status else 0
 
         # Calculate weighted score using DYNAMIC weights
         prop['weighted_score'] = calculate_weighted_score(prop, ranks_dict, dynamic_weights)
