@@ -14,7 +14,7 @@ Built for institutional leasing teams that need production-ready automation acro
 
 ### **TL;DR: Survive the Asset Manager's Inquisition. Get to Your Tee Time.**
 
-Every great deal is a war fought on two fronts: one against the market, and the other against the Investment Committee’s army of spreadsheets. You win the first war with instinct and a handshake. You win the second with this.
+Every great deal is a war fought on two fronts: one against the market, and the other against the asset manager's love of spreadsheets. You win the first war with instinct and a handshake. You win the second with this.
 
 *   **Speak Fluent Asset Management (Without Knowing a Thing).**
     Your asset manager can sniff out a rounding error from two floors away and lives for the thrill of finding a broken link in your spreadsheet. This toolkit generates a pristine, institutional-grade package so clean, so auditable, and so utterly devoid of "cowboy math," they’ll have to approve it on the spot—leaving them with nothing to do but quietly admire the model's structural integrity.
