@@ -19,7 +19,10 @@ Version: 1.0.0 (Phase 1 - MVP)
 
 import json
 import argparse
-from statistics_module import analyze_properties_statistics, generate_statistics_markdown
+try:
+    from .statistics_module import analyze_properties_statistics, generate_statistics_markdown  # type: ignore
+except ImportError:
+    from statistics_module import analyze_properties_statistics, generate_statistics_markdown  # type: ignore
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from typing import List, Dict, Tuple, Any, Optional
@@ -1558,11 +1561,10 @@ Examples:
     stats_report = None
     if args.stats:
         print("📊 Running statistical analysis...")
-        all_properties = [data['subject_property']] + data['comparables']
         stats_report = analyze_properties_statistics(
-            properties=all_properties,
-            analysis_date=data.get('analysis_date', datetime.now().strftime('%Y-%m-%d')),
-            market=data.get('market', 'Unknown Market')
+            properties=results.all_properties,
+            analysis_date=results.analysis_date,
+            market=results.market
         )
         print(f"   ✓ Statistical analysis complete ({stats_report.sample_size} properties)")
 
