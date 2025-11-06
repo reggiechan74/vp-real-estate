@@ -412,7 +412,7 @@ The user will provide one or more PDF documents containing:
    - **Lot Size** - Extract from "Lot Irreg" or "Lot Size Area", convert to acres as `lot_size_acres`
    - **HVAC Coverage** - Extract from "A/C" field: Y=1, Part=2, N=3 (ordinal) as `hvac_coverage`
    - **Sprinkler Type** - Check "Sprinklers" + "Client Remks" for ESFR: ESFR=1, Standard=2, None=3 (ordinal) as `sprinkler_type`
-   - **Building Age** - Calculate from `analysis_year - year_built` as `building_age_years`
+   - **Year Built** - Extract year as integer as `year_built` (building age calculated automatically)
    - **Rail Access** - Extract from "Rail" field: Y/N → boolean as `rail_access`
    - **Crane** - Extract from "Crane" field: Y/N → boolean as `crane`
    - **Occupancy Status** - Extract from "Occup" field: Vacant=1, Tenant=2 (ordinal) as `occupancy_status`
@@ -460,7 +460,6 @@ Build a properly formatted JSON file following this schema:
     "lot_size_acres": 0.0,       // Optional: lot size in acres
     "hvac_coverage": 3,          // Optional: Y=1, Part=2, N=3 (ordinal)
     "sprinkler_type": 3,         // Optional: ESFR=1, Standard=2, None=3 (ordinal)
-    "building_age_years": 0,     // Optional: analysis_year - year_built
     "rail_access": false,        // Optional: boolean
     "crane": false,              // Optional: boolean
     "occupancy_status": 2,       // Optional: Vacant=1, Tenant=2 (ordinal)
@@ -494,7 +493,6 @@ Build a properly formatted JSON file following this schema:
       "lot_size_acres": 0.0,
       "hvac_coverage": 3,
       "sprinkler_type": 3,
-      "building_age_years": 0,
       "rail_access": false,
       "crane": false,
       "occupancy_status": 2,
