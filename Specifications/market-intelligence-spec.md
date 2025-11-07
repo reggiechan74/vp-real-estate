@@ -4,9 +4,9 @@
 
 **Name**: `market-intelligence`
 
-**Purpose**: Market research, competitive analysis, and data-driven market insights for commercial real estate portfolio strategy. Complements `leasing-expert` by providing deep market context, competitive intelligence, and predictive analytics.
+**Purpose**: Market research, competitive analysis, and data-driven market insights for commercial real estate portfolio strategy. Complements `reggie-chan-vp` (Reggie Chan) by providing deep market context, competitive intelligence, and predictive analytics.
 
-**Distinct Value**: While `leasing-expert` uses market context for deal evaluation, `market-intelligence` specializes in systematic market data collection, competitive property analysis, trend forecasting, and strategic market positioning.
+**Distinct Value**: While `reggie-chan-vp` uses market context for deal evaluation, `market-intelligence` specializes in systematic market data collection, competitive property analysis, trend forecasting, and strategic market positioning.
 
 **Geography**: Supports both Canadian and U.S. markets with mirrored data pipelines for each.
 
@@ -919,7 +919,7 @@ Agent is successful when it can:
 ✅ Generate comprehensive market reports in <5 minutes
 ✅ Score location quality with objective, replicable methodology
 ✅ Build competitive intelligence database covering 500+ properties
-✅ Integrate seamlessly with leasing-expert and financial-analyst agents
+✅ Integrate seamlessly with reggie-chan-vp and financial-analyst agents
 ✅ Produce investor-grade market research and presentations
 
 **Backtesting cadence**: Retrain and evaluate forecasts quarterly, report QA metrics per asset class/submarket, and require at least 10 eligible markets before declaring the metric met.
