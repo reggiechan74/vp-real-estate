@@ -86,7 +86,7 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 
 **See**: `.claude/commands/README.md` for detailed documentation
 
-## Specialized Skills (13 total)
+## Specialized Skills (15 total)
 
 Use the Skill tool to invoke deep expertise on specific agreement types:
 
@@ -114,6 +114,10 @@ Use the Skill tool to invoke deep expertise on specific agreement types:
 
 ### Dispute Resolution
 - **lease-arbitration-expert** - Arbitration agreements, rent determination
+
+### Negotiation & Objection Handling
+- **negotiation-expert** - Evidence-based persuasion, calibrated questions, accusation audits
+- **objection-handling-expert** - Objection analysis, response strategies, value-creating solutions
 
 ## Quick Start Examples
 
@@ -147,6 +151,8 @@ python Option_Valuation/option_valuation.py \
 Skill -> commercial-lease-expert    # For general lease review
 Skill -> temporary-license-expert   # For short-term license agreements
 Skill -> consent-to-assignment-expert # For assignment consent requests
+Skill -> negotiation-expert         # For crafting negotiation responses
+Skill -> objection-handling-expert  # For responding to tenant objections
 
 # Convert DOCX to markdown
 markitdown document.docx -o output.md

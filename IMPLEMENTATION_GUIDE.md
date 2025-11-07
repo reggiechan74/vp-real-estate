@@ -23,7 +23,7 @@ This document focuses on operational excellence: reliable inputs, consistent exe
 
 ### 2.1 Automation Spine
 - **Slash Commands** (`.claude/commands/`): 24 commands organized by Abstraction, Financial Analysis, Accounting, Comparison, Compliance. Each command encapsulates extraction prompts, JSON templates, script execution, and reporting instructions.
-- **Expert Skills** (`.claude/skills/`): 13 senior-level knowledge bases that supply negotiation guidance, checklists, and risk commentary.
+- **Expert Skills** (`.claude/skills/`): 15 senior-level knowledge bases that supply negotiation guidance, checklists, and risk commentary.
 - **Python Calculators**:
   - `Eff_Rent_Calculator/eff_rent_calculator.py` – Net/Gross Effective Rent, Ponzi Rental Rate (PRR), breakeven.
   - `Credit_Analysis/credit_analysis.py` – Credit ratios, scoring, PD/LGD, security recommendations.
