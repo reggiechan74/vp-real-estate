@@ -55,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Integration with Toolkit**: Pull data from relative-valuation, effective-rent, market-comparison, tenant-credit, renewal-economics
   - **Response Templates**: Structured email/phone frameworks for each objection type
 
-**Methodology**: Based on Chris Voss "Never Split the Difference" framework, adapted specifically for commercial real estate lease negotiations. Skills teach methodology and principles rather than canned scripts, enabling context-aware responses using actual deal data.
+**Methodology**: Evidence-based persuasion framework adapted specifically for commercial real estate lease negotiations. Skills teach methodology and principles rather than canned scripts, enabling context-aware responses using actual deal data.
 
 **Value Proposition**:
 - Bridges analytical rigor (toolkit calculators) with persuasive delivery (negotiation skills)
