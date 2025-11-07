@@ -1,6 +1,6 @@
 # Meet Your New VP: Reggie Chan, CFA, FRICS
 
-[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 
@@ -357,8 +357,8 @@ npm install -g @anthropic-ai/claude-code
 **Step 2: Clone the Repository**
 
 ```bash
-git clone https://github.com/reggiechan74/leasing-expert.git
-cd leasing-expert
+git clone https://github.com/reggiechan74/vp-real-estate.git
+cd vp-real-estate
 ```
 
 **Step 3: Let Claude Code Install Everything Else**
@@ -483,7 +483,7 @@ Don't wait for perfection. Start saving time now.
 
 **Maintainer:** Claude Code
 **Version:** 1.7.0 (Released 2025-11-06)
-**Repository:** github.com/reggiechan74/leasing-expert
+**Repository:** github.com/reggiechan74/vp-real-estate
 
 For issues, feature requests, or questions: open a ticket in the repository.
 

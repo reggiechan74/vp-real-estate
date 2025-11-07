@@ -372,7 +372,7 @@ Included sample portfolio with 10 leases demonstrating:
 
 ## Support
 
-**GitHub Issues**: https://github.com/reggiechan74/leasing-expert/issues
+**GitHub Issues**: https://github.com/reggiechan74/vp-real-estate/issues
 **Documentation**: See `METHODOLOGY.md` for calculation details
 
 ---
