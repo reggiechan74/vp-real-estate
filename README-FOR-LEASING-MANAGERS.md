@@ -1,12 +1,10 @@
-# Meet Your New VP: Reggie Chan, CFA, FRICS
+# Your Job Isn't Spreadsheets. It's Deals.
 
-[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 
-**Version 1.8.0** • Released 2025-11-07
-
-## It's Like Having a 20-Year Veteran Work for You—For the Price of a Claude Code Subscription
+**Version 1.7.0** • Released 2025-11-06
 
 ---
 
@@ -30,21 +28,15 @@ They want institutional rigor. Audit trails. Unimpeachable math.
 
 ## What This Is
 
-**This is Reggie Chan.** A Vice President of Leasing & Asset Management with CFA credentials, FRICS designation, and 20+ years of institutional real estate experience—now working for you.
+This isn't software. It's a time machine.
 
-Just address "Reggie" and watch him:
-- Evaluate lease deals with CFA-level financial analysis
-- Structure responses to impossible tenant objections
-- Run credit analysis that would make any asset manager nod
-- Draft consent agreements, SNDAs, and surrenders
-- Calculate everything from effective rent to Black-Scholes option values
+It gives you back two full days every week. Days you used to spend in spreadsheet purgatory. Days you can now spend closing deals, working the phones, or finally getting to that 2 p.m. tee time you've been canceling for three months.
 
-Reggie gives you back two full days every week. Days you used to spend in spreadsheet purgatory. Days you can now spend closing deals, working the phones, or finally getting to that 2 p.m. tee time.
+**24 automated workflows.** One command, instant output. Lease abstraction. Effective rent analysis. Market comps. Credit scoring. IFRS 16 accounting. Renewal economics. Portfolio rollover risk. Competitive positioning. Everything.
 
-**Reggie has access to:**
-- **25 automated workflows** - One command, instant output for everything from lease abstraction to IFRS 16 accounting
-- **11 financial calculators** - Built by people who actually understand leasing, not consultants
-- **15 expert systems** - On-demand guidance for assignments, SNDAs, indemnities, arbitration prep, objection handling
+**11 financial calculators.** Built by people who actually understand leasing, not by some consultant who thinks "NER" is a typo.
+
+**13 expert advisors.** On-demand guidance for assignment consents, SNDAs, indemnities, arbitration prep, telecom licenses—all the stuff that used to mean three emails to legal and a two-day wait.
 
 Every output is timestamped, auditable, and so clean that even your most pedantic asset manager will have to approve it. Because there's nothing to criticize.
 
