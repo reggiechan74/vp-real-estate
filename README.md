@@ -1,13 +1,13 @@
 # Commercial Real Estate Lease Management Toolkit
 
-[![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
 
-**Version 1.7.0** • Released 2025-11-06
+**Version 1.8.0** • Released 2025-11-07
 Built for institutional leasing teams that need production-ready automation across the entire lease lifecycle.
 
 ---
@@ -194,14 +194,15 @@ python -m pytest Eff_Rent_Calculator/Tests/ -v
 
 ## Capabilities
 
-### Skills (13 Specialized Experts)
-- **Core leasing**: commercial-lease-expert for deal structuring and negotiation strategy.  
-- **Transfers & modifications**: assignment, sublease, share-transfer, surrender, waiver.  
-- **Security & protection**: indemnity, SNDA/non-disturbance.  
-- **Ancillary agreements**: temporary licenses, storage, telecom licensing.  
+### Skills (15 Specialized Experts)
+- **Core leasing**: commercial-lease-expert for deal structuring and negotiation strategy.
+- **Transfers & modifications**: assignment, sublease, share-transfer, surrender, waiver.
+- **Security & protection**: indemnity, SNDA/non-disturbance.
+- **Ancillary agreements**: temporary licenses, storage, telecom licensing.
 - **Disputes**: lease arbitration guidance.
+- **Negotiation & objection handling**: negotiation-expert for evidence-based persuasion (calibrated questions, accusation audits, labeling); objection-handling-expert for systematic objection analysis and response strategies.
 
-Each skill provides checklists, negotiation angles, risk flags, and recommended language—effectively bringing a senior advisor into the workflow on demand.
+Each skill provides checklists, negotiation angles, risk flags, and recommended language—effectively bringing a senior advisor into the workflow on demand. The negotiation skills integrate with toolkit analyses to craft data-driven responses to tenant objections.
 
 ### Calculators (11 Engines)
 1. **Effective Rent Calculator** (`Eff_Rent_Calculator/`)  

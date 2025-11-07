@@ -196,7 +196,7 @@ Each one has been tested on real deals. 235+ passing tests. No surprises.
 
 ---
 
-### The 13 Expert Advisors
+### The 15 Expert Advisors
 
 Some questions don't have a formula. They need judgment. Experience. A senior advisor who's seen this exact situation 50 times.
 
@@ -227,7 +227,13 @@ That's what the skills are. On-demand expertise for the messy stuff.
 **Dispute Resolution**
 - `lease-arbitration-expert` – Arbitration agreements, rent determination
 
+**Negotiation & Objection Handling**
+- `negotiation-expert` – Evidence-based persuasion, calibrated questions, accusation audits
+- `objection-handling-expert` – Systematic objection analysis, response strategies, value creation
+
 Each one gives you checklists, negotiation angles, risk flags, and recommended language. Basically, it's like having a senior partner on speed dial, except they respond instantly and never bill you.
+
+The negotiation skills are different. They don't just tell you what to do—they show you **how to say it**. When a broker pushes back on rent, you don't defend your number. You ask: *"How am I supposed to justify $16/sf when every comparable property built after 2015 is leasing for $18-19?"* Now they're the ones doing the work. That's the Voss method, adapted for commercial real estate.
 
 ---
 
