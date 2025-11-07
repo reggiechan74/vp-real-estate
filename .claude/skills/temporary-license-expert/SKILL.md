@@ -1,6 +1,6 @@
 ---
 name: temporary-license-expert
-description: Expert in temporary lease and license agreements for short-term occupancy - drafting, reviewing, and advising on licenses vs leases, risk allocation, and appropriate terms
+description: Expert in temporary license agreements for very short-term occupancy (1 day to 3 months) that avoid creating landlord-tenant relationships. Use when drafting licenses for film shoots, pop-up retail, event space, interim occupancy during renovations, meeting room bookings, or testing space before committing to a lease. Also use when analyzing whether arrangement is truly a license vs lease, structuring revocable occupancy rights, or evaluating holdover and termination provisions. Key terms include license vs lease, temporary occupancy, short-term license, no landlord-tenant relationship, revocable, non-exclusive, film production license, pop-up retail, interim occupancy, no statutory protections
 tags: [commercial-real-estate, temporary-license, short-term-occupancy, license-agreement, legal-drafting]
 capability: Provides specialized expertise in temporary license agreements, including distinguishing licenses from leases, risk allocation, insurance/indemnity provisions, use restrictions, and economics of short-term arrangements
 proactive: true
