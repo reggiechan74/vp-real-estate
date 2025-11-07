@@ -60,7 +60,7 @@ Except you win more, because you're on the back nine by 3 p.m.
 
 It's stupidly simple:
 
-1. **Feed it a lease PDF** (or DOCX, or Excel, or whatever disaster format you've been handed)
+1. **Feed Reggie a lease PDF** (or DOCX, or Excel, or whatever disaster format you've been handed)
 2. **Type one command** (like `/effective-rent` or `/abstract-lease` or `/tenant-credit`)
 3. **Get a board-ready report** in seconds
 
@@ -76,7 +76,7 @@ Because the last thing you need is *more complexity*.
 
 ---
 
-## What It Actually Does For You
+## What Reggie Actually Does For You
 
 ### When a Tenant Sends You Financials
 
@@ -84,7 +84,7 @@ Because the last thing you need is *more complexity*.
 
 *New way:* Type `/tenant-credit path/to/financials.pdf`. Get back a complete credit analysis in 30 seconds. Fifteen ratios. A 100-point credit score. A recommended security deposit amount. PD/LGD estimates. Everything formatted, documented, defensible.
 
-**You look like you have a team of analysts. You don't. You have this.**
+**You look like you have a team of analysts. You don't. You have Reggie.**
 
 ---
 
@@ -140,9 +140,9 @@ Because the last thing you need is *more complexity*.
 
 ## Every Analysis You'll Ever Need
 
-### The 24 Workflows
+### Reggie's 25 Workflows
 
-We built these for the questions you get asked every single week. One command, instant output, zero thinking required.
+Reggie has 25 workflows ready for the questions you get asked every single week. One command, instant output, zero thinking required.
 
 **Abstraction** (2 commands)
 - `/abstract-lease` – Pull every term from a lease into a clean 24-section template
@@ -204,11 +204,11 @@ Each one has been tested on real deals. 235+ passing tests. No surprises.
 
 ---
 
-### The 15 Expert Advisors
+### Reggie's 15 Expert Systems
 
 Some questions don't have a formula. They need judgment. Experience. A senior advisor who's seen this exact situation 50 times.
 
-That's what the skills are. On-demand expertise for the messy stuff.
+That's what Reggie brings. On-demand expertise for the messy stuff.
 
 **Core Leasing**
 - `commercial-lease-expert` – Deal structuring, net lease mechanics, negotiation strategy
@@ -239,7 +239,7 @@ That's what the skills are. On-demand expertise for the messy stuff.
 - `negotiation-expert` – Evidence-based persuasion, calibrated questions, accusation audits
 - `objection-handling-expert` – Systematic objection analysis, response strategies, value creation
 
-Each one gives you checklists, negotiation angles, risk flags, and recommended language. Basically, it's like having a senior partner on speed dial, except they respond instantly and never bill you.
+Each one gives you checklists, negotiation angles, risk flags, and recommended language. Basically, Reggie's like having a senior partner on speed dial, except he responds instantly and never bills you.
 
 The negotiation skills are different. They don't just tell you what to do—they show you **how to say it**. When a broker pushes back on rent, you don't defend your number. You ask: *"How am I supposed to justify $16/sf when every comparable property built after 2015 is leasing for $18-19?"* Now they're the ones doing the work. That's evidence-based persuasion, adapted for commercial real estate.
 
@@ -251,7 +251,7 @@ The negotiation skills are different. They don't just tell you what to do—they
 
 You're juggling 40 leases, half of which expire in the next 18 months. Finance wants variance reports. Asset management wants rollover risk analysis. Your boss wants to know why the Q3 renewals are below budget.
 
-**This gives you the reporting infrastructure of a 10-person team. For free.**
+**Reggie gives you the reporting infrastructure of a 10-person team. For free.**
 
 ---
 
@@ -259,7 +259,7 @@ You're juggling 40 leases, half of which expire in the next 18 months. Finance w
 
 You need to abstract every lease, track critical dates, handle assignment consents, draft default notices, and somehow find time to actually manage the building.
 
-**This automates the paperwork so you can do the actual job.**
+**Reggie automates the paperwork so you can do the actual job.**
 
 ---
 
@@ -267,7 +267,7 @@ You need to abstract every lease, track critical dates, handle assignment consen
 
 Your CFO wants IFRS 16 compliance. Your VP wants lease-vs-buy analysis. Your FP&A team wants renewal economics modeled three different ways.
 
-**This speaks fluent CFO. You just point it at the lease.**
+**Reggie speaks fluent CFO. You just point him at the lease.**
 
 ---
 
@@ -275,13 +275,13 @@ Your CFO wants IFRS 16 compliance. Your VP wants lease-vs-buy analysis. Your FP&
 
 You're pitching deals. You need offer comps, market analysis, effective rent breakdowns, and everything has to look institutional-grade because your client's investment committee doesn't mess around.
 
-**This is your unfair advantage. Use it.**
+**Reggie is your unfair advantage. Use him.**
 
 ---
 
-## What Makes This Different
+## What Makes Reggie Different
 
-### It Was Built By People Who Understand Leasing
+### He Was Built By People Who Understand Leasing
 
 Not by someone who thinks "TI" stands for "Texas Instruments."
 
@@ -289,15 +289,15 @@ Not by a team of engineers who have never seen a Schedule G.
 
 Not by consultants billing $400/hour to build you a model you can't modify.
 
-**This was built by someone who actually does this work.** Someone who knows that "net effective rent" and "gross effective rent" are different things. Someone who understands that a renewal analysis isn't complete unless you model relocation downtime. Someone who knows that variance decomposition means rate, area, *and term*.
+**Reggie was built by someone who actually does this work.** Someone who knows that "net effective rent" and "gross effective rent" are different things. Someone who understands that a renewal analysis isn't complete unless you model relocation downtime. Someone who knows that variance decomposition means rate, area, *and term*.
 
 Every calculator reflects real-world assumptions. Every workflow follows actual deal flow. Every output matches what an asset manager expects to see.
 
-**It just works. Because it was built by people who know what "works" means.**
+**He just works. Because he was built by people who know what "works" means.**
 
 ---
 
-### It's Tested on Real Deals
+### He's Been Tested on Real Deals
 
 235+ passing tests. Not toy examples. Real lease structures. Real cash flows. Real edge cases.
 
@@ -306,17 +306,17 @@ What if the TI is paid over 24 months instead of upfront? Tested.
 What if the lease has a termination option in year 3? Tested.
 What if the discount rate is negative? (Okay, that one's theoretical. But still tested.)
 
-**You're not the beta tester. This has already been through the fire.**
+**You're not the beta tester. Reggie's already been through the fire.**
 
 ---
 
-### It Speaks Asset Manager
+### He Speaks Asset Manager
 
 You know what asset managers love? Consistency. Auditability. Timestamps. Formulas they can trace back to first principles.
 
 You know what they hate? "Trust me." Circular references. Models that break when you change one cell.
 
-**Every output from this toolkit is asset-manager-proof.**
+**Every output from Reggie is asset-manager-proof.**
 
 Clean JSON inputs. Documented assumptions. Timestamped reports. CSV exports for Excel jockeys. Markdown for everyone else.
 
@@ -324,7 +324,7 @@ No black boxes. No magic. Just math you can defend in a room full of skeptics.
 
 ---
 
-### It Gives You Time Back
+### He Gives You Time Back
 
 Here's what two extra days a week gets you:
 
