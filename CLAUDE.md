@@ -27,13 +27,16 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
     │   ├── Accounting/         # ifrs16-calculation
     │   ├── Comparison/         # compare-amendment, compare-offers, compare-precedent, lease-vs-lease
     │   └── Compliance/         # assignment-consent, default-analysis, estoppel-certificate, etc.
-    ├── skills/             # Expert skills (13 specialized skills)
-    │   ├── Core: commercial-lease-expert
-    │   ├── Security: indemnity-expert, non-disturbance-expert
-    │   ├── Transfers: consent-to-assignment, consent-to-sublease, share-transfer-consent, lease-surrender
-    │   ├── Preliminary: offer-to-lease, waiver-agreement, temporary-license, storage-agreement
-    │   ├── Specialized: telecom-licensing-expert
-    │   └── Dispute: lease-arbitration-expert
+    ├── skills/             # Expert skills (15 specialized skills - auto-invoked)
+    │   ├── Core: commercial-lease-expert/
+    │   ├── Security: indemnity-expert/, non-disturbance-expert/
+    │   ├── Transfers: consent-to-assignment-expert/, consent-to-sublease-expert/,
+    │   │             share-transfer-consent-expert/, lease-surrender-expert/
+    │   ├── Preliminary: offer-to-lease-expert/, waiver-agreement-expert/,
+    │   │                temporary-license-expert/, storage-agreement-expert/
+    │   ├── Specialized: telecom-licensing-expert/
+    │   ├── Dispute: lease-arbitration-expert/
+    │   └── Negotiation: negotiation-expert/, objection-handling-expert/
     └── agents/             # Sub-agents
         └── leasing-expert  # Leasing specialist with skill integration
 ```
@@ -88,7 +91,7 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 
 ## Specialized Skills (15 total)
 
-Use the Skill tool to invoke deep expertise on specific agreement types:
+Skills are **automatically invoked** through progressive disclosure - when your request matches a skill's description, Claude automatically loads the expertise. No manual invocation required.
 
 ### Core Lease Agreements
 - **commercial-lease-expert** - General lease negotiation, net lease structures, deal structuring
@@ -146,13 +149,11 @@ python Option_Valuation/option_valuation.py \
   --output results.json \
   --verbose
 
-# Invoke expert skills
-# (Use Skill tool in Claude Code)
-Skill -> commercial-lease-expert    # For general lease review
-Skill -> temporary-license-expert   # For short-term license agreements
-Skill -> consent-to-assignment-expert # For assignment consent requests
-Skill -> negotiation-expert         # For crafting negotiation responses
-Skill -> objection-handling-expert  # For responding to tenant objections
+# Skills activate automatically based on your questions
+# Example: "How do I negotiate rent with a difficult tenant?"
+# → negotiation-expert skill loads automatically
+# Example: "Review this assignment consent agreement"
+# → consent-to-assignment-expert skill loads automatically
 
 # Convert DOCX to markdown
 markitdown document.docx -o output.md
