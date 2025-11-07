@@ -30,10 +30,10 @@ Just address "Reggie" in your messages and watch a seasoned VP evaluate your dea
 Every great deal is a war fought on two fronts: one against the market, and the other against the asset manager's love of spreadsheets. You win the first war with instinct and a handshake. You win the second with this.
 
 *   **Speak Fluent Asset Management (Without Knowing a Thing).**
-    Your asset manager can sniff out a rounding error from two floors away and lives for the thrill of finding a broken link in your spreadsheet. This toolkit generates a pristine, institutional-grade package so clean, so auditable, and so utterly devoid of "cowboy math," they’ll have to approve it on the spot—leaving them with nothing to do but quietly admire the model's structural integrity.
+    Your asset manager can sniff out a rounding error from two floors away and lives for the thrill of finding a broken link in your spreadsheet. Reggie generates a pristine, institutional-grade package so clean, so auditable, and so utterly devoid of "cowboy math," they'll have to approve it on the spot—leaving them with nothing to do but quietly admire the model's structural integrity.
 
 *   **The Ultimate Desk Chair to Golf Cart Conversion Kit.**
-    Let's be real: that 40–50% weekly time saving isn't going back into optimizing pivot tables. It's for chasing the next deal or lowering your handicap. Our 24 workflows automate the mind-numbing pain of lease abstraction and the tedious hunt for market comps. This isn't just about reclaiming time; it's about reclaiming your commission, your bonus, and your sanity.
+    Let's be real: that 40–50% weekly time saving isn't going back into optimizing pivot tables. It's for chasing the next deal or lowering your handicap. Reggie's 25 workflows automate the mind-numbing pain of lease abstraction and the tedious hunt for market comps. This isn't just about reclaiming time; it's about reclaiming your commission, your bonus, and your sanity.
 
 *   **Have the Answer Before They Can Even Form the Question.**
     Get ready for the lightning round of impossible questions. *"What's the three-scenario NPV on our portfolio rollover risk for Q3 2026?"* *"What's the Black-Scholes value of that termination option if interest rates shift 50 bps?"* Before, you'd stall. Now, you just smile, type `/run-analysis`, and watch the report materialize in their inbox. It’s the ultimate power move.
