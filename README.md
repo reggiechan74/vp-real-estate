@@ -1,4 +1,4 @@
-# Commercial Real Estate Lease Management Toolkit
+# Meet Reggie Chan: Your VP of Leasing & Asset Management
 
 [![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
@@ -8,7 +8,20 @@
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
 
 **Version 1.8.0** • Released 2025-11-07
-Built for institutional leasing teams that need production-ready automation across the entire lease lifecycle.
+
+## The Digital Embodiment of a 20-Year Real Estate Veteran
+
+This repository and agent system **is** Reggie Chan, CFA, FRICS—a Vice President of Leasing and Asset Management with over two decades of institutional real estate experience.
+
+**It's like having Reggie Chan work for you—for the price of a Claude Code subscription.**
+
+You're not just getting software. You're getting:
+- **CFA-level financial analysis** on every deal
+- **FRICS property expertise** across industrial and office assets
+- **20+ years of negotiation experience** distilled into evidence-based strategies
+- **Executive-level judgment** on lease structures, tenant credit, and portfolio risk
+
+Just address "Reggie" in your messages and watch a seasoned VP evaluate your deals, structure your offers, and craft responses to impossible tenant objections—all backed by 11 financial calculators, 15 specialized skills, and 25 automated workflows.
 
 ---
 
@@ -35,18 +48,39 @@ It's the perfect unspoken agreement. You hand them the unimpeachable, meticulous
 
 ---
 
+## How to Work with Reggie
+
+Simply address **"Reggie"** in your messages to activate your VP of Leasing & Asset Management:
+
+```
+"Reggie, what do you think of this renewal offer at $25/sf with 3 months free rent?"
+
+"Reggie, help me evaluate this tenant's creditworthiness—they're a 5-year-old tech startup"
+
+"Reggie, the tenant says our rent is too high. How should I respond?"
+```
+
+Reggie has access to:
+- **15 specialized skills** for every lease situation (assignments, surrenders, SNDAs, objection handling, etc.)
+- **25 slash commands** that automate everything from lease abstraction to IFRS 16 accounting
+- **11 financial calculators** including NPV, effective rent, credit scoring, and Black-Scholes option valuation
+
+You get executive-level judgment, CFA financial rigor, and FRICS property expertise—instantly.
+
+---
+
 ## Table of Contents
 
-1. [Getting Started](#getting-started)  
-2. [Capabilities](#capabilities)  
-3. [Architecture & Tech Stack](#architecture--tech-stack)  
-4. [Productivity Impact](#productivity-impact)  
-5. [Scope & Use Cases](#scope--use-cases)  
-6. [Roadmap](#roadmap)  
-7. [Project Structure](#project-structure)  
-8. [Compliance & Limitations](#compliance--limitations)  
-9. [Contributing](#contributing)  
-10. [License & Attribution](#license--attribution)  
+1. [Getting Started](#getting-started)
+2. [Capabilities](#capabilities)
+3. [Architecture & Tech Stack](#architecture--tech-stack)
+4. [Productivity Impact](#productivity-impact)
+5. [Scope & Use Cases](#scope--use-cases)
+6. [Roadmap](#roadmap)
+7. [Project Structure](#project-structure)
+8. [Compliance & Limitations](#compliance--limitations)
+9. [Contributing](#contributing)
+10. [License & Attribution](#license--attribution)
 11. [Support](#support)
 
 ---
@@ -194,17 +228,24 @@ python -m pytest Eff_Rent_Calculator/Tests/ -v
 
 ## Capabilities
 
-### Skills (15 Specialized Experts)
-- **Core leasing**: commercial-lease-expert for deal structuring and negotiation strategy.
-- **Transfers & modifications**: assignment, sublease, share-transfer, surrender, waiver.
-- **Security & protection**: indemnity, SNDA/non-disturbance.
-- **Ancillary agreements**: temporary licenses, storage, telecom licensing.
-- **Disputes**: lease arbitration guidance.
-- **Negotiation & objection handling**: negotiation-expert for evidence-based persuasion (calibrated questions, accusation audits, labeling); objection-handling-expert for systematic objection analysis and response strategies.
+**What Reggie Brings to Your Team**
 
-Each skill provides checklists, negotiation angles, risk flags, and recommended language—effectively bringing a senior advisor into the workflow on demand. The negotiation skills integrate with toolkit analyses to craft data-driven responses to tenant objections.
+Reggie Chan's expertise is backed by a complete suite of analytical tools and specialized knowledge systems:
 
-### Calculators (11 Engines)
+### Reggie's Specialized Skills (15 Expert Systems)
+When you ask Reggie about specific situations, he automatically activates the relevant expert system:
+
+- **Core leasing**: Deal structuring and negotiation strategy for industrial/office leases
+- **Transfers & modifications**: Assignment consent, sublease analysis, share transfers, surrenders, waivers
+- **Security & protection**: Indemnity agreements, SNDA/non-disturbance negotiations
+- **Ancillary agreements**: Temporary licenses, storage agreements, telecom licensing
+- **Disputes**: Lease arbitration frameworks and rent determination
+- **Negotiation & objection handling**: Evidence-based persuasion (calibrated questions, accusation audits, tactical empathy); systematic objection analysis and response strategies
+
+Each skill provides checklists, negotiation angles, risk flags, and recommended language—like having a senior advisor instantly available for every situation. Reggie integrates these skills with quantitative analysis to craft data-driven responses to tenant objections.
+
+### Reggie's Financial Toolkit (11 Analytical Engines)
+These are the quantitative tools Reggie uses to back up his recommendations with CFA-level analysis:
 1. **Effective Rent Calculator** (`Eff_Rent_Calculator/`)  
    - Inputs: rent schedule (annual $/sf), incentives (TI, cash allowances, free rent), leasing costs, REIT capital assumptions.  
    - Outputs: Net/Gross Effective Rent, NPV vs. costs, breakeven rents, Ponzi Rental Rate comparison, payback, sensitivity tables.  
@@ -259,8 +300,8 @@ Each skill provides checklists, negotiation angles, risk flags, and recommended 
     - Use Cases: Valuing embedded lease options, negotiation support, lease vs. purchase decisions, portfolio option value aggregation.
     - **36 tests passing** (100% coverage) validated against published Black-Scholes calculators.
 
-### Automated Workflows (24 Slash Commands)
-Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (10), Accounting (1), Comparison (4), and Compliance (7).
+### Reggie's Automated Workflows (25 Slash Commands)
+Reggie has 25 automated workflows at his disposal. Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (10), Accounting (1), Comparison (4), Compliance (7), and Utilities (1).
 
 | Category | Command | Primary Output |
 |----------|---------|----------------|
@@ -288,6 +329,7 @@ Each slash command packages data extraction instructions, domain expertise, calc
 | Compliance | `/insurance-audit` | Insurance requirement verification log |
 | Compliance | `/notice-generator` | Draft lease notices (renewal, termination, default) |
 | Compliance | `/work-letter` | Work letter outline from TI provisions |
+| Utilities | `/convert-to-pdf` | Convert markdown files to professionally formatted PDF |
 
 > **Tip:** Every workflow writes outputs to `Reports/` with standardized timestamps, making it easy to hand off bundles to executives, lenders, or auditors. Review `.claude/commands/README.md` for arguments, required supporting documents, and validation steps.
 
@@ -403,9 +445,11 @@ Academic foundations from R. Chan’s work on Ponzi Rental Rate and rental term 
 
 ## Support
 
-**Maintainer**: Claude Code
-**Version**: 1.7.0 (2025-11-06 release)
+**Version**: 1.8.0 (Released 2025-11-07)
+**Your VP of Leasing & Asset Management**: Reggie Chan, CFA, FRICS
+
 For issues and feature requests, open a ticket in the repository.
-For professional services, engage qualified leasing, legal, accounting, or valuation advisors.
+
+**Remember**: While Reggie brings 20+ years of institutional experience and sophisticated analytical tools, all outputs should be validated by qualified professionals. This system provides executive-level guidance and analysis—but you remain responsible for final decisions.
 
 ⚠️ Always validate model outputs before reliance on material decisions.
