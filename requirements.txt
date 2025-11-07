@@ -1,27 +1,35 @@
 # Requirements for Lease Abstraction Project
+# Python 3.10+ required
 
 # Core dependencies
-anthropic>=0.39.0  # For Claude API if needed
+anthropic>=0.40.0  # For Claude API integration
 
 # Document processing
 markitdown>=0.1.0  # For converting Word/PDF documents to markdown
-python-docx>=0.8.11  # For reading Word documents
-openpyxl>=3.1.0  # For Excel file processing
-pandas>=2.0.0  # For data manipulation
+python-docx>=1.1.0  # For reading/writing Word documents
+openpyxl>=3.1.5  # For Excel file processing
+pandas>=2.2.0  # For data manipulation and analysis
 
-# Financial calculations (BAF Calculator)
-numpy>=1.24.0  # For numerical operations
-numpy-financial>=1.0.0  # For financial calculations (NPV, PMT, etc.)
-scipy>=1.11.0  # For numerical solvers (e.g., Newton method in IRR)
+# Financial calculations
+numpy>=1.26.0  # For numerical operations
+numpy-financial>=1.0.0  # For financial calculations (NPV, PMT, IRR, etc.)
+scipy>=1.14.0  # For numerical solvers (Newton method, optimization)
 
-# Optional: Web scraping for SEC EDGAR documents
-requests>=2.31.0  # For HTTP requests
+# Web scraping (for SEC EDGAR documents)
+requests>=2.32.0  # For HTTP requests
 beautifulsoup4>=4.12.0  # For HTML parsing
 
-# Optional: PDF processing
-pypdf2>=3.0.0  # For PDF file handling
+# PDF processing
+pypdf>=4.3.0  # For PDF file handling (modern replacement for PyPDF2)
 
-# Development tools
-pytest>=7.4.0  # For testing
-black>=23.0.0  # For code formatting
-mypy>=1.5.0  # For type checking
+# Development and testing
+pytest>=8.3.0  # For unit testing
+pytest-cov>=5.0.0  # For test coverage reports
+
+# Code quality
+ruff>=0.6.0  # Modern linter and formatter (replaces black, flake8, isort)
+mypy>=1.11.0  # For static type checking
+
+# Type stubs for better type checking
+types-requests>=2.32.0
+pandas-stubs>=2.2.0
