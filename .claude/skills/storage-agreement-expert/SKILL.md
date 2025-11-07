@@ -1,6 +1,6 @@
 ---
 name: storage-agreement-expert
-description: Expert in commercial storage agreements and storage locker arrangements - analyzing terms, rental rates, use restrictions, and ancillary storage space in commercial buildings
+description: Expert in storage agreements for storage lockers and ancillary storage space in commercial buildings (typically month-to-month, simplified terms). Use when tenant needs additional storage beyond leased premises, reviewing storage locker terms, negotiating storage rates and use restrictions, analyzing month-to-month vs fixed-term storage, evaluating storage-only agreements, or comparing storage agreements to full lease terms. Key terms include storage locker, ancillary storage space, month-to-month, storage-only use, no business operations, simplified rent structure, minimal services, as-is condition, short notice termination
 tags: [commercial-real-estate, storage-agreements, storage-lockers, ancillary-space, short-term-storage]
 capability: Provides specialized expertise in storage agreements including locker arrangements, month-to-month terms, use restrictions, simplified rent structures, and self-storage facility agreements
 proactive: true

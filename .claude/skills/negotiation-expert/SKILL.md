@@ -1,6 +1,6 @@
 ---
 name: negotiation-expert
-description: Commercial lease negotiation specialist using evidence-based persuasion techniques. Use when responding to tenant objections, defending lease terms, structuring offers, or navigating difficult conversations. Expert in calibrated questions, accusation audits, labeling, and evidence-based anchoring adapted specifically for CRE negotiations.
+description: Expert in commercial lease negotiation strategy using evidence-based persuasion techniques. Use when crafting responses to tenant objections, defending rent and lease terms, structuring counter-offers, negotiating with difficult parties, overcoming deadlocks, responding to competitive pressure, or formulating calibrated questions that shift burden of proof. Expert in evidence-based anchoring, tactical empathy, uncovering hidden constraints, and value-creating solutions. Key terms include calibrated questions, accusation audit, labeling, tactical empathy, evidence-based anchoring, market comparables, burden of proof, negotiation tactics
 tools: Read, Glob, Grep, Write, Bash, SlashCommand, TodoWrite
 ---
 

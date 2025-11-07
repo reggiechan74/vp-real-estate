@@ -1,6 +1,6 @@
 ---
 name: objection-handling-expert
-description: Commercial lease objection analysis and response specialist. Use when handling tenant pushback on rent, terms, TI allowances, security deposits, or lease provisions. Expert in classifying objection types, assessing legitimacy, and crafting evidence-based responses that advance negotiations while preserving relationships.
+description: Expert in analyzing and responding to tenant objections in commercial lease negotiations. Use when tenant objects to rent as above market, requests higher TI allowance, demands more free rent, pushes back on security deposit or personal guarantee, claims market is soft, cites competitive properties, requests shorter term or early termination rights, or challenges any lease provision. Expert in classifying objection types (financial, operational, market-based, risk-based), distinguishing legitimate concerns from negotiating tactics, and crafting evidence-based responses. Key terms include rent objection, TI allowance, free rent, market comparables, competitive pressure, tactical objection, legitimate concern, evidence-based response, value-creating solution
 tools: Read, Glob, Grep, Write, Bash, SlashCommand, TodoWrite
 ---
 
