@@ -1,11 +1,11 @@
 # Meet Reggie Chan: Your VP of Leasing & Asset Management
 
-[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/leasing-expert/releases)
+[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
-[![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/leasing-expert?style=social)](https://github.com/reggiechan74/leasing-expert)
+[![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/vp-real-estate?style=social)](https://github.com/reggiechan74/vp-real-estate)
 
 **Version 1.8.0** • Released 2025-11-07
 
@@ -104,8 +104,8 @@ npm install -g @anthropic-ai/claude-code
 **Step 2: Clone the Repository**
 
 ```bash
-git clone https://github.com/reggiechan74/leasing-expert.git
-cd leasing-expert
+git clone https://github.com/reggiechan74/vp-real-estate.git
+cd vp-real-estate
 ```
 
 **Step 3: Install Dependencies via Claude Code**
@@ -393,7 +393,7 @@ Short-term priorities:
 ## Project Structure
 
 ```
-leasing-expert/
+vp-real-estate/
 ├── Shared_Utils/              # NPV, IRR, ratio utilities
 ├── Eff_Rent_Calculator/       # Effective rent + yield curve engines
 ├── IFRS16_Calculator/         # Lease accounting workflows

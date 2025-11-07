@@ -66,7 +66,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **Documentation Updates**:
 - Updated skill count from 13 to 15 across all documentation
 - Added "Negotiation & Objection Handling" category to CLAUDE.md
-- Enhanced leasing-expert agent with new skills and Example 5 workflow (rent objection response)
+- Enhanced reggie-chan-vp agent (formerly leasing-expert) with new skills and Example 5 workflow (rent objection response)
 - Updated README.md, README-FOR-LEASING-MANAGERS.md, IMPLEMENTATION_GUIDE.md
 - Added skill invocation examples to CLAUDE.md quick start
 
@@ -936,9 +936,9 @@ This brings the total to **7 calculators** and **22 slash commands** (8 Financia
 
 ### Changed
 
-#### Leasing Expert Agent
+#### Reggie Chan VP Agent (formerly Leasing Expert)
 
-- **Updated**: `.claude/agents/leasing-expert.md` now includes complete skill inventory
+- **Updated**: `.claude/agents/reggie-chan-vp.md` (formerly leasing-expert.md) now includes complete skill inventory
 - **Added**: "Specialized Skills Available" section with 13 skills organized by category
 - **Added**: "When to Use Which Tool" guidance for both skills and slash commands
 - **Added**: Workflow integration examples combining skills with slash commands
@@ -993,7 +993,7 @@ Skill tool -> command: "temporary-license-expert"
 **Integration with Existing Tools**:
 - Skills complement slash commands (skills = expertise, commands = automation)
 - Skills work with calculators (skills = analysis, calculators = computation)
-- Skills integrate with leasing-expert agent for comprehensive guidance
+- Skills integrate with reggie-chan-vp agent for comprehensive guidance
 
 ## [1.1.0] - 2025-11-05
 
@@ -1409,10 +1409,10 @@ This is the initial release. Future versions will maintain backward compatibilit
 
 ---
 
-[1.0.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.0.0
-[1.1.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.1.0
-[1.2.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.2.0
-[1.3.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.3.0
-[1.4.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.4.0
-[1.5.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.5.0
-[1.6.0]: https://github.com/reggiechan74/leasing-expert/releases/tag/v1.6.0
+[1.0.0]: https://github.com/reggiechan74/vp-real-estate/releases/tag/v1.0.0
+[1.1.0]: https://github.com/reggiechan74/vp-real-estate/releases/tag/v1.1.0
+[1.2.0]: https://github.com/reggiechan74/vp-real-estate/releases/tag/v1.2.0
+[1.3.0]: https://github.com/reggiechan74/vp-real-estate/releases/tag/v1.3.0
+[1.4.0]: https://github.com/reggiechan74/vp-real-estate/releases/tag/v1.4.0
+[1.5.0]: https://github.com/reggiechan74/vp-real-estate/releases/tag/v1.5.0
+[1.6.0]: https://github.com/reggiechan74/vp-real-estate/releases/tag/v1.6.0
