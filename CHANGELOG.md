@@ -5,6 +5,77 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2025-11-07
+
+### Added
+
+#### Negotiation and Objection Handling Expert Skills
+
+**New Skills**: Evidence-based persuasion and systematic objection analysis for commercial lease negotiations
+
+- **negotiation-expert.md** (~650 lines) - Evidence-based persuasion techniques adapted for CRE
+  - **Calibrated Questions**: Framework for shifting burden of proof to counterparty
+    - "How am I supposed to justify $16/sf when market shows $18-19?"
+    - "What about X makes you think..." structure
+    - Makes counterparty solve your problem instead of defending positions
+  - **Accusation Audits**: Pre-emptive objection defusing
+    - "You probably think I'm being unreasonable..."
+    - "It might seem inflexible, but..."
+    - Shows understanding of their perspective before they voice it
+  - **Labeling**: Demonstrate understanding to build rapport and gather information
+    - "It seems like you're concerned about..."
+    - "It sounds like timing is the main issue..."
+  - **Evidence-Based Anchoring**: Present market data + calibrated question
+    - Establish position with comparable evidence first
+    - Use calibrated questions to make them engage with your data
+  - **Mirroring & No-Oriented Questions**: Strategic conversation control
+  - **Integration with Toolkit**: Uses relative-valuation, effective-rent, market-comparison, tenant-credit results to support arguments
+  - **Sample Scenarios**: Rent objection without evidence, excessive TI request, renewal rent increase pushback, free rent request
+  - **Ethical Boundaries**: Never fabricate offers/deadlines, always ground in verifiable data, maintain relationships
+
+- **objection-handling-expert.md** (~850 lines) - Systematic objection analysis and response framework
+  - **Classification System**: Financial, operational, market-based, risk-based objections
+  - **Legitimacy Assessment**:
+    - Evidence-backed → Engage with their data
+    - Emotional → Calibrated questions to force data discussion
+    - Tactical → Accusation audit + evidence anchor
+  - **Response Strategies by Type**:
+    - Strategy A: Legitimate objection with evidence → Engage, present counter-evidence, find value trades
+    - Strategy B: Emotional objection → Use calibrated questions to force data-based discussion
+    - Strategy C: Negotiating tactic → Accusation audit + evidence, call bluff professionally
+    - Strategy D: Constraint-based → Uncover constraint, creative structure, trade don't concede
+  - **Common Objections Response Templates**:
+    - "Your rent is above market"
+    - "We need more free rent"
+    - "We can't commit to [X] years"
+    - "Building X is offering better terms"
+    - "That security deposit is too high"
+    - "We need $[X] TI allowance"
+  - **Advanced Tactics**: Columbo close, summary close, range anchor, breakdown isolate, forced choice
+  - **Integration with Toolkit**: Pull data from relative-valuation, effective-rent, market-comparison, tenant-credit, renewal-economics
+  - **Response Templates**: Structured email/phone frameworks for each objection type
+
+**Methodology**: Based on Chris Voss "Never Split the Difference" framework, adapted specifically for commercial real estate lease negotiations. Skills teach methodology and principles rather than canned scripts, enabling context-aware responses using actual deal data.
+
+**Value Proposition**:
+- Bridges analytical rigor (toolkit calculators) with persuasive delivery (negotiation skills)
+- Analysis tools tell you WHAT to do, negotiation skills tell you HOW to communicate it
+- Systematizes negotiation expertise so it scales across team
+- Professional, evidence-based responses maintain relationship integrity while defending position
+
+**Documentation Updates**:
+- Updated skill count from 13 to 15 across all documentation
+- Added "Negotiation & Objection Handling" category to CLAUDE.md
+- Enhanced leasing-expert agent with new skills and Example 5 workflow (rent objection response)
+- Updated README.md, README-FOR-LEASING-MANAGERS.md, IMPLEMENTATION_GUIDE.md
+- Added skill invocation examples to CLAUDE.md quick start
+
+**Commits**: `f9a711a` (skills implementation and documentation)
+
+**Total Implementation**: ~1,500 lines (650 negotiation + 850 objection handling)
+
+---
+
 ## [1.7.0] - 2025-11-06
 
 ### Added
