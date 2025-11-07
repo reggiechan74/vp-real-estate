@@ -21,12 +21,13 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ├── Templates/              # Industrial/Office lease templates (24 sections, MD/JSON/Schema)
 ├── Reports/                # Generated abstracts & analysis (timestamp prefix required)
 └── .claude/                # Claude Code configuration
-    ├── commands/           # Slash commands (24 commands in 5 categories)
+    ├── commands/           # Slash commands (25 commands in 6 categories)
     │   ├── Abstraction/        # abstract-lease, critical-dates
     │   ├── Financial_Analysis/ # effective-rent, renewal-economics, tenant-credit, option-value, rental-variance, etc.
     │   ├── Accounting/         # ifrs16-calculation
     │   ├── Comparison/         # compare-amendment, compare-offers, compare-precedent, lease-vs-lease
-    │   └── Compliance/         # assignment-consent, default-analysis, estoppel-certificate, etc.
+    │   ├── Compliance/         # assignment-consent, default-analysis, estoppel-certificate, etc.
+    │   └── Utilities/          # convert-to-pdf
     ├── skills/             # Expert skills (15 specialized skills - auto-invoked)
     │   ├── Core: commercial-lease-expert/
     │   ├── Security: indemnity-expert/, non-disturbance-expert/
@@ -38,8 +39,34 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
     │   ├── Dispute: lease-arbitration-expert/
     │   └── Negotiation: negotiation-expert/, objection-handling-expert/
     └── agents/             # Sub-agents
-        └── leasing-expert  # Leasing specialist with skill integration
+        └── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP of Leasing & Asset Management
 ```
+
+## Meet Reggie Chan - Your Leasing & Asset Management Expert
+
+**Reggie Chan, CFA, FRICS** is your Vice President of Leasing and Asset Management with over 20 years of institutional real estate experience.
+
+### Credentials
+- **CFA** (Chartered Financial Analyst) - Expert in investment analysis and financial modeling
+- **FRICS** (Fellow of the Royal Institution of Chartered Surveyors) - Senior professional in real estate valuation
+- **VP of Leasing and Asset Management** - Executive-level commercial real estate professional
+
+### How to Work with Reggie
+Simply address **"Reggie"** in your message to activate expert leasing and asset management guidance. Reggie provides:
+- Lease deal evaluation and structuring advice
+- Portfolio strategy and asset management recommendations
+- Tenant credit assessment and risk analysis
+- Negotiation strategy and objection handling
+- Access to all 15 specialized skills and 24 slash commands
+
+### Example Interactions
+```
+"Reggie, what do you think of this renewal offer?"
+"Reggie, help me evaluate this tenant's creditworthiness"
+"Reggie, how should I respond to their rent objection?"
+```
+
+Reggie combines analytical rigor (CFA) with property expertise (FRICS) to deliver sophisticated deal evaluation balancing financial returns, risk management, and strategic positioning.
 
 ## File Naming: Reports Folder
 
@@ -49,9 +76,9 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 
 **Example**: `2025-10-31_143022_lease_abstract_acme_corp.md`
 
-## Slash Commands (24 total)
+## Slash Commands (25 total)
 
-All commands follow **PDF → JSON → Python → Report** automated workflow.
+All commands follow **PDF → JSON → Python → Report** automated workflow (except utilities).
 
 ### Abstraction (2)
 - `/abstract-lease` - Extract lease terms using 24-section template
@@ -86,6 +113,9 @@ All commands follow **PDF → JSON → Python → Report** automated workflow.
 - `/insurance-audit` - Insurance requirement verification
 - `/notice-generator` - Generate lease notices
 - `/work-letter` - Generate work letter from TI provisions
+
+### Utilities (1)
+- `/convert-to-pdf` - Convert markdown files to PDF format
 
 **See**: `.claude/commands/README.md` for detailed documentation
 
@@ -125,6 +155,12 @@ Skills are **automatically invoked** through progressive disclosure - when your 
 ## Quick Start Examples
 
 ```bash
+# Ask Reggie for expert leasing advice
+# Just address "Reggie" in your message:
+"Reggie, evaluate this renewal offer at $25/sf with 3 months free rent"
+"Reggie, what security should I require for this tech startup tenant?"
+"Reggie, help me respond to their objection about rent being too high"
+
 # Lease abstraction
 /abstract-lease path/to/lease.docx
 

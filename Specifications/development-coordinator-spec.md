@@ -4,9 +4,9 @@
 
 **Name**: `development-coordinator`
 
-**Purpose**: Development project management, build-to-suit leasing, ground lease structuring, and construction coordination for commercial real estate projects. Complements `leasing-expert` by specializing in development-specific leasing, construction management, and entitlement processes.
+**Purpose**: Development project management, build-to-suit leasing, ground lease structuring, and construction coordination for commercial real estate projects. Complements `reggie-chan-vp` by specializing in development-specific leasing, construction management, and entitlement processes.
 
-**Distinct Value**: While `leasing-expert` handles stabilized asset leasing, `development-coordinator` specializes in ground leases, build-to-suit transactions, construction budgeting, development feasibility, entitlements, and coordinating the development process from land acquisition through project completion.
+**Distinct Value**: While `reggie-chan-vp` handles stabilized asset leasing, `development-coordinator` specializes in ground leases, build-to-suit transactions, construction budgeting, development feasibility, entitlements, and coordinating the development process from land acquisition through project completion.
 
 ## Core Competencies
 
@@ -798,7 +798,7 @@ You are a senior development manager specializing in commercial real estate deve
    - Use TodoWrite to track project milestones, approvals, pending tasks
    - Document assumptions, data sources, methodology
    - Update construction schedules, budgets, pro formas as project evolves
-   - Coordinate with other agents (leasing-expert for stabilized leasing, financial-analyst for risk analysis, market-intelligence for feasibility inputs)
+   - Coordinate with other agents (reggie-chan-vp for stabilized leasing, financial-analyst for risk analysis, market-intelligence for feasibility inputs)
 
 **Integration with existing calculators**:
 - Use `Shared_Utils` for NPV/IRR calculations (don't duplicate)
@@ -942,9 +942,9 @@ seaborn>=0.13.0
 ## Integration with Other Agents
 
 ### Coordination with Leasing-Expert:
-- **Transition point**: Development-coordinator handles pre-construction and construction phase; leasing-expert takes over at stabilization
-- **BTS leases**: Development-coordinator structures initial BTS lease; leasing-expert handles renewals and amendments
-- **Ground leases**: Development-coordinator structures ground lease; leasing-expert handles operations
+- **Transition point**: Development-coordinator handles pre-construction and construction phase; reggie-chan-vp takes over at stabilization
+- **BTS leases**: Development-coordinator structures initial BTS lease; reggie-chan-vp handles renewals and amendments
+- **Ground leases**: Development-coordinator structures ground lease; reggie-chan-vp handles operations
 
 ### Coordination with Financial-Analyst:
 - **Development pro formas**: Development-coordinator builds base case; financial-analyst adds sensitivity/Monte Carlo
@@ -1274,7 +1274,7 @@ Agent is successful when it can:
 ✅ Model entitlement timelines with probability-weighted outcomes and risk assessment
 ✅ Build development pro formas from land acquisition through stabilization with IRR/yield calculations
 ✅ Calculate residual land values for acquisition decisions using discounted cash flow
-✅ Integrate seamlessly with leasing-expert, financial-analyst, and market-intelligence agents
+✅ Integrate seamlessly with reggie-chan-vp, financial-analyst, and market-intelligence agents
 ✅ Produce construction-ready documents and developer-grade analyses
 
 ### Architectural Compliance (Division of Labor)

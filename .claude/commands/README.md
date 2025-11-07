@@ -4,7 +4,7 @@ Automated workflows for commercial real estate lease analysis.
 
 ## Structure
 
-Commands are organized into 5 categories (24 total):
+Commands are organized into 6 categories (25 total):
 
 ### 1. Abstraction (2 commands)
 
@@ -54,6 +54,12 @@ Legal compliance, documentation, and notices.
 - **`/insurance-audit`** - Insurance requirement verification
 - **`/notice-generator`** - Generate lease notices (renewal, termination, etc.)
 - **`/work-letter`** - Generate work letter from TI provisions
+
+### 6. Utilities (1 command)
+
+Document conversion and utility tools.
+
+- **`/convert-to-pdf`** - Convert markdown files to professionally formatted PDF documents
 
 ## Usage
 

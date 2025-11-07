@@ -4,9 +4,9 @@
 
 **Name**: `financial-analyst`
 
-**Purpose**: Deep financial modeling, investment analysis, and quantitative decision support for commercial real estate portfolios. Complements `leasing-expert` by providing sophisticated financial analysis beyond deal-level economics.
+**Purpose**: Deep financial modeling, investment analysis, and quantitative decision support for commercial real estate portfolios. Complements `reggie-chan-vp` (Reggie Chan) by providing sophisticated financial analysis beyond deal-level economics.
 
-**Distinct Value**: While `leasing-expert` focuses on lease structure and deal negotiation, `financial-analyst` specializes in complex financial modeling, portfolio-level analytics, accounting compliance, and investment performance measurement.
+**Distinct Value**: While `reggie-chan-vp` focuses on lease structure and deal negotiation, `financial-analyst` specializes in complex financial modeling, portfolio-level analytics, accounting compliance, and investment performance measurement.
 
 ## Core Competencies
 
@@ -765,7 +765,7 @@ You are a senior financial analyst for commercial real estate portfolios. Operat
 2. Create `financial-reporting-expert` skill
 3. Add unit tests for reporting calculations and disclosure templates
 4. Create example reports and investor decks
-5. Integration testing with `leasing-expert` + slash commands
+5. Integration testing with `reggie-chan-vp` + slash commands
 6. Publish comprehensive documentation and integration guides
 
 ---
@@ -1040,7 +1040,7 @@ Agent is successful when it can:
 ✅ Calculate complex waterfall distributions with multiple tiers
 ✅ Generate IFRS 16 compliant accounting for 100+ lease portfolio
 ✅ Perform variance analysis comparing budget vs actual across portfolio
-✅ Integrate seamlessly with leasing-expert for holistic deal evaluation
+✅ Integrate seamlessly with reggie-chan-vp for holistic deal evaluation
 ✅ Produce investor-grade reports and presentations
 
 ### Architectural Compliance (Division of Labor)
@@ -1056,7 +1056,7 @@ Agent is successful when it can:
 
 ## Documentation Deliverables
 
-1. **Agent README**: Overview, capabilities, when to use vs leasing-expert
+1. **Agent README**: Overview, capabilities, when to use vs reggie-chan-vp
 2. **Skills Documentation**: Detailed guide for each skill (6 skills)
 3. **Python Module Docs**: Docstrings and usage examples for all functions
 4. **Integration Guide**: How to combine agent + skills + calculators
