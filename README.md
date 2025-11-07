@@ -363,13 +363,13 @@ See `.claude/commands/README.md` for full instructions and input templates.
 
 ## Scope & Use Cases
 
-### Who Uses It
+### Who Uses Reggie
 - **REITs & institutional investors**: full lifecycle leasing, reporting, compliance.  
 - **Property & asset managers**: renewals, modifications, expiry management.  
 - **Corporate real estate teams**: lease-vs-buy decisions, IFRS/ASC compliance.  
 - **Brokers & advisors**: offer preparation, market comparisons, negotiation prep.
 
-### What It Covers
+### What Reggie Covers
 - Deal structuring, LOIs, concession modeling, arbitration prep.  
 - Lease drafting support: assignments, indemnities, SNDAs, surrenders, telecom, storage.  
 - Financial analytics: NER/GER, NPV, IRR, variance, sensitivity, option value.  
@@ -416,7 +416,7 @@ Refer to `CLAUDE.md` for a full breakdown of commands, skills, and agents.
 
 ## Compliance & Limitations
 
-- This toolkit is **not** legal, accounting, tax, or investment advice.  
+- Reggie (this toolkit) is **not** legal, accounting, tax, or investment advice.  
 - All outputs must be independently verified by qualified professionals.  
 - Accuracy is contingent on clean inputs; garbage in → garbage out.  
 - Users remain responsible for regulatory compliance, disclosure, and professional judgment.  
