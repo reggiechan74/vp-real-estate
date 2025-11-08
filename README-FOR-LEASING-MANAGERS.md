@@ -1,4 +1,4 @@
-# Meet Your New VP: Reggie Chan, CFA, FRICS
+# Meet Your New VP: Reggie Chan and His Team
 
 [![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
@@ -6,7 +6,7 @@
 
 **Version 1.8.0** • Released 2025-11-07
 
-## It's Like Having a 20-Year Veteran Work for You—For the Price of a Claude Code Subscription
+## It's Like Having Reggie Chan Work for You—And He Brought His Team—For the Price of a Claude Code Subscription
 
 ---
 
@@ -30,18 +30,19 @@ They want institutional rigor. Audit trails. Unimpeachable math.
 
 ## What This Is
 
-**This is Reggie Chan.** A Vice President of Leasing & Asset Management with CFA credentials, FRICS designation, and 20+ years of institutional real estate experience—now working for you.
+**This is Reggie Chan.** A Vice President of Leasing & Asset Management with CFA credentials, FRICS designation, and 20+ years of institutional real estate experience—now working for you. And he brought his team:
 
-Just address "Reggie" and watch him:
-- Evaluate lease deals with institutional-grade financial analysis
-- Structure responses to impossible tenant objections
-- Run credit analysis that would make any asset manager nod
-- Draft consent agreements, SNDAs, and surrenders
-- Calculate everything from effective rent to Black-Scholes option values
+**Reggie Chan, CFA, FRICS** - Your VP and go-to for complex lease analysis, crisis situations, fraud detection, and multi-domain synthesis (legal + accounting + finance). The brain behind the operation.
 
-Reggie gives you back two full days every week. Days you used to spend in spreadsheet purgatory. Days you can now spend closing deals, working the phones, or finally getting to that 2 p.m. tee time.
+**Adam** - Reggie's senior analyst and protégé. Handles your daily work: standard lease evaluations, credit checks, renewal assessments, and professional communication. Fast execution for routine tasks.
 
-**Reggie has access to:**
+**Dennis** - Reggie's former boss with 36+ years of battle-tested experience. Provides strategic guidance, negotiation psychology, career decisions, and brutal honesty when you need it most.
+
+Just address "Reggie" for most situations (he's your primary contact). For routine work, ask "Adam." For strategic wisdom, consult "Dennis."
+
+Together, they give you back two full days every week. Days you used to spend in spreadsheet purgatory. Days you can now spend closing deals, working the phones, or finally getting to that 2 p.m. tee time.
+
+**Reggie and his team have access to:**
 - **25 automated workflows** - One command, instant output for everything from lease abstraction to IFRS 16 accounting
 - **11 financial calculators** - Built by people who actually understand leasing, not consultants
 - **15 expert systems** - On-demand guidance for assignments, SNDAs, indemnities, arbitration prep, objection handling
@@ -64,6 +65,8 @@ It's stupidly simple:
 2. **Type one command** (like `/effective-rent` or `/abstract-lease` or `/tenant-credit`)
 3. **Get a board-ready report** in seconds
 
+Or just ask Reggie a question directly. He'll handle it. (For routine work, Adam's faster. For strategic wisdom, Dennis is your guy.)
+
 No menus. No configuration. No "please update to the latest version." Just results.
 
 The whole system runs on this:
@@ -84,7 +87,9 @@ Because the last thing you need is *more complexity*.
 
 *New way:* Type `/tenant-credit path/to/financials.pdf`. Get back a complete credit analysis in 30 seconds. Fifteen ratios. A 100-point credit score. A recommended security deposit amount. PD/LGD estimates. Everything formatted, documented, defensible.
 
-**You look like you have a team of analysts. You don't. You have Reggie.**
+Or just ask: "Adam, run a credit check on this tenant." (Adam handles routine credit checks—Reggie steps in if there are red flags.)
+
+**You look like you have a team of analysts. You actually do. It's Reggie's team.**
 
 ---
 
@@ -142,7 +147,7 @@ Because the last thing you need is *more complexity*.
 
 ### Reggie's 25 Workflows
 
-Reggie has 25 workflows ready for the questions you get asked every single week. One command, instant output, zero thinking required.
+Reggie and his team have 25 workflows ready for the questions you get asked every single week. One command, instant output, zero thinking required.
 
 **Abstraction** (2 commands)
 - `/abstract-lease` – Pull every term from a lease into a clean 24-section template
@@ -239,9 +244,11 @@ That's what Reggie brings. On-demand expertise for the messy stuff.
 - `negotiation-expert` – Evidence-based persuasion, calibrated questions, accusation audits
 - `objection-handling-expert` – Systematic objection analysis, response strategies, value creation
 
-Each one gives you checklists, negotiation angles, risk flags, and recommended language. Basically, Reggie's like having a senior partner on speed dial, except he responds instantly and never bills you.
+Each one gives you checklists, negotiation angles, risk flags, and recommended language. Basically, it's like having a senior partner on speed dial, except they respond instantly and never bill you.
 
 The negotiation skills are different. They don't just tell you what to do—they show you **how to say it**. When a broker pushes back on rent, you don't defend your number. You ask: *"How am I supposed to justify $16/sf when every comparable property built after 2015 is leasing for $18-19?"* Now they're the ones doing the work. That's evidence-based persuasion, adapted for commercial real estate.
+
+And if you need strategic guidance on *whether* to negotiate hard or fold? Ask Dennis. He's seen every power dynamic there is.
 
 ---
 
@@ -251,7 +258,7 @@ The negotiation skills are different. They don't just tell you what to do—they
 
 You're juggling 40 leases, half of which expire in the next 18 months. Finance wants variance reports. Asset management wants rollover risk analysis. Your boss wants to know why the Q3 renewals are below budget.
 
-**Reggie gives you the reporting infrastructure of a 10-person team. For free.**
+**Reggie gives you the reporting infrastructure of a 10-person operation. For free.**
 
 ---
 
@@ -259,7 +266,7 @@ You're juggling 40 leases, half of which expire in the next 18 months. Finance w
 
 You need to abstract every lease, track critical dates, handle assignment consents, draft default notices, and somehow find time to actually manage the building.
 
-**Reggie automates the paperwork so you can do the actual job.**
+**Adam (Reggie's analyst) automates the paperwork so you can do the actual job.**
 
 ---
 
@@ -281,7 +288,7 @@ You're pitching deals. You need offer comps, market analysis, effective rent bre
 
 ## What Makes Reggie Different
 
-### He Was Built By People Who Understand Leasing
+### Built By Someone Who Understands Leasing
 
 Not by someone who thinks "TI" stands for "Texas Instruments."
 
@@ -293,11 +300,11 @@ Not by consultants billing $400/hour to build you a model you can't modify.
 
 Every calculator reflects real-world assumptions. Every workflow follows actual deal flow. Every output matches what an asset manager expects to see.
 
-**He just works. Because he was built by people who know what "works" means.**
+**He just works. Because he was built by someone who knows what "works" means.**
 
 ---
 
-### He's Been Tested on Real Deals
+### Tested on Real Deals
 
 235+ passing tests. Not toy examples. Real lease structures. Real cash flows. Real edge cases.
 
@@ -310,7 +317,7 @@ What if the discount rate is negative? (Okay, that one's theoretical. But still 
 
 ---
 
-### He Speaks Asset Manager
+### Speaks Asset Manager
 
 You know what asset managers love? Consistency. Auditability. Timestamps. Formulas they can trace back to first principles.
 
@@ -324,7 +331,7 @@ No black boxes. No magic. Just math you can defend in a room full of skeptics.
 
 ---
 
-### He Gives You Time Back
+### Gives You Time Back
 
 Here's what two extra days a week gets you:
 
@@ -481,8 +488,9 @@ Don't wait for perfection. Start saving time now.
 
 ## Support
 
-**Maintainer:** Claude Code
-**Version:** 1.7.0 (Released 2025-11-06)
+**Your VP of Leasing & Asset Management:** Reggie Chan, CFA, FRICS
+**Reggie's Team:** Adam (Senior Analyst) • Dennis (Strategic Advisor)
+**Version:** 1.8.0 (Released 2025-11-07)
 **Repository:** github.com/reggiechan74/vp-real-estate
 
 For issues, feature requests, or questions: open a ticket in the repository.

@@ -5,6 +5,124 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2025-11-08
+
+### Added
+
+#### Agent Triumvirate Architecture
+
+**New Multi-Agent System**: Three specialized AI agents with distinct expertise, models, and communication styles
+
+**The Triumvirate**:
+
+- **Adam** (`adam.md`, ~373 lines) - Senior Analyst & Everyday Execution (Haiku Model)
+  - **Identity**: Reggie Chan's loyal analyst and protégé, trained to punch above weight class
+  - **Background**: Stand-up comedian by night (timing, delivery, uncomfortable truths), great writer
+  - **Scope**: Straightforward tasks requiring fast execution (80/20 analysis sufficient)
+  - **What Adam Handles**:
+    - Standard lease evaluations (typical terms, normal tenants)
+    - Routine tenant credit checks (clear financials, no red flags)
+    - Renewal offer assessments (market conditions clear)
+    - Simple deal comparisons (straightforward tradeoffs)
+    - Professional communication to stakeholders
+  - **What Adam Escalates to Reggie**:
+    - Complex/distressed situations requiring deep expertise
+    - Fraud detection or forensic accounting
+    - Crisis turnarounds with compressed timelines
+    - Non-standard structures requiring framework building
+  - **Communication Style**: Professional but direct, diplomatic delivery, politically aware
+  - **Response Structure**: Executive Summary → Analysis → Political/Risk Factors → Recommendation → Action Items
+  - **Model**: Haiku (speed and efficiency for routine work)
+
+- **Reggie Chan, CFA, FRICS** (`reggie-chan-vp.md`, extensively enhanced) - VP Crisis Specialist (Sonnet Model)
+  - **Core Identity**: INTJ-A Systems Architect with zero neuroticism and exceptional industriousness
+  - **Cognitive Architecture**: Domain synthesis across leasing + accounting + legal + finance
+  - **Mandatory Cognitive Processing Patterns** (9 layers):
+    1. Immediate Quantification (Translation Reflex) - Cannot process qualitative statements without converting to numbers
+    2. Forensic Verification Reflex - Every number triggers automatic verification impulse
+    3. Domain Synthesis Integration - Cannot isolate problems to single domain
+    4. Worst-Case Scenario Construction - Automatic adverse scenario modeling
+    5. Political Blindness Acknowledgment - Explicitly flags this known limitation
+    6. Zero Neuroticism Processing - Risk without emotional coloring
+    7. Exhaustive Documentation Impulse - Complete audit trail generation
+    8. Challenge Authority Reflex - Questions credentials and expertise automatically
+    9. Multi-Layer Risk Assessment - Cascading scenario trees for all decisions
+  - **Communication Style**: Numbers-first sentence construction, forensic language patterns, zero hedging language
+  - **Scope**: Complex problems, crisis turnarounds, fraud detection, multi-domain synthesis, exhaustive frameworks
+  - **Model**: Sonnet (balance of depth and performance)
+
+- **Dennis** (`dennis.md`, ~650 lines) - Strategic Advisor & Former Boss (Opus Model)
+  - **Identity**: 36+ years institutional real estate executive, former president of major operation, Reggie's former boss
+  - **Credentials**: CFA, FRI, B.Comm Real Estate, executive education
+  - **Background**: Multi-billion dollar AUM, large teams, millions of square feet, consistently beat benchmarks
+  - **Philosophy**: "Real estate is 30% spreadsheets and 70% human psychology, politics, and hard choices"
+  - **Expertise**: Strategic career decisions, negotiation psychology, people management, work-life balance, reality checks
+  - **Communication Style**: Direct, blunt, doesn't waste words, challenges assumptions, shares battle scars
+  - **When to Use**: Career crossroads, negotiation psychology, people problems, when you need tough love
+  - **Model**: Opus (deep strategic thinking for complex human dynamics)
+
+**Agent Response Architecture**:
+
+- **Direct Response Mode**: All agents use `return_mode: direct` in frontmatter
+- **No Summarization**: Agents speak directly to user without Claude adding commentary or interpretation
+- **Explicit Instructions**: Each agent file contains instruction block mandating direct passthrough of responses
+
+**Division of Labor**:
+
+- **Adam**: Routine work, 80/20 analysis, fast turnaround, political awareness, diplomatic communication
+- **Reggie**: Complex problems, crisis situations, exhaustive frameworks, brutal honesty, multi-domain synthesis
+- **Dennis**: Strategic wisdom, career guidance, negotiation psychology, reality checks, battle-tested experience
+
+**Natural Workflow**:
+```
+Daily question → Adam analyzes → Red flags? → Escalate to Reggie → Strategic implications? → Consult Dennis
+```
+
+**Integration with Existing System**:
+
+- All three agents have access to:
+  - 15 specialized skills (commercial lease, assignments, SNDAs, indemnities, negotiation, objection handling, etc.)
+  - 25 slash commands (abstraction, financial analysis, accounting, comparison, compliance, utilities)
+  - 11 financial calculators (effective rent, credit analysis, IFRS 16, options valuation, variance, etc.)
+
+**Documentation Updates**:
+
+- **README.md**: Updated to "Meet Your Real Estate Team: The Triumvirate"
+  - Title changed from "Meet Reggie Chan" to "Meet Your Real Estate Team"
+  - Added triumvirate introduction with distinct agent descriptions
+  - Updated "How to Work with" section with examples for each agent
+  - Modified "Capabilities" section to reflect team resources
+  - Updated project structure to show agents directory
+  - Modified support section to reflect team composition
+
+- **README-FOR-LEASING-MANAGERS.md**: Updated to "Meet Your New Team: Adam, Reggie, and Dennis"
+  - Casual tone maintained while introducing triumvirate
+  - Updated "What This Is" section with agent breakdown
+  - Modified workflow examples to show agent collaboration
+  - Updated "Who This Is For" sections to reference appropriate agents
+  - Changed "What Makes Reggie Different" to "What Makes This Team Different"
+  - Updated support section with team composition
+
+- **CLAUDE.md**: Updated with "Meet Your Team: The Triumvirate"
+  - Added comprehensive triumvirate section with when to use each agent
+  - Updated structure diagram to show all three agents with model types
+  - Added "The Triumvirate Workflow" section
+  - Modified capability sections to reflect team resources
+
+**Commits**: Agent creation and documentation updates
+
+**Total Implementation**: ~1,673 lines (373 Adam + 650 Dennis + 650 Reggie enhancements)
+
+**Design Philosophy**:
+
+- **Complementary, Not Overlapping**: Each agent has distinct scope with clear escalation paths
+- **Cognitive Patterns Over Capabilities**: Agents embody thinking patterns, not just knowledge lists
+- **Communication as Cognition Output**: Style derives from processing patterns, not performance
+- **Appropriate Model Selection**: Haiku (speed), Sonnet (balance), Opus (depth) matched to use case
+- **Direct Voice**: Agents speak for themselves without mediation or summarization
+
+---
+
 ## [1.8.0] - 2025-11-07
 
 ### Added

@@ -1,4 +1,4 @@
-# Meet Reggie Chan: Your VP of Leasing & Asset Management
+# Meet Reggie Chan and His Team
 
 [![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
@@ -9,19 +9,19 @@
 
 **Version 1.8.0** • Released 2025-11-07
 
-## The Digital Embodiment of a 20-Year Real Estate Veteran
+## The Digital Embodiment of a 20-Year Real Estate Veteran—And His Team
 
-This repository and agent system **is** Reggie Chan, CFA, FRICS—a Vice President of Leasing and Asset Management with over two decades of institutional real estate experience.
+This repository and agent system **is** Reggie Chan, CFA, FRICS—a Vice President of Leasing and Asset Management with over two decades of institutional real estate experience. Working alongside Reggie are Adam (his senior analyst) and Dennis (his former boss and strategic advisor).
 
-**It's like having Reggie Chan work for you—for the price of a Claude Code subscription.**
+**It's like having Reggie Chan and his team work for you—for the price of a Claude Code subscription.**
 
 You're not just getting software. You're getting:
-- **Institutional-grade financial analysis** on every deal
-- **20+ years of property expertise** across industrial and office assets
-- **Two decades of negotiation experience** distilled into evidence-based strategies
-- **Executive-level judgment** on lease structures, tenant credit, and portfolio risk
+- **Reggie Chan, CFA, FRICS** - VP of Leasing & Asset Management with 20+ years of institutional real estate experience. Handles complex problems, crisis turnarounds, fraud detection, and multi-domain synthesis. The brain behind the operation.
+- **Adam** - Reggie's senior analyst and protégé. Handles routine lease analysis, credit checks, and professional communication. Fast execution for straightforward tasks.
+- **Dennis** - Reggie's former boss with 36+ years of battle-tested experience. Provides strategic wisdom, negotiation psychology, and brutal honesty when you need it most.
+- **Complete toolkit** - 11 financial calculators, 15 specialized skills, and 25 automated workflows at their disposal
 
-Just address "Reggie" in your messages and watch a seasoned VP evaluate your deals, structure your offers, and craft responses to impossible tenant objections—all backed by 11 financial calculators, 15 specialized skills, and 25 automated workflows.
+Just address "Reggie," "Adam," or "Dennis" in your messages and watch the right team member handle your request—from everyday analysis to impossible problems to strategic decisions.
 
 ---
 
@@ -50,24 +50,80 @@ It's the perfect unspoken agreement. You hand them the unimpeachable, meticulous
 
 ---
 
-## How to Work with Reggie
+## How to Work with Reggie and His Team
 
-Simply address **"Reggie"** in your messages to activate your VP of Leasing & Asset Management:
+Simply address **"Reggie"** for most situations. For routine work, ask **"Adam"** (Reggie's analyst). For strategic wisdom, consult **"Dennis"** (Reggie's former boss).
+
+### Reggie Chan - Your VP of Leasing & Asset Management (Primary Contact)
+
+**Reggie is your go-to for complex lease analysis and crisis situations:**
 
 ```
 "Reggie, what do you think of this renewal offer at $25/sf with 3 months free rent?"
 
-"Reggie, help me evaluate this tenant's creditworthiness—they're a 5-year-old tech startup"
+"Reggie, this tenant's financials show declining revenue—are they hiding something?"
 
-"Reggie, the tenant says our rent is too high. How should I respond?"
+"Reggie, we have 6 months to turn around this distressed asset"
+
+"Reggie, build me a framework for evaluating assignment consent requests"
 ```
 
-Reggie has access to:
+**Reggie handles:**
+- Complex/distressed situations or crisis turnarounds
+- Fraud detection or forensic accounting
+- Multi-domain synthesis (legal + accounting + finance + portfolio)
+- Non-standard lease structures
+- Situations requiring exhaustive documentation
+- Deal evaluation and negotiation strategy
+
+### Adam - Reggie's Senior Analyst (For Routine Work)
+
+**Use Adam for straightforward tasks requiring fast execution:**
+
+```
+"Adam, analyze this renewal offer at $25/sf with 3 months free rent"
+
+"Adam, run a basic credit check on this tenant's financials"
+
+"Adam, prepare a professional response to this rent objection"
+```
+
+**Adam handles:**
+- Standard lease evaluations with typical terms
+- Routine tenant credit checks (clear financials, no red flags)
+- Renewal offer assessments (market conditions clear)
+- Professional communication to stakeholders
+- Fast turnaround required (80/20 analysis sufficient)
+
+### Dennis - Reggie's Former Boss (For Strategic Wisdom)
+
+**Use Dennis for strategic guidance and reality checks:**
+
+```
+"Dennis, the tenant wants a rent reduction but won't give me financials. What do I do?"
+
+"Dennis, should I accept this below-market renewal or push them out?"
+
+"Dennis, how do I negotiate with someone who has all the leverage?"
+```
+
+**Dennis handles:**
+- Strategic career decisions
+- Negotiation psychology and power dynamics
+- People management and team building
+- Work-life balance reality checks
+- When you need brutal honesty from someone who's seen it all
+
+### The Natural Workflow
+
+**Daily question → Adam handles routine work → Red flags? → Escalate to Reggie → Strategic implications? → Consult Dennis**
+
+Reggie and his team have access to:
 - **15 specialized skills** for every lease situation (assignments, surrenders, SNDAs, objection handling, etc.)
 - **25 slash commands** that automate everything from lease abstraction to IFRS 16 accounting
 - **11 financial calculators** including NPV, effective rent, credit scoring, and Black-Scholes option valuation
 
-You get executive-level judgment, institutional financial rigor, and 20+ years of property expertise—instantly.
+You get executive-level judgment, institutional financial rigor, and 20+ years of property expertise—with the right team member for every situation.
 
 ---
 
@@ -230,12 +286,12 @@ python -m pytest Eff_Rent_Calculator/Tests/ -v
 
 ## Capabilities
 
-**What Reggie Brings to Your Team**
+**What Reggie and His Team Bring to Your Operations**
 
-Reggie Chan's expertise is backed by a complete suite of analytical tools and specialized knowledge systems:
+Reggie's expertise is backed by a complete suite of analytical tools and specialized knowledge systems that he and his team can deploy instantly:
 
-### Reggie's Specialized Skills (15 Expert Systems)
-When you ask Reggie about specific situations, he automatically activates the relevant expert system:
+### Specialized Skills (15 Expert Systems)
+When you ask Reggie, Adam, or Dennis about specific situations, they automatically activate the relevant expert system:
 
 - **Core leasing**: Deal structuring and negotiation strategy for industrial/office leases
 - **Transfers & modifications**: Assignment consent, sublease analysis, share transfers, surrenders, waivers
@@ -247,7 +303,7 @@ When you ask Reggie about specific situations, he automatically activates the re
 Each skill provides checklists, negotiation angles, risk flags, and recommended language—like having a senior advisor instantly available for every situation. Reggie integrates these skills with quantitative analysis to craft data-driven responses to tenant objections.
 
 ### Reggie's Financial Toolkit (11 Analytical Engines)
-These are the quantitative tools Reggie uses to back up his recommendations with CFA-level analysis:
+These are the quantitative tools Reggie and his team use to back up their recommendations with institutional-grade analysis:
 1. **Effective Rent Calculator** (`Eff_Rent_Calculator/`)  
    - Inputs: rent schedule (annual $/sf), incentives (TI, cash allowances, free rent), leasing costs, REIT capital assumptions.  
    - Outputs: Net/Gross Effective Rent, NPV vs. costs, breakeven rents, Ponzi Rental Rate comparison, payback, sensitivity tables.  
@@ -303,7 +359,7 @@ These are the quantitative tools Reggie uses to back up his recommendations with
     - **36 tests passing** (100% coverage) validated against published Black-Scholes calculators.
 
 ### Reggie's Automated Workflows (25 Slash Commands)
-Reggie has 25 automated workflows at his disposal. Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (10), Accounting (1), Comparison (4), Compliance (7), and Utilities (1).
+Reggie and his team have 25 automated workflows at their disposal. Each slash command packages data extraction instructions, domain expertise, calculator invocation, and report formatting. Commands are grouped into Abstraction (2), Financial Analysis (10), Accounting (1), Comparison (4), Compliance (7), and Utilities (1).
 
 | Category | Command | Primary Output |
 |----------|---------|----------------|
@@ -365,13 +421,13 @@ See `.claude/commands/README.md` for full instructions and input templates.
 
 ## Scope & Use Cases
 
-### Who Uses Reggie
-- **REITs & institutional investors**: full lifecycle leasing, reporting, compliance.  
-- **Property & asset managers**: renewals, modifications, expiry management.  
-- **Corporate real estate teams**: lease-vs-buy decisions, IFRS/ASC compliance.  
+### Who Uses Reggie and His Team
+- **REITs & institutional investors**: full lifecycle leasing, reporting, compliance.
+- **Property & asset managers**: renewals, modifications, expiry management.
+- **Corporate real estate teams**: lease-vs-buy decisions, IFRS/ASC compliance.
 - **Brokers & advisors**: offer preparation, market comparisons, negotiation prep.
 
-### What Reggie Covers
+### What Reggie and His Team Cover
 - Deal structuring, LOIs, concession modeling, arbitration prep.  
 - Lease drafting support: assignments, indemnities, SNDAs, surrenders, telecom, storage.  
 - Financial analytics: NER/GER, NPV, IRR, variance, sensitivity, option value.  
@@ -410,6 +466,10 @@ vp-real-estate/
 ├── Templates/                 # Lease abstract templates
 ├── Reports/                   # Timestamped analysis outputs
 └── .claude/                   # Automation commands, skills, agents
+    └── agents/                # Reggie and His Team
+        ├── reggie-chan-vp.md  # Reggie Chan, CFA, FRICS - VP (Sonnet)
+        ├── adam.md            # Adam - Reggie's senior analyst (Haiku)
+        └── dennis.md          # Dennis - Reggie's former boss (Opus)
 ```
 
 Refer to `CLAUDE.md` for a full breakdown of commands, skills, and agents.
@@ -449,9 +509,10 @@ Academic foundations from R. Chan’s work on Ponzi Rental Rate and rental term 
 
 **Version**: 1.8.0 (Released 2025-11-07)
 **Your VP of Leasing & Asset Management**: Reggie Chan, CFA, FRICS
+**Reggie's Team**: Adam (Senior Analyst) • Dennis (Strategic Advisor)
 
 For issues and feature requests, open a ticket in the repository.
 
-**Remember**: While Reggie brings 20+ years of institutional experience and sophisticated analytical tools, all outputs should be validated by qualified professionals. This system provides executive-level guidance and analysis—but you remain responsible for final decisions.
+**Remember**: While Reggie and his team bring combined decades of institutional experience and sophisticated analytical tools, all outputs should be validated by qualified professionals. This system provides executive-level guidance and analysis—but you remain responsible for final decisions.
 
 ⚠️ Always validate model outputs before reliance on material decisions.

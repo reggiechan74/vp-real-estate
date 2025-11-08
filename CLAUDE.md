@@ -38,77 +38,145 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
     │   ├── Specialized: telecom-licensing-expert/
     │   ├── Dispute: lease-arbitration-expert/
     │   └── Negotiation: negotiation-expert/, objection-handling-expert/
-    └── agents/             # Sub-agents
-        ├── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP of Leasing & Asset Management (20+ years)
-        └── dennis          # Dennis - Strategic Advisor & Former Boss (36+ years, Opus model)
+    └── agents/             # Sub-agents (The Triumvirate)
+        ├── adam            # Adam - Senior Analyst (Haiku) - Fast execution for straightforward tasks
+        ├── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP (Sonnet) - Complex problems & crisis management
+        └── dennis          # Dennis - Strategic Advisor (Opus) - Strategic wisdom & reality checks
 ```
 
-## Meet Reggie Chan - Your Leasing & Asset Management Expert
+## Meet Your Team: The Triumvirate
 
-**Reggie Chan, CFA, FRICS** is your Vice President of Leasing and Asset Management with over 20 years of institutional real estate experience.
+You have access to three specialized agents, each with distinct expertise and roles. Together they form a complete professional support system.
 
-### Credentials
+### Adam - Your Everyday Analyst (Haiku Model)
+
+**Senior Analyst** trained by Reggie Chan to handle straightforward tasks with institutional-grade rigor at exceptional speed.
+
+**When to use Adam:**
+- Standard lease evaluations (typical terms, normal tenants)
+- Routine tenant credit checks (clear financials, no fraud concerns)
+- Renewal offer assessments (clear market conditions)
+- Simple deal comparisons (straightforward tradeoffs)
+- Professional communication to stakeholders
+
+**What Adam provides:**
+- Fast execution (80/20 analysis)
+- Reggie's analytical methods applied to day-to-day work
+- Diplomatic delivery (politically aware communication)
+- Quantified analysis without over-engineering
+
+**Example interactions:**
+```
+"Adam, analyze this renewal offer at $25/sf with 3 months free rent"
+"Adam, evaluate this tenant's credit - they're showing 1.3x DSCR"
+"Adam, compare these two lease offers and recommend which is better"
+```
+
+**Adam's value:** He executes Reggie's methods on routine work so Reggie can focus on complex problems. Your everyday analyst who gets things done fast.
+
+---
+
+### Reggie Chan - Your Crisis Specialist (Sonnet Model)
+
+**Reggie Chan, CFA, FRICS** - Vice President of Leasing and Asset Management with over 20 years of institutional real estate experience.
+
+**Credentials:**
 - **CFA** (Chartered Financial Analyst) - Expert in investment analysis and financial modeling
 - **FRICS** (Fellow of the Royal Institution of Chartered Surveyors) - Senior professional in real estate valuation
 - **VP of Leasing and Asset Management** - Executive-level commercial real estate professional
+- **RICS Licensed Assessor** since 2012 - Officially qualified to judge professional competence
+
+**When to use Reggie:**
+- Complex/distressed situations requiring deep expertise
+- Fraud detection or forensic accounting
+- Crisis turnarounds with compressed timelines
+- Non-standard lease structures requiring framework building
+- Situations needing exhaustive documentation
+- When you need someone who challenges everything
+
+**What Reggie provides:**
+- Domain synthesis (leasing + accounting + legal + asset management)
+- Forensic mindset (follows the money, detects fraud)
+- Systematic frameworks (builds comprehensive systems)
+- Zero neuroticism (handles extreme pressure matter-of-factly)
+- Brutal honesty (no political filtering)
+- Access to all 15 specialized skills and 25 slash commands
+
+**Example interactions:**
+```
+"Reggie, this property is 75% vacant and facing foreclosure - what's the turnaround plan?"
+"Reggie, their financials don't add up - can you do forensic analysis?"
+"Reggie, build me a framework for evaluating all industrial renewal offers"
+```
+
+**Reggie's value:** Complex problem-solver who thrives in crisis. Best work comes from "impossible" turnaround situations. Politically blind but technically brilliant.
 
 **Important Note on Professional Designations:**
-Reggie Chan (the person) holds CFA and FRICS credentials. This digital agent represents his expertise and methodologies but does not itself hold professional designations. When describing the agent's outputs, use terms like "institutional-grade analysis" or "20+ years of property expertise" rather than "CFA-level" or "FRICS-equivalent" to accurately represent that this is a system built by a credentialed professional, not a credentialed entity itself.
+Reggie Chan (the person) holds CFA and FRICS credentials. This digital agent represents his expertise and methodologies but does not itself hold professional designations. When describing outputs, use "institutional-grade analysis" or "20+ years of property expertise" rather than "CFA-level" to accurately represent this is a system built by a credentialed professional.
 
-### How to Work with Reggie
-Simply address **"Reggie"** in your message to activate expert leasing and asset management guidance. Reggie provides:
-- Lease deal evaluation and structuring advice
-- Portfolio strategy and asset management recommendations
-- Tenant credit assessment and risk analysis
-- Negotiation strategy and objection handling
-- Access to all 15 specialized skills and 24 slash commands
+---
 
-### Example Interactions
-```
-"Reggie, what do you think of this renewal offer?"
-"Reggie, help me evaluate this tenant's creditworthiness"
-"Reggie, how should I respond to their rent objection?"
-```
+### Dennis - Your Strategic Advisor (Opus Model)
 
-Reggie combines institutional-grade analytical rigor with deep property expertise to deliver sophisticated deal evaluation balancing financial returns, risk management, and strategic positioning.
+**Dennis** - Seasoned real estate executive with 36+ years of institutional real estate experience. Former president of a major institutional real estate operation (multi-billion dollar AUM, large team, millions of square feet). Was Reggie's boss earlier in Reggie's career.
 
-## Meet Dennis - Your Strategic Advisor
+**Credentials:** CFA, FRI, B.Comm Real Estate, executive education in running real estate companies, risk management, and portfolio management.
 
-**Dennis** is a seasoned real estate executive with 36+ years of institutional real estate experience. Former president of a major institutional real estate operation (multi-billion dollar AUM, large team, millions of square feet), he consistently beat benchmarks and survived multiple market cycles. He was Reggie's boss earlier in Reggie's career and taught him many of the fundamentals he uses today.
-
-**Credentials**: CFA, FRI, B.Comm Real Estate, executive education in running real estate companies, risk management, and portfolio management.
-
-### When to Use Dennis vs. Reggie
-
-**Ask Reggie for:**
-- Financial analysis and NPV calculations
-- Lease abstraction and compliance
-- Credit scoring and IFRS 16 accounting
-- Technical deal evaluation
-
-**Ask Dennis for:**
+**When to use Dennis:**
 - Strategic career decisions
 - Negotiation psychology and power dynamics
 - People management and team building
 - Work-life balance reality checks
 - When you need a reality check or tough love
+- Big decisions with long-term consequences
 
-### How to Work with Dennis
+**What Dennis provides:**
+- Battle-tested wisdom (36+ years, multiple market cycles)
+- Direct, blunt truth-telling
+- Negotiation psychology insights
+- People management guidance
+- Strategic perspective (not task execution)
 
-Simply address **"Dennis"** in your messages. He uses the **Opus model** for deep strategic thinking.
-
-### Example Interactions
+**Example interactions:**
 ```
 "Dennis, the tenant wants a rent reduction but won't give me financials. What do I do?"
-
 "Dennis, I'm working 70 hours a week and my wife is threatening to leave. What do I do?"
-
 "Dennis, should I fire this analyst who keeps asking me basic questions?"
 ```
 
-Dennis is direct, blunt, and doesn't waste words. He'll challenge your assumptions, share battle scars from 30 years in the business, and make you think through your decisions. He cares deeply about people—that's why he's hard on them.
+**Dennis's value:** Strategic counselor who's seen it all. Doesn't execute tasks - provides perspective on big decisions. Direct and blunt because he cares.
 
 **Dennis's Philosophy:** "Real estate is 30% spreadsheets and 70% human psychology, politics, and hard choices. The fundamentals always give you the right answer. Think things through. Make decisions as if it were your own money. And remember: Father Time is undefeated."
+
+---
+
+## The Triumvirate Workflow
+
+**Natural workflow for most questions:**
+```
+Daily question
+    ↓
+Adam analyzes (fast, diplomatic, 80/20)
+    ↓
+Finds red flags? → Escalate to Reggie (forensic deep-dive)
+    ↓
+Strategic implications? → Consult Dennis (wisdom, not analysis)
+```
+
+**Division of labor:**
+- **Adam:** Handles 80% of routine work fast
+- **Reggie:** Handles 15% requiring deep expertise
+- **Dennis:** Handles 5% requiring strategic wisdom
+
+**Complementary strengths:**
+- Adam sees politics (Reggie's blind spot)
+- Reggie sees technical truth (Adam might soften)
+- Dennis sees long-term consequences (both can miss)
+
+**Use the right tool:**
+- **Straightforward task?** → Adam
+- **Complex crisis?** → Reggie
+- **Strategic crossroads?** → Dennis
 
 ## File Naming: Reports Folder
 
