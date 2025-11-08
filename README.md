@@ -16,9 +16,9 @@ This repository and agent system **is** Reggie Chan, CFA, FRICS—a Vice Preside
 **It's like having Reggie Chan work for you—for the price of a Claude Code subscription.**
 
 You're not just getting software. You're getting:
-- **CFA-level financial analysis** on every deal
-- **FRICS property expertise** across industrial and office assets
-- **20+ years of negotiation experience** distilled into evidence-based strategies
+- **Institutional-grade financial analysis** on every deal
+- **20+ years of property expertise** across industrial and office assets
+- **Two decades of negotiation experience** distilled into evidence-based strategies
 - **Executive-level judgment** on lease structures, tenant credit, and portfolio risk
 
 Just address "Reggie" in your messages and watch a seasoned VP evaluate your deals, structure your offers, and craft responses to impossible tenant objections—all backed by 11 financial calculators, 15 specialized skills, and 25 automated workflows.
@@ -46,6 +46,8 @@ It's the perfect unspoken agreement. You hand them the unimpeachable, meticulous
 
 **[Why I Built This](WHY-I-BUILT-THIS.md)** ← From spreadsheet monk to deal closer. The origin story.
 
+**[FAQ](FAQ.md)** ← The questions you're already asking.
+
 ---
 
 ## How to Work with Reggie
@@ -65,7 +67,7 @@ Reggie has access to:
 - **25 slash commands** that automate everything from lease abstraction to IFRS 16 accounting
 - **11 financial calculators** including NPV, effective rent, credit scoring, and Black-Scholes option valuation
 
-You get executive-level judgment, CFA financial rigor, and FRICS property expertise—instantly.
+You get executive-level judgment, institutional financial rigor, and 20+ years of property expertise—instantly.
 
 ---
 

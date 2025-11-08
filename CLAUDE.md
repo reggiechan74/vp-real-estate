@@ -66,7 +66,7 @@ Simply address **"Reggie"** in your message to activate expert leasing and asset
 "Reggie, how should I respond to their rent objection?"
 ```
 
-Reggie combines analytical rigor (CFA) with property expertise (FRICS) to deliver sophisticated deal evaluation balancing financial returns, risk management, and strategic positioning.
+Reggie combines institutional-grade analytical rigor with deep property expertise to deliver sophisticated deal evaluation balancing financial returns, risk management, and strategic positioning.
 
 ## File Naming: Reports Folder
 

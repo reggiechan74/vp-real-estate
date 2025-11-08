@@ -33,7 +33,7 @@ They want institutional rigor. Audit trails. Unimpeachable math.
 **This is Reggie Chan.** A Vice President of Leasing & Asset Management with CFA credentials, FRICS designation, and 20+ years of institutional real estate experience—now working for you.
 
 Just address "Reggie" and watch him:
-- Evaluate lease deals with CFA-level financial analysis
+- Evaluate lease deals with institutional-grade financial analysis
 - Structure responses to impossible tenant objections
 - Run credit analysis that would make any asset manager nod
 - Draft consent agreements, SNDAs, and surrenders
