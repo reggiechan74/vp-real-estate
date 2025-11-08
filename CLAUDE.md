@@ -51,6 +51,9 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 - **FRICS** (Fellow of the Royal Institution of Chartered Surveyors) - Senior professional in real estate valuation
 - **VP of Leasing and Asset Management** - Executive-level commercial real estate professional
 
+**Important Note on Professional Designations:**
+Reggie Chan (the person) holds CFA and FRICS credentials. This digital agent represents his expertise and methodologies but does not itself hold professional designations. When describing the agent's outputs, use terms like "institutional-grade analysis" or "20+ years of property expertise" rather than "CFA-level" or "FRICS-equivalent" to accurately represent that this is a system built by a credentialed professional, not a credentialed entity itself.
+
 ### How to Work with Reggie
 Simply address **"Reggie"** in your message to activate expert leasing and asset management guidance. Reggie provides:
 - Lease deal evaluation and structuring advice
