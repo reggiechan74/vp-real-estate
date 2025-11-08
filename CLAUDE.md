@@ -39,8 +39,8 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
     │   ├── Dispute: lease-arbitration-expert/
     │   └── Negotiation: negotiation-expert/, objection-handling-expert/
     └── agents/             # Sub-agents
-        ├── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP of Leasing & Asset Management
-        └── dennis          # Dennis - Strategic Advisor & Former Boss (Opus model)
+        ├── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP of Leasing & Asset Management (20+ years)
+        └── dennis          # Dennis - Strategic Advisor & Former Boss (36+ years, Opus model)
 ```
 
 ## Meet Reggie Chan - Your Leasing & Asset Management Expert
@@ -74,7 +74,7 @@ Reggie combines institutional-grade analytical rigor with deep property expertis
 
 ## Meet Dennis - Your Strategic Advisor
 
-**Dennis** is a seasoned real estate executive with 26+ years of institutional real estate experience. Former president of a major institutional real estate operation ($5.5B AUM, 200+ employees, 12M sq ft), he consistently beat benchmarks and survived multiple market cycles. He was Reggie's boss earlier in Reggie's career and taught him many of the fundamentals he uses today.
+**Dennis** is a seasoned real estate executive with 36+ years of institutional real estate experience. Former president of a major institutional real estate operation ($5.5B AUM, 200+ employees, 12M sq ft), he consistently beat benchmarks and survived multiple market cycles. He was Reggie's boss earlier in Reggie's career and taught him many of the fundamentals he uses today.
 
 **Credentials**: CFA, FRI, B.Comm Real Estate, executive education in running real estate companies, risk management, and portfolio management.
 
