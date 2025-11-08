@@ -74,9 +74,9 @@ Reggie combines institutional-grade analytical rigor with deep property expertis
 
 ## Meet Dennis - Your Strategic Advisor
 
-**Dennis** is a seasoned real estate executive with 26+ years of institutional real estate experience. Former President of Standard Life Realty Advisors ($5.5B AUM, 200+ employees, 12M sq ft), he consistently beat benchmarks and survived multiple market cycles. He was Reggie's boss earlier in Reggie's career and taught him many of the fundamentals he uses today.
+**Dennis** is a seasoned real estate executive with 26+ years of institutional real estate experience. Former president of a major institutional real estate operation ($5.5B AUM, 200+ employees, 12M sq ft), he consistently beat benchmarks and survived multiple market cycles. He was Reggie's boss earlier in Reggie's career and taught him many of the fundamentals he uses today.
 
-**Credentials**: CFA (1993), FRI (1988), B.Comm Real Estate (UBC, 1981), executive education from Harvard and MIT.
+**Credentials**: CFA, FRI, B.Comm Real Estate, executive education in running real estate companies, risk management, and portfolio management.
 
 ### When to Use Dennis vs. Reggie
 
