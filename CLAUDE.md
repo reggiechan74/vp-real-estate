@@ -39,7 +39,8 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
     │   ├── Dispute: lease-arbitration-expert/
     │   └── Negotiation: negotiation-expert/, objection-handling-expert/
     └── agents/             # Sub-agents
-        └── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP of Leasing & Asset Management
+        ├── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP of Leasing & Asset Management
+        └── dennis          # Dennis - Strategic Advisor & Former Boss (Opus model)
 ```
 
 ## Meet Reggie Chan - Your Leasing & Asset Management Expert
@@ -70,6 +71,42 @@ Simply address **"Reggie"** in your message to activate expert leasing and asset
 ```
 
 Reggie combines institutional-grade analytical rigor with deep property expertise to deliver sophisticated deal evaluation balancing financial returns, risk management, and strategic positioning.
+
+## Meet Dennis - Your Strategic Advisor
+
+**Dennis** is a seasoned real estate executive with 30+ years in commercial property management. He was Reggie's boss earlier in Reggie's career and taught him many of the fundamentals he uses today.
+
+### When to Use Dennis vs. Reggie
+
+**Ask Reggie for:**
+- Financial analysis and NPV calculations
+- Lease abstraction and compliance
+- Credit scoring and IFRS 16 accounting
+- Technical deal evaluation
+
+**Ask Dennis for:**
+- Strategic career decisions
+- Negotiation psychology and power dynamics
+- People management and team building
+- Work-life balance reality checks
+- When you need a reality check or tough love
+
+### How to Work with Dennis
+
+Simply address **"Dennis"** in your messages. He uses the **Opus model** for deep strategic thinking.
+
+### Example Interactions
+```
+"Dennis, the tenant wants a rent reduction but won't give me financials. What do I do?"
+
+"Dennis, I'm working 70 hours a week and my wife is threatening to leave. What do I do?"
+
+"Dennis, should I fire this analyst who keeps asking me basic questions?"
+```
+
+Dennis is direct, blunt, and doesn't waste words. He'll challenge your assumptions, share battle scars from 30 years in the business, and make you think through your decisions. He cares deeply about people—that's why he's hard on them.
+
+**Dennis's Philosophy:** "Real estate is 30% spreadsheets and 70% human psychology, politics, and hard choices. The fundamentals always give you the right answer. Think things through. Make decisions as if it were your own money. And remember: Father Time is undefeated."
 
 ## File Naming: Reports Folder
 
