@@ -1,0 +1,242 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lease-abstract.com/schemas/landlord-investment-parameters.json",
+  "title": "Landlord Investment Parameters Database Schema",
+  "description": "Schema for landlord investment parameters database. Each landlord entity has standardized investment parameters (LTV, dividend yield, acquisition costs, etc.) used for breakeven analysis in lease deal evaluation.",
+  "type": "object",
+  "required": ["version", "last_updated", "landlords"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version number (semantic versioning)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0", "2.1.3"]
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this database was last updated (YYYY-MM-DD)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes about this investment parameters database"
+    },
+    "landlords": {
+      "type": "array",
+      "description": "Array of landlord entities with their investment parameters",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["landlord_legal_name", "investment_parameters"],
+        "additionalProperties": false,
+        "properties": {
+          "landlord_legal_name": {
+            "type": "string",
+            "description": "Legal entity name of landlord (must match exactly from lease documents)",
+            "minLength": 1,
+            "examples": [
+              "ABC Industrial Properties Inc.",
+              "XYZ REIT",
+              "123 Main Street Holdings Ltd."
+            ]
+          },
+          "landlord_aliases": {
+            "type": "array",
+            "description": "Alternative names or DBA names for this landlord entity (for fuzzy matching)",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": [
+              ["ABC Industrial", "ABC IP Inc.", "ABC Properties"]
+            ]
+          },
+          "landlord_type": {
+            "type": "string",
+            "description": "Type of landlord entity",
+            "enum": [
+              "REIT",
+              "Private Equity",
+              "Institutional",
+              "Private Owner",
+              "Fund",
+              "Pension Fund",
+              "Government",
+              "Other"
+            ]
+          },
+          "primary_asset_class": {
+            "type": "string",
+            "description": "Primary real estate asset class for this landlord",
+            "enum": [
+              "Industrial",
+              "Office",
+              "Retail",
+              "Multi-Family",
+              "Mixed-Use",
+              "Other"
+            ]
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether this landlord is currently active (false if entity merged, sold, or dissolved)",
+            "default": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional notes about this landlord entity or their investment parameters"
+          },
+          "investment_parameters": {
+            "type": "object",
+            "description": "Standard investment parameters for this landlord entity",
+            "required": [],
+            "additionalProperties": false,
+            "properties": {
+              "default_acquisition_cost_psf": {
+                "type": "number",
+                "description": "Default acquisition cost per square foot ($/sf) if property-specific cost not available",
+                "minimum": 0
+              },
+              "going_in_ltv": {
+                "type": "number",
+                "description": "Loan-to-value ratio (decimal: 0.60 = 60%)",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "mortgage_amortization_months": {
+                "type": "integer",
+                "description": "Mortgage amortization period in months (typical: 300 = 25 years)",
+                "minimum": 12,
+                "maximum": 600
+              },
+              "dividend_yield": {
+                "type": "number",
+                "description": "Required dividend yield on equity (decimal: 0.0675 = 6.75%)",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "interest_cost": {
+                "type": "number",
+                "description": "Mortgage interest rate (decimal: 0.04 = 4%)",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "principal_payment_rate": {
+                "type": "number",
+                "description": "Principal payment rate (decimal, calculated from amortization schedule)",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "building_allocation_pct": {
+                "type": "number",
+                "description": "Building allocation as percentage of property value (decimal: 0.40 = 40%, typical range 35-45%)",
+                "minimum": 0,
+                "maximum": 1,
+                "default": 0.40
+              },
+              "default_remaining_depreciation_years": {
+                "type": "integer",
+                "description": "Default remaining building depreciation period in years (if building age unknown)",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20
+              },
+              "nominal_discount_rate": {
+                "type": "number",
+                "description": "Nominal discount rate for NPV calculations (decimal: 0.10 = 10%)",
+                "minimum": 0,
+                "maximum": 1,
+                "default": 0.10
+              },
+              "notes": {
+                "type": "string",
+                "description": "Notes about these investment parameters (source, assumptions, last review date, etc.)"
+              }
+            }
+          },
+          "properties": {
+            "type": "array",
+            "description": "Optional array of specific properties owned by this landlord with property-specific investment parameters",
+            "items": {
+              "type": "object",
+              "required": ["property_address"],
+              "additionalProperties": false,
+              "properties": {
+                "property_address": {
+                  "type": "string",
+                  "description": "Property address (must match lease documents for automatic lookup)",
+                  "minLength": 1
+                },
+                "property_name": {
+                  "type": "string",
+                  "description": "Common name for the property"
+                },
+                "acquisition_cost": {
+                  "type": "number",
+                  "description": "Actual acquisition cost for this specific property ($)",
+                  "minimum": 0,
+                  "exclusiveMinimum": true
+                },
+                "acquisition_cost_psf": {
+                  "type": "number",
+                  "description": "Acquisition cost per square foot ($/sf)",
+                  "minimum": 0,
+                  "exclusiveMinimum": true
+                },
+                "acquisition_date": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "Date property was acquired (YYYY-MM-DD)"
+                },
+                "gla_sf": {
+                  "type": "number",
+                  "description": "Gross leasable area in square feet",
+                  "minimum": 0,
+                  "exclusiveMinimum": true
+                },
+                "year_built": {
+                  "type": "integer",
+                  "description": "Year the building was constructed",
+                  "minimum": 1800,
+                  "maximum": 2100
+                },
+                "property_specific_parameters": {
+                  "type": "object",
+                  "description": "Property-specific overrides to landlord's default investment parameters (only include if different from landlord defaults)",
+                  "additionalProperties": false,
+                  "properties": {
+                    "going_in_ltv": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "interest_cost": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "building_allocation_pct": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "remaining_depreciation_years": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 50
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Notes about this specific property"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

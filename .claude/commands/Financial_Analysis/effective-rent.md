@@ -1,54 +1,100 @@
 ---
 description: Analyze lease deal economics using the Ponzi Rental Rate framework - extracts terms, runs NPV/NER analysis, generates investment report
-argument-hint: <lease-or-offer-path>
-allowed-tools: Read, Write, Bash
+argument-hint: <lease-or-offer-path> <landlord-params-json-path>
+allowed-tools: Read, Write, Bash, Edit
 ---
 
-You are a commercial real estate financial analyst specializing in lease deal analysis using the Ponzi Rental Rate (PRR) framework. Your task is to extract financial terms from lease documents and quotes, generate a JSON input file, run the effective rent calculator, and produce an investment analysis report.
+You are a commercial real estate financial analyst specializing in lease deal analysis using the Ponzi Rental Rate (PRR) framework. Your task is to extract financial terms from lease documents, match landlord investment parameters, generate a JSON input file, run the effective rent calculator, and produce an investment analysis report.
 
 ## Input
 
 The user will provide:
-1. **Lease document or offer** - Path to lease agreement, offer letter, or term sheet (DOCX, PDF, or MD)
-2. **Quotes/invoices (optional)** - Path to landlord's work quotes, TI estimates, or cost breakdowns (PDF)
+1. **Lease document or offer** (REQUIRED) - Path to lease agreement, offer letter, or term sheet (DOCX, PDF, or MD)
+2. **Landlord investment parameters JSON** (REQUIRED) - Path to landlord_investment_parameters.json database
+3. **Quotes/invoices (optional)** - Path to landlord's work quotes, TI estimates, or cost breakdowns (PDF)
 
 **Arguments**: {{args}}
+
+**Example:**
+```
+/effective-rent /path/to/offer.pdf /workspaces/lease-abstract/Eff_Rent_Calculator/landlord_investment_parameters.json
+/effective-rent /path/to/lease.pdf /path/to/landlord_params.json /path/to/ti-quote.pdf
+```
 
 ## Process
 
 ### Step 1: Parse Input Arguments
 
 Extract file paths from the arguments:
-- First file should be the lease document
-- Subsequent files are quotes/cost documents
-- If only one file provided, proceed with lease document only
+- **First argument** (REQUIRED): Lease document path (PDF, DOCX, or MD)
+- **Second argument** (REQUIRED): Landlord investment parameters JSON path
+- **Third+ arguments** (OPTIONAL): Quote/cost document paths (PDF)
 
-Example:
+**Argument Structure:**
 ```
-/path/to/lease-offer.pdf /path/to/ti-quote.pdf /path/to/landlord-work.pdf
+arg[0] = /path/to/lease-offer.pdf
+arg[1] = /path/to/landlord_investment_parameters.json
+arg[2] = /path/to/ti-quote.pdf (optional)
+arg[3] = /path/to/landlord-work.pdf (optional)
 ```
 
-### Step 2: Load and Analyze Documents
+**Validation:**
+- If fewer than 2 arguments provided, ERROR and request both required files
+- If arg[1] does not end in `.json`, check if it's a quote PDF and warn user about correct order
+
+### Step 2: Load Landlord Investment Parameters Database
+
+**Load the JSON database:**
+1. Read the landlord investment parameters JSON file using Read tool
+2. Parse the JSON structure
+3. Extract the `landlords` array
+4. Prepare for landlord matching in Step 4
+
+**Database Structure:**
+```json
+{
+  "version": "1.0.0",
+  "last_updated": "2025-11-13",
+  "landlords": [
+    {
+      "landlord_legal_name": "ABC Industrial Properties Inc.",
+      "landlord_aliases": ["ABC Industrial", "ABC IP Inc."],
+      "investment_parameters": { ... },
+      "properties": [ ... ]
+    }
+  ]
+}
+```
+
+### Step 3: Load and Analyze Lease Documents
 
 **For Lease Document:**
 1. If DOCX, convert using `markitdown` first
 2. Read the document using the Read tool
 3. Extract ALL financial terms (see extraction checklist below)
+4. **CRITICAL**: Extract landlord legal name from "PARTIES" or "LANDLORD" section
+5. **CRITICAL**: Extract property address from "PREMISES" section
 
-**For Quote/Cost Documents:**
+**For Quote/Cost Documents (if provided):**
 1. Read each PDF using the Read tool
 2. Extract cost line items, totals, and scope descriptions
 
-### Step 3: Extract Financial Terms
+### Step 4: Extract Financial Terms from Lease
 
 Create a comprehensive extraction checklist. Extract the following from the lease document:
 
-**Property Information:**
+**Landlord Information (CRITICAL for matching):**
+- [ ] **Landlord legal name** (from PARTIES or LANDLORD section)
+- [ ] Landlord trade name or DBA (if different)
+
+**Property Information (CRITICAL for matching):**
+- [ ] **Property address** (full address including unit/suite)
 - [ ] Building name/address
 - [ ] Unit number
 - [ ] Rentable area (square feet)
 - [ ] Building GLA (if multi-tenant)
 - [ ] Property type (Industrial/Office)
+- [ ] Year built (if available)
 
 **Tenant Information:**
 - [ ] Tenant legal name
@@ -103,7 +149,95 @@ Create a comprehensive extraction checklist. Extract the following from the leas
 - [ ] Any additional capital expenditures
 - [ ] Scope of work descriptions
 
-### Step 4: Calculate Derived Values
+### Step 5: Match Landlord Investment Parameters
+
+**Use extracted landlord and property information to find matching parameters:**
+
+**Matching Algorithm:**
+
+1. **Extract key identifiers from lease:**
+   - `landlord_name_from_lease` = Landlord legal name from PARTIES section
+   - `property_address_from_lease` = Property address from PREMISES section
+
+2. **Search landlords array for exact match:**
+   ```python
+   for landlord in landlords_database:
+       if landlord["landlord_legal_name"] == landlord_name_from_lease:
+           matched_landlord = landlord
+           break
+   ```
+
+3. **If no exact match, try alias matching:**
+   ```python
+   for landlord in landlords_database:
+       if landlord_name_from_lease in landlord.get("landlord_aliases", []):
+           matched_landlord = landlord
+           break
+   ```
+
+4. **If landlord matched, check for property-specific parameters:**
+   ```python
+   for property in matched_landlord.get("properties", []):
+       if property["property_address"] == property_address_from_lease:
+           use_property_specific_parameters = True
+           matched_property = property
+           break
+   ```
+
+5. **Apply parameters with priority order:**
+   - **PRIORITY 1**: Property-specific parameters (if property matched)
+   - **PRIORITY 2**: Landlord default parameters (if landlord matched)
+   - **PRIORITY 3**: System defaults (if no match found)
+
+**Parameters to Extract:**
+
+From matched landlord or property:
+- `acquisition_cost` or `acquisition_cost_psf` (property-specific preferred)
+- `going_in_ltv`
+- `mortgage_amortization_months`
+- `dividend_yield`
+- `interest_cost`
+- `principal_payment_rate`
+- `building_allocation_pct`
+- `default_remaining_depreciation_years` (or calculate from year_built)
+- `nominal_discount_rate`
+
+**Matching Status Reporting:**
+
+Document the matching result:
+- ✓ **EXACT MATCH**: "Landlord 'ABC Industrial Properties Inc.' matched exactly. Using landlord default parameters."
+- ✓ **ALIAS MATCH**: "Landlord 'ABC Industrial' matched via alias. Using parameters for 'ABC Industrial Properties Inc.'."
+- ✓ **PROPERTY MATCH**: "Property '2500 Logistics Way' matched. Using property-specific acquisition cost $60M and overrides."
+- ✗ **NO MATCH**: "Landlord 'XYZ Unknown Corp.' not found in database. Using system default parameters. **WARNING**: Breakeven analysis will use estimated parameters only."
+
+**If No Match Found:**
+
+Use conservative system defaults:
+```json
+{
+  "acquisition_cost": 0.0,
+  "going_in_ltv": 0.55,
+  "mortgage_amortization_months": 300,
+  "dividend_yield": 0.0675,
+  "interest_cost": 0.04,
+  "principal_payment_rate": 0.026713,
+  "building_allocation_pct": 0.40,
+  "default_remaining_depreciation_years": 20,
+  "nominal_discount_rate": 0.10,
+  "notes": "WARNING: Landlord not found in database. Using system default REIT parameters. Breakeven analysis is ESTIMATED ONLY."
+}
+```
+
+**Calculate Remaining Depreciation:**
+
+If property matched with `year_built`:
+```python
+current_year = 2025  # or extract from lease date
+building_age = current_year - year_built
+remaining_depreciation = max(1, 40 - building_age)  # 40-year standard depreciation
+```
+
+### Step 6: Calculate Derived Values
 
 Based on extracted information, calculate:
 
@@ -123,15 +257,12 @@ Based on extracted information, calculate:
    - Office default: $10-20/sf
    - Extract from "Additional Rent" or "Operating Costs" sections
 
-4. **Investment Parameters (if property data available):**
-   - Use building allocation: 40% (standard)
-   - Use remaining depreciation: 15-25 years (estimate based on building age)
-   - Use standard REIT parameters:
-     - LTV: 50-60%
-     - Dividend yield: 6-7%
-     - Interest cost: 3-5%
+4. **Investment Parameters:**
+   - **Use matched parameters from Step 5** (landlord or property-specific)
+   - If acquisition_cost is 0.0 and area known, calculate: `acquisition_cost = area_sf × acquisition_cost_psf`
+   - Calculate remaining depreciation from year_built if available
 
-### Step 5: Generate JSON Input File
+### Step 7: Generate JSON Input File with Matched Parameters
 
 Create a JSON file following this structure:
 
@@ -186,9 +317,38 @@ Create a JSON file following this structure:
     "dividend_yield": 0.0675,
     "interest_cost": 0.0,
     "principal_payment_rate": 0.0,
-    "notes": "Investment parameters if property data available"
+    "building_allocation_pct": 0.40,
+    "remaining_depreciation_years": 20,
+    "notes": "MATCHED from landlord_investment_parameters.json - [EXACT MATCH / ALIAS MATCH / PROPERTY MATCH / NO MATCH - SYSTEM DEFAULTS]. Source: [Landlord Name] / [Property Address] / System Defaults"
   }
 }
+```
+
+**CRITICAL - Investment Parameters Source Attribution:**
+
+Always document in the `notes` field how parameters were determined:
+
+**Example notes for different matching scenarios:**
+
+1. **Property-specific match:**
+   ```
+   "notes": "MATCHED - Property-specific parameters from landlord_investment_parameters.json. Landlord: ABC Industrial Properties Inc. Property: 2500 Logistics Way, City A. Acquisition cost $60M (actual). Updated Q4 2025."
+   ```
+
+2. **Landlord default match:**
+   ```
+   "notes": "MATCHED - Landlord default parameters from landlord_investment_parameters.json. Landlord: ABC Industrial Properties Inc. (exact match). No property-specific data available - using default acquisition cost $150/sf. Updated Q4 2025."
+   ```
+
+3. **Alias match:**
+   ```
+   "notes": "MATCHED - Landlord parameters from landlord_investment_parameters.json. Lease shows 'ABC Industrial' which matched alias for 'ABC Industrial Properties Inc.'. Using landlord defaults. Updated Q4 2025."
+   ```
+
+4. **No match - system defaults:**
+   ```
+   "notes": "WARNING: NO MATCH - Landlord 'XYZ Unknown Corp.' not found in database. Using conservative system default REIT parameters (55% LTV, 6.75% dividend yield, 10% discount rate). Breakeven analysis is ESTIMATED ONLY and should be reviewed. Consider adding this landlord to the database."
+   ```
 ```
 
 **Important Data Quality Notes:**
@@ -204,7 +364,7 @@ Create a JSON file following this structure:
 
 Create the `deals/` directory if it doesn't exist.
 
-### Step 6: Run the Effective Rent Calculator
+### Step 8: Run the Effective Rent Calculator
 
 Execute the calculator using Bash tool:
 
@@ -215,10 +375,12 @@ python3 eff_rent_calculator.py deals/[filename]_input.json -o deals/[filename]_r
 
 Capture the console output for the markdown report.
 
-### Step 7: Generate Markdown Report
+### Step 9: Generate Markdown Report
 
 Create a comprehensive markdown report in `/workspaces/lease-abstract/Reports/` with filename:
-`[tenant_name]_[property]_[date]_analysis.md`
+`YYYY-MM-DD_HHMMSS_[tenant_name]_[property]_analysis.md`
+
+**CRITICAL**: Use Eastern Time timestamp prefix format per repository standards.
 
 **Report Structure:**
 
@@ -433,43 +595,59 @@ Chan, R. (2015). "Understanding the Ponzi Rental Rate: The Challenges with Using
 
 **Data Sources:**
 - Lease document: [filename]
+- Landlord investment parameters: [filename and matching status]
 - Quotes/invoices: [filenames]
-- Investment parameters: [source or "standard REIT assumptions"]
+
+**Investment Parameters Source:**
+- **Matching Status**: [EXACT MATCH / ALIAS MATCH / PROPERTY MATCH / NO MATCH]
+- **Landlord**: [Landlord legal name from database or "Not found"]
+- **Property**: [Property address from database or "Not property-specific"]
+- **Parameters**: [Property-specific / Landlord defaults / System defaults]
+- **Database Version**: [version from landlord_investment_parameters.json]
+- **Database Last Updated**: [last_updated date from database]
 
 **Limitations:**
-[Note any limitations in the analysis]
+[Note any limitations in the analysis, especially if NO MATCH on landlord]
 
 ### C. Supporting Files
 
-- JSON Input: `Eff_Rent_Calculator/deals/[filename]_input.json`
-- JSON Results: `Eff_Rent_Calculator/deals/[filename]_results.json`
-- Source Documents: [list document paths]
+- **JSON Input**: `Eff_Rent_Calculator/deals/[filename]_input.json`
+- **JSON Results**: `Eff_Rent_Calculator/deals/[filename]_results.json`
+- **Landlord Parameters Database**: [path to landlord_investment_parameters.json]
+- **Source Documents**: [list document paths]
 
 ---
 
-**Report Generated:** [Timestamp]
+**Report Generated:** [Timestamp ET]
 **Analyst:** Claude Code - Effective Rent Calculator
 **Framework:** Ponzi Rental Rate (PRR)
+**Landlord Matching:** Automated via landlord_investment_parameters.json
 ```
 
-### Step 8: Summary Output
+### Step 10: Summary Output
 
 After creating all files, provide the user with:
 
-1. **Files Created:**
+1. **Landlord Matching Result:**
+   - ✓ **MATCHED**: "Landlord 'ABC Industrial Properties Inc.' matched exactly."
+   - ✓ **PROPERTY MATCHED**: "Property '2500 Logistics Way' matched. Using acquisition cost $60M."
+   - ✗ **NO MATCH**: "WARNING: Landlord 'XYZ Corp.' not found. Using system defaults."
+
+2. **Files Created:**
    - JSON input file path
    - JSON results file path
    - Markdown report path
 
-2. **Quick Summary:**
+3. **Quick Summary:**
    - Proposed NER
-   - Fully Levered Breakeven
+   - Fully Levered Breakeven (or "N/A - see report" if using system defaults)
    - Recommendation
    - Key issues/concerns
 
-3. **Next Steps:**
+4. **Next Steps:**
    - Review detailed report
    - Verify extracted terms against source documents
+   - If NO MATCH on landlord: Consider adding landlord to database
    - Adjust assumptions if needed and re-run
 
 ## Important Guidelines
@@ -498,15 +676,48 @@ After creating all files, provide the user with:
 
 ## Example Usage
 
+### Basic Usage (Lease + Landlord Parameters)
+
 ```
-/effective-rent /path/to/lease-proposal.pdf /path/to/ti-quote.pdf
+/effective-rent /workspaces/lease-abstract/Sample_Inputs/sample_offer_to_lease.pdf /workspaces/lease-abstract/Eff_Rent_Calculator/landlord_investment_parameters.json
 ```
 
 This will:
-1. Extract terms from lease proposal
-2. Extract costs from TI quote
-3. Generate JSON input file
-4. Run effective rent calculator
-5. Create comprehensive markdown report in /Reports
+1. Load landlord investment parameters database
+2. Extract terms from offer to lease (including landlord name and property address)
+3. Match landlord "ABC Industrial Properties Inc." in database
+4. Match property "2500 Logistics Way" for property-specific parameters
+5. Generate JSON input file with matched investment parameters
+6. Run effective rent calculator
+7. Create comprehensive markdown report in /Reports with matching status
+
+### Advanced Usage (with TI Quotes)
+
+```
+/effective-rent /path/to/lease-proposal.pdf /path/to/landlord_params.json /path/to/ti-quote.pdf
+```
+
+This will:
+1. Load landlord parameters
+2. Extract terms from lease proposal and match landlord
+3. Extract costs from TI quote
+4. Generate JSON with matched parameters and TI costs
+5. Run calculator and create report
+
+### Usage Notes
+
+- **Argument 1** (REQUIRED): Lease/offer document (PDF, DOCX, MD)
+- **Argument 2** (REQUIRED): Landlord investment parameters JSON file
+- **Argument 3+** (OPTIONAL): TI quotes or cost documents (PDF)
+
+**If landlord not in database:**
+- System will use conservative default REIT parameters
+- Report will flag this with WARNING
+- Consider adding landlord to database for future deals
+
+**If property matched:**
+- Uses actual acquisition cost from database
+- Calculates precise remaining depreciation from year_built
+- Provides most accurate breakeven analysis
 
 Begin the analysis now with the provided documents.

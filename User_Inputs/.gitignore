@@ -1,0 +1,8 @@
+# Ignore all user-provided input files
+*
+
+# But allow this .gitignore file
+!.gitignore
+
+# Optionally allow .gitkeep if needed to preserve empty directory
+!.gitkeep

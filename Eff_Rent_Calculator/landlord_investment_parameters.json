@@ -1,0 +1,146 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-11-13",
+  "notes": "Landlord investment parameters database for breakeven analysis. Parameters based on typical REIT and institutional investor metrics as of Q4 2025.",
+  "landlords": [
+    {
+      "landlord_legal_name": "ABC Industrial Properties Inc.",
+      "landlord_aliases": [
+        "ABC Industrial",
+        "ABC IP Inc.",
+        "ABC Properties"
+      ],
+      "landlord_type": "REIT",
+      "primary_asset_class": "Industrial",
+      "active": true,
+      "notes": "Industrial REIT focused on Class A logistics and distribution facilities. Conservative leverage policy with target LTV 50-55%.",
+      "investment_parameters": {
+        "default_acquisition_cost_psf": 150.0,
+        "going_in_ltv": 0.55,
+        "mortgage_amortization_months": 300,
+        "dividend_yield": 0.0675,
+        "interest_cost": 0.04,
+        "principal_payment_rate": 0.026713,
+        "building_allocation_pct": 0.40,
+        "default_remaining_depreciation_years": 20,
+        "nominal_discount_rate": 0.10,
+        "notes": "Updated Q4 2025. Interest rate reflects current 5-year fixed mortgage rates. Dividend yield based on trailing 12-month distribution rate."
+      },
+      "properties": [
+        {
+          "property_address": "2500 Logistics Way, City A, ST 1C1 1C1",
+          "property_name": "Logistics Way Distribution Center",
+          "acquisition_cost": 60000000.0,
+          "acquisition_cost_psf": 150.0,
+          "acquisition_date": "2023-06-15",
+          "gla_sf": 400000.0,
+          "year_built": 2018,
+          "property_specific_parameters": {
+            "going_in_ltv": 0.55,
+            "interest_cost": 0.04,
+            "remaining_depreciation_years": 32
+          },
+          "notes": "Class A industrial property acquired June 2023. Modern facility with 32 ft clear height, ESFR sprinkler system. 31.25% currently leased to Tech Distribution Corp."
+        }
+      ]
+    },
+    {
+      "landlord_legal_name": "Maple Leaf Office REIT",
+      "landlord_aliases": [
+        "MLOR",
+        "Maple Leaf REIT",
+        "Maple Office"
+      ],
+      "landlord_type": "REIT",
+      "primary_asset_class": "Office",
+      "active": true,
+      "notes": "Office REIT with portfolio across major Canadian markets. Higher leverage than industrial peers (60% LTV target).",
+      "investment_parameters": {
+        "default_acquisition_cost_psf": 300.0,
+        "going_in_ltv": 0.60,
+        "mortgage_amortization_months": 300,
+        "dividend_yield": 0.07,
+        "interest_cost": 0.045,
+        "principal_payment_rate": 0.030,
+        "building_allocation_pct": 0.45,
+        "default_remaining_depreciation_years": 25,
+        "nominal_discount_rate": 0.09,
+        "notes": "Updated Q4 2025. Office assets carry higher leverage and slightly higher cost of capital vs industrial. Building allocation higher (45%) due to less land value in office."
+      },
+      "properties": []
+    },
+    {
+      "landlord_legal_name": "Northern Institutional Partners LP",
+      "landlord_aliases": [
+        "NIP",
+        "Northern Partners",
+        "NIP Fund III"
+      ],
+      "landlord_type": "Institutional",
+      "primary_asset_class": "Mixed-Use",
+      "active": true,
+      "notes": "Institutional fund with diversified portfolio (40% industrial, 35% office, 25% retail). Conservative balance sheet with lower leverage.",
+      "investment_parameters": {
+        "default_acquisition_cost_psf": 200.0,
+        "going_in_ltv": 0.50,
+        "mortgage_amortization_months": 300,
+        "dividend_yield": 0.065,
+        "interest_cost": 0.038,
+        "principal_payment_rate": 0.025,
+        "building_allocation_pct": 0.42,
+        "default_remaining_depreciation_years": 22,
+        "nominal_discount_rate": 0.095,
+        "notes": "Fund III parameters. Lower leverage (50% LTV) reflects conservative institutional mandate. Blended discount rate for mixed-use portfolio."
+      },
+      "properties": []
+    },
+    {
+      "landlord_legal_name": "Pacific Private Holdings Ltd.",
+      "landlord_aliases": [
+        "Pacific Holdings",
+        "PPH Ltd."
+      ],
+      "landlord_type": "Private Owner",
+      "primary_asset_class": "Industrial",
+      "active": true,
+      "notes": "Private family office with concentrated industrial portfolio. Uses higher leverage and demands higher equity returns than REITs.",
+      "investment_parameters": {
+        "default_acquisition_cost_psf": 120.0,
+        "going_in_ltv": 0.65,
+        "mortgage_amortization_months": 240,
+        "dividend_yield": 0.08,
+        "interest_cost": 0.05,
+        "principal_payment_rate": 0.033,
+        "building_allocation_pct": 0.38,
+        "default_remaining_depreciation_years": 18,
+        "nominal_discount_rate": 0.11,
+        "notes": "Private owner with aggressive leverage strategy. Higher required equity returns (8% vs REIT 6.5-7%). Shorter amortization (20 yrs) typical for private financing."
+      },
+      "properties": []
+    },
+    {
+      "landlord_legal_name": "Sample REIT for Testing",
+      "landlord_aliases": [
+        "Test REIT",
+        "Sample Entity"
+      ],
+      "landlord_type": "REIT",
+      "primary_asset_class": "Industrial",
+      "active": true,
+      "notes": "Sample entity for testing calculator functionality. Uses standard/typical parameters.",
+      "investment_parameters": {
+        "default_acquisition_cost_psf": 150.0,
+        "going_in_ltv": 0.55,
+        "mortgage_amortization_months": 300,
+        "dividend_yield": 0.0675,
+        "interest_cost": 0.04,
+        "principal_payment_rate": 0.026713,
+        "building_allocation_pct": 0.40,
+        "default_remaining_depreciation_years": 20,
+        "nominal_discount_rate": 0.10,
+        "notes": "Standard parameters for industrial REIT testing."
+      },
+      "properties": []
+    }
+  ]
+}

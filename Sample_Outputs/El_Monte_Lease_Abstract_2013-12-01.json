@@ -1,0 +1,972 @@
+{
+  "documentInformation": {
+    "abstractDate": "2025-10-30",
+    "abstractedBy": "Claude Code",
+    "sourceDocument": "SEC Filing - EDGAR Document 0001002334130000062 (elmonteleaseforfiling.htm)",
+    "documentType": "Commercial Lease Agreement",
+    "executionDate": "2013-12-01",
+    "lastUpdated": "2025-10-30"
+  },
+  "parties": {
+    "landlord": {
+      "name": "Temple CB, LLC",
+      "address": "4350 Temple City Boulevard, El Monte, California 91731",
+      "contact": "",
+      "representative": "Jay Hooper, Manager"
+    },
+    "tenant": {
+      "name": "Okra Energy, Inc.",
+      "address": "4350 Temple City Boulevard, El Monte, California 91731",
+      "contact": "",
+      "representative": "Jay Hooper, President"
+    },
+    "indemnifier": {
+      "name": "",
+      "address": "",
+      "relationshipToTenant": ""
+    }
+  },
+  "premises": {
+    "propertyInformation": {
+      "projectName": "",
+      "buildingAddress": "4350 Temple City Boulevard, El Monte, California 91731",
+      "unitNumber": "",
+      "legalDescription": "Referenced in Exhibit A (blank in document)"
+    },
+    "area": {
+      "rentableAreaSqFt": null,
+      "measurementStandard": "",
+      "commonFacilities": "",
+      "parkingSpaces": null,
+      "storage": ""
+    },
+    "permittedUse": {
+      "primaryUse": "Warehouse and power generation",
+      "restrictions": [
+        "Exclusively for warehouse and power generation use only"
+      ],
+      "prohibitedUses": [
+        "Any use other than warehouse and power generation",
+        "No subletting, assignment, or licensing for other uses without modification"
+      ]
+    }
+  },
+  "term": {
+    "leaseTerm": {
+      "commencementDate": "2013-12-01",
+      "deliveryDate": "2013-12-01",
+      "expiryDate": "2020-05-31",
+      "termLengthYears": 6.5,
+      "termLengthMonths": 78,
+      "fixturingPeriod": ""
+    },
+    "renewalOptions": {
+      "numberOfOptions": 5,
+      "lengthOfEachOption": "One year each",
+      "noticePeriodRequired": "120 days prior to Termination Date or expiration of any renewal term",
+      "rentDeterminationMethod": "Fixed at $100,000 per month for each renewal term"
+    },
+    "earlyTermination": {
+      "terminationRights": true,
+      "terminationType": "Tenant only",
+      "conditions": "Tenant may cancel at any time",
+      "noticePeriod": "",
+      "penalties": "Payment of $300,000 plus all other amounts then due under the lease"
+    }
+  },
+  "rent": {
+    "basicRent": [
+      {
+        "period": "Dec 1, 2013 - May 31, 2014 (6 months)",
+        "dates": "2013-12-01 to 2014-05-31",
+        "annualRent": 0,
+        "monthlyRent": 0,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "June 1, 2014 - May 31, 2015 (12 months)",
+        "dates": "2014-06-01 to 2015-05-31",
+        "annualRent": 360000,
+        "monthlyRent": 30000,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "June 1, 2015 - May 31, 2016 (12 months)",
+        "dates": "2015-06-01 to 2016-05-31",
+        "annualRent": 480000,
+        "monthlyRent": 40000,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "June 1, 2016 - May 31, 2017 (12 months)",
+        "dates": "2016-06-01 to 2017-05-31",
+        "annualRent": 600000,
+        "monthlyRent": 50000,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "June 1, 2017 - May 31, 2018 (12 months)",
+        "dates": "2017-06-01 to 2018-05-31",
+        "annualRent": 720000,
+        "monthlyRent": 60000,
+        "ratePerSqFt": null
+      },
+      {
+        "period": "June 1, 2018 - May 31, 2019 (12 months) - MISSING FROM SCHEDULE",
+        "dates": "2018-06-01 to 2019-05-31",
+        "annualRent": 840000,
+        "monthlyRent": 70000,
+        "ratePerSqFt": null,
+        "note": "Missing from original rent schedule - assumed $70,000/month"
+      },
+      {
+        "period": "June 1, 2019 - May 31, 2020 (12 months)",
+        "dates": "2019-06-01 to 2020-05-31",
+        "annualRent": 840000,
+        "monthlyRent": 70000,
+        "ratePerSqFt": null
+      }
+    ],
+    "totalBaseRentOverTerm": 3840000,
+    "rentEscalations": {
+      "escalationType": "Fixed dollar increases (stepped rent schedule)",
+      "frequency": "Annually on June 1st",
+      "increments": "$10,000/month incremental increases each year",
+      "baseYearOrIndex": "",
+      "capPercentage": null,
+      "floorPercentage": null
+    },
+    "additionalRent": {
+      "operatingCosts": {
+        "tenantShare": "100%",
+        "method": "Triple net - tenant pays all"
+      },
+      "realtyTaxes": {
+        "tenantShare": "100%",
+        "method": "Tenant pays all real estate taxes and assessments within 21 days after due date"
+      },
+      "managementFee": {
+        "percentage": null,
+        "basis": ""
+      },
+      "utilities": {
+        "separatelyMetered": true,
+        "tenantResponsibility": "All utilities - water, sanitation, sewer, electricity, light, heat, gas, power, fuel, janitorial"
+      },
+      "camCharges": "",
+      "insurancePremiums": "Tenant reimburses Landlord for all insurance premiums connected with the premises"
+    },
+    "proportionateShare": {
+      "calculationMethod": "Not applicable - appears to be single-tenant building",
+      "percentage": 100,
+      "adjustmentProvisions": ""
+    },
+    "paymentTerms": {
+      "dueDate": "First day of each month",
+      "paymentLocation": "As directed by Landlord from time to time",
+      "paymentMethod": "",
+      "latePaymentPenalty": "5% of Monthly Rent if not received by 10th day of month",
+      "nsfFee": null
+    }
+  },
+  "depositsAndSecurity": {
+    "rentDeposit": {
+      "amount": 20000,
+      "heldAs": "Security for full and faithful performance",
+      "interest": false,
+      "interestRate": null,
+      "application": "Applied against tenant defaults; returned after lease expiration if tenant has fully performed",
+      "returnConditions": "Full and faithful performance of all lease terms",
+      "transferability": "May be transferred to purchaser in bona fide sale; Landlord released from liability upon transfer"
+    },
+    "letterOfCredit": {
+      "required": false,
+      "amount": null,
+      "beneficiary": "",
+      "expiry": "",
+      "reductionProvisions": ""
+    },
+    "otherSecurity": {
+      "type": "Security interest in tenant's property on premises",
+      "amount": null,
+      "terms": "Landlord may foreclose on all property on or in premises upon default"
+    }
+  },
+  "operatingCostsAndTaxes": {
+    "netLeaseProvisions": {
+      "leaseType": "Triple Net (NNN)",
+      "tenantObligations": [
+        "All taxes",
+        "All insurance",
+        "All utilities",
+        "All maintenance",
+        "All operating costs"
+      ]
+    },
+    "operatingCosts": {
+      "includedItems": [
+        "All costs of operating, maintaining, and insuring the premises"
+      ],
+      "excludedItems": [],
+      "baseYear": "",
+      "grossUpProvisions": "",
+      "cap": null
+    },
+    "realtyTaxes": {
+      "paymentMethod": "Tenant pays directly or to Landlord within 21 days after due date",
+      "tenantShare": "100%",
+      "contestRights": "Yes - Tenant may contest taxes at own expense; may withhold payment during contest if statute permits; Landlord must cooperate if Tenant requests",
+      "taxIncreaseLimitations": "",
+      "installmentOptions": "Tenant may take benefit of installment payment options",
+      "specialAssessments": "Tenant pays all ordinary and extraordinary assessments within 21 days of due date"
+    },
+    "taxMethodChanges": "If taxation method changes (e.g., taxes levied on rents instead of property), Tenant still responsible unless the new tax is an income, estate, inheritance, succession, capital levy, corporate franchise, gross receipts, or transfer tax",
+    "personalPropertyTaxes": "Tenant liable for all personal property taxes on leasehold interest, personal property, and trade fixtures",
+    "businessAndSalesTaxes": {
+      "responsibility": "",
+      "hstGst": ""
+    }
+  },
+  "useAndOperations": {
+    "permittedUse": {
+      "specificUsesAllowed": [
+        "Warehouse",
+        "Power generation"
+      ],
+      "buildingStandard": "",
+      "complianceRequirements": [
+        "Tenant must obtain all necessary licenses and permits"
+      ]
+    },
+    "prohibitedUses": {
+      "specificProhibitions": [
+        "Any use other than warehouse and power generation"
+      ],
+      "hazardousSubstances": "Not explicitly prohibited, but environmental compliance required",
+      "bioMedicalWaste": ""
+    },
+    "operatingHours": {
+      "businessHours": "",
+      "access": "Implied 24/7 for industrial use",
+      "afterHoursHVAC": ""
+    },
+    "signage": {
+      "exteriorSignageRights": "Yes - Tenant may erect signs at sole risk and expense; must conform with applicable laws and ordinances; must remove upon lease termination and repair damage",
+      "interiorSignage": "Yes - Tenant may erect, maintain, place usual and customary signs and fixtures",
+      "approvalRequirements": "Must comply with laws and ordinances; no landlord approval mentioned",
+      "costResponsibility": "Tenant bears all costs"
+    }
+  },
+  "maintenanceAndRepairs": {
+    "landlordObligations": {
+      "structural": "Only defects in materials or workmanship during first 12 months",
+      "roof": "Only defects in materials or workmanship during first 12 months",
+      "commonAreas": "Only defects during first 12 months",
+      "buildingSystems": "Only defects in materials or workmanship during first 12 months",
+      "hvac": "Only defects during first 12 months",
+      "exception": "Not responsible for damage caused by sublessees, licensees, or contractors",
+      "complianceRepairs": "Landlord responsible for repairs related to latent defects existing at commencement"
+    },
+    "tenantObligations": {
+      "interiorMaintenance": "Tenant must repair and maintain premises in good order and condition",
+      "equipment": "Tenant's responsibility",
+      "janitorial": "Tenant pays for all janitorial services",
+      "repairsUnderThreshold": null,
+      "allRepairs": "All maintenance except reasonable wear and tear and except landlord's limited 12-month warranty",
+      "lienFree": "Tenant must keep property free of liens; must remove within 14 days or indemnify Landlord for removal costs"
+    },
+    "capitalImprovements": {
+      "landlordsRights": "",
+      "tenantObligations": "Tenant responsible for improvements and construction",
+      "amortization": ""
+    }
+  },
+  "alterationsAndImprovements": {
+    "landlordWork": {
+      "description": "None specified - Tenant responsible for all construction",
+      "completionDate": "",
+      "allowance": null
+    },
+    "tenantWork": {
+      "preApprovalRequired": true,
+      "approvalThreshold": "Non-structural: No approval required; Structural: Landlord's written consent required (not to be unreasonably withheld)",
+      "plansAndSpecifications": "Referenced in Exhibit B (blank in document)",
+      "architectEngineerRequirements": "Tenant selects; Tenant must obtain Landlord approval of Plans & Specifications for repairs/alterations",
+      "insuranceDuringConstruction": "Builder's risk and liability insurance equal to 3x amount expended for construction",
+      "permitsResponsibility": "Tenant must obtain all certificates, permits, licenses, and authorizations",
+      "cost": "Tenant pays all construction costs",
+      "performance": "Tenant negotiates and supervises all contracts; must guarantee performance and workmanship for 1 year",
+      "occupancyPermit": "Tenant must obtain upon completion"
+    },
+    "leaseholdImprovements": {
+      "ownership": "Improvements become part of premises (benefit landlord at end of term)",
+      "removalAtEndOfTerm": "Non-structural improvements: Tenant may remove if susceptible to removal without damage (or if damage repaired); Structural, mechanical, electrical, plumbing: Remain with property",
+      "restorationObligations": "Tenant must repair any damage from removal"
+    },
+    "tradeFixtures": {
+      "definition": "Personal property, furnishings, equipment, and trade fixtures installed by Tenant",
+      "removalRights": "Tenant may (but is not obligated to) remove at any time during term",
+      "restoration": "Tenant must repair damage from removal",
+      "ownership": "Remain Tenant's property"
+    },
+    "environmentalRemediation": {
+      "requirement": "Portion of premises requires environmental remediation",
+      "responsibility": "Tenant will undertake remediation and is responsible as if it were a structural alteration",
+      "cost": "Tenant's sole expense"
+    }
+  },
+  "insuranceAndIndemnity": {
+    "landlordInsurance": {
+      "propertyInsurance": "",
+      "liabilityInsurance": "",
+      "costAllocation": "Tenant reimburses Landlord for all insurance premiums connected with the premises",
+      "other": ""
+    },
+    "tenantInsuranceRequirements": {
+      "commercialGeneralLiability": {
+        "minimumCoverage": 1000000,
+        "propertyDamage": 250000,
+        "namedInsured": "Landlord and Tenant"
+      },
+      "propertyInsurance": {
+        "allRiskCoverage": "Fire and extended coverage on premises and tenant property",
+        "businessInterruption": null,
+        "duringConstruction": "Builder's risk equal to 3x construction expenditure"
+      },
+      "duringConstruction": {
+        "buildersRisk": "3x amount expended for construction",
+        "liabilityCoverage": "Required during construction",
+        "proceeds": "Payable to Landlord during construction"
+      },
+      "otherRequiredCoverage": [],
+      "certificateRequirements": "Copy of policy or certificate must be delivered to Landlord on or before commencement date",
+      "cancellationNotice": "No policy cancellable without 10 days prior written notice to Landlord",
+      "renewalNotice": ""
+    },
+    "insuranceProceeds": {
+      "adjustment": "Tenant adjusts loss and settles claims",
+      "assignment": "Proceeds assigned to institutional first mortgagee (if any) or to Landlord and Tenant jointly",
+      "trustFund": "Proceeds paid into trust fund controlled by mortgagee or Landlord/Tenant jointly",
+      "use": "For repair, restoration, rebuilding, or replacement",
+      "disbursement": "Based on bills, sworn statement, and architect's certificate",
+      "excess": "Any excess proceeds are Landlord's property (subject to mortgagee rights)",
+      "deficiency": "If insufficient, Tenant suffers the deficiency"
+    },
+    "waiverOfSubrogation": {
+      "appliesTo": [
+        "Property loss or damage covered by fire and extended coverage insurance"
+      ],
+      "scope": "Landlord and Tenant release each other from liability to extent of insurance coverage"
+    },
+    "indemnification": {
+      "tenantIndemnifiesLandlordFor": [
+        "All injury, loss, claims, or damage to persons or property while on premises",
+        "Exception: Unless caused by willful acts, omissions, or gross negligence of Landlord, its employees, agents, licensees, or contractors"
+      ],
+      "landlordIndemnifiesTenantFor": [
+        "Loss or damage to tenant property if Landlord notified of needed repairs, fails to perform, and loss results from that condition"
+      ],
+      "lienIndemnity": "Tenant indemnifies Landlord for all costs, expenses, including attorney's fees, to remove liens if Tenant fails to remove within 14 days of notice",
+      "exceptions": []
+    }
+  },
+  "damageAndDestruction": {
+    "casualtyProvisions": {
+      "landlordRepairObligation": "Must repair, restore, replace, or rebuild premises (excluding Tenant's leasehold improvements) to substantially the same condition as before damage",
+      "performance": "Must proceed forthwith and prosecute diligently to completion",
+      "timeToRepair": "Building permit: Must obtain within 90 days of damage; Completion: Must complete within 9 months of damage",
+      "failureToPerform": "If Landlord fails to get permit within 90 days OR complete within 9 months, Tenant may cancel with 90 days written notice",
+      "substantialDamageDefinition": "25% or more of replacement cost (exclusive of land and foundations)",
+      "substantialDamageTiming": "If occurs during last year of term or any renewal term",
+      "substantialDamageRights": "Either Landlord or Tenant may terminate; Party electing termination must notify other within 30 days of damage occurrence"
+    },
+    "rentAbatement": {
+      "duringRepairs": "Rent and other charges abated or adjusted proportionally",
+      "basis": "Proportional to portion of premises tenant is deprived of and time of deprivation",
+      "calculation": "Work of repair shall not reduce insurance proceeds payable under rent insurance policy",
+      "conditions": "Automatic upon damage",
+      "tenantAccess": ""
+    },
+    "insuranceApplication": {
+      "proceedsUse": "All proceeds must be used for restoration per trust fund provisions",
+      "control": "By institutional mortgagee if any, or by Landlord and Tenant jointly",
+      "disbursement": "Via supervised draw process with architect certification"
+    },
+    "uninsuredCasualty": {
+      "landlordObligations": "",
+      "terminationRights": ""
+    }
+  },
+  "assignmentAndSubletting": {
+    "transferRestrictions": {
+      "assignmentAllowed": "Yes - Tenant has absolute right to assign",
+      "sublettingAllowed": "Yes - Tenant has absolute right to sublet all or any portion",
+      "consentStandard": "No consent required",
+      "condition": "Tenant must not be in default at time of assignment/sublease",
+      "useLimitation": "Assignee/sublessee's use expressly limited to provisions of this lease"
+    },
+    "landlordRights": {
+      "recaptureRight": false,
+      "profitSharing": null,
+      "processingFee": null,
+      "approval": "Not required"
+    },
+    "permittedTransfers": {
+      "affiliateTransfers": "Allowed (absolute right provision covers all transfers)",
+      "changeOfControl": "",
+      "cessationOfBusiness": "Tenant may cease operating business on premises",
+      "conditions": [
+        "Must not be in default"
+      ]
+    },
+    "transferRequirements": {
+      "noticePeriod": "",
+      "informationRequired": [],
+      "financialCovenant": "Implied - assignee/sublessee must comply with lease terms",
+      "ongoingLiability": "Not specified, but standard practice would be original tenant remains liable"
+    }
+  },
+  "defaultAndRemedies": {
+    "eventsOfDefault": {
+      "nonPayment": {
+        "definition": "Three (3) or more occasions of payment received 10+ days after due date (whether consecutive or non-consecutive)",
+        "gracePeriod": "Effectively 10 days (late fee applies, but not default until 3rd occurrence)"
+      },
+      "lienFiling": {
+        "event": "Tenant causes lien to be filed against Landlord's property",
+        "curePeriod": "30 days from recordation"
+      },
+      "breachOfCovenants": {
+        "curePeriod": "30 days after written notice",
+        "extendedCure": "If reasonably takes more than 30 days, must commence within 30 days and diligently prosecute to completion"
+      },
+      "bankruptcyInsolvency": "Any proceeding by or against Tenant seeking reorganization, arrangement, composition, readjustment, liquidation, dissolution under bankruptcy law; 60 days grace period - proceeding must be dismissed within 60 days; Exception: Non-dismissal not a default if all lease obligations continue to be performed",
+      "abandonment": "",
+      "other": []
+    },
+    "landlordRemedies": {
+      "termination": "Give notice of termination; Lease expires on specified date; Tenant surrenders premises; Tenant remains liable for obligations through termination date",
+      "damagesUponTermination": "Recover all damages incurred by reason of default; Including present value of excess of: (a) all rent for remaining term over (b) aggregate reasonable rental value for same period; All immediately due and payable",
+      "acceleration": "Declare all rent and amounts for entire remaining term immediately due; NOT deemed penalty or liquidated damages - payment in advance; Tenant entitled to receive rents Landlord receives from other tenants during term; Net of Landlord's costs, expenses, attorney's fees for reletting; Cannot exceed amount Tenant paid",
+      "relettingWithoutTermination": "Enter and take possession without terminating lease; Remove persons and property; Store property at Tenant's cost; Relet as Tenant's agent with or without advertisement; Any term, any conditions Landlord deems necessary; No liability for failure to relet or collect rent; Proceeds applied: (1st) other Tenant debt to Landlord, (2nd) reletting costs including brokerage and attorney's fees, (3rd) rent due, (4th) held for future rent; May grant rent concessions - Tenant not credited; Tenant pays any monthly deficiency; May later elect to terminate",
+      "suspendServices": "Suspend furnishing property, material, labor, utilities, or other services; No liability, no constructive eviction; While Tenant in default",
+      "letPremisesRemainVacant": "Collect rent as it comes due",
+      "forecloseSecurity": "Immediate taking of possession of all property on or in premises",
+      "reEntry": "",
+      "damages": "",
+      "distress": "",
+      "other": [
+        "Pursue remedies available at law or equity"
+      ],
+      "nonExclusivity": "Pursuit of remedies does not constitute election of remedies, preclude other remedies (concurrent or sequential), serve as basis for constructive eviction claim, or allow Tenant to withhold payments"
+    },
+    "tenantSelfHelp": {
+      "conditions": "If Landlord defaults and doesn't cure within 30 days (or commence and diligently pursue if takes longer)",
+      "rights": "Tenant may cure for Landlord's account; Landlord must reimburse Tenant; Tenant may deduct from next or succeeding rent payments",
+      "disputes": "If disputed by Landlord, may be resolved through arbitration or declaratory judgment (Landlord bears filing fees)"
+    },
+    "interestOnLatePayments": {
+      "rate": "5% late fee (not compound interest)",
+      "calculationMethod": "5% of monthly rent if not postmarked or received by 10th day of month"
+    },
+    "costs": {
+      "legalFeesResponsibility": "Prevailing party recovers reasonable attorney's fees, court costs, and all expenses",
+      "collectionCosts": "Included in prevailing party recovery",
+      "limitationPeriod": "No action may be filed more than one year after cause of action accrued"
+    }
+  },
+  "servicesAndUtilities": {
+    "utilitiesProvidedByLandlord": {
+      "electricity": "None - Tenant pays",
+      "waterSewer": "None - Tenant pays",
+      "gas": "None - Tenant pays",
+      "hvac": "None - Tenant responsible",
+      "other": []
+    },
+    "utilitiesTenantResponsibility": {
+      "allUtilities": [
+        "Water",
+        "Sanitation",
+        "Sewer",
+        "Electricity",
+        "Light",
+        "Heat",
+        "Gas",
+        "Power",
+        "Fuel",
+        "Janitorial services",
+        "All other services incident to use of premises"
+      ],
+      "separatelyMetered": [],
+      "paymentMethod": "Direct to utility providers (implied)",
+      "afterHoursHVAC": ""
+    },
+    "serviceInterruptions": {
+      "landlordLiability": "",
+      "rentAbatement": "Only if Tenant deprived of use due to Landlord's repair work",
+      "forceMajeure": "Yes - performance excused for delays beyond party's control except payment obligations",
+      "forceMajeureEvents": [
+        "Strikes, lockouts",
+        "Unavailability of materials",
+        "Failure of power",
+        "Restrictive governmental laws or regulations",
+        "Riots, insurrections",
+        "Act, failure to act, or default of other party",
+        "War or other reason beyond control",
+        "Exception: Lack of funds NOT considered beyond control"
+      ]
+    }
+  },
+  "environmental": {
+    "environmentalCompliance": {
+      "tenantObligations": [
+        "Comply with all governmental requirements",
+        "Perform work in good and workmanlike manner"
+      ],
+      "hazardousSubstances": "Not specifically addressed in terms of prohibitions",
+      "phaseRequirements": ""
+    },
+    "environmentalRemediation": {
+      "existingCondition": "The parties understand that a portion of the Leased Premises requires environmental remediation",
+      "responsibility": "Tenant anticipates it will undertake remediation and will be responsible",
+      "treatment": "Remediation treated as if it were a structural alteration or addition",
+      "landlordConsent": "Same requirements as structural alterations apply",
+      "cost": "Tenant's sole expense"
+    },
+    "environmentalIndemnity": {
+      "scope": "Not explicitly stated beyond general indemnification provisions",
+      "survival": ""
+    },
+    "remediation": {
+      "responsibility": "Tenant",
+      "costAllocation": "100% Tenant",
+      "accessForTesting": "Landlord may examine premises at reasonable times"
+    }
+  },
+  "subordinationAndAttornment": {
+    "subordination": {
+      "leaseSubordinateTo": "Present or future institutional mortgages upon Landlord's written request",
+      "timing": "Irrespective of execution or recording time of mortgage",
+      "sndaRequired": true,
+      "sndaProvided": false,
+      "conditions": [
+        "Non-Disturbance: In foreclosure or other action, lease and Tenant's rights not disturbed and continue in full force if Tenant not in default",
+        "Proceeds: Mortgagee permits insurance and condemnation proceeds to be used for restoration/repair"
+      ],
+      "attornment": "Tenant will recognize mortgagee or successor as Landlord under lease terms",
+      "assumption": "Mortgagee/successor must assume all Landlord obligations for period in possession and their successors"
+    },
+    "definitions": {
+      "mortgage": "Includes mortgages, deeds of trust, similar instruments, and modifications/extensions",
+      "institutionalMortgage": "Mortgage securing loan from bank (commercial/savings), trust company, insurance company, pension trust, or other institutional lender constituting lien on premises"
+    },
+    "registration": {
+      "leaseRegistration": "",
+      "noticeOfLease": ""
+    },
+    "landlordTitle": {
+      "warranty": "Landlord warrants it owns premises in fee simple absolute",
+      "encumbrances": "Free and clear except for easements, covenants, restrictions of record as of lease date",
+      "lienPriority": "Lease is and shall be first lien, subject only to mortgages to which lease is subordinated per agreement and encumbrances caused by Tenant's acts or omissions",
+      "authority": "Landlord has full right and authority to execute lease",
+      "zoning": "No legal impediment to use; premises zoned for use or may continue via non-conforming use",
+      "titleReport": "Landlord must furnish one title report within 30 days of Tenant's written request (at no expense to Tenant)"
+    },
+    "quietEnjoyment": {
+      "covenant": "Landlord covenants Tenant may peaceably and quietly have, hold, occupy, and enjoy premises",
+      "condition": "Tenant must pay rent and perform all covenants",
+      "protectionFrom": "Hindrance or molestation from Landlord or persons claiming through Landlord"
+    }
+  },
+  "notices": {
+    "noticeRequirements": {
+      "form": "In writing",
+      "deliveryMethod": [
+        "Certified mail, return receipt requested, postage prepaid"
+      ],
+      "deemedReceived": "When received by the party to whom addressed",
+      "emailAcceptable": false
+    },
+    "noticeAddresses": {
+      "landlord": {
+        "name": "Temple CB, LLC",
+        "address": "4350 Temple City Boulevard, El Monte, California 91731",
+        "attention": "",
+        "email": "",
+        "note": "Or such other address as Landlord may designate by notice to Tenant"
+      },
+      "tenant": {
+        "name": "Okra Energy, Inc.",
+        "address": "4350 Temple City Boulevard, El Monte, California 91731",
+        "attention": "",
+        "email": "",
+        "note": "Or such other address as Tenant may designate by notice to Landlord"
+      },
+      "copyTo": []
+    }
+  },
+  "endOfTerm": {
+    "surrenderRequirements": {
+      "condition": "Good order, repair, and condition in all respects",
+      "exceptions": [
+        "Damage by fire and casualty covered by Tenant's insurance",
+        "Structural repairs (unless Tenant obligated to make such repairs)",
+        "Reasonable wear and tear"
+      ],
+      "removalOfImprovements": [
+        "Trade Fixtures: Tenant may remove personal property, furnishings, equipment, and trade fixtures",
+        "Non-Structural Improvements: May remove additions/improvements (exclusive of structural, mechanical, electrical, plumbing) if susceptible to removal without damage (or if damage repaired)",
+        "Structural/MEP: Remain with premises"
+      ],
+      "removalOfEquipment": "Tenant's Property: Must remove goods and effects and those of persons claiming under Tenant",
+      "restoration": "Must repair damage from removal at Tenant's sole cost and expense",
+      "cleaning": "Must yield premises in good order and repair"
+    },
+    "overholding": {
+      "permitted": true,
+      "status": "Tenancy at will, not lease extension or renewal",
+      "rentDuringOverholding": "Same rental as during lease term (or last renewal), prorated monthly",
+      "terms": "All covenants, provisions, and conditions of lease continue to apply",
+      "termination": "Either party may terminate month-to-month tenancy per standard law",
+      "note": "The overholding rent is NOT increased to 150-200% as is typical in commercial leases - this is very favorable to Tenant"
+    },
+    "finalStatement": {
+      "reconciliation": "",
+      "timing": ""
+    }
+  },
+  "specialProvisions": {
+    "optionToPurchase": {
+      "duration": "During the entire Term of lease",
+      "exercise": "Tenant may purchase at any time",
+      "purchasePrice": 3000000,
+      "terms": "Not specified (would require separate purchase agreement)",
+      "notice": ""
+    },
+    "tenantCancellationRight": {
+      "right": "Tenant may cancel lease and terminate all obligations at any time",
+      "paymentRequired": 300000,
+      "amountsDue": "Plus all other amounts then due under lease",
+      "notice": "",
+      "effect": "Complete termination of all tenant obligations"
+    },
+    "environmentalRemediationResponsibility": "Tenant responsible for environmental remediation of existing contamination on portion of premises; Treated as structural alteration (requires Landlord consent, Tenant's cost)",
+    "constructionByTenant": "Tenant may construct improvements per Exhibit B plans (not provided); Tenant bears all costs, risks, insurance, permits for construction; Builder's risk insurance = 3x construction expenditure during construction; All construction risk on Tenant; insurance proceeds during construction payable to Landlord",
+    "relatedPartyTransaction": {
+      "signatory": "Same individual (Jay Hooper) signed as Manager of Landlord and President of Tenant",
+      "sharedAddress": "Both parties share same address",
+      "implication": "Suggests common ownership or control"
+    },
+    "paymentUnderProtest": "Either party may pay disputed amounts 'under protest'; Payment not deemed voluntary; Right survives to institute suit for recovery; If party not legally obligated, may recover payment; Applies to both money payments and performance of disputed work; Tenant may withhold/deduct recovered amounts from rent",
+    "tenantRightToCureLandlordDefaultMortgages": "If Landlord fails to pay mortgages, liens, or encumbrances that might affect Tenant's interest; Or fails to pay interest on same; Tenant may pay and charge to Landlord; Tenant may withhold and deduct from rent; Any excess over rent shall be paid by Landlord to Tenant",
+    "financialStatementReliance": {
+      "requirement": "Tenant must furnish financial statement prepared by accountant concurrently with lease execution",
+      "warranty": "Tenant represents and warrants all information complete, true, and correct",
+      "reliance": "Landlord relying on accuracy",
+      "remedies": [
+        "Additional 2 months' rent as security",
+        "Fully executed guaranty by acceptable third party",
+        "Elect to terminate lease",
+        "Hold Tenant personally and individually liable"
+      ]
+    },
+    "governingLaw": {
+      "state": "California",
+      "venue": "Los Angeles County, California",
+      "juryTrial": "Waived by both parties",
+      "serviceOfProcess": "May be obtained through certified mail, return receipt requested",
+      "attorneyFees": "Prevailing party recovers fees, court costs, expenses",
+      "limitationPeriod": "No action more than one year after cause of action accrued"
+    },
+    "brokerage": "No party acted through broker",
+    "extraordinaryRemedies": "Parties may obtain injunctive relief for breach; Available regardless of whether adequate remedy exists at law",
+    "customTerms": []
+  },
+  "schedulesAndExhibits": {
+    "attachedSchedules": {
+      "scheduleA": {
+        "title": "Legal Description of Project",
+        "attached": false,
+        "status": "BLANK - No legal description provided",
+        "summary": ""
+      },
+      "scheduleB": {
+        "title": "Outline Plan of Premises",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleC": {
+        "title": "Landlord's and Tenant's Work",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleD": {
+        "title": "Rent Deposit Agreement",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleE": {
+        "title": "Environmental Questionnaire",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleF": {
+        "title": "Rules and Regulations",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleG": {
+        "title": "Special Provisions",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleH": {
+        "title": "Indemnity Agreement",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleI": {
+        "title": "Pre-Authorized Debit (PAD) Authorization",
+        "attached": false,
+        "summary": ""
+      },
+      "scheduleJ": {
+        "title": "Letter of Credit Agreement",
+        "attached": false,
+        "summary": ""
+      },
+      "exhibitA": {
+        "title": "Legal Description of Property",
+        "attached": false,
+        "status": "BLANK - No legal description provided"
+      },
+      "exhibitB": {
+        "title": "Tenant Plans and Specifications",
+        "attached": false,
+        "status": "BLANK - No plans or specifications provided"
+      }
+    },
+    "keyItemsFromSchedules": []
+  },
+  "criticalDates": [
+    {
+      "event": "Lease Execution",
+      "date": "2013-12-01",
+      "noticeRequired": "",
+      "actionRequired": "Sign lease",
+      "deadline": "2013-12-01"
+    },
+    {
+      "event": "Commencement Date",
+      "date": "2013-12-01",
+      "noticeRequired": "",
+      "actionRequired": "Possession, begin rent-free period",
+      "deadline": "2013-12-01"
+    },
+    {
+      "event": "First Rent Payment Due",
+      "date": "2014-06-01",
+      "noticeRequired": "",
+      "actionRequired": "Pay $30,000",
+      "deadline": "2014-06-01"
+    },
+    {
+      "event": "Rent Increase to $40K",
+      "date": "2015-06-01",
+      "noticeRequired": "",
+      "actionRequired": "Pay $40,000/month",
+      "deadline": "2015-06-01"
+    },
+    {
+      "event": "Rent Increase to $50K",
+      "date": "2016-06-01",
+      "noticeRequired": "",
+      "actionRequired": "Pay $50,000/month",
+      "deadline": "2016-06-01"
+    },
+    {
+      "event": "Rent Increase to $60K",
+      "date": "2017-06-01",
+      "noticeRequired": "",
+      "actionRequired": "Pay $60,000/month",
+      "deadline": "2017-06-01"
+    },
+    {
+      "event": "Rent Increase to $70K",
+      "date": "2018-06-01",
+      "noticeRequired": "",
+      "actionRequired": "Pay $70,000/month",
+      "deadline": "2018-06-01",
+      "note": "Assumed - missing from rent schedule"
+    },
+    {
+      "event": "First Renewal Option Notice",
+      "date": "2020-02-01",
+      "noticeRequired": "120 days before expiry",
+      "actionRequired": "Written notice to Landlord to renew",
+      "deadline": "2020-02-01"
+    },
+    {
+      "event": "Lease Expiry Date",
+      "date": "2020-05-31",
+      "noticeRequired": "",
+      "actionRequired": "Surrender premises or enter renewal",
+      "deadline": "2020-05-31"
+    },
+    {
+      "event": "Late Payment Fee Assessment",
+      "date": "10th of each month",
+      "noticeRequired": "",
+      "actionRequired": "5% late fee assessed if not received",
+      "deadline": "10th of month"
+    },
+    {
+      "event": "Lien Removal",
+      "date": "As needed",
+      "noticeRequired": "14 days from notice",
+      "actionRequired": "Remove liens or face indemnity claim",
+      "deadline": "14 days after notice"
+    },
+    {
+      "event": "Tax Payments",
+      "date": "As assessed",
+      "noticeRequired": "21 days after due date",
+      "actionRequired": "Pay real estate taxes",
+      "deadline": "21 days after due"
+    }
+  ],
+  "financialObligations": {
+    "initialCosts": {
+      "firstMonthRent": 0,
+      "rentDeposit": 20000,
+      "letterOfCredit": 0,
+      "other": 0,
+      "total": 20000
+    },
+    "totalBaseRentOverTerm": {
+      "totalRent": 3840000,
+      "termMonths": 78,
+      "payingMonths": 72,
+      "averageMonthlyRent": 53333,
+      "effectiveAverageRent": 49231
+    },
+    "ongoingMonthlyCosts": {
+      "basicRentYear1": 0,
+      "basicRentYear2": 30000,
+      "basicRentYear3": 40000,
+      "basicRentYear4": 50000,
+      "basicRentYear5": 60000,
+      "basicRentYear6": 70000,
+      "basicRentYear7": 70000,
+      "realtyTaxes": null,
+      "propertyInsurancePremiums": null,
+      "utilities": null,
+      "maintenanceAndRepairs": null,
+      "janitorialServices": null,
+      "otherOperatingCosts": null,
+      "estimatedTotal": null,
+      "note": "Cannot calculate without square footage or tax/insurance data"
+    },
+    "additionalFinancialConsiderations": {
+      "constructionImprovementCosts": {
+        "amount": null,
+        "responsibility": "100% Tenant",
+        "insuranceDuringConstruction": "3x construction expenditure",
+        "note": "Unknown - Exhibit B (plans and specifications) not provided"
+      },
+      "environmentalRemediation": {
+        "cost": null,
+        "responsibility": "100% Tenant",
+        "risk": "Could range from tens of thousands to millions depending on contamination"
+      },
+      "latePaymentPenalties": {
+        "lateFee": 0.05,
+        "example": "On $50,000 rent = $2,500 late fee"
+      },
+      "cancellationOption": 300000,
+      "purchaseOption": 3000000
+    },
+    "rentVsPurchaseComparison": {
+      "totalRentIfFullTerm": 3840000,
+      "purchaseOptionPrice": 3000000,
+      "analysis": "After approximately Year 5 (around June 2018), cumulative rent paid approaches purchase price. Given Tenant is paying for all improvements, remediation, and triple net expenses, purchase option becomes increasingly attractive over time. This structure suggests intent may be for Tenant to eventually purchase the property."
+    }
+  },
+  "keyIssuesAndRisks": {
+    "criticalRedFlags": [
+      "Related Party Transaction: Jay Hooper signed as both Manager of Landlord (Temple CB, LLC) and President of Tenant (Okra Energy, Inc.). Potential conflict of interest; questions arm's length nature of transaction",
+      "Both Parties Share Same Address: Landlord and Tenant both at 4350 Temple City Boulevard, El Monte, CA 91731 (the leased property). Suggests common control or related entities",
+      "Missing Legal Description (Exhibit A Blank): Fundamental ambiguity about precisely what property is being leased. Could render lease unenforceable; title insurance issues; difficulty with assignments or financing",
+      "Missing Plans and Specifications (Exhibit B Blank): No definition of what Tenant is obligated or permitted to construct. Disputes over scope of work, compliance, completion standards",
+      "Error in Rent Schedule: Rent schedule jumps from June 1, 2017 to May 31, 2018: $60,000 to June 1, 2019 to May 31, 2020: $70,000 - missing June 2018-May 2019. Ambiguity about rent for 12-month period",
+      "No Square Footage Specified: Cannot calculate rate per square foot; difficulty comparing to market; financing issues. Challenges with subleasing, financing, property valuation",
+      "Environmental Remediation - Existing Contamination: Lease acknowledges portion of Leased Premises requires environmental remediation with Tenant responsible. Unknown scope and cost of cleanup; potential liability exceeding tens or hundreds of thousands"
+    ],
+    "favorableTerms": [
+      "Six-Month Rent-Free Period: December 1, 2013 to May 31, 2014: $0 rent. Value: $180,000+ (assuming would otherwise pay at escalated rate)",
+      "Graduated Rent Increases: Stepped increases from $30K to $70K over 6 years. Tenant-friendly ramp-up allows revenue growth before full rent burden",
+      "Low Security Deposit: Only $20,000 deposit. Low compared to typical first + last month's rent. At $70K/month rate, deposit is less than 1/3 of one month",
+      "Fixed Renewal Option Rate: Five 1-year renewals at fixed $100,000/month. No market rate adjustments or escalations. Provides long-term rate certainty",
+      "Option to Purchase at Fixed Price: $3,000,000 fixed purchase price anytime during term. Extraordinarily valuable - price doesn't increase over time. After cumulative rent approaches $3M, purchase becomes attractive. Combined with Tenant-funded improvements, this is highly favorable",
+      "Cancellation Right: Tenant may cancel anytime for $300,000 + amounts due. Extraordinary flexibility to exit lease. Combined with purchase option, Tenant has complete control over outcome",
+      "Absolute Assignment/Subletting Rights: Tenant has absolute right to assign or sublet. No landlord consent required. Highly unusual and extremely tenant-favorable. May cease operating business on premises",
+      "Broad Alteration Rights: Non-structural alterations without approval. Structural alterations with consent not to be unreasonably withheld. Can remove non-structural improvements at end of term. Signage rights without landlord approval",
+      "Tenant Self-Help with Rent Offset: If Landlord defaults, Tenant may cure and deduct from rent. May cure Landlord's mortgage defaults and offset. Payment under protest rights",
+      "Weak Default Triggers: Must have 3 late payments (10+ days) before default. 30-day cure periods for most breaches. 60 days for bankruptcy before default",
+      "Favorable Overholding Terms: Holdover at same rent (month-to-month). No 150-200% penalty typical in commercial leases",
+      "Strong Non-Disturbance Rights: SNDA required as condition of subordination. Tenant cannot be disturbed in foreclosure if not in default",
+      "Rent Abatement Rights: If deprived of use due to damage, repairs, or landlord work. Proportional to time and area deprived",
+      "Long Cure Periods: 30 days for most covenant breaches. Extended if reasonably necessary to complete cure"
+    ],
+    "unfavorableTermsRisks": [
+      "Triple Net Lease Structure: Tenant pays ALL expenses: taxes, insurance, maintenance, utilities, repairs. No caps or limitations on operating expenses. Unpredictable costs",
+      "Tenant Pays ALL Landlord's Insurance Premiums: Tenant reimburses for all insurance on premises. No control over coverage Landlord selects. Could be substantial expense",
+      "Unknown Operating Costs: No square footage = cannot estimate taxes, insurance, utilities. Industrial power generation use may have high utility costs",
+      "All Construction Costs on Tenant: 100% of improvement costs borne by Tenant. No tenant improvement allowance. Must carry builder's risk insurance = 3x expenditure. All construction delays and cost overruns on Tenant",
+      "MAJOR: Environmental Remediation Responsibility: Tenant accepts responsibility for EXISTING contamination. No Phase I or Phase II report referenced. No scope, no cost estimate, no cleanup standards defined. Could cost tens of thousands to millions. Ongoing regulatory liability and reporting",
+      "No Environmental Indemnity from Landlord: Landlord not indemnifying Tenant for pre-existing conditions. Tenant bears all risk of unknown environmental issues",
+      "Minimal Landlord Repair Obligation: Only 12-month warranty for defects in materials/workmanship. After first year, tenant responsible for essentially everything. Includes structural, roof, HVAC, all building systems",
+      "No Landlord Services: Tenant pays for all utilities, janitorial, services. No landlord-provided HVAC, electricity, water, or any services",
+      "Landlord Can Transfer Security Deposit: In bona fide sale, Landlord may transfer deposit to purchaser. Landlord released from liability. Tenant must look to new owner for return",
+      "High Insurance Requirements: $1M liability per accident / $250K property damage. Business interruption insurance. Builder's risk during construction = 3x expenditure. All risk of loss during construction on Tenant",
+      "Insurance Proceeds Structured Against Tenant: During construction: proceeds payable to Landlord. After construction: excess proceeds belong to Landlord. If insufficient: Tenant shall suffer the deficiency. Tenant bears shortfall risk but Landlord gets overage",
+      "Long Landlord Repair Timeframes: Landlord has 90 days to get permit, 9 months to complete. Tenant cannot terminate until those periods expire",
+      "Tenant Improvements Excluded from Landlord Repair: Landlord only repairs base building. Tenant must rebuild its own improvements",
+      "Broad Landlord Remedies: Can accelerate all rent for entire remaining term. Can terminate lease and sue for all future rent. Can relet and charge deficiencies monthly. Security interest in all Tenant property on premises. Can suspend services/utilities while Tenant in default",
+      "Three-Strike Rule on Late Payments: Three late payments (even non-consecutive) = default. Late defined as 10+ days after due date. Combined with 5% late fee",
+      "Assignment Impact Despite Absolute Right: Use by assignee/sublessee limited to warehouse and power generation. May limit pool of potential assignees/sublessees",
+      "Complex Subordination: Must subordinate to institutional mortgages on Landlord's request. While SNDA required, adds complexity",
+      "Short Statute of Limitations: Must file any action within one year of cause of action accrual. Shorter than typical statute of limitations",
+      "Jury Trial Waiver: Both parties waived right to jury trial. Disputes resolved by judge alone",
+      "Personal Liability Provision: If financial statement inaccurate or material change, Landlord may hold Tenant personally liable. Could pierce corporate veil"
+    ],
+    "itemsRequiringFurtherReview": [
+      "CRITICAL: Obtain Legal Description - Exhibit A is blank - must obtain proper legal description. Cannot record lease or obtain title insurance without it. Potentially fatal defect if not resolved",
+      "CRITICAL: Obtain Phase I Environmental Report - Portion of premises requires environmental remediation. Must understand scope, cost, liability before proceeding. Obtain Phase I ESA, possibly Phase II. Negotiate cap on remediation costs or share cost with Landlord. Define cleanup standards and completion criteria",
+      "CRITICAL: Clarify Rent Schedule - Obtain written clarification of rent for June 2018 - May 2019 period. Execute amendment to correct rent schedule",
+      "CRITICAL: Investigate Related Party Transaction - Understand relationship between Temple CB, LLC and Okra Energy, Inc. Why same signatory for both parties? Is this arm's length transaction? Tax and corporate governance implications",
+      "CRITICAL: Obtain Construction Plans (Exhibit B) - Define scope of Tenant's work. Estimate costs. Determine if improvements justify rent and purchase option economics",
+      "Determine Rentable Area - Conduct ANSI/BOMA measurement. Calculate rate per square foot. Compare to market rates for industrial in El Monte, CA",
+      "Property Survey - Obtain current ALTA survey. Identify boundaries, easements, encroachments. Verify improvements can be legally constructed",
+      "Develop Operating Budget - Estimate real estate taxes, insurance costs, utilities for warehouse and power generation use, maintenance and repair reserves",
+      "Compare to Market Rates - Research comparable industrial warehouse rents in El Monte, CA. Analyze if graduated rent schedule is market, above, or below",
+      "Evaluate Purchase Option Economics - Is $3M purchase price fair market value? What is property worth after Tenant-funded improvements and remediation?",
+      "Environmental Remediation Cost Estimate - Obtain quotes from environmental contractors. Understand regulatory requirements. Determine completion timeline. Negotiate cost-sharing or cap with Landlord",
+      "Review Insurance Requirements - Obtain quotes for required coverage levels. Verify $1M/$250K is adequate for warehouse + power generation use",
+      "Obtain Builder's Risk Quote - 3x construction cost requirement is extremely high. Typical is 1x construction cost. Negotiate reduction",
+      "Title Search and Insurance - Obtain preliminary title report. Identify all encumbrances, easements, restrictions. Verify no impediments to permitted use",
+      "Verify Zoning - Confirm property zoned for warehouse and power generation. Identify if power generation requires special permits",
+      "Verify Landlord's Ownership - Confirm Temple CB, LLC is fee simple owner. Verify Jay Hooper has authority to sign on behalf of LLC",
+      "Define Power Generation Use - What type of power generation? What permits required? Noise, emissions, safety regulations?",
+      "Permitting Analysis - Identify all permits needed for improvements and power generation. Estimate timeline for permit approvals",
+      "Utility Interconnection - If power generation for sale/export, need utility interconnection agreement. California has complex rules for distributed generation",
+      "Environmental Permits for Power Generation - Air quality permits (South Coast AQMD is very strict). Water discharge permits if applicable",
+      "Fire and Life Safety - Industrial warehouse + power generation may have special requirements. Sprinkler systems, fire alarms, exits",
+      "Amendment to Correct Defects - Execute comprehensive First Amendment to attach proper exhibits, correct rent schedule, add square footage, define environmental remediation scope and cap costs",
+      "Verify No Existing Mortgages - Landlord warrants property free and clear. Verify no existing mortgages. If mortgages exist, obtain SNDA before proceeding",
+      "Review Financial Statement Provision - Understand what financial statement was provided. Was it accurate? What constitutes material change?",
+      "Evaluate Three Exit Options - Model cash flows and returns for: (1) Operate through full term + renewals, (2) Exercise purchase option at optimal time, (3) Exercise cancellation right if project not viable"
+    ]
+  },
+  "notesAndComments": "This is a highly unusual industrial lease with several red flags and unique characteristics that require careful analysis before proceeding. Primary concerns include: (1) related party transaction with same signatory for both landlord and tenant, (2) missing critical information including blank exhibits for legal description and construction plans, (3) environmental liability with tenant accepting unknown remediation costs for existing contamination, and (4) rent schedule error with missing year. The lease appears to be structured as a lease-to-own transaction given tenant-funded construction and improvements, purchase option at $3,000,000 (total base rent over term is $3,840,000), tenant-funded environmental remediation, and the fact that after approximately 5 years, rent paid approaches purchase price. The economic analysis shows a 6-month rent-free period is valuable ($180,000+) and graduated rent is tenant-friendly, but triple net expenses, construction costs, and environmental remediation add substantial unknown costs. The risk profile includes potentially very high environmental risk, high construction risk, medium-high operating cost risk, high legal risk due to related party transaction and missing exhibits, and unknown market risk without square footage data. Given the complexity, unusual terms, related party nature, environmental issues, and missing critical information, this lease should be reviewed by qualified legal counsel before execution or performance, particularly expertise in commercial real estate, environmental law, corporate governance (related party transactions), and real estate finance."
+}
