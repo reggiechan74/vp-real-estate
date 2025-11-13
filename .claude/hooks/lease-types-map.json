@@ -1,0 +1,141 @@
+{
+  "version": "1.0",
+  "description": "Document type to skills mapping for proactive skill loading",
+  "document_types": {
+    "offer_to_lease": {
+      "patterns": [
+        "offer.*lease",
+        "offer.*to.*lease",
+        "loi",
+        "letter.*intent",
+        "term.*sheet"
+      ],
+      "skills": [
+        "offer-to-lease-expert",
+        "effective-rent-analyzer",
+        "commercial-lease-expert",
+        "negotiation-expert"
+      ],
+      "description": "Offer to Lease, LOI, or Term Sheet"
+    },
+    "lease_agreement": {
+      "patterns": [
+        "lease.*agreement",
+        "commercial.*lease",
+        "industrial.*lease",
+        "office.*lease",
+        "lease\\.pdf",
+        "lease\\.docx"
+      ],
+      "skills": [
+        "commercial-lease-expert",
+        "lease-abstraction-specialist",
+        "lease-compliance-auditor"
+      ],
+      "description": "Executed Lease Agreement"
+    },
+    "lease_amendment": {
+      "patterns": [
+        "amendment",
+        "amending.*agreement",
+        "lease.*amendment",
+        "supplemental.*agreement"
+      ],
+      "skills": [
+        "lease-comparison-expert",
+        "commercial-lease-expert",
+        "lease-abstraction-specialist"
+      ],
+      "description": "Lease Amendment or Amending Agreement"
+    },
+    "assignment_consent": {
+      "patterns": [
+        "assignment.*consent",
+        "consent.*assignment",
+        "assignment.*agreement"
+      ],
+      "skills": [
+        "consent-to-assignment-expert",
+        "commercial-lease-expert"
+      ],
+      "description": "Consent to Assignment Agreement"
+    },
+    "sublease_consent": {
+      "patterns": [
+        "sublease.*consent",
+        "consent.*sublease",
+        "sublease.*agreement"
+      ],
+      "skills": [
+        "consent-to-sublease-expert",
+        "commercial-lease-expert"
+      ],
+      "description": "Consent to Sublease Agreement"
+    },
+    "surrender_agreement": {
+      "patterns": [
+        "surrender",
+        "lease.*termination",
+        "early.*termination",
+        "mutual.*release"
+      ],
+      "skills": [
+        "lease-surrender-expert",
+        "commercial-lease-expert",
+        "effective-rent-analyzer"
+      ],
+      "description": "Lease Surrender or Early Termination Agreement"
+    },
+    "indemnity_guarantee": {
+      "patterns": [
+        "indemnity",
+        "guarantee",
+        "personal.*guarantee",
+        "corporate.*guarantee"
+      ],
+      "skills": [
+        "indemnity-expert",
+        "tenant-credit-analyst"
+      ],
+      "description": "Indemnity or Guarantee Agreement"
+    },
+    "snda": {
+      "patterns": [
+        "snda",
+        "subordination",
+        "non.*disturbance",
+        "attornment"
+      ],
+      "skills": [
+        "non-disturbance-expert",
+        "commercial-lease-expert"
+      ],
+      "description": "SNDA (Subordination, Non-Disturbance, Attornment)"
+    },
+    "estoppel": {
+      "patterns": [
+        "estoppel",
+        "tenant.*estoppel",
+        "estoppel.*certificate"
+      ],
+      "skills": [
+        "commercial-lease-expert",
+        "lease-compliance-auditor"
+      ],
+      "description": "Estoppel Certificate"
+    },
+    "default_notice": {
+      "patterns": [
+        "default.*notice",
+        "notice.*default",
+        "notice.*cure",
+        "demand.*letter"
+      ],
+      "skills": [
+        "default-and-remedies-advisor",
+        "commercial-lease-expert"
+      ],
+      "description": "Default Notice or Demand Letter"
+    }
+  }
+}

@@ -1,13 +1,13 @@
 # Meet Reggie Chan and His Team
 
-[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/vp-real-estate?style=social)](https://github.com/reggiechan74/vp-real-estate)
 
-**Version 1.8.0** • Released 2025-11-07
+**Version 2.0.0** • Released 2025-11-13
 
 ## The Digital Embodiment of a 20-Year Real Estate Veteran—And His Team
 
@@ -19,7 +19,7 @@ You're not just getting software. You're getting:
 - **Reggie Chan, CFA, FRICS** - VP of Leasing & Asset Management with 20+ years of institutional real estate experience. Handles complex problems, crisis turnarounds, fraud detection, and multi-domain synthesis. The brain behind the operation.
 - **Adam** - Reggie's senior analyst and protégé. Handles routine lease analysis, credit checks, and professional communication. Fast execution for straightforward tasks.
 - **Dennis** - Reggie's former boss with 36+ years of battle-tested experience. Provides strategic wisdom, negotiation psychology, and brutal honesty when you need it most.
-- **Complete toolkit** - 11 financial calculators, 15 specialized skills, and 25 automated workflows at their disposal
+- **Complete toolkit** - 11 financial calculators, **23 specialized skills** (NEW: +8 analytical skills), 28 automated workflows, and **intelligent hooks** that automatically suggest the right expertise at the right time
 
 Just address "Reggie," "Adam," or "Dennis" in your messages and watch the right team member handle your request—from everyday analysis to impossible problems to strategic decisions.
 
@@ -119,8 +119,9 @@ Simply address **"Reggie"** for most situations. For routine work, ask **"Adam"*
 **Daily question → Adam handles routine work → Red flags? → Escalate to Reggie → Strategic implications? → Consult Dennis**
 
 Reggie and his team have access to:
-- **15 specialized skills** for every lease situation (assignments, surrenders, SNDAs, objection handling, etc.)
-- **25 slash commands** that automate everything from lease abstraction to IFRS 16 accounting
+- **23 specialized skills** for every lease situation (NEW: effective rent analysis, tenant credit, compliance auditing, portfolio strategy, real options valuation, and more)
+- **Intelligent hooks** that automatically load the right skills when you ask questions or read documents (96% token efficiency)
+- **28 slash commands** that automate everything from lease abstraction to IFRS 16 accounting
 - **11 financial calculators** including NPV, effective rent, credit scoring, and Black-Scholes option valuation
 
 You get executive-level judgment, institutional financial rigor, and 20+ years of property expertise—with the right team member for every situation.

@@ -1,0 +1,17 @@
+{
+  "name": "lease-abstract-hooks",
+  "version": "1.0.0",
+  "description": "Claude Code hooks for VP Real Estate lease analysis",
+  "type": "module",
+  "scripts": {
+    "test-prompt": "echo '{\"prompt\":\"calculate NER for this lease\"}' | tsx skill-activation-prompt.ts",
+    "test-pretool": "echo '{\"tool\":\"Read\",\"parameters\":{\"file_path\":\"./Sample_Inputs/sample_offer_to_lease.pdf\"}}' | tsx pre-tool-use-skill-loader.ts",
+    "generate-rules": "node generate-skill-rules.js"
+  },
+  "dependencies": {
+    "tsx": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0"
+  }
+}

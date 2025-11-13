@@ -1,0 +1,543 @@
+{
+  "version": "1.0",
+  "description": "Auto-generated skill activation triggers for VP Real Estate lease analysis",
+  "generation": {
+    "method": "auto-generated",
+    "date": "2025-11-13T23:27:09.286Z",
+    "generator": "generate-skill-rules.js",
+    "total_skills": 23
+  },
+  "skills": {
+    "commercial-lease-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Expert in commercial real estate lease agreements for industrial and office properties. Use when reviewing lease terms, negotiating base rent/operating expenses, analyzing tenant improvements and free rent, structuring net lease vs gross lease deals, evaluating renewal options, or advising on landlord/tenant rights. Key terms include base rent, operating expenses, proportionate share, TI allowance, net lease, triple net, lease economics, rent escalation, use clause, assignment restrictions, default remedies, Schedule G",
+      "promptTriggers": {
+        "keywords": [
+          "commercial lease expert",
+          "lease",
+          "rent",
+          "tenant",
+          "options",
+          "landlord",
+          "default",
+          "commercial-real-estate",
+          "lease-negotiation",
+          "net-lease",
+          "industrial-lease",
+          "office-lease",
+          "deal-structuring"
+        ],
+        "intentPatterns": [
+          "commercial.*lease",
+          "review.*(commercial|lease)"
+        ]
+      }
+    },
+    "consent-to-assignment-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in consent to assignment agreements where a tenant transfers their entire lease to a new party (assignee). Use when tenant is selling their business and assigning the lease, landlord is reviewing a consent request, analyzing whether original tenant remains liable after assignment, drafting assignment consent agreements, negotiating release provisions, or handling assignment plus sublease combinations (e.g., professional corporations). Key terms include assignment vs sublease, assignee, privity of estate, joint and several liability, no release, recapture rights, assignor remains liable, change of control, business sale",
+      "promptTriggers": {
+        "keywords": [
+          "consent to assignment expert",
+          "tenant",
+          "lease",
+          "landlord",
+          "commercial-real-estate",
+          "assignment-consent",
+          "lease-assignment",
+          "privity-of-estate",
+          "landlord-protections"
+        ],
+        "intentPatterns": [
+          "consent.*to.*assignment",
+          "review.*(consent|lease)",
+          "draft.*(consent|lease)"
+        ]
+      }
+    },
+    "consent-to-sublease-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in consent to sublease agreements where a tenant (sublandlord) rents part or all of their space to a subtenant while remaining on the lease. Use when tenant wants to sublet excess space, landlord is evaluating a sublease consent request, negotiating profit-sharing on subrent, drafting three-party consent agreements, analyzing subtenant vs landlord vs tenant rights, calculating whether sublease is better than surrender, or handling partial subleases with shared space. Key terms include sublease, sublandlord, subtenant, subrent, tenant remains liable, recapture rights, profit sharing, SNDA, non-disturbance, partial sublease, direct payment, attornment",
+      "promptTriggers": {
+        "keywords": [
+          "consent to sublease expert",
+          "snda",
+          "tenant",
+          "rents",
+          "lease",
+          "landlord",
+          "commercial-real-estate",
+          "sublease-consent",
+          "subletting",
+          "three-party-agreements",
+          "recapture-rights"
+        ],
+        "intentPatterns": [
+          "consent.*to.*sublease",
+          "draft.*(consent|lease)"
+        ]
+      }
+    },
+    "default-and-remedies-advisor": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Expert in lease defaults and landlord remedies. Use when analyzing default scenarios, calculating cure periods, assessing damages, or drafting default notices. Key terms include monetary default, non-monetary default, cure period, notice to cure, lease termination, re-entry, damages, acceleration of rent, unamortized TI clawback",
+      "promptTriggers": {
+        "keywords": [
+          "default and remedies advisor",
+          "lease",
+          "defaults",
+          "landlord",
+          "default",
+          "rent",
+          "remedies",
+          "cure-period",
+          "termination",
+          "damages",
+          "default-notice"
+        ],
+        "intentPatterns": [
+          "assess.*(default|lease)",
+          "draft.*(default|lease)"
+        ]
+      }
+    },
+    "effective-rent-analyzer": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Expert in effective rent calculations using Ponzi Rental Rate (PRR) framework. Use when calculating NER, NPV, breakeven analysis, landlord investment returns, or analyzing lease deal economics. Key terms include net effective rent, gross effective rent, NPV of lease deal, breakeven NER, fully levered breakeven, sinking fund, capital recovery, tenant incentives, TI allowance, free rent, leasing commissions",
+      "promptTriggers": {
+        "keywords": [
+          "effective rent analyzer",
+          "ner",
+          "npv",
+          "rent",
+          "rental",
+          "landlord",
+          "lease",
+          "tenant",
+          "effective-rent",
+          "breakeven",
+          "prr",
+          "ponzi-rental-rate",
+          "lease-economics",
+          "landlord-return"
+        ],
+        "intentPatterns": [
+          "(analyz|calculat|assess).*effective"
+        ]
+      }
+    },
+    "indemnity-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in commercial lease indemnity agreements where a third party (guarantor) becomes directly liable for tenant's obligations under the lease. Use when requiring personal guarantees from business owners, analyzing bankruptcy-proof provisions, negotiating absolute and unconditional guarantees, reviewing corporate parent indemnities, evaluating survival clauses after lease termination, or structuring guarantor release provisions. Key terms include indemnity vs guarantee, primary obligation, absolute and unconditional, personal guarantee, corporate guarantee, survival clause, bankruptcy-proof, waiver of defenses, subordination of rights, joint and several",
+      "promptTriggers": {
+        "keywords": [
+          "indemnity expert",
+          "lease",
+          "tenant",
+          "commercial-real-estate",
+          "indemnity-agreements",
+          "guarantees",
+          "risk-allocation",
+          "bankruptcy-proofing"
+        ],
+        "intentPatterns": [
+          "indemnity",
+          "review.*(indemnity|lease)"
+        ]
+      }
+    },
+    "lease-abstraction-specialist": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Expert in lease abstraction and critical terms extraction. Use when abstracting lease agreements, extracting key dates, identifying critical provisions, or creating lease summaries. Key terms include lease abstraction, critical dates, rent schedule, operating costs, renewal options, termination rights, default provisions, use clause, assignment clause, Schedule G special provisions",
+      "promptTriggers": {
+        "keywords": [
+          "lease abstraction specialist",
+          "lease",
+          "rent",
+          "options",
+          "default",
+          "lease-abstraction",
+          "critical-dates",
+          "lease-summary",
+          "key-terms",
+          "extraction"
+        ],
+        "intentPatterns": [
+          "lease.*specialist"
+        ]
+      }
+    },
+    "lease-arbitration-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Expert in lease arbitration agreements that create binding dispute resolution when parties cannot agree on renewal rent or fair market value. Use when drafting renewal option clauses with rent arbitration, negotiating arbitrator selection procedures, analyzing baseball vs conventional arbitration, structuring rent determination frameworks, evaluating market rent disputes, or creating enforceable arbitration provisions for lease renewals. Key terms include renewal rent, fair market value, arbitration, arbitrator, baseball arbitration, conventional arbitration, binding decision, market rent determination, expert appraiser, rent dispute",
+      "promptTriggers": {
+        "keywords": [
+          "lease arbitration expert",
+          "lease",
+          "rent",
+          "option",
+          "commercial-real-estate",
+          "arbitration-agreements",
+          "dispute-resolution",
+          "rent-determination",
+          "expert-selection"
+        ],
+        "intentPatterns": [
+          "lease.*arbitration",
+          "draft.*(lease|lease)",
+          "value.*(lease|lease)"
+        ]
+      }
+    },
+    "lease-comparison-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in lease-to-lease comparison and deviation analysis. Use when comparing lease amendments to originals, analyzing competing offers, benchmarking against precedents, or identifying deal term variations. Key terms include lease comparison, amendment analysis, offer comparison, precedent deviation, market benchmarking, competitive analysis",
+      "promptTriggers": {
+        "keywords": [
+          "lease comparison expert",
+          "lease",
+          "comparison",
+          "amendment",
+          "offer-analysis",
+          "precedent",
+          "benchmarking",
+          "deviation-analysis"
+        ],
+        "intentPatterns": [
+          "lease.*comparison"
+        ]
+      }
+    },
+    "lease-compliance-auditor": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in lease compliance monitoring and obligation tracking. Use when auditing insurance requirements, verifying environmental compliance, checking use clause adherence, or monitoring covenant compliance. Key terms include insurance audit, CGL requirements, environmental compliance, use clause violations, covenant breach, notice requirements, cure periods",
+      "promptTriggers": {
+        "keywords": [
+          "lease compliance auditor",
+          "lease",
+          "compliance",
+          "insurance-audit",
+          "environmental",
+          "use-clause",
+          "covenant-compliance"
+        ],
+        "intentPatterns": []
+      }
+    },
+    "lease-surrender-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in lease surrender agreements where landlord and tenant mutually agree to terminate the lease before expiry. Use when tenant wants to exit early and negotiate buyout, landlord needs vacant space for redevelopment or new tenant, negotiating surrender consideration (who pays whom), analyzing partial surrender to reduce space, structuring mutual releases, evaluating surrender vs assignment or sublease, or handling distressed tenant situations. Key terms include lease surrender, early termination, buyout, surrender fee, mutual release, partial surrender, space reduction, unamortized TI, consideration, lease termination agreement",
+      "promptTriggers": {
+        "keywords": [
+          "lease surrender expert",
+          "lease",
+          "landlord",
+          "tenant",
+          "commercial-real-estate",
+          "lease-surrender",
+          "early-termination",
+          "lease-restructuring",
+          "mutual-release"
+        ],
+        "intentPatterns": [
+          "lease.*surrender",
+          "negotiate.*(lease|lease)"
+        ]
+      }
+    },
+    "negotiation-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Expert in commercial lease negotiation strategy using evidence-based persuasion techniques. Use when crafting responses to tenant objections, defending rent and lease terms, structuring counter-offers, negotiating with difficult parties, overcoming deadlocks, responding to competitive pressure, or formulating calibrated questions that shift burden of proof. Expert in evidence-based anchoring, tactical empathy, uncovering hidden constraints, and value-creating solutions. Key terms include calibrated questions, accusation audit, labeling, tactical empathy, evidence-based anchoring, market comparables, burden of proof, negotiation tactics",
+      "promptTriggers": {
+        "keywords": [
+          "negotiation expert",
+          "lease",
+          "tenant",
+          "rent"
+        ],
+        "intentPatterns": [
+          "negotiation",
+          "value.*(negotiation|lease)"
+        ]
+      }
+    },
+    "non-disturbance-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in SNDA agreements (Subordination, Non-Disturbance, and Attornment) that protect tenants from eviction if the landlord's lender forecloses. Use when tenant is negotiating lease for major space requiring significant investment, lender is requiring subordination, analyzing tenant's foreclosure protection, drafting three-party SNDA agreements, evaluating whether tenant can survive foreclosure, or negotiating with lenders for non-disturbance protection. Key terms include SNDA, non-disturbance, attornment, subordination, foreclosure, lender priority, tenant protection, mortgage, charge, tripartite agreement, lease survival",
+      "promptTriggers": {
+        "keywords": [
+          "non disturbance expert",
+          "snda",
+          "tenants",
+          "landlord",
+          "tenant",
+          "lease",
+          "commercial-real-estate",
+          "non-disturbance",
+          "attornment",
+          "subordination",
+          "foreclosure-protection"
+        ],
+        "intentPatterns": [
+          "non.*disturbance",
+          "draft.*(non|lease)"
+        ]
+      }
+    },
+    "objection-handling-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in analyzing and responding to tenant objections in commercial lease negotiations. Use when tenant objects to rent as above market, requests higher TI allowance, demands more free rent, pushes back on security deposit or personal guarantee, claims market is soft, cites competitive properties, requests shorter term or early termination rights, or challenges any lease provision. Expert in classifying objection types (financial, operational, market-based, risk-based), distinguishing legitimate concerns from negotiating tactics, and crafting evidence-based responses. Key terms include rent objection, TI allowance, free rent, market comparables, competitive pressure, tactical objection, legitimate concern, evidence-based response, value-creating solution",
+      "promptTriggers": {
+        "keywords": [
+          "objection handling expert",
+          "tenant",
+          "lease",
+          "rent"
+        ],
+        "intentPatterns": [
+          "objection.*handling",
+          "value.*(objection|lease)"
+        ]
+      }
+    },
+    "offer-to-lease-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Expert in offers to lease, letters of intent (LOI), and term sheets used to document business terms before signing the full lease. Use when reviewing whether an offer is binding or non-binding, negotiating key deal terms before lease drafting, analyzing conditions precedent, structuring deposit requirements, evaluating acceptance deadlines, creating exclusivity provisions, or converting preliminary agreements into formal leases. Key terms include offer to lease, LOI, term sheet, binding vs non-binding, conditions precedent, acceptance, deposit, exclusivity, due diligence, deal terms, letter of intent",
+      "promptTriggers": {
+        "keywords": [
+          "offer to lease expert",
+          "loi",
+          "lease",
+          "leases",
+          "commercial-real-estate",
+          "offer-to-lease",
+          "term-sheets",
+          "binding-agreements",
+          "lease-negotiation"
+        ],
+        "intentPatterns": [
+          "offer.*to.*lease",
+          "review.*(offer|lease)",
+          "draft.*(offer|lease)"
+        ]
+      }
+    },
+    "portfolio-strategy-advisor": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in portfolio-level lease analysis and renewal prioritization. Use when analyzing lease rollover schedules, prioritizing renewals, assessing expiry cliff risk, or forecasting vacancy. Key terms include rollover analysis, expiry cliff, renewal priority, vacancy forecast, portfolio optimization, lease maturity, stagger strategy",
+      "promptTriggers": {
+        "keywords": [
+          "portfolio strategy advisor",
+          "lease",
+          "portfolio",
+          "rollover",
+          "renewal-priority",
+          "expiry-cliff",
+          "vacancy-forecast",
+          "portfolio-strategy"
+        ],
+        "intentPatterns": [
+          "assess.*(portfolio|lease)"
+        ]
+      }
+    },
+    "real-options-valuation-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in real options valuation for lease flexibility features. Use when valuing renewal options, expansion rights, termination clauses, or other lease optionality using Black-Scholes methodology. Key terms include real options, option premium, renewal option value, expansion option, termination right, volatility, strike price, option pricing",
+      "promptTriggers": {
+        "keywords": [
+          "real options valuation expert",
+          "options",
+          "valuation",
+          "lease",
+          "optionality",
+          "option",
+          "real-options",
+          "option-value",
+          "renewal-option",
+          "expansion-right",
+          "black-scholes",
+          "flexibility"
+        ],
+        "intentPatterns": [
+          "real.*options.*valuation",
+          "value.*(real|lease)"
+        ]
+      }
+    },
+    "share-transfer-consent-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Expert in consent to share transfer agreements where tenant's ownership changes but the corporate tenant remains the same (unlike assignment). Use when reviewing change of control provisions in leases, analyzing whether share sale triggers landlord consent, drafting tripartite consent agreements between landlord/tenant/new shareholder, structuring privacy consent provisions, negotiating landlord conditions for share transfers, or distinguishing share sales from asset sales/assignments. Key terms include share transfer, change of control, voting control, new shareholder, tripartite agreement, privacy consent, share sale vs assignment, corporate tenant remains same, beneficial ownership change",
+      "promptTriggers": {
+        "keywords": [
+          "share transfer consent expert",
+          "tenant",
+          "leases",
+          "landlord",
+          "commercial-real-estate",
+          "share-transfer",
+          "change-of-control",
+          "landlord-consent",
+          "corporate-restructuring"
+        ],
+        "intentPatterns": [
+          "share.*transfer.*consent",
+          "review.*(share|lease)",
+          "draft.*(share|lease)"
+        ]
+      }
+    },
+    "storage-agreement-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Expert in storage agreements for storage lockers and ancillary storage space in commercial buildings (typically month-to-month, simplified terms). Use when tenant needs additional storage beyond leased premises, reviewing storage locker terms, negotiating storage rates and use restrictions, analyzing month-to-month vs fixed-term storage, evaluating storage-only agreements, or comparing storage agreements to full lease terms. Key terms include storage locker, ancillary storage space, month-to-month, storage-only use, no business operations, simplified rent structure, minimal services, as-is condition, short notice termination",
+      "promptTriggers": {
+        "keywords": [
+          "storage agreement expert",
+          "tenant",
+          "leased",
+          "lease",
+          "rent",
+          "commercial-real-estate",
+          "storage-agreements",
+          "storage-lockers",
+          "ancillary-space",
+          "short-term-storage"
+        ],
+        "intentPatterns": [
+          "storage.*agreement",
+          "review.*(storage|lease)",
+          "structure.*(storage|lease)"
+        ]
+      }
+    },
+    "telecom-licensing-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider",
+      "promptTriggers": {
+        "keywords": [
+          "telecom licensing expert",
+          "compliance",
+          "lease",
+          "commercial-real-estate",
+          "telecommunications",
+          "licensing-agreements",
+          "infrastructure-sharing",
+          "crtc-compliance"
+        ],
+        "intentPatterns": [
+          "telecom.*licensing",
+          "review.*(telecom|lease)"
+        ]
+      }
+    },
+    "temporary-license-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Expert in temporary license agreements for very short-term occupancy (1 day to 3 months) that avoid creating landlord-tenant relationships. Use when drafting licenses for film shoots, pop-up retail, event space, interim occupancy during renovations, meeting room bookings, or testing space before committing to a lease. Also use when analyzing whether arrangement is truly a license vs lease, structuring revocable occupancy rights, or evaluating holdover and termination provisions. Key terms include license vs lease, temporary occupancy, short-term license, no landlord-tenant relationship, revocable, non-exclusive, film production license, pop-up retail, interim occupancy, no statutory protections",
+      "promptTriggers": {
+        "keywords": [
+          "temporary license expert",
+          "landlord",
+          "tenant",
+          "lease",
+          "commercial-real-estate",
+          "temporary-license",
+          "short-term-occupancy",
+          "license-agreement",
+          "legal-drafting"
+        ],
+        "intentPatterns": [
+          "temporary.*license",
+          "draft.*(temporary|lease)"
+        ]
+      }
+    },
+    "tenant-credit-analyst": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Expert in tenant creditworthiness assessment and financial statement analysis. Use when evaluating tenant credit quality, analyzing financial ratios, assessing default risk, or structuring security requirements. Key terms include DSCR, current ratio, debt-to-equity, working capital, liquidity analysis, credit scoring, personal guarantee, security deposit, financial covenants",
+      "promptTriggers": {
+        "keywords": [
+          "tenant credit analyst",
+          "dscr",
+          "tenant",
+          "default",
+          "tenant-credit",
+          "financial-analysis",
+          "credit-risk",
+          "security-deposit",
+          "guarantee"
+        ],
+        "intentPatterns": [
+          "(analyz|calculat|assess).*tenant",
+          "assess.*(tenant|lease)"
+        ]
+      }
+    },
+    "waiver-agreement-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Expert in waiver agreements where a landlord waives conditions in an offer to lease (often adding new conditions as the price of acceptance). Use when landlord is accepting tenant's offer subject to changes, analyzing whether waiver creates binding contract, negotiating landlord's counter-conditions, evaluating conditional vs unconditional waivers, reviewing acceptance deadlines, or structuring landlord's response to tenant offers. Key terms include waiver of conditions, conditional waiver, unconditional waiver, counter-offer, acceptance deadline, additional conditions, conditions precedent, binding acceptance, qualified waiver",
+      "promptTriggers": {
+        "keywords": [
+          "waiver agreement expert",
+          "landlord",
+          "lease",
+          "tenant",
+          "commercial-real-estate",
+          "waiver-agreements",
+          "offer-to-lease",
+          "conditions-precedent",
+          "counter-offers"
+        ],
+        "intentPatterns": [
+          "waiver.*agreement",
+          "review.*(waiver|lease)"
+        ]
+      }
+    }
+  }
+}

@@ -28,8 +28,13 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
     │   ├── Comparison/         # compare-amendment, compare-offers, compare-precedent, lease-vs-lease
     │   ├── Compliance/         # assignment-consent, default-analysis, estoppel-certificate, etc.
     │   └── Utilities/          # convert-to-pdf
-    ├── skills/             # Expert skills (15 specialized skills - auto-invoked)
+    ├── skills/             # Expert skills (23 specialized skills - auto-invoked)
     │   ├── Core: commercial-lease-expert/
+    │   ├── Financial Analysis: effective-rent-analyzer/, tenant-credit-analyst/,
+    │   │                       lease-abstraction-specialist/
+    │   ├── Compliance: lease-compliance-auditor/, default-and-remedies-advisor/,
+    │   │               lease-comparison-expert/
+    │   ├── Portfolio: portfolio-strategy-advisor/, real-options-valuation-expert/
     │   ├── Security: indemnity-expert/, non-disturbance-expert/
     │   ├── Transfers: consent-to-assignment-expert/, consent-to-sublease-expert/,
     │   │             share-transfer-consent-expert/, lease-surrender-expert/
@@ -38,6 +43,12 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
     │   ├── Specialized: telecom-licensing-expert/
     │   ├── Dispute: lease-arbitration-expert/
     │   └── Negotiation: negotiation-expert/, objection-handling-expert/
+    ├── hooks/              # Intelligent skill activation (UserPromptSubmit + PreToolUse)
+    │   ├── skill-activation-prompt.sh/ts     # Reactive: keyword-based skill suggestions
+    │   ├── pre-tool-use-skill-loader.sh/ts   # Proactive: document type detection
+    │   ├── generate-skill-rules.js           # Auto-generate activation rules from skills
+    │   ├── lease-types-map.json              # Document type → skills mapping
+    │   └── skill-rules.json                  # Auto-generated activation triggers (23 skills)
     └── agents/             # Sub-agents (The Triumvirate)
         ├── adam            # Adam - Senior Analyst (Haiku) - Fast execution for straightforward tasks
         ├── reggie-chan-vp  # Reggie Chan, CFA, FRICS - VP (Sonnet) - Complex problems & crisis management
@@ -229,12 +240,26 @@ All commands follow **PDF → JSON → Python → Report** automated workflow (e
 
 **See**: `.claude/commands/README.md` for detailed documentation
 
-## Specialized Skills (15 total)
+## Specialized Skills (23 total)
 
-Skills are **automatically invoked** through progressive disclosure - when your request matches a skill's description, Claude automatically loads the expertise. No manual invocation required.
+Skills are **automatically invoked** through progressive disclosure and intelligent hooks - when your request matches a skill's description or you read relevant documents, Claude automatically loads the expertise. No manual invocation required.
 
 ### Core Lease Agreements
 - **commercial-lease-expert** - General lease negotiation, net lease structures, deal structuring
+
+### Financial Analysis (NEW - 3 skills)
+- **effective-rent-analyzer** - NER, NPV, breakeven analysis using Ponzi Rental Rate framework
+- **tenant-credit-analyst** - Creditworthiness assessment, DSCR analysis, security structuring
+- **lease-abstraction-specialist** - 24-section lease abstraction, critical dates extraction
+
+### Compliance & Process (NEW - 3 skills)
+- **lease-compliance-auditor** - Insurance, environmental, use clause, covenant compliance
+- **default-and-remedies-advisor** - Default analysis, cure periods, damages calculation
+- **lease-comparison-expert** - Amendment analysis, competing offers, precedent deviation
+
+### Investment & Portfolio (NEW - 2 skills)
+- **portfolio-strategy-advisor** - Lease rollover, expiry cliff analysis, renewal prioritization
+- **real-options-valuation-expert** - Black-Scholes valuation of renewal/expansion/termination options
 
 ### Security & Protection
 - **indemnity-expert** - Indemnity agreements, bankruptcy-proof provisions
@@ -261,6 +286,79 @@ Skills are **automatically invoked** through progressive disclosure - when your 
 ### Negotiation & Objection Handling
 - **negotiation-expert** - Evidence-based persuasion, calibrated questions, accusation audits
 - **objection-handling-expert** - Objection analysis, response strategies, value-creating solutions
+
+## Intelligent Skill Activation (Hooks)
+
+**NEW**: Two intelligent hooks automatically suggest relevant skills based on your questions and the documents you're reading.
+
+### How It Works
+
+**1. UserPromptSubmit Hook (Reactive)**
+- Triggered: When you submit a message
+- Analyzes: Keywords and intent patterns in your question
+- Suggests: Relevant skills BEFORE Claude responds
+
+**Example:**
+```
+You: "Calculate NER for this lease deal"
+Hook: 🎯 SKILL ACTIVATION CHECK
+      📚 RECOMMENDED SKILLS:
+        → effective-rent-analyzer
+        → commercial-lease-expert
+        → negotiation-expert
+```
+
+**2. PreToolUse Hook (Proactive - 96% Token Efficiency)**
+- Triggered: BEFORE reading files
+- Detects: Document types by filename pattern
+- Suggests: Context-appropriate skills automatically
+
+**Example:**
+```
+You: Read Sample_Inputs/offer_to_lease.pdf
+Hook: ⚡ PROACTIVE SKILL LOADING
+      📄 Document Type: Offer to Lease
+      📚 RECOMMENDED SKILLS:
+        → offer-to-lease-expert
+        → effective-rent-analyzer
+        → commercial-lease-expert
+        → negotiation-expert
+```
+
+### Document Type Detection
+
+**Automatically loads skills when reading:**
+- **Offers to Lease**: `*offer*lease*`, `*loi*`, `*term*sheet*`
+- **Lease Agreements**: `*lease*.pdf`, `*commercial*lease*`
+- **Amendments**: `*amendment*`, `*amending*agreement*`
+- **Financial Statements**: `*financial*statement*`, `*balance*sheet*`
+- **Assignment/Sublease**: `*assignment*consent*`, `*sublease*consent*`
+- **Default Notices**: `*default*notice*`, `*notice*cure*`
+- **SNDA**: `*snda*`, `*subordination*`, `*non*disturbance*`
+- **Guarantees**: `*indemnity*`, `*guarantee*`
+- **Calculator Inputs**: `*_input.json` in calculator directories
+
+### Benefits
+
+- **Proactive Expertise**: Skills load automatically when relevant
+- **Token Efficient**: 96% reduction vs. loading all skills upfront
+- **Context-Aware**: Right skills at the right time
+- **No Memorization**: Don't need to remember which skills exist
+
+### Maintenance
+
+**Adding New Skills:**
+```bash
+# 1. Create skill in .claude/skills/new-skill/SKILL.md
+# 2. Regenerate activation rules
+cd .claude/hooks
+npm run generate-rules
+
+# 3. Test
+npm run test-prompt
+```
+
+**See**: `.claude/hooks/README.md` for complete documentation
 
 ## Quick Start Examples
 
