@@ -1,10 +1,10 @@
 # Meet Your New VP: Reggie Chan and His Team
 
-[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 
-**Version 1.8.0** • Released 2025-11-07
+**Version 2.0.0** • Released 2025-11-13
 
 ## It's Like Having Reggie Chan Work for You—And He Brought His Team—For the Price of a Claude Code Subscription
 
@@ -43,9 +43,9 @@ Just address "Reggie" for most situations (he's your primary contact). For routi
 Together, they give you back two full days every week. Days you used to spend in spreadsheet purgatory. Days you can now spend closing deals, working the phones, or finally getting to that 2 p.m. tee time.
 
 **Reggie and his team have access to:**
-- **25 automated workflows** - One command, instant output for everything from lease abstraction to IFRS 16 accounting
+- **28 automated workflows** - One command, instant output for everything from lease abstraction to IFRS 16 accounting
 - **11 financial calculators** - Built by people who actually understand leasing, not consultants
-- **15 expert systems** - On-demand guidance for assignments, SNDAs, indemnities, arbitration prep, objection handling
+- **23 specialized skills** - On-demand expertise for every lease situation including effective rent analysis, tenant credit, compliance auditing, portfolio strategy, and negotiation
 
 Every output is timestamped, auditable, and so clean that even your most pedantic asset manager will have to approve it. Because there's nothing to criticize.
 
@@ -204,9 +204,9 @@ The default Claude Code persona is still available for general questions. But wh
 
 ## Every Analysis You'll Ever Need
 
-### Reggie's 25 Workflows
+### Reggie's 28 Workflows
 
-Reggie and his team have 25 workflows ready for the questions you get asked every single week. One command, instant output, zero thinking required.
+Reggie and his team have 28 workflows ready for the questions you get asked every single week. One command, instant output, zero thinking required.
 
 **Abstraction** (2 commands)
 - `/abstract-lease` – Pull every term from a lease into a clean 24-section template
@@ -268,11 +268,11 @@ Each one has been tested on real deals. 235+ passing tests. No surprises.
 
 ---
 
-### Reggie's 15 Expert Systems
+### Reggie's 23 Specialized Skills
 
 Some questions don't have a formula. They need judgment. Experience. A senior advisor who's seen this exact situation 50 times.
 
-That's what Reggie brings. On-demand expertise for the messy stuff.
+That's what Reggie brings. On-demand expertise for the messy stuff. These skills automatically activate when you need them—just ask your question.
 
 **Core Leasing**
 - `commercial-lease-expert` – Deal structuring, net lease mechanics, negotiation strategy
@@ -461,31 +461,6 @@ Every report lands in the `Reports/` folder with a timestamp. Open it. Send it. 
 
 ---
 
-### Running Calculators Directly
-
-If you want more control, skip the workflows and run the calculators yourself:
-
-```bash
-# Effective rent analysis
-python Eff_Rent_Calculator/eff_rent_calculator.py input.json
-
-# Credit scoring
-python Credit_Analysis/run_credit_analysis.py financials.json
-
-# IFRS 16 accounting
-python IFRS16_Calculator/run_ifrs16_analysis.py lease_data.json
-
-# Portfolio rollover risk
-python Rollover_Analysis/rollover_calculator.py portfolio.json
-
-# Real options valuation
-python Option_Valuation/option_valuation.py inputs.json --verbose
-```
-
-Same inputs. Same outputs. More flexibility.
-
----
-
 ## What This Costs
 
 **Nothing.**
@@ -539,7 +514,7 @@ We're not done. Here's what's coming:
 3. **API integrations** – DistanceMatrix.ai, CoStar, LoopNet for real-time data
 4. **Machine learning weight optimization** – Learn from your historical deal outcomes
 
-But here's the thing: **this already works.** Version 1.7.0 is production-ready. You can use it today.
+But here's the thing: **this already works.** Version 2.0.0 is production-ready. You can use it today.
 
 Don't wait for perfection. Start saving time now.
 
@@ -549,7 +524,7 @@ Don't wait for perfection. Start saving time now.
 
 **Your VP of Leasing & Asset Management:** Reggie Chan, CFA, FRICS
 **Reggie's Team:** Adam (Senior Analyst) • Dennis (Strategic Advisor)
-**Version:** 1.8.0 (Released 2025-11-07)
+**Version:** 2.0.0 (Released 2025-11-13)
 **Repository:** github.com/reggiechan74/vp-real-estate
 
 For issues, feature requests, or questions: open a ticket in the repository.

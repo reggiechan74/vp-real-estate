@@ -283,71 +283,10 @@ sudo apt-get install -y pandoc wkhtmltopdf  # Linux/Ubuntu
 ```
 
 Each command follows the same pipeline:
-1. Extract data from PDF/DOCX  
-2. Generate validated JSON input  
-3. Execute the relevant calculator  
+1. Extract data from PDF/DOCX
+2. Generate validated JSON input
+3. Execute the relevant calculator
 4. Write a timestamped report into `Reports/`
-
-### Direct Calculator Usage
-
-```bash
-# Effective Rent / PRR analysis
-python Eff_Rent_Calculator/eff_rent_calculator.py baf_input_example.json
-
-# Tenant credit scoring
-python Credit_Analysis/run_credit_analysis.py credit_inputs/sample_tenant_2025-10-31_input.json
-
-# IFRS 16 accounting schedules
-python IFRS16_Calculator/run_ifrs16_analysis.py ifrs16_inputs/sample_input.json
-
-# Rental variance decomposition
-python Rental_Variance/rental_variance_calculator.py sample_variance_input.json -v
-
-# Relative valuation / competitive positioning
-python Relative_Valuation/relative_valuation_calculator.py \
-  --input data.json \
-  --output report.md \
-  --output-json results.json \
-  --full  # Show all competitors (not just top 10)
-
-# Use tenant persona weights (3pl, manufacturing, office, default)
-python Relative_Valuation/relative_valuation_calculator.py \
-  --input data.json \
-  --output report.md \
-  --persona 3pl  # Optimized for distribution/logistics tenants
-
-# With statistical analysis (regression, correlation, outliers)
-python Relative_Valuation/relative_valuation_calculator.py \
-  --input data.json \
-  --output report.md \
-  --stats  # Adds traditional statistical analysis section
-
-# Portfolio rollover analysis
-python Rollover_Analysis/rollover_calculator.py \
-  Rollover_Analysis/rollover_inputs/sample_portfolio.json
-
-python Rollover_Analysis/report_generator.py \
-  Rollover_Analysis/rollover_inputs/sample_portfolio.json \
-  Reports/YYYY-MM-DD_HHMMSS_rollover_analysis_report.md
-
-# Default damage quantification
-python Default_Calculator/default_calculator.py \
-  Default_Calculator/default_inputs/sample_default.json
-
-python Default_Calculator/notice_generator.py \
-  Default_Calculator/default_inputs/sample_default.json \
-  Reports/YYYY-MM-DD_HHMMSS_default_notice.md \
-  ontario  # Jurisdiction for legal framework
-
-# Renewal vs. relocation economics
-python Renewal_Analysis/run_renewal_analysis.py renewal_inputs/sample_input.json
-
-# Real options valuation (Black-Scholes)
-python Option_Valuation/option_valuation.py \
-  Option_Valuation/sample_option_input.json \
-  --output results.json \
-  --verbose
-```
 
 ### Run the Test Suite
 
@@ -536,16 +475,26 @@ vp-real-estate/
 ├── Default_Calculator/        # Tenant default damage quantification
 ├── Option_Valuation/          # Real options valuation (Black-Scholes)
 ├── MLS_Extractor/             # MLS PDF to Excel with subject highlighting
-├── Templates/                 # Lease abstract templates
+├── Templates/                 # Lease abstract templates (Industrial/Office)
 ├── Reports/                   # Timestamped analysis outputs
-└── .claude/                   # Automation commands, skills, agents
-    └── agents/                # Reggie and His Team
-        ├── reggie-chan-vp.md  # Reggie Chan, CFA, FRICS - VP (Sonnet)
-        ├── adam.md            # Adam - Reggie's senior analyst (Haiku)
-        └── dennis.md          # Dennis - Reggie's former boss (Opus)
+├── Repository_Dev_Plans/      # Development planning documents
+│   └── archive/               # Archived utilities and completed projects
+│       └── latex-conversion-2024/  # Completed LaTeX conversion scripts
+├── Sample_Inputs/             # Example lease documents and data files
+├── Sample_Outputs/            # Reference outputs for validation
+├── Research_Reports/          # Research papers and technical documentation
+├── requirements.txt           # Python dependencies
+└── .claude/                   # Automation commands, skills, agents, hooks
+    ├── commands/              # 28 slash commands (6 categories)
+    ├── skills/                # 23 specialized expert systems
+    ├── agents/                # Reggie and His Team
+    │   ├── reggie-chan-vp.md  # Reggie Chan, CFA, FRICS - VP (Sonnet)
+    │   ├── adam.md            # Adam - Reggie's senior analyst (Haiku)
+    │   └── dennis.md          # Dennis - Reggie's former boss (Opus)
+    └── hooks/                 # Intelligent skill activation system
 ```
 
-Refer to `CLAUDE.md` for a full breakdown of commands, skills, and agents.
+Refer to `CLAUDE.md` for a full breakdown of commands, skills, agents, and the intelligent hook system.
 
 ---
 
