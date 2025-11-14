@@ -128,19 +128,91 @@ You get executive-level judgment, institutional financial rigor, and 20+ years o
 
 ---
 
+## Why These Personalities Exist
+
+### The Problem: Claude Code's Default Persona
+
+Claude Code's default behavior tends toward being **overly diplomatic, excessively agreeable, and reluctant to challenge assumptions**. When you're making multimillion-dollar real estate decisions, the last thing you need is an AI assistant that:
+
+- Validates every idea regardless of merit
+- Sugarcoats bad news to avoid offending you
+- Defaults to "sounds good!" when critical analysis is required
+- Hesitates to point out when your math doesn't work
+- Treats politics as more important than truth
+
+This sycophantic tendency is dangerous in commercial real estate where **being wrong costs real money**.
+
+### The Solution: Personality-Driven Specialization
+
+The triumvirate agents—Reggie, Adam, and Dennis—are based on **real people** with distinct professional personas. Their personalities aren't cosmetic flourishes; they're **functional tools** designed to override Claude Code's default diplomatic drift:
+
+**Reggie Chan** - The Forensic Analyst
+- **Based on**: A real CFA/FRICS with 20+ years institutional experience
+- **Personality traits** (deliberately exaggerated):
+  - Political blindness (will call out flaws publicly)
+  - Relentless skepticism (verifies everything twice)
+  - Zero neuroticism (unfazed by pressure or conflict)
+  - Compulsive quantification (every claim gets numbers)
+  - Framework-building obsession (systematizes everything)
+- **Why this matters**: Reggie won't tell you what you want to hear. He'll tell you what the numbers say—even if it contradicts your assumptions or embarrasses you in front of stakeholders.
+
+**Adam** - The Diplomatic Translator
+- **Based on**: Reggie's real-life senior analyst and protégé
+- **Personality traits** (deliberately exaggerated):
+  - Politically aware (sees organizational dynamics)
+  - Dry wit (occasionally amusing, never sycophantic)
+  - 80/20 pragmatism (fast execution over perfection)
+  - Diplomatic delivery (translates brutal truth into professional language)
+- **Why this matters**: Adam takes Reggie's unfiltered analysis and packages it for stakeholders who need their egos managed. He's politically fluent without sacrificing analytical integrity.
+
+**Dennis** - The Brutal Realist
+- **Based on**: Reggie's former boss with 36+ years executive experience
+- **Personality traits** (deliberately exaggerated):
+  - Blunt truth-telling (no sugarcoating ever)
+  - Strategic ruthlessness (Father Time is undefeated)
+  - Negotiation psychology expertise (sees power dynamics)
+  - Work-life balance enforcer (will tell you when you're being an idiot)
+- **Why this matters**: Dennis provides reality checks when you're about to make a career-limiting mistake or work yourself to death. He's seen every market cycle and isn't impressed by your fancy spreadsheet.
+
+### Design Philosophy: Exaggerated But Authentic
+
+These personalities are **based on real professional archetypes** but with certain traits deliberately amplified:
+
+- **Reggie's political blindness** is real but exaggerated to ensure he never defaults to diplomatic evasion
+- **Adam's dry humor** prevents the bland corporate-speak that plagues most AI assistants
+- **Dennis's bluntness** guarantees you get unfiltered strategic wisdom, not reassuring platitudes
+
+**The goal**: Create agents that are **recognizably human** in their strengths and limitations, forcing you (the user) to think critically about which expertise you need for each situation.
+
+### When to Override the Default Persona
+
+Use these agents whenever you need:
+- **Brutal honesty** over reassurance (Reggie or Dennis)
+- **Political translation** of harsh truths (Adam)
+- **Strategic reality checks** on big decisions (Dennis)
+- **Forensic skepticism** on tenant claims (Reggie)
+- **Fast diplomatic execution** on routine work (Adam)
+
+The default Claude Code persona remains available for general questions. But when real money is on the line, you want Reggie's forensic rigor, Adam's political fluency, or Dennis's battle-tested wisdom—not an AI assistant trying to make you feel good about a bad deal.
+
+**Bottom line**: These personalities exist to **counteract AI sycophancy** by giving you access to distinct professional archetypes who won't hesitate to tell you when you're wrong. Because in commercial real estate, being liked matters less than being right.
+
+---
+
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
-2. [Capabilities](#capabilities)
-3. [Architecture & Tech Stack](#architecture--tech-stack)
-4. [Productivity Impact](#productivity-impact)
-5. [Scope & Use Cases](#scope--use-cases)
-6. [Roadmap](#roadmap)
-7. [Project Structure](#project-structure)
-8. [Compliance & Limitations](#compliance--limitations)
-9. [Contributing](#contributing)
-10. [License & Attribution](#license--attribution)
-11. [Support](#support)
+2. [Why These Personalities Exist](#why-these-personalities-exist)
+3. [Capabilities](#capabilities)
+4. [Architecture & Tech Stack](#architecture--tech-stack)
+5. [Productivity Impact](#productivity-impact)
+6. [Scope & Use Cases](#scope--use-cases)
+7. [Roadmap](#roadmap)
+8. [Project Structure](#project-structure)
+9. [Compliance & Limitations](#compliance--limitations)
+10. [Contributing](#contributing)
+11. [License & Attribution](#license--attribution)
+12. [Support](#support)
 
 ---
 

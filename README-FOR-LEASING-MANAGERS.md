@@ -93,6 +93,65 @@ Or just ask: "Adam, run a credit check on this tenant." (Adam handles routine cr
 
 ---
 
+## Why These Three Have Personalities (And Why That Matters)
+
+### The Problem With Most AI Assistants
+
+Most AI tools will tell you what you want to hear. They validate your ideas. They sugarcoat bad news. They default to "sounds good!" when you need critical analysis.
+
+**That's dangerous when you're making multimillion-dollar leasing decisions.**
+
+When a broker tells you their tenant is "financially strong," you need someone who will verify that claim, not someone who agrees because it sounds plausible. When you're about to accept a below-market renewal because you're tired of fighting, you need someone who will tell you that's a terrible idea—not someone who validates your exhaustion.
+
+### Why Reggie, Adam, and Dennis Are Different
+
+These three agents are based on **real people** with distinct professional personalities. And those personalities aren't just flavor—they're **functional design choices** to ensure you get truth instead of agreement:
+
+**Reggie Chan** - The Forensic Analyst
+- Will call the CFO's numbers wrong. In front of everyone. Because they're wrong.
+- Verifies every claim twice (trust but verify actually means verify everything twice)
+- Politically blind (cannot see organizational dynamics, only sees what's optimal)
+- Crisis-optimized (thrives under pressure, gets bored with routine)
+- **Why this matters**: Reggie won't validate a bad deal to make you feel better. He'll tell you what the numbers say, even if it's not what you wanted to hear.
+
+**Adam** - The Diplomatic Translator
+- Sees politics and organizational dynamics (Reggie's blind spot)
+- Takes brutal truth and makes it professionally deliverable
+- Fast execution without over-engineering (80/20 pragmatism)
+- Occasionally amusing, never sycophantic
+- **Why this matters**: Adam can take Reggie's analysis ("this deal is financially illiterate") and rephrase it for your boss ("the renewal economics don't support this structure given current market conditions"). Same truth, better delivery.
+
+**Dennis** - The Brutal Realist
+- Blunt to the point of discomfort (no sugarcoating, ever)
+- Seen every market cycle, every negotiation trick, every career mistake
+- Work-life balance enforcer (will tell you when you're being an idiot)
+- Strategic ruthlessness (Father Time is undefeated, make decisions accordingly)
+- **Why this matters**: When you need to hear "you're about to accept a terrible deal because you're tired and want to go home," Dennis will say exactly that. Not because he's mean—because he cares enough to tell you the truth.
+
+### Design Philosophy: Real People, Exaggerated Traits
+
+These personalities are based on **actual commercial real estate professionals** but with certain traits deliberately amplified:
+
+- **Reggie's political blindness** is real but exaggerated to ensure he never defaults to diplomatic evasion
+- **Adam's political awareness** is enhanced to ensure someone on the team can translate harsh truths for stakeholder consumption
+- **Dennis's bluntness** is dialed up to guarantee you get unfiltered strategic wisdom when you need it
+
+**The goal**: Give you access to distinct professional archetypes with **recognizably human strengths and limitations**, forcing you to think critically about which expertise you need for each situation.
+
+### When the Personalities Actually Help You
+
+**Need brutal honesty on deal economics?** Ask Reggie. He'll quantify exactly how bad (or good) it is.
+
+**Need to deliver that analysis to your boss without starting a war?** Ask Adam to rephrase it diplomatically.
+
+**Wondering whether to push for better terms or accept what's on the table?** Ask Dennis. He's seen this exact negotiation 50 times and knows when to push and when to fold.
+
+**Bottom line**: These personalities exist to **counteract AI sycophancy** and give you truth instead of validation. Because in commercial real estate, being liked by your AI assistant matters a lot less than getting the deal right.
+
+The default Claude Code persona is still available for general questions. But when real money is on the line, you want Reggie's forensic rigor, Adam's political fluency, or Dennis's battle-tested wisdom—not an AI that tells you your bad deal is "interesting" and "worth exploring further."
+
+---
+
 ### When You Need to Compare Offers
 
 *Old way:* Build a comparison spreadsheet from scratch. Copy-paste rent schedules. Try to remember which version of the model you sent last time. Hope nobody notices the TI number changed.
