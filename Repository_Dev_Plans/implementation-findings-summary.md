@@ -80,13 +80,37 @@ Of the 4 reported "critical bugs" in the implementation plan, **only 1 was actua
 
 ---
 
-### 4. ⏸️ Relative Valuation Filters - NOT INVESTIGATED
+### 4. ✅ Relative Valuation Filters - CONFIRMED BUGS, FIXED
 
 **Reported Issue**: "can remove subject property entirely and fabricate rent/TMI cuts"
 
-**Status**: NOT INVESTIGATED (out of scope given 2/3 other bugs were false positives)
+**Finding**: **TWO BUGS CONFIRMED AND FIXED**
 
-**Recommendation**: Investigate separately with user confirmation that this is actually a problem
+**Bug #1: Subject Can Be Filtered Out**
+- **Root Cause**: Line 1203 applied `apply_must_have_filters()` to ALL properties including subject
+- **Impact**: If subject failed must-have filters (e.g., missing rail_access), it was excluded entirely
+- **Example**: Subject without rail access → removed from analysis → nonsensical results
+- **Fix**: Separate subject from comparables, only filter comparables, always retain subject with warning
+
+**Bug #2: Bogus Sensitivity with < 4 Properties**
+- **Root Cause**: Lines 1461-1484 set `rank_3_score = 0.0` when < 3 comparables exist, but sensitivity analysis ALWAYS ran
+- **Impact**:
+  - `gap_points = subject_score - 0 = 5.71` (huge bogus gap!)
+  - `rent_reduction = (5.71/0.16) × 0.05 = $1.78/sf` (nonsense recommendation!)
+- **Example**: Subject ranked #3 out of 3 total → gap to rank #3 = gap to self = 0 → bogus sensitivity
+- **Fix**:
+  - Require 4+ properties (subject + 3 comparables) for gap analysis
+  - Change rank_3_score from 0.0 to None when insufficient data
+  - Skip sensitivity analysis entirely when rank_3_score is None
+
+**Validation**:
+- Tested with edge case: subject fails filters, only 2 comparables
+- ✅ Subject retained with warning about filter failures
+- ✅ Sensitivity analysis correctly skipped with clear messaging
+
+**Files Modified**:
+- `Relative_Valuation/relative_valuation_calculator.py` (lines 1199-1225, 1478-1510, 957-961, 1009-1017)
+- Added test case: `Relative_Valuation/test_fix_edge_cases.json`
 
 ---
 
@@ -97,16 +121,17 @@ Of the 4 reported "critical bugs" in the implementation plan, **only 1 was actua
 | IFRS 16 | ✅ Correct | All pass | None - working as designed |
 | Yield Curve | ✅ Correct | 100% match to academic paper | None - working as designed |
 | Rollover | 🔧 Fixed | 37/37 pass | Major - 65% reduction in overstated vacancy |
-| Relative Val | ⏸️ Not investigated | N/A | Unknown |
+| Relative Val | 🔧 Fixed (2 bugs) | Edge cases verified | Critical - prevented subject removal & bogus recommendations |
 
 ---
 
 ## Lessons Learned
 
-1. **Validate claimed bugs before implementing fixes** - 2 out of 3 investigated bugs were false positives
+1. **Validate claimed bugs before implementing fixes** - 2 out of 4 reported bugs were false positives
 2. **Test-driven verification** - Tests passing is strong evidence of correctness
 3. **Understand the domain** - IFRS 16 annuity-due treatment requires accounting knowledge
 4. **Academic validation** - Yield Curve matching Chan (2016) paper proves correctness
+5. **Edge case testing is critical** - Relative Valuation bugs only surfaced with < 4 properties
 
 ---
 
@@ -121,8 +146,16 @@ Of the 4 reported "critical bugs" in the implementation plan, **only 1 was actua
 2. `Rollover_Analysis/Tests/test_rollover_calculator.py`:
    - Updated test expectations to match corrected behavior
 
+3. `Relative_Valuation/relative_valuation_calculator.py`:
+   - Separated subject from comparables before filtering (lines 1205-1225)
+   - Fixed gap analysis to require 4+ properties (lines 1478-1510)
+   - Updated report generation to handle None values (lines 957-961, 1009-1017)
+
+4. Added test case: `Relative_Valuation/test_fix_edge_cases.json`
+
 ### Documentation Changes
-None required (implementation plan was incorrect)
+- Created `implementation-findings-summary.md` documenting all findings
+- Enhanced `implementation-plan-fixes.md` with pre-implementation checklist
 
 ---
 
@@ -130,6 +163,8 @@ None required (implementation plan was incorrect)
 
 **DO NOT** implement the IFRS 16 or Yield Curve "fixes" from the implementation plan. They would break correctly functioning code.
 
-**DO** investigate Relative Valuation issue separately with user confirmation of the problem.
+**COMPLETED**: All actual bugs have been fixed:
+- ✅ Rollover Analysis: Vacancy calculations now respect renewal rates
+- ✅ Relative Valuation: Subject can't be filtered out, no more bogus sensitivity scenarios
 
-**CONSIDER** updating the implementation plan to reflect these findings to avoid future confusion.
+**Final Status**: 2 real bugs fixed (Rollover + Relative Val), 2 false positives identified (IFRS 16 + Yield Curve)
