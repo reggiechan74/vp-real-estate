@@ -33,11 +33,27 @@ interface MatchedSkill {
     config: SkillConfig;
 }
 
+interface AgentMatch {
+    name: 'adam' | 'reggie-chan-vp' | 'dennis';
+    displayName: string;
+    role: string;
+    model: 'haiku' | 'sonnet' | 'opus';
+}
+
 async function main() {
     try {
         const input = readFileSync(0, 'utf-8');
         const data: HookInput = JSON.parse(input);
 
+        // First check for agent invocation
+        const agentMatch = detectAgent(data.prompt);
+        if (agentMatch) {
+            const output = formatAgentSuggestion(agentMatch);
+            console.log(output);
+            process.exit(0);
+        }
+
+        // If no agent detected, proceed with skill matching
         const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
         const rulesPath = join(projectDir, '.claude', 'skill-rules.json');
 
@@ -55,6 +71,84 @@ async function main() {
         console.error('Error in UserPromptSubmit hook:', err);
         process.exit(0);  // Fail gracefully
     }
+}
+
+function detectAgent(prompt: string): AgentMatch | null {
+    const lowerPrompt = prompt.toLowerCase();
+
+    // Agent detection patterns
+    const agents = [
+        {
+            name: 'adam' as const,
+            displayName: 'Adam',
+            role: 'Senior Analyst',
+            model: 'haiku' as const,
+            patterns: [
+                /^adam[,:\s]/i,           // "Adam," or "Adam:" or "Adam "
+                /\bhey\s+adam\b/i,        // "hey adam"
+                /\bask\s+adam\b/i,        // "ask adam"
+                /\badam\s+can\s+you\b/i,  // "adam can you"
+                /\badam\s+what\b/i,       // "adam what"
+                /\badam\s+please\b/i,     // "adam please"
+            ]
+        },
+        {
+            name: 'reggie-chan-vp' as const,
+            displayName: 'Reggie',
+            role: 'VP of Leasing and Asset Management',
+            model: 'sonnet' as const,
+            patterns: [
+                /^reggie[,:\s]/i,
+                /\bhey\s+reggie\b/i,
+                /\bask\s+reggie\b/i,
+                /\breggie\s+can\s+you\b/i,
+                /\breggie\s+what\b/i,
+                /\breggie\s+please\b/i,
+            ]
+        },
+        {
+            name: 'dennis' as const,
+            displayName: 'Dennis',
+            role: 'Strategic Advisor',
+            model: 'opus' as const,
+            patterns: [
+                /^dennis[,:\s]/i,
+                /\bhey\s+dennis\b/i,
+                /\bask\s+dennis\b/i,
+                /\bdennis\s+can\s+you\b/i,
+                /\bdennis\s+what\b/i,
+                /\bdennis\s+please\b/i,
+            ]
+        }
+    ];
+
+    // Check each agent's patterns
+    for (const agent of agents) {
+        const matched = agent.patterns.some(pattern => pattern.test(prompt));
+        if (matched) {
+            return {
+                name: agent.name,
+                displayName: agent.displayName,
+                role: agent.role,
+                model: agent.model
+            };
+        }
+    }
+
+    return null;
+}
+
+function formatAgentSuggestion(agent: AgentMatch): string {
+    let output = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+    output += '👤 AGENT ACTIVATION DETECTED\n';
+    output += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+    output += `🎯 AGENT REQUESTED: ${agent.displayName}\n`;
+    output += `📋 Role: ${agent.role}\n`;
+    output += `🤖 Model: ${agent.model}\n\n`;
+    output += `ACTION: Use Task tool with subagent_type="${agent.name}"\n`;
+    output += `⚠️  IMPORTANT: Pass through ${agent.displayName}'s response UNFILTERED\n`;
+    output += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+    return output;
 }
 
 function analyzePrompt(prompt: string, rules: SkillRules): MatchedSkill[] {
