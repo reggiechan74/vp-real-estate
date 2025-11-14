@@ -1,0 +1,55 @@
+{
+  "analysis_date": "2025-11-14",
+  "market": "Test Market - Edge Cases",
+  "subject_property": {
+    "address": "123 Subject Property",
+    "unit": "Unit A",
+    "year_built": 2020,
+    "clear_height_ft": 28,
+    "pct_office_space": 10,
+    "parking_ratio": 2.0,
+    "available_sf": 50000,
+    "net_asking_rent": 12.50,
+    "tmi": 5.00,
+    "class": 1,
+    "distance_km": 0,
+    "is_subject": true,
+    "rail_access": false
+  },
+  "comparables": [
+    {
+      "address": "100 Comparable One",
+      "unit": "Building 1",
+      "year_built": 2015,
+      "clear_height_ft": 30,
+      "pct_office_space": 15,
+      "parking_ratio": 2.5,
+      "available_sf": 60000,
+      "net_asking_rent": 11.00,
+      "tmi": 4.50,
+      "class": 1,
+      "distance_km": 2.5,
+      "is_subject": false,
+      "rail_access": true
+    },
+    {
+      "address": "200 Comparable Two",
+      "unit": "Suite B",
+      "year_built": 2018,
+      "clear_height_ft": 32,
+      "pct_office_space": 12,
+      "parking_ratio": 3.0,
+      "available_sf": 55000,
+      "net_asking_rent": 10.50,
+      "tmi": 4.00,
+      "class": 2,
+      "distance_km": 1.5,
+      "is_subject": false,
+      "rail_access": true
+    }
+  ],
+  "filters": {
+    "rail_access": true,
+    "clear_height_ft_min": 30
+  }
+}
