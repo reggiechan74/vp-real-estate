@@ -61,6 +61,7 @@ class Assumptions:
         "base": 3,
         "pessimistic": 6
     })
+    renewal_downtime_months: int = 0  # Downtime for renewals (default 0 - no downtime for existing tenants)
     market_rent_sf: float = 16.50
     market_rent_growth_annual: float = 0.025
     ti_allowance_sf: float = 15.00
@@ -75,7 +76,9 @@ class Assumptions:
             self.renewal_rate_base,
             self.renewal_rate_pessimistic
         ]):
-            raise ValueError("Renewal rates must be between 0 and 1")
+            raise ValueError("Renewal rates must be between 0 and 1 (inclusive)")
+        if self.renewal_downtime_months < 0:
+            raise ValueError(f"renewal_downtime_months must be >= 0: {self.renewal_downtime_months}")
 
 
 @dataclass
@@ -393,9 +396,14 @@ def calculate_scenario_analysis(
         total_sf = portfolio.total_area_sf
         total_rent = portfolio.total_annual_rent
 
-        # Expected vacancy = all leases have downtime (renewals have minimum 1 month)
-        expected_downtime_months = downtime_months
-        expected_vacancy_rent = total_rent * (expected_downtime_months / 12.0)
+        # FIXED: Only churning tenants (1 - renewal_rate) have full downtime
+        # Renewing tenants have minimal downtime (renewal_downtime_months, default 0)
+        churn_rate = 1 - renewal_rate
+        expected_vacancy_sf = total_sf * churn_rate  # Only churning space is vacant
+
+        # Weighted average downtime: churning tenants have full downtime, renewals have renewal_downtime
+        weighted_downtime = (churn_rate * downtime_months) + (renewal_rate * assumptions.renewal_downtime_months)
+        expected_vacancy_rent = total_rent * (weighted_downtime / 12.0)
 
         # Calculate NPV of NOI impact
         # Discount back to analysis date at discount rate
@@ -406,8 +414,10 @@ def calculate_scenario_analysis(
             years_to_expiry = item.year - analysis_date.year
             if years_to_expiry > 0:
                 years_ahead.append(years_to_expiry)
-                # NOI delta = lost rent during downtime
-                noi_delta = -item.total_annual_rent * (downtime_months / 12.0)
+                # NOI delta = lost rent during downtime, adjusted for renewal rate
+                # Only churning tenants have full downtime
+                weighted_downtime_year = (churn_rate * downtime_months) + (renewal_rate * assumptions.renewal_downtime_months)
+                noi_delta = -item.total_annual_rent * (weighted_downtime_year / 12.0)
                 noi_deltas.append(noi_delta)
 
         # Discount to present value
@@ -422,7 +432,7 @@ def calculate_scenario_analysis(
             downtime_months=downtime_months,
             leases_renewed=leases_renewed,
             leases_new_tenant=leases_new_tenant,
-            expected_vacancy_sf=total_sf,  # All space has downtime
+            expected_vacancy_sf=expected_vacancy_sf,  # FIXED: Only churning space
             expected_vacancy_rent=expected_vacancy_rent,
             noi_impact_npv=noi_impact_npv
         ))

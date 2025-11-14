@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.1, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/python/3.12.1/bin/python3
+cachedir: .pytest_cache
+rootdir: /workspaces/lease-abstract
+plugins: anyio-4.9.0
+collecting ... ERROR: found no collectors for /workspaces/lease-abstract/Eff_Rent_Calculator/Tests/test_ifrs16_calculator.py::TestAmortizationSchedule::test_amortization_final_balance_zero
+
+collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+_____ ERROR collecting Eff_Rent_Calculator/Tests/test_ifrs16_calculator.py _____
+ImportError while importing test module '/workspaces/lease-abstract/Eff_Rent_Calculator/Tests/test_ifrs16_calculator.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/python/3.12.1/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Eff_Rent_Calculator/Tests/test_ifrs16_calculator.py:23: in <module>
+    from IFRS16_Calculator.ifrs16_calculator import (
+E   ModuleNotFoundError: No module named 'IFRS16_Calculator'
+=========================== short test summary info ============================
+ERROR Eff_Rent_Calculator/Tests/test_ifrs16_calculator.py
+=============================== 1 error in 2.36s ===============================
