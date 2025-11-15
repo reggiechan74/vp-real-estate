@@ -1,0 +1,27 @@
+{
+  "property": {
+    "address": "250 acres agricultural land, Concession Road 5, Wellington County, ON",
+    "total_acres": 250,
+    "fee_simple_value": 8750000,
+    "zoning": "Agricultural",
+    "highest_and_best_use": "Cash crop farming (corn/soybean rotation)"
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "voltage_kv": 500,
+    "area_acres": 4.0,
+    "width_meters": 80,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "no_trees",
+      "height_restrictions"
+    ],
+    "hbu_impact": "moderate",
+    "easement_rent_factor": 0.40
+  },
+  "market_parameters": {
+    "cap_rate": 0.07,
+    "annual_rent_per_acre": 250
+  }
+}

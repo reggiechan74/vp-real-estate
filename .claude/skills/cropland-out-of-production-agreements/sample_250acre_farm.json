@@ -1,0 +1,47 @@
+{
+  "farm_details": {
+    "total_acres": 250,
+    "land_value_per_acre": 35000,
+    "crop_type": "corn_soybean_rotation",
+    "net_income_per_acre": 600
+  },
+  "infrastructure": {
+    "type": "transmission_line",
+    "voltage": "500kV",
+    "row_width_m": 80,
+    "crossing_length_km": 2,
+    "tower_count": 16,
+    "tower_classification": {
+      "cultivated": 14,
+      "headlands": 2,
+      "uncultivated": 0
+    },
+    "lifespan_years": 50
+  },
+  "compensation_offer": {
+    "model": "ontario_hydro_one",
+    "one_time_easement": 21000,
+    "theoretical_profit_6yr": 12000,
+    "total_one_time": 33000
+  },
+  "ongoing_impacts": {
+    "headland_radius_m": 15,
+    "headland_productivity_loss_pct": 40,
+    "aerial_spray_restriction": true,
+    "ground_spray_cost_per_ha": 500,
+    "aerial_spray_cost_per_ha": 50,
+    "precision_ag_interference": true,
+    "gps_interference_width_m": 100,
+    "overlap_pct": 7,
+    "input_costs_per_ha": 800,
+    "labor_increase_pct": 10,
+    "hourly_labor_cost": 50,
+    "weed_control_per_tower": 50,
+    "equipment_damage_probability_pct": 2,
+    "average_damage_cost": 5000
+  },
+  "financial_parameters": {
+    "discount_rate_pct": 5.0,
+    "analysis_period_years": 50
+  }
+}
