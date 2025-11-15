@@ -954,11 +954,11 @@ These properties offer the best value propositions in the market:
 | Metric | Value |
 |--------|-------|
 | **Subject Weighted Score** | {subject['weighted_score']:.2f} |
-| **Rank #3 Weighted Score** | {gap.get('rank_3_score', 'N/A'):.2f} |
+| **Rank #3 Weighted Score** | {gap.get('rank_3_score') if gap.get('rank_3_score') is not None else 'N/A'} |
 | **Rank #3 Property** | {gap.get('rank_3_property', 'N/A')} |
-| **Gap to Close** | **{gap.get('gap_to_rank_3', 0):.2f} points** |
+| **Gap to Close** | **{f"{gap.get('gap_to_rank_3'):.2f} points" if gap.get('gap_to_rank_3') is not None else 'N/A (insufficient comparables)'}** |
 
-**To achieve Rank #3 and become competitive, subject must improve weighted score by {gap.get('gap_to_rank_3', 0):.2f} points.**
+{f"**To achieve Rank #3 and become competitive, subject must improve weighted score by {gap.get('gap_to_rank_3'):.2f} points.**" if gap.get('gap_to_rank_3') is not None else '**Note**: Gap analysis requires at least 3 properties. Current analysis has insufficient comparables for meaningful gap calculation.'}
 
 </div>
 
@@ -1006,15 +1006,15 @@ Your property is in the Top 3 - you have strong competitive positioning. Conside
 
 You are ranked #{rank} - **{rank - 3} properties offer better value**. To compete effectively:
 - **Implement Option 1** (recommended): Reduce net rent by indicated amount
-- **Alternative**: Offer above-market TI allowance (${gap.get('gap_to_rank_3', 0) * 5:.2f}/sf)
-- **Alternative**: Increase free rent period (add {int(gap.get('gap_to_rank_3', 0) / 2)} months)
+- **Alternative**: Offer above-market TI allowance ({f"${gap.get('gap_to_rank_3') * 5:.2f}/sf" if gap.get('gap_to_rank_3') is not None else 'insufficient data for calculation'})
+- **Alternative**: Increase free rent period ({f"add {int(gap.get('gap_to_rank_3') / 2)} months" if gap.get('gap_to_rank_3') is not None else 'insufficient data for calculation'})
 - **Monitor market**: Re-run analysis in 60 days if no LOI activity
 """
     else:
         recommendation = f"""### **RECOMMENDATION: AGGRESSIVE PRICING REDUCTION OR REPOSITIONING**
 
 You are ranked #{rank} - **SERIOUS COMPETITIVE DISADVANTAGE**. Consider:
-- **Aggressive rent reduction**: ${gap.get('gap_to_rank_3', 0) * 0.10:.2f}/sf or more
+- **Aggressive rent reduction**: {f"${gap.get('gap_to_rank_3') * 0.10:.2f}/sf or more" if gap.get('gap_to_rank_3') is not None else 'significant reduction needed'}
 - **Capital investment**: Address structural weaknesses (parking, clear height, building age)
 - **Reposition**: Convert to alternative use (self-storage, last-mile delivery, etc.)
 - **Exit strategy**: Sell to value-add investor or owner-user
@@ -1197,14 +1197,32 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
                 prop['building_age_years'] = analysis_year - prop['year_built']
 
     # Apply must-have filters if specified
+    # IMPORTANT: Only filter comparables, never remove the subject property
     filters = data.get('filters', {})
     if filters:
         print(f"\n   Applying must-have filters...")
-        filtered_properties, excluded_properties = apply_must_have_filters(all_properties_data, filters)
-        print(f"   {len(excluded_properties)} properties excluded by filters")
+
+        # Separate subject from comparables
+        comparables = [p for p in all_properties_data if not p.get('is_subject', False)]
+        subject_list = [p for p in all_properties_data if p.get('is_subject', False)]
+
+        # Apply filters only to comparables
+        filtered_comparables, excluded_properties = apply_must_have_filters(comparables, filters)
+
+        # Check if subject would fail filters (for reporting, but don't exclude it)
+        if subject_list:
+            subject_filtered, subject_excluded = apply_must_have_filters(subject_list, filters)
+            if subject_excluded:
+                print(f"   ⚠️  WARNING: Subject property would fail filters but is retained for analysis:")
+                for excl in subject_excluded:
+                    print(f"      - {excl['address']}: {', '.join(excl['exclusion_reasons'])}")
+
+        print(f"   {len(excluded_properties)} comparable properties excluded by filters")
         for excl in excluded_properties:
             print(f"      - {excl['address']}: {', '.join(excl['exclusion_reasons'])}")
-        all_properties_data = filtered_properties
+
+        # Always include subject + filtered comparables
+        all_properties_data = subject_list + filtered_comparables
 
     # Calculate area differences
     subject_sf = subject_data['available_sf']
@@ -1458,7 +1476,9 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
     top_10 = all_properties_data[:10]
 
     # Gap analysis
-    if len(all_properties_data) >= 3:
+    # FIXED: Only calculate gap if we have at least 4 properties (subject + 3 comparables)
+    # This ensures rank #3 is always a comparable, never the subject itself
+    if len(all_properties_data) >= 4:
         rank_3_property = all_properties_data[2]
         gap_to_rank_3 = subject_result['weighted_score'] - rank_3_property['weighted_score']
         gap_analysis = {
@@ -1467,21 +1487,29 @@ def run_analysis(data: Dict[str, Any]) -> CompetitiveAnalysis:
             'rank_3_property': f"{rank_3_property['address']} {rank_3_property.get('unit', '')}"
         }
     else:
+        # Not enough comparables for meaningful gap analysis
+        # Need at least 3 comparables + subject = 4 total properties
         gap_analysis = {
-            'gap_to_rank_3': 0.0,
-            'rank_3_score': 0.0,
-            'rank_3_property': 'N/A'
+            'gap_to_rank_3': None,  # Changed from 0.0 to None to indicate "not applicable"
+            'rank_3_score': None,   # Changed from 0.0 to None
+            'rank_3_property': f'N/A (only {len(all_properties_data)} properties total, need 4+ for gap analysis)'
         }
 
     # Run sensitivity analysis
-    print("\n   Running sensitivity analysis...")
-    sensitivity_scenarios = run_sensitivity_analysis(
-        subject_result,
-        all_properties_data,
-        weights,
-        subject_result['weighted_score'],
-        gap_analysis['rank_3_score']
-    )
+    # FIXED: Skip sensitivity analysis when there are fewer than 3 comparables
+    # (rank_3_score = None indicates insufficient data)
+    if gap_analysis['rank_3_score'] is not None:
+        print("\n   Running sensitivity analysis...")
+        sensitivity_scenarios = run_sensitivity_analysis(
+            subject_result,
+            all_properties_data,
+            dynamic_weights,  # FIXED: Use dynamic_weights instead of weights for consistency
+            subject_result['weighted_score'],
+            gap_analysis['rank_3_score']
+        )
+    else:
+        print(f"\n   ⚠️  Skipping sensitivity analysis - insufficient comparables ({len(all_properties_data)} total, need 3+)")
+        sensitivity_scenarios = []
 
     # Build results object
     results = CompetitiveAnalysis(

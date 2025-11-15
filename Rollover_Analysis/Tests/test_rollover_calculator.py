@@ -514,25 +514,29 @@ class TestScenarioModeling(unittest.TestCase):
         total_sf = sum(lease.rentable_area_sf for lease in portfolio.leases)
         total_rent = sum(lease.current_annual_rent for lease in portfolio.leases)
 
-        # Expected vacancy SF should always match portfolio total
-        self.assertEqual(optimistic.expected_vacancy_sf, total_sf)
-        self.assertEqual(base.expected_vacancy_sf, total_sf)
-        self.assertEqual(pessimistic.expected_vacancy_sf, total_sf)
+        # FIXED: Expected vacancy SF reflects churn rate (1 - renewal_rate), not total portfolio
+        # Optimistic: 80% renewal → 20% churn
+        self.assertAlmostEqual(optimistic.expected_vacancy_sf, total_sf * 0.20, places=1)
+        # Base: 65% renewal → 35% churn
+        self.assertAlmostEqual(base.expected_vacancy_sf, total_sf * 0.35, places=1)
+        # Pessimistic: 50% renewal → 50% churn
+        self.assertAlmostEqual(pessimistic.expected_vacancy_sf, total_sf * 0.50, places=1)
 
-        # Expected vacancy rent scales with downtime months
+        # Expected vacancy rent uses weighted downtime (churn * full downtime + renewal * renewal downtime)
+        # With renewal_downtime_months = 0 (default), only churning tenants contribute to vacancy rent
         self.assertAlmostEqual(
             optimistic.expected_vacancy_rent,
-            total_rent * (optimistic.downtime_months / 12.0),
+            total_rent * 0.20 * (optimistic.downtime_months / 12.0),  # 20% churn with 1 month downtime
             places=2
         )
         self.assertAlmostEqual(
             base.expected_vacancy_rent,
-            total_rent * (base.downtime_months / 12.0),
+            total_rent * 0.35 * (base.downtime_months / 12.0),  # 35% churn with 3 months downtime
             places=2
         )
         self.assertAlmostEqual(
             pessimistic.expected_vacancy_rent,
-            total_rent * (pessimistic.downtime_months / 12.0),
+            total_rent * 0.50 * (pessimistic.downtime_months / 12.0),  # 50% churn with 6 months downtime
             places=2
         )
 

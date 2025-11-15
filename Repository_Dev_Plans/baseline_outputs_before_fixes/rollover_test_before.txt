@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.1, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/python/3.12.1/bin/python3
+cachedir: .pytest_cache
+rootdir: /workspaces/lease-abstract
+plugins: anyio-4.9.0
+collecting ... collected 1 item
+
+Rollover_Analysis/Tests/test_rollover_calculator.py::TestScenarioModeling::test_scenario_specific_downtime PASSED [100%]
+
+============================== 1 passed in 0.13s ===============================
