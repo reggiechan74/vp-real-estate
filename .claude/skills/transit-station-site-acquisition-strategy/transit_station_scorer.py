@@ -244,8 +244,17 @@ def score_tod_potential(tod: TODCharacteristics) -> tuple[float, Dict[str, float
     zoning_score = zoning_map.get(tod.zoning_supportiveness, 3.5)
     breakdown['development_potential'] = land_score + zoning_score
 
-    total = sum(breakdown.values())
-    return total, breakdown
+    # Calculate raw total
+    raw_total = sum(breakdown.values())
+
+    # Normalize to 0-100 scale (max possible = 126.5)
+    TOD_MAX = 126.5
+    normalized_total = (raw_total / TOD_MAX) * 100
+
+    # Normalize breakdown values proportionally
+    normalized_breakdown = {k: (v / TOD_MAX) * 100 for k, v in breakdown.items()}
+
+    return normalized_total, normalized_breakdown
 
 
 def score_multi_modal(mm: MultiModalConnections) -> tuple[float, Dict[str, float]]:
@@ -323,8 +332,18 @@ def score_multi_modal(mm: MultiModalConnections) -> tuple[float, Dict[str, float
             park_score = 12
     breakdown['parking'] = kiss_score + park_score
 
-    total = sum(breakdown.values())
-    return total, breakdown
+    # Calculate raw total
+    raw_total = sum(breakdown.values())
+
+    # Normalize to 0-100 scale (max possible = 95)
+    # Max: Bus 33 (28+5) + Cycling 18 (13+5) + Pedestrian 28 + Parking 15 (or 20 with urban bonus) = 95
+    MULTI_MODAL_MAX = 95.0
+    normalized_total = (raw_total / MULTI_MODAL_MAX) * 100
+
+    # Normalize breakdown values proportionally
+    normalized_breakdown = {k: (v / MULTI_MODAL_MAX) * 100 for k, v in breakdown.items()}
+
+    return normalized_total, normalized_breakdown
 
 
 def score_acquisition_complexity(ac: AcquisitionComplexity) -> tuple[float, Dict[str, float]]:

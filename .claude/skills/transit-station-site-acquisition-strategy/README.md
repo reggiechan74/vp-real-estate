@@ -133,25 +133,25 @@ TRANSIT STATION SITE SCORING: Downtown Commerce Station
 
 SCORING RESULTS:
 --------------------------------------------------------------------------------
-TOD Potential:               121.5/100  (higher is better)
-Multi-Modal Connections:      85.5/100  (higher is better)
+TOD Potential:                96.0/100  (higher is better)
+Multi-Modal Connections:      90.0/100  (higher is better)
 Acquisition Complexity:       68.5/100  (LOWER is better)
 Community Impact:             53.0/100  (LOWER is better)
 Holdout Risk:                 12.0/30   (LOWER is better)
 
 COMPOSITE SCORES:
 --------------------------------------------------------------------------------
-Desirability Score:          103.5/100
+Desirability Score:           93.0/100
 Feasibility Score:            39.2/100
-OVERALL SCORE:                69.1/100
+OVERALL SCORE:                64.9/100
 
 RECOMMENDATION:
 --------------------------------------------------------------------------------
 RECOMMENDED - Good balance of benefits and feasibility
 
 Key Strengths:
-  ✓ Excellent TOD potential (122/100)
-  ✓ Strong multi-modal connections (86/100)
+  ✓ Excellent TOD potential (96/100)
+  ✓ Strong multi-modal connections (90/100)
 
 Key Challenges:
   ⚠ High acquisition complexity (68/100)
@@ -164,35 +164,35 @@ Four sample sites are included to demonstrate different scenarios:
 
 ### Site A: Downtown Commerce Station (Urban Infill)
 - **Type**: Urban core redevelopment
-- **Overall Score**: 69.1/100 - RECOMMENDED
-- **Profile**: Excellent TOD potential and multi-modal connections, but complex acquisition with multiple owners and moderate residential displacement
+- **Overall Score**: 64.9/100 - RECOMMENDED
+- **Profile**: Excellent TOD potential (96/100) and multi-modal connections (90/100), but complex acquisition with multiple owners and moderate residential displacement
 - **Key Challenge**: Balancing high transit benefits with acquisition complexity
 
 ### Site B: Meadowlands Greenfield Station
 - **Type**: Greenfield development
-- **Overall Score**: 71.9/100 - RECOMMENDED (Highest Overall)
-- **Profile**: Low existing density but simple acquisition from single landowner with minimal community impact
+- **Overall Score**: 70.7/100 - RECOMMENDED (Highest Overall)
+- **Profile**: Low existing density (TOD 36/100) but simple acquisition from single landowner with minimal community impact
 - **Key Challenge**: Building ridership in low-density area
 
 ### Site C: Historic Chinatown Station (Complex Urban)
 - **Type**: Dense urban ethnic neighborhood
-- **Overall Score**: 47.7/100 - CONSIDER WITH CAUTION
-- **Profile**: Exceptional TOD and multi-modal scores, but very high complexity (22 owners), significant displacement (65 households), and community opposition
-- **Key Challenge**: Severe acquisition and community impacts may outweigh transportation benefits
+- **Overall Score**: 44.2/100 - NOT RECOMMENDED
+- **Profile**: Exceptional TOD (84/100) and multi-modal (93/100) scores, but very high complexity (22 owners), significant displacement (65 households), and community opposition
+- **Key Challenge**: Severe acquisition and community impacts outweigh transportation benefits
 
 ### Site D: Oakridge Town Centre Station (Balanced Suburban)
 - **Type**: Established suburban town centre
-- **Overall Score**: 65.7/100 - RECOMMENDED
+- **Overall Score**: 63.3/100 - RECOMMENDED
 - **Profile**: Moderate scores across all categories - typical suburban TOD opportunity
 - **Key Challenge**: No exceptional strengths but no severe weaknesses
 
 ### Key Insights from Sample Sites
 
-**Best Overall**: Site B (Greenfield) - 71.9/100
+**Best Overall**: Site B (Greenfield) - 70.7/100
 - Demonstrates that simple acquisition and low community impact can offset lower TOD scores
 
-**Best TOD Potential**: Site A (Urban Infill) - 121.5/100
-- Shows exceptional existing density and mixed-use can exceed scoring maximums
+**Best TOD Potential**: Site A (Urban Infill) - 96.0/100
+- Shows exceptional existing density and mixed-use (96% of theoretical maximum)
 
 **Easiest Acquisition**: Site B (Greenfield) - 28.5/100 complexity
 - Single landowner makes execution straightforward
@@ -200,8 +200,8 @@ Four sample sites are included to demonstrate different scenarios:
 **Lowest Community Impact**: Site B (Greenfield) - 10.0/100 impact
 - Minimal displacement of 1 household
 
-**Most Challenging**: Site C (Complex Urban) - 47.7/100
-- Despite best TOD potential, acquisition complexity and community impact severely reduce feasibility
+**Most Challenging**: Site C (Complex Urban) - 44.2/100
+- Despite excellent TOD potential, acquisition complexity and community impact severely reduce feasibility
 
 ## Comparing Multiple Sites
 
@@ -293,9 +293,12 @@ See `samples/*.json` for complete examples.
 - Typical scenario: No exceptional strengths or weaknesses
 - Recommendation: Solid choice for standard TOD implementation
 
-## Limitations
+## Scoring Methodology Notes
 
-1. **Scoring ranges can exceed 100**: Sites with exceptional characteristics (e.g., very high density) may score >100 on individual categories. This is intentional to distinguish truly exceptional sites.
+1. **Normalized 0-100 scales**: All category scores are normalized to true 0-100 scales for clarity and comparability:
+   - TOD Potential: Raw max 126.5 points → normalized to 100
+   - Multi-Modal Connections: Raw max 95 points → normalized to 100
+   - Exceptional sites score in the high 90s (e.g., 96/100) rather than exceeding 100
 
 2. **Context-specific weights**: The 40/40/20 weighting may not suit all contexts. Adjust if needed for specific projects.
 

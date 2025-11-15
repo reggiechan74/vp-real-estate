@@ -11,10 +11,19 @@ from typing import Dict, List, Tuple
 
 @dataclass
 class ScoringCriteria:
-    """All scoring thresholds and criteria for transit station site evaluation"""
+    """All scoring thresholds and criteria for transit station site evaluation
+
+    NOTE: Raw component scores are normalized to a 0-100 scale:
+    - TOD Potential: Raw max 126.5 → normalized to 100
+    - Multi-Modal Connections: Raw max 95 → normalized to 100
+    - Acquisition Complexity: Raw max 100 (no normalization needed)
+    - Community Impact: Raw max 100 (no normalization needed)
+    - Holdout Risk: Raw max 30 (correctly labeled as /30)
+    """
 
     # =========================================================================
     # TOD POTENTIAL SCORING (0-100 points, higher is better)
+    # Raw scores normalized: max 126.5 → 100
     # =========================================================================
 
     # Population density thresholds (people/hectare → points)
@@ -75,6 +84,7 @@ class ScoringCriteria:
 
     # =========================================================================
     # MULTI-MODAL CONNECTIONS SCORING (0-100 points, higher is better)
+    # Raw scores normalized: max 95 → 100
     # =========================================================================
 
     # Bus route integration (number of routes within 200m)

@@ -1,0 +1,52 @@
+{
+  "site_id": "SITE-B",
+  "site_name": "Meadowlands Greenfield Station",
+  "tod_score": 36.0,
+  "tod_breakdown": {
+    "population_density": 1.9762845849802373,
+    "employment_density": 1.9762845849802373,
+    "land_use_mix": 3.9525691699604746,
+    "walkability": 3.9525691699604746,
+    "development_potential": 24.110671936758894
+  },
+  "multi_modal_score": 65.8,
+  "multi_modal_breakdown": {
+    "bus_integration": 14.210526315789473,
+    "cycling": 12.105263157894736,
+    "pedestrian_catchment": 11.052631578947368,
+    "parking": 28.421052631578945
+  },
+  "complexity_score": 28.5,
+  "complexity_breakdown": {
+    "ownership": 2.5,
+    "land_use_conflicts": 7.5,
+    "environmental": 15,
+    "legal": 3.5
+  },
+  "community_impact_score": 10,
+  "community_impact_breakdown": {
+    "direct_displacement": 10,
+    "gentrification_risk": 0,
+    "cultural_heritage": 0,
+    "community_support": 0
+  },
+  "holdout_risk_score": 3,
+  "holdout_risk_breakdown": {
+    "motivation": 1,
+    "sophistication": 1,
+    "alternatives": 1,
+    "risk_level": "Low risk (likely to negotiate in good faith)"
+  },
+  "desirability_score": 50.9,
+  "feasibility_score": 80.8,
+  "overall_score": 70.7,
+  "recommendation": "RECOMMENDED - Good balance of benefits and feasibility",
+  "key_strengths": [
+    "Low acquisition complexity (28/100)",
+    "Minimal community impact (10/100)",
+    "Low holdout risk (3/30)"
+  ],
+  "key_challenges": [
+    "Limited TOD potential (36/100)"
+  ]
+}

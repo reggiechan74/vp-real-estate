@@ -1,0 +1,53 @@
+{
+  "site_id": "SITE-C",
+  "site_name": "Historic Chinatown Station",
+  "tod_score": 106.0,
+  "tod_breakdown": {
+    "population_density": 23,
+    "employment_density": 23,
+    "land_use_mix": 23.5,
+    "walkability": 26.5,
+    "development_potential": 10
+  },
+  "multi_modal_score": 88,
+  "multi_modal_breakdown": {
+    "bus_integration": 33,
+    "cycling": 17,
+    "pedestrian_catchment": 28,
+    "parking": 10
+  },
+  "complexity_score": 88.0,
+  "complexity_breakdown": {
+    "ownership": 35.5,
+    "land_use_conflicts": 30,
+    "environmental": 12.5,
+    "legal": 10
+  },
+  "community_impact_score": 97.5,
+  "community_impact_breakdown": {
+    "direct_displacement": 40,
+    "gentrification_risk": 27.5,
+    "cultural_heritage": 20,
+    "community_support": 10
+  },
+  "holdout_risk_score": 21,
+  "holdout_risk_breakdown": {
+    "motivation": 7,
+    "sophistication": 7,
+    "alternatives": 7,
+    "risk_level": "High risk (likely holdout, plan for expropriation)"
+  },
+  "desirability_score": 97.0,
+  "feasibility_score": 7.2,
+  "overall_score": 47.7,
+  "recommendation": "CONSIDER WITH CAUTION - Moderate challenges present",
+  "key_strengths": [
+    "Excellent TOD potential (106/100)",
+    "Strong multi-modal connections (88/100)"
+  ],
+  "key_challenges": [
+    "High acquisition complexity (88/100)",
+    "Significant community impact (98/100)",
+    "High holdout risk (21/30)"
+  ]
+}
