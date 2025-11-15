@@ -139,6 +139,13 @@ function detectAgent(prompt: string): AgentMatch | null {
 }
 
 function formatAgentSuggestion(agent: AgentMatch): string {
+    // Define signature requirements for each agent
+    const signatures: Record<string, string> = {
+        'dennis': '**— Dennis**\n*Strategic Advisor | 36+ years institutional real estate experience*',
+        'reggie-chan-vp': '**— Reggie, VP Real Estate**',
+        'adam': '**— Adam | Senior Analyst**'
+    };
+
     let output = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
     output += '👤 AGENT ACTIVATION DETECTED\n';
     output += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
@@ -147,6 +154,9 @@ function formatAgentSuggestion(agent: AgentMatch): string {
     output += `🤖 Model: ${agent.model}\n\n`;
     output += `ACTION: Use Task tool with subagent_type="${agent.name}"\n`;
     output += `⚠️  IMPORTANT: Pass through ${agent.displayName}'s response UNFILTERED\n`;
+    output += `✍️  SIGNATURE REQUIRED:\n\n${signatures[agent.name]}\n\n`;
+    output += `⚠️  CRITICAL: Verify the agent's response ends with their signature.\n`;
+    output += `    If missing, DO NOT add it yourself - the agent must include it.\n`;
     output += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
     return output;
 }
