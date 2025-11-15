@@ -1,0 +1,123 @@
+{
+  "subject_property": {
+    "address": "2550 Industrial Parkway North, Hamilton, ON",
+    "property_rights": "fee_simple",
+    "size_sf": 50000,
+    "location_score": 85,
+    "condition": "average",
+    "highway_frontage": true
+  },
+  "comparable_sales": [
+    {
+      "address": "2300 Industrial Parkway North, Hamilton, ON",
+      "sale_price": 4500000,
+      "sale_date": "2024-03-15",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "size_sf": 48000,
+      "location_score": 90,
+      "condition": "good",
+      "highway_frontage": true
+    },
+    {
+      "address": "1850 Barton Street East, Hamilton, ON",
+      "sale_price": 3200000,
+      "sale_date": "2023-11-22",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "seller_vtb",
+        "rate": 3.5,
+        "market_rate": 6.5,
+        "term_years": 10,
+        "loan_amount": 1600000
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "size_sf": 55000,
+      "location_score": 75,
+      "condition": "average",
+      "highway_frontage": false
+    },
+    {
+      "address": "3100 Centennial Parkway North, Stoney Creek, ON",
+      "sale_price": 5800000,
+      "sale_date": "2024-08-10",
+      "property_rights": "leasehold",
+      "ground_rent_annual": 85000,
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "size_sf": 72000,
+      "location_score": 80,
+      "condition": "good",
+      "highway_frontage": true
+    },
+    {
+      "address": "1200 Burlington Street East, Hamilton, ON",
+      "sale_price": 2800000,
+      "sale_date": "2023-06-18",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": false,
+        "motivation_discount_pct": 12
+      },
+      "size_sf": 42000,
+      "location_score": 70,
+      "condition": "fair",
+      "highway_frontage": false
+    },
+    {
+      "address": "4500 North Service Road, Burlington, ON",
+      "sale_price": 6200000,
+      "sale_date": "2024-02-28",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "size_sf": 65000,
+      "location_score": 95,
+      "condition": "excellent",
+      "highway_frontage": true
+    },
+    {
+      "address": "950 Queenston Road, Hamilton, ON",
+      "sale_price": 3750000,
+      "sale_date": "2024-05-12",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "size_sf": 50000,
+      "location_score": 82,
+      "condition": "average",
+      "highway_frontage": false
+    }
+  ],
+  "market_parameters": {
+    "appreciation_rate_annual": 3.5,
+    "cap_rate": 7.0,
+    "location_premium_highway": 15,
+    "location_premium_per_point": 1.0,
+    "size_adjustment_per_sf": 3.0,
+    "condition_adjustment_pct_per_level": 5.0,
+    "valuation_date": "2025-01-15"
+  }
+}
