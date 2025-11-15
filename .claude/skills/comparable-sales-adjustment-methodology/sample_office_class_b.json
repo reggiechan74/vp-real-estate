@@ -1,0 +1,139 @@
+{
+  "subject_property": {
+    "address": "450 Corporate Drive, Burlington, ON",
+    "property_type": "office",
+    "property_rights": "fee_simple",
+
+    "_comment_land": "===== LAND CHARACTERISTICS =====",
+    "lot_size_acres": 3.5,
+    "frontage_linear_feet": 300,
+    "depth_feet": 505,
+    "topography": "level",
+    "utilities": "full_services_adequate",
+    "drainage": "good",
+    "flood_zone": "none",
+    "environmental_status": "clean",
+    "soil_quality": "good_bearing",
+
+    "_comment_site": "===== SITE IMPROVEMENTS =====",
+    "paved_area_acres": 2.2,
+    "fencing": "none",
+    "site_lighting": "adequate",
+    "landscaping": "moderate",
+    "stormwater_management": "basic",
+
+    "_comment_building_office": "===== OFFICE BUILDING CHARACTERISTICS =====",
+    "building_sf": 75000,
+    "floor_plate_efficiency_pct": 83,
+    "parking_spaces_per_1000sf": 3.8,
+    "building_class": "B",
+    "ceiling_height_feet": 9,
+    "elevator_count": 2,
+    "window_line_percentage": 28,
+
+    "_comment_building_general": "===== GENERAL BUILDING CHARACTERISTICS =====",
+    "effective_age_years": 15,
+    "construction_quality": "standard",
+    "functional_utility": "adequate",
+    "energy_certification": "energy_star",
+    "architectural_appeal": "average",
+    "hvac_system": "modern_standard",
+    "condition": "average",
+
+    "_comment_special": "===== SPECIAL FEATURES =====",
+    "backup_generator_kw": 150,
+
+    "_comment_legacy": "===== LEGACY FIELDS =====",
+    "location_score": 82
+  },
+  "comparable_sales": [
+    {
+      "_comment": "COMP 1: Similar Class B, slightly newer",
+      "address": "500 Appleby Line, Burlington, ON",
+      "sale_price": 12500000,
+      "sale_date": "2024-05-18",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 3.2,
+      "building_sf": 72000,
+      "floor_plate_efficiency_pct": 84,
+      "parking_spaces_per_1000sf": 4.0,
+      "building_class": "B",
+      "ceiling_height_feet": 9,
+      "elevator_count": 2,
+      "window_line_percentage": 30,
+      "effective_age_years": 12,
+      "condition": "good",
+      "location_score": 84
+    },
+    {
+      "_comment": "COMP 2: Class B+, better finishes and efficiency",
+      "address": "350 Mainway Drive, Burlington, ON",
+      "sale_price": 15800000,
+      "sale_date": "2024-02-25",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 3.8,
+      "building_sf": 80000,
+      "floor_plate_efficiency_pct": 86,
+      "parking_spaces_per_1000sf": 4.2,
+      "building_class": "B+",
+      "ceiling_height_feet": 9,
+      "elevator_count": 3,
+      "window_line_percentage": 32,
+      "effective_age_years": 10,
+      "condition": "good",
+      "location_score": 88
+    },
+    {
+      "_comment": "COMP 3: Class B-, older, needs updates",
+      "address": "1200 Brant Street, Burlington, ON",
+      "sale_price": 9200000,
+      "sale_date": "2023-09-14",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "seller_vtb",
+        "rate": 4.0,
+        "market_rate": 6.5,
+        "term_years": 5,
+        "loan_amount": 3000000
+      },
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 3.0,
+      "building_sf": 68000,
+      "floor_plate_efficiency_pct": 80,
+      "parking_spaces_per_1000sf": 3.5,
+      "building_class": "B-",
+      "ceiling_height_feet": 8,
+      "elevator_count": 2,
+      "window_line_percentage": 25,
+      "effective_age_years": 22,
+      "condition": "fair",
+      "location_score": 78
+    }
+  ],
+  "market_parameters": {
+    "appreciation_rate_annual": 3.0,
+    "valuation_date": "2025-01-15",
+    "cap_rate": 7.5,
+
+    "location_premium_per_point": 1.0,
+
+    "building_size_adjustment_per_sf": 3.0,
+    "efficiency_adjustment_pct_per_5pts": 1.5,
+    "parking_value_per_space": 4000,
+    "building_class_adjustment_pct_per_level": 10.0,
+    "ceiling_height_premium_per_sf": 3.0,
+    "elevator_value_each": 125000,
+    "window_line_premium_per_sf": 7.0,
+    "condition_adjustment_pct_per_level": 8.0,
+
+    "annual_depreciation_pct": 1.0,
+    "generator_value_per_kw": 750
+  }
+}
