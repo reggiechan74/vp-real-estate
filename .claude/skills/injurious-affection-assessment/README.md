@@ -1,6 +1,43 @@
 # Injurious Affection Calculator
 
+**Version 2.0.0 - Production-Grade Modular Architecture**
+
 Quantifies damages from construction activities and permanent proximity impacts resulting from infrastructure projects.
+
+## ✨ What's New in Version 2.0.0
+
+- **🏗️ Modular Architecture**: Refactored from 900 lines to 340 lines (67% reduction)
+- **🎯 Zero Magic Numbers**: All constants centralized in `config/constants.py`
+- **🛡️ Defensive Programming**: Safe division and error handling utilities
+- **✅ JSON Schema Validation**: Input validation with auto-fix capability
+- **📊 Comprehensive Logging**: Detailed calculation traceability
+- **🔄 100% Backward Compatible**: Identical results to Version 1.0.0
+
+### Modular Structure
+
+```
+injurious-affection-assessment/
+├── injurious_affection_calculator.py  (~340 lines)
+├── config/
+│   └── constants.py                   # Centralized constants
+├── impacts/
+│   ├── noise.py                       # Noise assessment
+│   ├── dust.py                        # Dust assessment
+│   ├── vibration.py                   # Vibration assessment
+│   ├── traffic.py                     # Traffic assessment
+│   ├── business.py                    # Business loss
+│   └── visual.py                      # Visual impact
+├── models/
+│   ├── property_data.py               # Input data models
+│   ├── market_parameters.py           # Market parameters
+│   └── impact_results.py              # Result structures
+├── utils/
+│   ├── calculations.py                # Safe math utilities
+│   └── acoustic.py                    # Noise calculations
+├── tests/fixtures/                    # 5 test scenarios
+├── injurious_affection_input_schema.json
+└── validate_injurious.py              # Validation with auto-fix
+```
 
 ## Overview
 
@@ -324,7 +361,28 @@ You can override default market parameters in the input JSON:
 
 ## Validation
 
-The calculator includes comprehensive input validation:
+### JSON Schema Validation (New in v2.0.0)
+
+Validate and auto-fix input files before calculation:
+
+```bash
+# Validate only
+python validate_injurious.py input.json
+
+# Validate and auto-fix
+python validate_injurious.py input.json --fix
+
+# Fix and save to new file
+python validate_injurious.py input.json --fix --output fixed.json
+```
+
+**Auto-fix capabilities:**
+- Add missing default values
+- Convert string numbers to numeric types
+- Fill in optional equipment parameters
+- Validate against JSON Schema Draft 2020-12
+
+**Runtime validation:**
 - Distance must be positive
 - Property value must be positive
 - Rent reduction percentages capped at 30%
@@ -364,11 +422,22 @@ For complex cases requiring expert testimony, consult a qualified appraiser or a
 
 ## Version History
 
+- **2.0.0** (2025-11-15): Production-grade modular architecture
+  - 🏗️ Refactored to modular structure (900 → 340 lines, 67% reduction)
+  - 🎯 Zero magic numbers (all constants centralized)
+  - 🛡️ Defensive programming (safe_divide, error handling)
+  - ✅ JSON Schema validation with auto-fix
+  - 📊 Comprehensive logging throughout
+  - 🔄 100% backward compatible with v1.0.0
+  - 6 specialized impact modules (noise, dust, vibration, traffic, business, visual)
+  - 5 comprehensive test fixtures
+
 - **1.0.0** (2025-11-15): Initial release
   - Noise, dust, vibration, traffic, business loss, and visual impact calculations
   - Residential and commercial property types
   - Comprehensive JSON input/output
   - Equipment-specific noise modeling
+  - Single-file implementation (900 lines)
 
 ## Support
 
