@@ -106,7 +106,7 @@ Based on overall score:
 ## Installation
 
 ```bash
-cd .claude/skills/transit-station-site-acquisition-strategy/calculators/transit_station_scoring
+cd .claude/skills/transit-station-site-acquisition-strategy
 chmod +x transit_station_scorer.py
 ```
 
