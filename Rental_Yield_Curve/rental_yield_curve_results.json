@@ -1,80 +1,80 @@
 {
-  "calculation_date": "2025-10-30 18:57:38",
+  "calculation_date": "2025-11-14 23:53:18",
   "inputs": {
-    "base_term_months": 60,
-    "base_rate_psf": 8.0,
-    "mtm_multiplier": 1.25,
-    "mtm_rate_psf": 10.0,
-    "discount_rate": 0.1
+    "base_term_months": 120,
+    "base_rate_psf": 7.5,
+    "mtm_multiplier": 1.3,
+    "mtm_rate_psf": 9.75,
+    "discount_rate": 0.08
   },
   "yield_curve": [
     {
       "term_months": 1,
       "term_years": 0.08333333333333333,
-      "rate_psf": 10.0,
-      "change_from_base": 2.0,
-      "pct_change_from_base": 0.25
+      "rate_psf": 9.75,
+      "change_from_base": 2.25,
+      "pct_change_from_base": 0.3
     },
     {
       "term_months": 3,
       "term_years": 0.25,
-      "rate_psf": 9.87,
-      "change_from_base": 1.87,
-      "pct_change_from_base": 0.2343
+      "rate_psf": 9.67,
+      "change_from_base": 2.17,
+      "pct_change_from_base": 0.2892
     },
     {
       "term_months": 6,
       "term_years": 0.5,
-      "rate_psf": 9.75,
-      "change_from_base": 1.75,
-      "pct_change_from_base": 0.219
+      "rate_psf": 9.59,
+      "change_from_base": 2.09,
+      "pct_change_from_base": 0.2787
     },
     {
       "term_months": 9,
       "term_years": 0.75,
-      "rate_psf": 9.63,
-      "change_from_base": 1.63,
-      "pct_change_from_base": 0.2041
+      "rate_psf": 9.51,
+      "change_from_base": 2.01,
+      "pct_change_from_base": 0.2683
     },
     {
       "term_months": 12,
       "term_years": 1.0,
-      "rate_psf": 9.52,
-      "change_from_base": 1.52,
-      "pct_change_from_base": 0.1896
+      "rate_psf": 9.44,
+      "change_from_base": 1.94,
+      "pct_change_from_base": 0.2582
     },
     {
       "term_months": 18,
       "term_years": 1.5,
       "rate_psf": 9.29,
-      "change_from_base": 1.29,
-      "pct_change_from_base": 0.1616
+      "change_from_base": 1.79,
+      "pct_change_from_base": 0.2385
     },
     {
       "term_months": 24,
       "term_years": 2.0,
-      "rate_psf": 9.08,
-      "change_from_base": 1.08,
-      "pct_change_from_base": 0.1349
+      "rate_psf": 9.15,
+      "change_from_base": 1.65,
+      "pct_change_from_base": 0.2195
     },
     {
       "term_months": 36,
       "term_years": 3.0,
-      "rate_psf": 8.68,
-      "change_from_base": 0.68,
-      "pct_change_from_base": 0.0854
+      "rate_psf": 8.88,
+      "change_from_base": 1.38,
+      "pct_change_from_base": 0.1838
     },
     {
       "term_months": 48,
       "term_years": 4.0,
-      "rate_psf": 8.32,
-      "change_from_base": 0.32,
-      "pct_change_from_base": 0.0406
+      "rate_psf": 8.63,
+      "change_from_base": 1.13,
+      "pct_change_from_base": 0.1509
     },
     {
-      "term_months": 60,
-      "term_years": 5.0,
-      "rate_psf": 8.0,
+      "term_months": 120,
+      "term_years": 10.0,
+      "rate_psf": 7.5,
       "change_from_base": 0.0,
       "pct_change_from_base": 0.0
     }
