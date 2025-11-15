@@ -1,0 +1,57 @@
+{
+  "site_identification": {
+    "site_id": "SITE-D",
+    "site_name": "Oakridge Town Centre Station",
+    "location": "Lakeshore Road & Oakridge Avenue, Established Suburb",
+    "station_type": "suburban",
+    "description": "Established suburban town centre with moderate density, existing commercial uses, and moderate transit connectivity. Mid-density apartment and townhouse complexes surrounding a shopping plaza. Moderate acquisition complexity with 5 property owners including shopping centre landlord. Some residential displacement but middle-income neighborhood with community support. Balanced scenario representing typical suburban TOD opportunity."
+  },
+  "tod_characteristics": {
+    "population_density_per_ha": 95.0,
+    "employment_density_per_ha": 42.0,
+    "number_of_uses": 3,
+    "jobs_housing_ratio": 0.65,
+    "sidewalk_coverage_pct": 62.0,
+    "crossings_quality": "adequate",
+    "intersection_density_per_km2": 88.0,
+    "underutilized_land_pct": 22.0,
+    "zoning_supportiveness": "moderate"
+  },
+  "multi_modal_connections": {
+    "bus_routes_within_200m": 6,
+    "bus_terminal_location": "adjacent",
+    "bike_network_quality": "some",
+    "bike_parking_spaces": 180,
+    "walkshed_population_800m": 12500,
+    "kiss_ride_spaces": 45,
+    "park_ride_spaces": 350,
+    "is_urban_station": false
+  },
+  "acquisition_complexity": {
+    "number_of_owners": 5,
+    "households_displaced": 18,
+    "businesses_displaced": 4,
+    "institutional_impacts": 0,
+    "contamination_level": "minimal",
+    "wetland_archaeological_count": 0,
+    "easements_covenants_count": 2,
+    "complex_tenancies_count": 3,
+    "litigation_title_disputes": 0
+  },
+  "community_impact": {
+    "total_households_displaced": 18,
+    "low_income_households": 5,
+    "senior_households": 7,
+    "disability_households": 2,
+    "neighborhood_income_level": "middle_income",
+    "existing_displacement_pressure": false,
+    "has_community_ties": false,
+    "heritage_resources_count": 0,
+    "community_support_level": "mixed"
+  },
+  "holdout_risk": {
+    "owner_motivation": "neutral",
+    "owner_sophistication": "moderate",
+    "owner_alternatives": "some"
+  }
+}

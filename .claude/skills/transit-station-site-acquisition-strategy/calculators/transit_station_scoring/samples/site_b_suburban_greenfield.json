@@ -1,0 +1,57 @@
+{
+  "site_identification": {
+    "site_id": "SITE-B",
+    "site_name": "Meadowlands Greenfield Station",
+    "location": "Highway 7 & Meadowlands Drive, New Development Area",
+    "station_type": "greenfield",
+    "description": "Greenfield site on former agricultural land at edge of developed area. Low existing density but strong development potential with supportive municipal planning. Simple acquisition from single landowner (farmer) with minimal community impact. Requires significant park-and-ride infrastructure."
+  },
+  "tod_characteristics": {
+    "population_density_per_ha": 12.0,
+    "employment_density_per_ha": 5.0,
+    "number_of_uses": 1,
+    "jobs_housing_ratio": 0.3,
+    "sidewalk_coverage_pct": 15.0,
+    "crossings_quality": "poor",
+    "intersection_density_per_km2": 35.0,
+    "underutilized_land_pct": 85.0,
+    "zoning_supportiveness": "supportive"
+  },
+  "multi_modal_connections": {
+    "bus_routes_within_200m": 3,
+    "bus_terminal_location": "adjacent",
+    "bike_network_quality": "some",
+    "bike_parking_spaces": 120,
+    "walkshed_population_800m": 3500,
+    "kiss_ride_spaces": 60,
+    "park_ride_spaces": 800,
+    "is_urban_station": false
+  },
+  "acquisition_complexity": {
+    "number_of_owners": 1,
+    "households_displaced": 1,
+    "businesses_displaced": 0,
+    "institutional_impacts": 0,
+    "contamination_level": "minimal",
+    "wetland_archaeological_count": 2,
+    "easements_covenants_count": 1,
+    "complex_tenancies_count": 0,
+    "litigation_title_disputes": 0
+  },
+  "community_impact": {
+    "total_households_displaced": 1,
+    "low_income_households": 0,
+    "senior_households": 1,
+    "disability_households": 0,
+    "neighborhood_income_level": "high_income",
+    "existing_displacement_pressure": false,
+    "has_community_ties": false,
+    "heritage_resources_count": 0,
+    "community_support_level": "support"
+  },
+  "holdout_risk": {
+    "owner_motivation": "willing",
+    "owner_sophistication": "unsophisticated",
+    "owner_alternatives": "strong"
+  }
+}
