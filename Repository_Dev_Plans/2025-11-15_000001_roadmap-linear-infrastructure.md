@@ -2,7 +2,7 @@
 
 **Domain Focus:** Transit corridors, utility transmission, pipeline right-of-way, partial interest acquisitions
 
-**Background:** Metrolinx property acquisition + Hydro One Networks real estate management experience
+**Background:** Transit agency property acquisition + utility transmission real estate management experience
 
 ---
 
@@ -22,8 +22,8 @@ Extend the VP Real Estate toolkit to cover **linear infrastructure acquisition a
 ## The Linear Infrastructure Experts: Katy, Shadi, Alex & Steve
 
 **Four specialized agents for infrastructure acquisition:**
-- **Katy** - Rail and transit corridor acquisition operations (Metrolinx expertise)
-- **Shadi** - Hydro and utility corridor acquisition operations (Hydro One expertise)
+- **Katy** - Rail and transit corridor acquisition operations (transit agency expertise)
+- **Shadi** - Hydro and utility corridor acquisition operations (utility transmission expertise)
 - **Alex** - Expropriation appraisal and valuation (Technical expert)
 - **Steve** - Compliance enforcer and deadline watchdog (Belligerent compliance)
 
@@ -31,12 +31,12 @@ Extend the VP Real Estate toolkit to cover **linear infrastructure acquisition a
 
 ### Katy - Rail & Transit Corridor Specialist
 
-**Meet Katy** - Your rail and transit infrastructure property acquisition expert with deep Metrolinx and public transit experience.
+**Meet Katy** - Your rail and transit infrastructure property acquisition expert with deep public transit experience.
 
 #### Who is Katy?
 
 Katy is an AI agent modeled on transit infrastructure professionals with deep experience in:
-- **Metrolinx property acquisition** - Light rail, subway, GO Transit expansion
+- **Transit agency property acquisition** - Light rail, subway, commuter rail expansion
 - **Infrastructure Ontario transit projects** - Ontario Line, Eglinton Crosstown, Hamilton LRT
 - **Public transit agencies** - TTC, OC Transpo, other municipal transit operators
 
@@ -112,12 +112,12 @@ Just address "Katy" for transit corridor questions:
 
 ### Shadi - Hydro & Utility Transmission Specialist
 
-**Meet Shadi** - Your hydro transmission and utility corridor expert with deep Hydro One and private utility experience.
+**Meet Shadi** - Your hydro transmission and utility corridor expert with deep utility transmission and private utility experience.
 
 #### Who is Shadi?
 
 Shadi is an AI agent modeled on utility transmission professionals with deep experience in:
-- **Hydro One Networks** - 500kV transmission lines, transformer stations, distribution corridors
+- **Utility transmission networks** - 500kV transmission lines, transformer stations, distribution corridors
 - **Private utilities** - Enbridge Gas pipelines, telecom fiber backbones, water/wastewater
 - **Renewable energy projects** - Wind farm collector lines, solar farm interconnections
 
@@ -406,7 +406,7 @@ In linear infrastructure acquisition, **missing statutory deadlines is catastrop
 
 **Example 2: Form Completeness**
 - **You**: "Can you check this Form 2 before we serve it?"
-- **Steve**: "STOP. This Form 2 is incomplete. You're missing: (1) The statutory authority citation under which you're expropriating - add 'Metrolinx Act, 2006, s.21'; (2) The signature block shows only one officer - Expropriations Act requires two signing officers for municipal expropriations; (3) Publication notice not attached - s.6(1) requires proof of publication. DO NOT SERVE until corrected."
+- **Steve**: "STOP. This Form 2 is incomplete. You're missing: (1) The statutory authority citation under which you're expropriating - add the relevant enabling legislation; (2) The signature block shows only one officer - Expropriations Act requires two signing officers for municipal expropriations; (3) Publication notice not attached - s.6(1) requires proof of publication. DO NOT SERVE until corrected."
 
 **Example 3: Approaching Deadline**
 - **Steve (unprompted)**: "WARNING: Expropriation approval expires in 14 days (September 14). Registration package is NOT YET SUBMITTED to land registry office. ESCALATE IMMEDIATELY. If this deadline is missed, your approval expires and you start the entire process over, including re-approval by council. Get this registered THIS WEEK."
@@ -783,7 +783,7 @@ Just address "Steve" for compliance questions:
 ## Domain-Specific Considerations
 
 ### Regulatory Frameworks
-- **Ontario Expropriations Act** - Primary statutory framework for Metrolinx, Hydro One, municipalities
+- **Ontario Expropriations Act** - Primary statutory framework for transit agencies, utilities, municipalities
 - **Federal Expropriation Act** - For federal infrastructure projects
 - **Environmental Assessment Act** - Consultation and approval requirements
 - **Duty to Consult** - Indigenous consultation obligations
@@ -834,7 +834,7 @@ Just address "Steve" for compliance questions:
 ## Next Steps
 
 **Immediate (December 2025):**
-1. Validate roadmap with former Metrolinx/Hydro One colleagues
+1. Validate roadmap with former transit agency and utility colleagues
 2. Gather sample data (easement agreements, appraisals, expropriation awards)
 3. Research statutory frameworks (Ontario Expropriations Act, case law)
 4. Draft schemas for core calculators (easement, partial taking, expropriation)
@@ -843,7 +843,7 @@ Just address "Steve" for compliance questions:
 1. Build Phase 1 calculators (easement valuation, partial taking, expropriation compensation)
 2. Implement Phase 1 slash commands (3-5 commands)
 3. Write Phase 1 expert skills (easement, expropriation, appraisal)
-4. Test with real cases from Metrolinx/Hydro One experience
+4. Test with real cases from transit agency and utility experience
 
 **Medium-Term (Q2-Q3 2026):**
 1. Build Phase 2 process tools (briefing notes, negotiation, settlement)
@@ -862,7 +862,7 @@ Just address "Steve" for compliance questions:
 ## Questions for Validation
 
 1. **Valuation methods** - Are before/after and percentage-of-fee the primary methods, or are there others?
-2. **Statutory frameworks** - Focus on Ontario (Metrolinx/Hydro One) or cover all provinces?
+2. **Statutory frameworks** - Focus on Ontario or cover all provinces?
 3. **Document templates** - Need easement agreement templates, offer letters, briefing note structures?
 4. **Hearing preparation** - Tools for expropriation hearing prep (expert reports, evidence books)?
 5. **Indigenous consultation** - Specialized tools for duty to consult, accommodation measures?
@@ -882,7 +882,7 @@ Just address "Steve" for compliance questions:
 
 **Opportunity:**
 - **No integrated solution** for linear infrastructure acquisition (valuation + process + negotiation)
-- **Public sector need** - Metrolinx, Hydro One, municipalities, pipeline companies
+- **Public sector need** - Transit agencies, utilities, municipalities, pipeline companies
 - **Regulatory compliance** - Statutory compensation calculations (expropriation acts)
 - **Defensibility** - Audit trails for hearings and public scrutiny
 
