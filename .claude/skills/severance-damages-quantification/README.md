@@ -1,6 +1,17 @@
 # Severance Damages Calculator
 
+**Version 2.0.0 - Modular Architecture**
+
 Quantifies loss of value to remainder parcels from partial property takings across four damage categories: access impairment, shape irregularity, utility impairment, and farm operation disruption.
+
+## ✨ What's New in Version 2.0.0
+
+- **🏗️ Modular Architecture**: Refactored from 943 lines to 360 lines (62% reduction)
+- **🎯 Zero Magic Numbers**: All constants centralized in `config/constants.py`
+- **🛡️ Defensive Programming**: Safe division and capitalization utilities
+- **✅ JSON Schema Validation**: Input validation with auto-fix capability
+- **📊 Comprehensive Logging**: Detailed calculation traceability
+- **🔄 100% Backward Compatible**: Identical results to Version 1.0.0
 
 ## Overview
 

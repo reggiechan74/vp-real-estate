@@ -334,6 +334,142 @@ Agricultural severance impacts from field division, equipment access complicatio
 
 ---
 
+## Calculator Usage
+
+This skill includes a production-grade severance damages calculator with modular architecture.
+
+### Command Line Usage
+
+```bash
+# Basic calculation
+python severance_calculator.py input.json
+
+# Specify output location
+python severance_calculator.py input.json results.json
+
+# Validate input first (recommended)
+python validate_severance.py input.json
+python validate_severance.py input.json --fix --output clean.json
+python severance_calculator.py clean.json results.json
+```
+
+### Python API
+
+```python
+from severance_calculator import calculate_severance_damages, load_from_json
+
+# Load from JSON
+property_before, taking, remainder, market = load_from_json("input.json")
+
+# Calculate
+summary = calculate_severance_damages(
+    property_before, taking, remainder, market
+)
+
+# Access results
+print(f"Total severance damages: ${summary.total_severance_damages:,.2f}")
+print(f"Access damages: ${summary.access_damages.total_access_damages:,.2f}")
+print(f"Shape damages: ${summary.shape_damages.total_shape_damages:,.2f}")
+print(f"Utility damages: ${summary.utility_damages.total_utility_damages:,.2f}")
+print(f"Farm damages: ${summary.farm_damages.total_farm_damages:,.2f}")
+```
+
+### Input Format
+
+See `severance_input_schema.json` for complete schema. Minimal example:
+
+```json
+{
+  "property_before": {
+    "total_acres": 10.0,
+    "frontage_linear_feet": 500.0,
+    "road_classification": "highway",
+    "shape_ratio_frontage_depth": 0.25,
+    "value_per_acre": 150000.0,
+    "use": "commercial"
+  },
+  "taking": {
+    "area_taken_acres": 1.5,
+    "frontage_lost_linear_feet": 100.0,
+    "creates_landlocked": false,
+    "creates_irregular_shape": true
+  },
+  "remainder": {
+    "acres": 8.5,
+    "frontage_remaining_linear_feet": 400.0,
+    "shape_ratio_frontage_depth": 0.20,
+    "access_type": "direct"
+  },
+  "market_parameters": {
+    "cap_rate": 0.07
+  }
+}
+```
+
+### Calculator Architecture
+
+**Modular Structure** (Version 2.0.0):
+```
+severance-damages-quantification/
+├── config/               # Centralized constants (zero magic numbers)
+│   └── constants.py
+├── damages/              # Specialized calculation modules
+│   ├── access.py         # Access impairment (frontage, circuitous, landlocked)
+│   ├── shape.py          # Shape irregularity (efficiency, buildable area, yield)
+│   ├── utility.py        # Utility impairment (site servicing, development)
+│   └── farm.py           # Farm disruption (fencing, equipment, irrigation)
+├── models/               # Data structures
+│   ├── property_data.py
+│   ├── damage_results.py
+│   └── market_parameters.py
+├── utils/                # Shared utilities (safe_divide, capitalize_annual_cost)
+│   └── calculations.py
+├── tests/fixtures/       # Test scenarios
+├── severance_calculator.py       # Main orchestrator (360 lines, was 943)
+├── severance_input_schema.json   # JSON Schema validation
+└── validate_severance.py         # Input validation with auto-fix
+```
+
+### Sample Scenarios
+
+The calculator includes 5 tested scenarios in `tests/fixtures/`:
+
+1. **highway_frontage_loss.json** - Highway frontage reduction (industrial)
+2. **landlocked_parcel.json** - Complete access loss requiring easement
+3. **irregular_shape.json** - Severe shape inefficiency from partial taking
+4. **farm_bisection.json** - Agricultural corridor impact with field division
+5. **combined_damages.json** - Multiple damage categories simultaneously
+
+### Key Features
+
+**Production Hardening**:
+- ✅ Modular architecture (4 specialized damage modules)
+- ✅ Zero magic numbers (all constants centralized)
+- ✅ Defensive programming (safe_divide, capitalize_annual_cost)
+- ✅ JSON Schema validation with auto-fix
+- ✅ Comprehensive logging
+- ✅ 100% backward compatible with Version 1.0.0
+
+**Calculation Methodology**:
+- USPAP 2024 compliant
+- CUSPAP 2024 compliant
+- Ontario Expropriations Act framework
+- Before/after appraisal method
+
+### Validation & Quality Assurance
+
+```bash
+# Validate input before calculation
+python validate_severance.py input.json
+
+# Common issues auto-fixed:
+# - Missing optional fields (adds defaults)
+# - Boolean/number type conversions
+# - Market parameter defaults
+```
+
+---
+
 **This skill activates when you**:
 - Calculate severance damages from partial property takings
 - Quantify access impairment from loss of frontage, circuitous access, or landlocked conditions
