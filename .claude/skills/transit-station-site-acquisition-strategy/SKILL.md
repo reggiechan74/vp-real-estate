@@ -474,6 +474,56 @@ Coordinating property acquisition with broader planning objectives to maximize t
 
 ---
 
+## Automated Scoring Calculator
+
+**transit_station_scorer.py** - Systematic evaluation tool for comparing transit station site alternatives.
+
+### Features
+
+**5 Scoring Categories** (all normalized to 0-100 scale):
+1. **TOD Potential** (0-100, higher better) - Density, mix, walkability, development potential
+2. **Multi-Modal Connections** (0-100, higher better) - Bus, bike, pedestrian, parking
+3. **Acquisition Complexity** (0-100, LOWER better) - Ownership, displacement, environmental
+4. **Community Impact** (0-100, LOWER better) - Displacement, gentrification, heritage
+5. **Holdout Risk** (0-30, LOWER better) - Owner motivation, sophistication, alternatives
+
+**Composite Scores**:
+- **Desirability** (40% weight): Average of TOD Potential + Multi-Modal
+- **Feasibility** (40% weight): Inverse of average Complexity + Community Impact
+- **Overall** (100%): Weighted composite with 4-tier recommendation system
+
+**Normalization**: Raw component scores normalized to true 0-100 scales for clarity:
+- TOD Potential: Raw max 126.5 → 100
+- Multi-Modal: Raw max 95 → 100
+- Exceptional sites score in high 90s (e.g., 96/100) rather than exceeding 100
+
+### Usage
+
+```bash
+# Score a single site
+./transit_station_scorer.py samples/site_a_urban_infill.json
+
+# Input format: JSON with 6 sections
+# - site_identification (ID, name, location, station type)
+# - tod_characteristics (density, mix, walkability, development)
+# - multi_modal_connections (bus, bike, pedestrian, parking)
+# - acquisition_complexity (ownership, displacement, environmental, legal)
+# - community_impact (displacement, gentrification, heritage, support)
+# - holdout_risk (motivation, sophistication, alternatives)
+```
+
+**Output**: Console report + timestamped JSON file with detailed breakdowns
+
+**Sample Sites Available**:
+- Site A (Urban Infill): 64.9/100 - High TOD (96) but complex acquisition
+- Site B (Greenfield): 70.7/100 - Low TOD (36) but excellent feasibility
+- Site C (Complex Urban): 44.2/100 - Exceptional TOD (84) but severe challenges
+- Site D (Balanced Suburban): 63.3/100 - Moderate across all categories
+
+**Documentation**: See `README.md` for complete methodology, interpretation guide, and examples.
+
+---
+
 **This skill activates when you**:
 - Plan complex transit station acquisitions requiring multi-parcel assembly
 - Evaluate alternative station sites using TOD scoring frameworks
