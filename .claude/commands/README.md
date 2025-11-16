@@ -1,10 +1,10 @@
 # Slash Commands
 
-Automated workflows for commercial real estate lease analysis.
+Automated workflows for commercial real estate lease analysis, property valuation, and infrastructure expropriation.
 
 ## Structure
 
-Commands are organized into 6 categories (25 total):
+Commands are organized into 10 categories (33 total):
 
 ### 1. Abstraction (2 commands)
 
@@ -55,7 +55,35 @@ Legal compliance, documentation, and notices.
 - **`/notice-generator`** - Generate lease notices (renewal, termination, etc.)
 - **`/work-letter`** - Generate work letter from TI provisions
 
-### 6. Utilities (1 command)
+### 6. Valuation (2 commands)
+
+Property valuation and comparable sales analysis.
+
+- **`/easement-valuation`** - Value permanent or temporary easements using percentage of fee (5-35% voltage-based), income capitalization, and before/after comparison methods
+- **`/comparable-sales-analysis`** - Construct adjustment grid with sequential 6-stage methodology (property rights → financing → conditions → time → location → physical), calculate 49 physical adjustments, validate gross/net limits, generate USPAP/CUSPAP compliant reconciliation
+
+### 7. Expropriation (3 commands)
+
+Statutory compensation and partial taking analysis under Ontario Expropriations Act.
+
+- **`/expropriation-compensation`** - Calculate statutory compensation (s.13 market value, s.18 disturbance damages, s.18(2) injurious affection, s.20 interest) with OEA compliance validation
+- **`/partial-taking-analysis`** - Before/after method for partial acquisitions with severance damages (access, shape, utility, farm ops) and injurious affection assessment
+- **`/injurious-affection-analysis`** - Quantify construction and proximity impacts (noise dBA modeling, dust PM2.5/PM10, vibration PPV, traffic disruption, business losses, visual impairment)
+
+### 8. Infrastructure (2 commands)
+
+Agricultural easements and right-of-way analysis for transmission lines, pipelines, and transit corridors.
+
+- **`/cropland-compensation-analysis`** - Compare Ontario one-time vs. Alberta annual vs. Farmer Required compensation models for agricultural easements with NPV analysis over 50 years (headlands, aerial spray, precision ag, labor, equipment damage)
+- **`/right-of-way-analysis`** - Calculate ROW area, encumbrance impact, and easement compensation for utility transmission (69kV-500kV), pipeline, and transit corridors
+
+### 9. Transit (1 command)
+
+Transit station site evaluation and scoring.
+
+- **`/transit-station-scoring`** - Systematic evaluation of transit station site alternatives using TOD potential (density, mix, walkability), multi-modal connections, acquisition complexity, community impact, and holdout risk (normalized 0-100 scoring with 4-tier recommendations)
+
+### 10. Utilities (1 command)
 
 Document conversion and utility tools.
 
@@ -96,12 +124,26 @@ All commands follow the **PDF → JSON → Python → Report** workflow:
 
 Commands invoke Python calculators in these directories:
 
+**Commercial Real Estate:**
 - **Effective Rent**: `Eff_Rent_Calculator/`
 - **IFRS 16**: `IFRS16_Calculator/`
 - **Tenant Credit**: `Credit_Analysis/`
 - **Renewal Economics**: `Renewal_Analysis/`
 - **Rental Variance**: `Rental_Variance/`
 - **Shared Utilities**: `Shared_Utils/`
+
+**Property Valuation:**
+- **Comparable Sales**: `.claude/skills/comparable-sales-adjustment-methodology/`
+- **Easement Valuation**: `.claude/skills/easement-valuation-methods/`
+
+**Expropriation & Infrastructure:**
+- **Expropriation Compensation**: `.claude/skills/expropriation-compensation-entitlement-analysis/`
+- **Severance Damages**: `.claude/skills/severance-damages-quantification/`
+- **Injurious Affection**: `.claude/skills/injurious-affection-assessment/`
+- **Cropland Compensation**: `.claude/skills/cropland-out-of-production-agreements/`
+
+**Transit Planning:**
+- **Transit Station Scoring**: `.claude/skills/transit-station-site-acquisition-strategy/`
 
 ## Development
 
