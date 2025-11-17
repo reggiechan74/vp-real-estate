@@ -1,0 +1,35 @@
+{
+  "property": {
+    "address": "5500 Rural County Road 42",
+    "total_acres": 150.0,
+    "fee_simple_value": 2250000,
+    "zoning": "A1 - Prime Agricultural",
+    "highest_and_best_use": "Cash crop farming (corn, soybeans)"
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "voltage_kv": 500,
+    "area_acres": 18.0,
+    "width_meters": 110,
+    "tower_count": 3,
+    "vegetation_restrictions": [
+      "no_trees",
+      "height_restrictions"
+    ],
+    "requires_access_road": true,
+    "distance_to_buildings_m": 350,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "no_trees",
+      "height_restrictions",
+      "excavation_prohibited"
+    ],
+    "hbu_impact": "moderate",
+    "productivity_loss_pct": 0.30
+  },
+  "market_parameters": {
+    "cap_rate": 0.065,
+    "annual_rent_per_acre": 350
+  }
+}

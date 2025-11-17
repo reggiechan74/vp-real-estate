@@ -1,0 +1,37 @@
+{
+  "property": {
+    "address": "7200 Agricultural Township Road 15",
+    "total_acres": 80.0,
+    "fee_simple_value": 1200000,
+    "zoning": "A1 - Prime Agricultural",
+    "highest_and_best_use": "Cash crop farming (wheat, canola)"
+  },
+  "easement": {
+    "type": "pipeline",
+    "pipeline_type": "crude_oil_transmission",
+    "area_acres": 5.5,
+    "width_meters": 30,
+    "pressure_psi": 1250,
+    "diameter_mm": 600,
+    "depth_meters": 1.2,
+    "has_leak_detection": true,
+    "has_cathodic_protection": true,
+    "requires_access_road": true,
+    "distance_to_water_m": 85,
+    "installation_method": "open_cut",
+    "pipeline_age_years": 15,
+    "class_location": 1,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "excavation_prohibited",
+      "access_limitations"
+    ],
+    "hbu_impact": "moderate",
+    "productivity_loss_pct": 0.35
+  },
+  "market_parameters": {
+    "cap_rate": 0.065,
+    "annual_rent_per_acre": 320
+  }
+}

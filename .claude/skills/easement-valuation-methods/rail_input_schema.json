@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/reggiechan74/vp-real-estate/rail-easement-input-schema",
+  "title": "Rail Corridor Easement Input Schema - MARKET-ALIGNED v2.1",
+  "description": "Input schema for rail and transit corridor easement valuation. VERSION 2.1 (2025-11-17): Market-aligned values based on rail vibration research (44% exceed limits) and subsurface evidence. Base percentages: 28-40% (was 15-25%).",
+  "version": "2.1.0",
+  "type": "object",
+  "required": ["property", "easement", "market_parameters"],
+  "properties": {
+    "property": {
+      "type": "object",
+      "required": ["address", "total_acres", "fee_simple_value"],
+      "properties": {
+        "address": {"type": "string"},
+        "total_acres": {"type": "number", "minimum": 0.01},
+        "fee_simple_value": {"type": "number", "minimum": 0},
+        "zoning": {"type": "string"},
+        "highest_and_best_use": {"type": "string"},
+        "value_after_easement": {"type": "number", "minimum": 0}
+      }
+    },
+    "easement": {
+      "type": "object",
+      "description": "Rail corridor easement characteristics",
+      "required": ["type", "rail_type", "area_acres"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["rail", "transit"],
+          "description": "Easement type (use 'rail' or 'transit')"
+        },
+        "rail_type": {
+          "type": "string",
+          "enum": ["heavy_rail_freight", "heavy_rail_passenger", "light_rail", "subway_surface", "bus_rapid_transit"],
+          "description": "REQUIRED: Type of rail service"
+        },
+        "rail_alignment": {
+          "type": "string",
+          "enum": ["elevated", "at_grade", "subway_tunnel", "trench"],
+          "description": "Rail vertical alignment. MARKET-ALIGNED: elevated +3% (was +2%), at_grade: baseline, subway_tunnel -8% (was -3%, reflects -50% subsurface discount), trench -3% (was -1%). Defaults to at_grade if not specified."
+        },
+        "area_acres": {"type": "number", "minimum": 0.01},
+        "width_meters": {"type": "number", "minimum": 1},
+        "trains_per_day": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Train frequency (MARKET-ALIGNED: +3% for 20-50/day, +5% for >50/day; was +1.5%/+3%). Research: 'significantly negative impact on housing values' at high frequency."
+        },
+        "grade_crossings": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Number of at-grade crossings on property (+1% per crossing, max +3%)"
+        },
+        "distance_to_buildings_m": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Distance to nearest buildings (MARKET-ALIGNED: +5% if <30m heavy rail, +3% if <50m any rail; was +2.5%/+1.5%). Research: 44% of 1,604 track sections exceed vibration limits."
+        },
+        "has_noise_barriers": {
+          "type": "boolean",
+          "description": "Noise barriers present (MARKET-ALIGNED: if false and >10 trains/day: +4%; was +2%). Research: 31% of rail projects exceed noise limits."
+        },
+        "service_hours_per_day": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 24,
+          "description": "Hours of operation per day (MARKET-ALIGNED: +2.5% if ≥20 hours; was +1.5%). 24-hour service = no quiet periods, sleep disruption."
+        },
+        "is_electrified": {
+          "type": "boolean",
+          "description": "Electric vs. diesel (diesel heavy rail: +1%)"
+        },
+        "hazmat_traffic": {
+          "type": "boolean",
+          "description": "Hazardous materials transported (freight only, +1.5%)"
+        },
+        "term": {"type": "string", "enum": ["perpetual", "temporary", "tce"]},
+        "term_years": {"type": "number", "minimum": 1},
+        "duration_days": {"type": "number", "minimum": 1},
+        "restoration_costs": {"type": "number", "minimum": 0},
+        "business_losses": {"type": "number", "minimum": 0},
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["no_buildings", "no_trees", "height_restrictions", "access_limitations", "excavation_prohibited"]
+          }
+        },
+        "hbu_impact": {
+          "type": "string",
+          "enum": ["none", "minor", "moderate", "major", "precludes_development"]
+        },
+        "productivity_loss_pct": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "market_parameters": {
+      "type": "object",
+      "required": ["cap_rate"],
+      "properties": {
+        "cap_rate": {"type": "number", "minimum": 0.01, "maximum": 0.20},
+        "annual_rent_per_acre": {"type": "number", "minimum": 0},
+        "tce_annual_rate": {"type": "number", "minimum": 0.01, "maximum": 0.20},
+        "reconciliation_weights": {
+          "type": "object",
+          "description": "Optional: Override default weights (rail default: 50/20/30)",
+          "properties": {
+            "percentage_of_fee": {"type": "number", "minimum": 0, "maximum": 1},
+            "income_capitalization": {"type": "number", "minimum": 0, "maximum": 1},
+            "before_after": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

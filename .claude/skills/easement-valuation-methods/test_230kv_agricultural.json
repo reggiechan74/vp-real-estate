@@ -1,0 +1,26 @@
+{
+  "property": {
+    "address": "100 acres, Class 1 agricultural, Highway frontage",
+    "total_acres": 100,
+    "fee_simple_value": 1200000,
+    "zoning": "Agricultural",
+    "highest_and_best_use": "Cash crop farming"
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "voltage_kv": 230,
+    "area_acres": 15,
+    "width_meters": 50,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "height_restrictions"
+    ],
+    "hbu_impact": "moderate",
+    "easement_rent_factor": 0.20
+  },
+  "market_parameters": {
+    "cap_rate": 0.045,
+    "annual_rent_per_acre": 300
+  }
+}

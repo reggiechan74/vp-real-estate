@@ -1,0 +1,32 @@
+{
+  "property": {
+    "address": "2550 Industrial Boulevard",
+    "total_acres": 25.0,
+    "fee_simple_value": 1875000,
+    "zoning": "M2 - General Industrial",
+    "highest_and_best_use": "Industrial warehouse and distribution"
+  },
+  "easement": {
+    "type": "rail",
+    "rail_type": "light_rail",
+    "rail_alignment": "elevated",
+    "area_acres": 3.5,
+    "width_meters": 25,
+    "term": "perpetual",
+    "trains_per_day": 45,
+    "distance_to_buildings_m": 40,
+    "has_noise_barriers": true,
+    "service_hours_per_day": 18,
+    "is_electrified": true,
+    "restrictions": [
+      "height_restrictions",
+      "no_buildings"
+    ],
+    "hbu_impact": "moderate",
+    "productivity_loss_pct": 0.25
+  },
+  "market_parameters": {
+    "cap_rate": 0.055,
+    "annual_rent_per_acre": 2500
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/reggiechan74/vp-real-estate/pipeline-easement-input-schema",
+  "title": "Pipeline Easement Input Schema - MARKET-ALIGNED v2.1",
+  "description": "Input schema for pipeline corridor easement valuation. VERSION 2.1 (2025-11-17): Market-aligned values based on IRWA 61.4% weighted impact analysis and subsurface market evidence (-50% typical). Base percentages: 25-38% (was 10-18%).",
+  "version": "2.1.0",
+  "type": "object",
+  "required": ["property", "easement", "market_parameters"],
+  "properties": {
+    "property": {
+      "type": "object",
+      "required": ["address", "total_acres", "fee_simple_value"],
+      "properties": {
+        "address": {"type": "string"},
+        "total_acres": {"type": "number", "minimum": 0.01},
+        "fee_simple_value": {"type": "number", "minimum": 0},
+        "zoning": {"type": "string"},
+        "highest_and_best_use": {"type": "string"},
+        "value_after_easement": {"type": "number", "minimum": 0}
+      }
+    },
+    "easement": {
+      "type": "object",
+      "description": "Pipeline easement characteristics",
+      "required": ["type", "pipeline_type", "area_acres"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["pipeline"],
+          "description": "Easement type (use 'pipeline')"
+        },
+        "pipeline_type": {
+          "type": "string",
+          "enum": ["crude_oil_transmission", "natural_gas_transmission", "natural_gas_distribution", "water_transmission", "sewer"],
+          "description": "REQUIRED: Type of pipeline"
+        },
+        "area_acres": {"type": "number", "minimum": 0.01},
+        "width_meters": {"type": "number", "minimum": 1},
+        "pressure_psi": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Operating pressure in PSI (MARKET-ALIGNED: +4% if >1000 psi for transmission lines; was +2%). High pressure = greater rupture risk."
+        },
+        "diameter_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Pipe diameter in mm (MARKET-ALIGNED: +3% if >750mm, +5% if >1000mm; was +1%/+2%). Research: IRWA shows 85% impact over diameter + 24\" risk area."
+        },
+        "depth_meters": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Burial depth in meters (MARKET-ALIGNED: +3% if <1m shallow, -5% if >3m deep; was +1.5%/-0.5%). Research: Subsurface easements typically -50% of fee value, allows full surface use."
+        },
+        "has_leak_detection": {
+          "type": "boolean",
+          "description": "SCADA leak detection systems installed (-0.5%)"
+        },
+        "has_cathodic_protection": {
+          "type": "boolean",
+          "description": "Cathodic protection for corrosion (if false: +1%)"
+        },
+        "requires_access_road": {
+          "type": "boolean",
+          "description": "Permanent access road required (MARKET-ALIGNED: +2.5%; was +1%). Additional land take beyond ROW."
+        },
+        "distance_to_water_m": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Distance to nearest watercourse (MARKET-ALIGNED: +4% if <100m and crude oil, +2% if <100m other types; was +2%/+1%). Environmental risk and property stigma."
+        },
+        "installation_method": {
+          "type": "string",
+          "enum": ["open_cut", "hdd"],
+          "description": "Installation method (HDD = horizontal directional drilling, -0.5%)"
+        },
+        "pipeline_age_years": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Age of pipeline (MARKET-ALIGNED: +2.5% if >40 years; was +1%). Old infrastructure = higher leak risk, liability concerns."
+        },
+        "class_location": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Pipeline safety class location (1=rural, 4=urban). MARKET-ALIGNED: +3% if class 3 or 4; was +1.5%. High consequence area = stricter regulations."
+        },
+        "term": {"type": "string", "enum": ["perpetual", "temporary", "tce"]},
+        "term_years": {"type": "number", "minimum": 1},
+        "duration_days": {"type": "number", "minimum": 1},
+        "restoration_costs": {"type": "number", "minimum": 0},
+        "business_losses": {"type": "number", "minimum": 0},
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["no_buildings", "no_trees", "height_restrictions", "access_limitations", "excavation_prohibited"]
+          }
+        },
+        "hbu_impact": {
+          "type": "string",
+          "enum": ["none", "minor", "moderate", "major", "precludes_development"]
+        },
+        "productivity_loss_pct": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "market_parameters": {
+      "type": "object",
+      "required": ["cap_rate"],
+      "properties": {
+        "cap_rate": {"type": "number", "minimum": 0.01, "maximum": 0.20},
+        "annual_rent_per_acre": {"type": "number", "minimum": 0},
+        "tce_annual_rate": {"type": "number", "minimum": 0.01, "maximum": 0.20},
+        "reconciliation_weights": {
+          "type": "object",
+          "description": "Optional: Override default weights (pipeline default: 45/30/25)",
+          "properties": {
+            "percentage_of_fee": {"type": "number", "minimum": 0, "maximum": 1},
+            "income_capitalization": {"type": "number", "minimum": 0, "maximum": 1},
+            "before_after": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

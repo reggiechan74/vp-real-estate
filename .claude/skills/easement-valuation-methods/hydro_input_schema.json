@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/reggiechan74/vp-real-estate/hydro-easement-input-schema",
+  "title": "Hydro Transmission Easement Input Schema - MARKET-ALIGNED v2.1",
+  "description": "Input schema for hydro/utility transmission easement valuation (69kV-500kV). VERSION 2.1 (2025-11-17): Market-aligned values based on IRWA 25-50% range. Base percentages: 25-37.5% (was 10-22.5%).",
+  "version": "2.1.0",
+  "type": "object",
+  "required": ["property", "easement", "market_parameters"],
+  "properties": {
+    "property": {
+      "type": "object",
+      "description": "Subject property details",
+      "required": ["address", "total_acres", "fee_simple_value"],
+      "properties": {
+        "address": {"type": "string"},
+        "total_acres": {"type": "number", "minimum": 0.01},
+        "fee_simple_value": {"type": "number", "minimum": 0},
+        "zoning": {"type": "string"},
+        "highest_and_best_use": {"type": "string"},
+        "value_after_easement": {"type": "number", "minimum": 0}
+      }
+    },
+    "easement": {
+      "type": "object",
+      "description": "Hydro transmission easement characteristics",
+      "required": ["type", "voltage_kv", "area_acres"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["utility_transmission", "hydro"],
+          "description": "Easement type (use 'utility_transmission' or 'hydro')"
+        },
+        "voltage_kv": {
+          "type": "number",
+          "minimum": 0,
+          "description": "REQUIRED: Transmission line voltage in kV (e.g., 69, 115, 230, 500)"
+        },
+        "area_acres": {"type": "number", "minimum": 0.01},
+        "width_meters": {"type": "number", "minimum": 1},
+        "tower_count": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Number of transmission towers on property (MARKET-ALIGNED: +1% per tower, max +5%; was +0.5%/tower)"
+        },
+        "vegetation_restrictions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Vegetation management requirements (MARKET-ALIGNED: +2.5% if present; was +1.5%)"
+        },
+        "requires_access_road": {
+          "type": "boolean",
+          "description": "Permanent access road required (MARKET-ALIGNED: +2%; was +1%)"
+        },
+        "distance_to_buildings_m": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Distance from transmission line to nearest buildings (MARKET-ALIGNED: +4% if <50m and voltage ≥230kV; was +2.5%). EMF concerns: +4% (230kV), +5% (500kV) applied automatically based on voltage."
+        },
+        "term": {"type": "string", "enum": ["perpetual", "temporary", "tce"]},
+        "term_years": {"type": "number", "minimum": 1},
+        "duration_days": {"type": "number", "minimum": 1, "description": "For TCE easements"},
+        "restoration_costs": {"type": "number", "minimum": 0},
+        "business_losses": {"type": "number", "minimum": 0},
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["no_buildings", "no_trees", "height_restrictions", "access_limitations", "excavation_prohibited"]
+          }
+        },
+        "hbu_impact": {
+          "type": "string",
+          "enum": ["none", "minor", "moderate", "major", "precludes_development"]
+        },
+        "productivity_loss_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Percentage of land productivity LOST (NEW in v2.0, preferred parameter)"
+        }
+      }
+    },
+    "market_parameters": {
+      "type": "object",
+      "required": ["cap_rate"],
+      "properties": {
+        "cap_rate": {"type": "number", "minimum": 0.01, "maximum": 0.20},
+        "annual_rent_per_acre": {"type": "number", "minimum": 0},
+        "tce_annual_rate": {"type": "number", "minimum": 0.01, "maximum": 0.20, "description": "For TCE easements (default: 0.10)"},
+        "reconciliation_weights": {
+          "type": "object",
+          "description": "Optional: Override default weights (hydro default: 50/30/20)",
+          "properties": {
+            "percentage_of_fee": {"type": "number", "minimum": 0, "maximum": 1},
+            "income_capitalization": {"type": "number", "minimum": 0, "maximum": 1},
+            "before_after": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

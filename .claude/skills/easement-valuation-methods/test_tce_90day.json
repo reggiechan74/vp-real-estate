@@ -1,0 +1,25 @@
+{
+  "property": {
+    "address": "2 acres industrial land",
+    "total_acres": 2,
+    "fee_simple_value": 400000,
+    "zoning": "Industrial",
+    "highest_and_best_use": "Industrial/warehouse"
+  },
+  "easement": {
+    "type": "access",
+    "area_acres": 2,
+    "width_meters": 30,
+    "term": "temporary",
+    "term_years": 0.25,
+    "restrictions": [
+      "access_limitations"
+    ],
+    "hbu_impact": "moderate",
+    "easement_rent_factor": 0.10
+  },
+  "market_parameters": {
+    "cap_rate": 0.10,
+    "annual_rent_per_acre": 20000
+  }
+}

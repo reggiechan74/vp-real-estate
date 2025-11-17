@@ -1,0 +1,31 @@
+{
+  "property": {
+    "address": "1200 Downtown Avenue",
+    "total_acres": 10.0,
+    "fee_simple_value": 8500000,
+    "zoning": "C4 - Commercial Mixed Use",
+    "highest_and_best_use": "High-density mixed-use development"
+  },
+  "easement": {
+    "type": "rail",
+    "rail_type": "subway_surface",
+    "rail_alignment": "subway_tunnel",
+    "area_acres": 2.0,
+    "width_meters": 30,
+    "term": "perpetual",
+    "trains_per_day": 120,
+    "distance_to_buildings_m": 15,
+    "has_noise_barriers": false,
+    "service_hours_per_day": 21,
+    "is_electrified": true,
+    "restrictions": [
+      "excavation_prohibited"
+    ],
+    "hbu_impact": "minor",
+    "productivity_loss_pct": 0.10
+  },
+  "market_parameters": {
+    "cap_rate": 0.045,
+    "annual_rent_per_acre": 125000
+  }
+}
