@@ -1,0 +1,288 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/board-memo-input.json",
+  "title": "Board Approval Memo Input Schema",
+  "description": "JSON schema for board approval memo inputs including project overview, financial impact, risk assessment, and governance requirements",
+  "type": "object",
+  "required": ["project", "financial", "risks", "governance"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "description": "Project overview and rationale",
+      "required": ["name", "description", "rationale", "urgency"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed project description",
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Business rationale and strategic alignment",
+          "minLength": 1
+        },
+        "urgency": {
+          "type": "string",
+          "description": "Decision urgency level",
+          "enum": ["low", "medium", "high", "critical"]
+        },
+        "background": {
+          "type": "string",
+          "description": "Optional background context"
+        },
+        "alternatives_considered": {
+          "type": "array",
+          "description": "Alternative approaches evaluated",
+          "items": {
+            "type": "object",
+            "required": ["name", "pros", "cons", "rejected_reason"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Alternative name"
+              },
+              "pros": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Advantages"
+              },
+              "cons": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Disadvantages"
+              },
+              "rejected_reason": {
+                "type": "string",
+                "description": "Why this alternative was not selected"
+              }
+            }
+          }
+        }
+      }
+    },
+    "financial": {
+      "type": "object",
+      "description": "Financial impact and budget analysis",
+      "required": ["total_cost", "breakdown", "funding_source"],
+      "properties": {
+        "total_cost": {
+          "type": "number",
+          "description": "Total project cost",
+          "minimum": 0
+        },
+        "breakdown": {
+          "type": "object",
+          "description": "Cost breakdown by category",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "contingency": {
+          "type": "number",
+          "description": "Contingency amount",
+          "minimum": 0
+        },
+        "contingency_pct": {
+          "type": "number",
+          "description": "Contingency as percentage of total",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "funding_source": {
+          "type": "string",
+          "description": "Source of funding",
+          "enum": ["operating_budget", "capital_budget", "debt", "reserves", "mixed"]
+        },
+        "budget_authority": {
+          "type": "string",
+          "description": "Current approved budget"
+        },
+        "npv_analysis": {
+          "type": "object",
+          "description": "NPV analysis if applicable",
+          "properties": {
+            "discount_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "cash_flows": {
+              "type": "array",
+              "items": {"type": "number"},
+              "description": "Annual cash flows"
+            },
+            "npv": {
+              "type": "number",
+              "description": "Net present value"
+            },
+            "irr": {
+              "type": "number",
+              "description": "Internal rate of return"
+            }
+          }
+        },
+        "payback_period_years": {
+          "type": "number",
+          "description": "Payback period in years",
+          "minimum": 0
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "description": "Risk assessment with severity and mitigation",
+      "items": {
+        "type": "object",
+        "required": ["risk", "severity"],
+        "properties": {
+          "risk": {
+            "type": "string",
+            "description": "Risk description",
+            "minLength": 1
+          },
+          "severity": {
+            "type": "string",
+            "description": "Risk severity level",
+            "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+          },
+          "probability": {
+            "type": "number",
+            "description": "Probability of occurrence (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "impact": {
+            "type": "string",
+            "description": "Impact if risk materializes"
+          },
+          "mitigation": {
+            "type": "string",
+            "description": "Mitigation strategy"
+          },
+          "financial_impact": {
+            "type": "number",
+            "description": "Potential financial impact",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "description": "Governance and approval requirements",
+      "required": ["approval_type", "recommendation"],
+      "properties": {
+        "approval_type": {
+          "type": "string",
+          "description": "Type of approval requested",
+          "enum": ["authorization", "ratification", "information_only", "delegation"]
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "Recommended board action",
+          "minLength": 1
+        },
+        "resolution_draft": {
+          "type": "string",
+          "description": "Draft board resolution language"
+        },
+        "authority_limits": {
+          "type": "object",
+          "description": "Delegation and authority limits",
+          "properties": {
+            "contract_limit": {
+              "type": "number",
+              "description": "Maximum contract value authority"
+            },
+            "approval_level": {
+              "type": "string",
+              "description": "Required approval level",
+              "enum": ["staff", "ceo", "board_committee", "full_board"]
+            }
+          }
+        },
+        "compliance_requirements": {
+          "type": "array",
+          "description": "Legal/regulatory compliance requirements",
+          "items": {"type": "string"}
+        },
+        "stakeholder_consultation": {
+          "type": "string",
+          "description": "Stakeholder consultation summary"
+        }
+      }
+    },
+    "timeline": {
+      "type": "object",
+      "description": "Project timeline and milestones",
+      "properties": {
+        "decision_deadline": {
+          "type": "string",
+          "description": "Deadline for board decision",
+          "format": "date"
+        },
+        "implementation_start": {
+          "type": "string",
+          "description": "Planned implementation start",
+          "format": "date"
+        },
+        "key_milestones": {
+          "type": "array",
+          "description": "Key project milestones",
+          "items": {
+            "type": "object",
+            "required": ["milestone", "target_date"],
+            "properties": {
+              "milestone": {
+                "type": "string",
+                "description": "Milestone description"
+              },
+              "target_date": {
+                "type": "string",
+                "description": "Target completion date",
+                "format": "date"
+              },
+              "is_critical": {
+                "type": "boolean",
+                "description": "Whether milestone is on critical path"
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Document metadata",
+      "properties": {
+        "prepared_by": {
+          "type": "string",
+          "description": "Person/team who prepared memo"
+        },
+        "date_prepared": {
+          "type": "string",
+          "description": "Date memo prepared",
+          "format": "date"
+        },
+        "board_meeting_date": {
+          "type": "string",
+          "description": "Target board meeting date",
+          "format": "date"
+        },
+        "confidentiality": {
+          "type": "string",
+          "description": "Confidentiality classification",
+          "enum": ["public", "confidential", "restricted", "in_camera"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

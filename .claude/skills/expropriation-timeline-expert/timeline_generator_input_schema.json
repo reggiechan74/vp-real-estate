@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://claude.com/schemas/timeline-generator-input.json",
+  "title": "Timeline Generator Input Schema",
+  "description": "Input schema for expropriation project timeline generation with critical path analysis",
+  "type": "object",
+  "required": ["project_name", "tasks", "dependencies"],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "description": "Name of the expropriation project",
+      "minLength": 1,
+      "examples": [
+        "Eglinton Crosstown LRT - Station Site Acquisition",
+        "Highway 401 Widening - Complex Corridor Assembly"
+      ]
+    },
+    "start_date": {
+      "type": "string",
+      "description": "Project start date in YYYY-MM-DD format (optional, defaults to today)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "examples": ["2025-01-15", "2025-06-01"]
+    },
+    "tasks": {
+      "type": "array",
+      "description": "List of project tasks with durations",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "duration"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique task identifier",
+            "pattern": "^[A-Z]+$",
+            "examples": ["A", "B", "C", "AA", "AB"]
+          },
+          "name": {
+            "type": "string",
+            "description": "Task name/description",
+            "minLength": 1,
+            "examples": [
+              "Obtain council approval (Form 1)",
+              "Serve Form 2 notice to owners",
+              "Commission property appraisal"
+            ]
+          },
+          "duration": {
+            "type": "number",
+            "description": "Task duration in days",
+            "minimum": 0,
+            "examples": [15, 30, 45, 60]
+          },
+          "optimistic": {
+            "type": "number",
+            "description": "Optimistic duration estimate (PERT analysis)",
+            "minimum": 0
+          },
+          "most_likely": {
+            "type": "number",
+            "description": "Most likely duration estimate (PERT analysis)",
+            "minimum": 0
+          },
+          "pessimistic": {
+            "type": "number",
+            "description": "Pessimistic duration estimate (PERT analysis)",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "List of task dependencies as [predecessor, successor] pairs",
+      "items": {
+        "type": "array",
+        "description": "Dependency pair: [predecessor_id, successor_id]",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "string",
+          "description": "Task ID",
+          "pattern": "^[A-Z]+$"
+        },
+        "examples": [
+          ["A", "B"],
+          ["A", "C"],
+          ["B", "D"]
+        ]
+      }
+    },
+    "deadlines": {
+      "type": "object",
+      "description": "Statutory or absolute deadlines for specific tasks (days from start)",
+      "patternProperties": {
+        "^[A-Z]+$": {
+          "type": "number",
+          "description": "Absolute deadline in days from project start",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "examples": [
+        {
+          "B": 90,
+          "C": 120,
+          "F": 150
+        }
+      ]
+    },
+    "resource_requirements": {
+      "type": "object",
+      "description": "Resource requirements by task (staff, consultants, budget)",
+      "patternProperties": {
+        "^[A-Z]+$": {
+          "type": "object",
+          "properties": {
+            "staff": {
+              "type": "integer",
+              "description": "Number of staff members required",
+              "minimum": 0,
+              "default": 0
+            },
+            "consultants": {
+              "type": "object",
+              "description": "Consultant requirements by type",
+              "properties": {
+                "legal": {
+                  "type": "integer",
+                  "description": "Number of legal consultants",
+                  "minimum": 0,
+                  "default": 0
+                },
+                "appraisal": {
+                  "type": "integer",
+                  "description": "Number of appraisal consultants",
+                  "minimum": 0,
+                  "default": 0
+                },
+                "engineering": {
+                  "type": "integer",
+                  "description": "Number of engineering consultants",
+                  "minimum": 0,
+                  "default": 0
+                },
+                "environmental": {
+                  "type": "integer",
+                  "description": "Number of environmental consultants",
+                  "minimum": 0,
+                  "default": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "budget": {
+              "type": "number",
+              "description": "Task budget in dollars",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "examples": [
+        {
+          "A": {
+            "staff": 1,
+            "consultants": {
+              "legal": 1
+            },
+            "budget": 5000
+          },
+          "C": {
+            "staff": 1,
+            "consultants": {
+              "appraisal": 2
+            },
+            "budget": 15000
+          }
+        }
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional project notes or context"
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "project_name": "Highway 401 Widening - Complex Corridor Assembly",
+      "start_date": "2025-01-15",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Obtain council approval (Form 1)",
+          "duration": 30
+        },
+        {
+          "id": "B",
+          "name": "Register approval with Land Registry",
+          "duration": 15
+        },
+        {
+          "id": "C",
+          "name": "Commission property appraisals",
+          "duration": 60
+        },
+        {
+          "id": "D",
+          "name": "Serve Form 2 notices to owners",
+          "duration": 5
+        },
+        {
+          "id": "E",
+          "name": "Negotiate with owners",
+          "duration": 90
+        },
+        {
+          "id": "F",
+          "name": "Serve Form 4 notices (if needed)",
+          "duration": 30
+        }
+      ],
+      "dependencies": [
+        ["A", "B"],
+        ["B", "C"],
+        ["B", "D"],
+        ["C", "E"],
+        ["D", "E"],
+        ["E", "F"]
+      ],
+      "deadlines": {
+        "B": 90,
+        "D": 95
+      },
+      "resource_requirements": {
+        "A": {
+          "staff": 1,
+          "consultants": {
+            "legal": 1
+          },
+          "budget": 5000
+        },
+        "C": {
+          "staff": 1,
+          "consultants": {
+            "appraisal": 3
+          },
+          "budget": 45000
+        },
+        "E": {
+          "staff": 2,
+          "consultants": {
+            "legal": 1
+          },
+          "budget": 25000
+        }
+      }
+    }
+  ]
+}

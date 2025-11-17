@@ -1,0 +1,159 @@
+{
+  "project_name": "Transit Station Property Acquisition",
+  "approval_date": "2025-03-15",
+  "tasks": [
+    {
+      "id": "A",
+      "name": "Obtain Expropriation Approval",
+      "duration": 30,
+      "optimistic": 20,
+      "most_likely": 30,
+      "pessimistic": 45,
+      "resources": {
+        "staff": 2,
+        "consultants": {
+          "legal": 1
+        },
+        "budget": 15000
+      }
+    },
+    {
+      "id": "B",
+      "name": "Prepare Expropriation Plan (Survey)",
+      "duration": 21,
+      "optimistic": 14,
+      "most_likely": 21,
+      "pessimistic": 35,
+      "resources": {
+        "staff": 1,
+        "consultants": {
+          "surveyor": 1
+        },
+        "budget": 8000
+      }
+    },
+    {
+      "id": "C",
+      "name": "Municipal Clerk Plan Review",
+      "duration": 7,
+      "optimistic": 5,
+      "most_likely": 7,
+      "pessimistic": 14,
+      "resources": {
+        "staff": 1,
+        "budget": 0
+      }
+    },
+    {
+      "id": "D",
+      "name": "Corrections & Resubmission",
+      "duration": 10,
+      "optimistic": 7,
+      "most_likely": 10,
+      "pessimistic": 21,
+      "resources": {
+        "staff": 1,
+        "consultants": {
+          "surveyor": 1
+        },
+        "budget": 3000
+      }
+    },
+    {
+      "id": "E",
+      "name": "Municipal Solicitor Approval",
+      "duration": 7,
+      "optimistic": 5,
+      "most_likely": 7,
+      "pessimistic": 14,
+      "resources": {
+        "staff": 1,
+        "consultants": {
+          "legal": 1
+        },
+        "budget": 5000
+      }
+    },
+    {
+      "id": "F",
+      "name": "Land Registry Office Scheduling",
+      "duration": 15,
+      "optimistic": 10,
+      "most_likely": 15,
+      "pessimistic": 25,
+      "resources": {
+        "staff": 1,
+        "budget": 0
+      }
+    },
+    {
+      "id": "G",
+      "name": "Plan Registration",
+      "duration": 1,
+      "optimistic": 1,
+      "most_likely": 1,
+      "pessimistic": 2,
+      "resources": {
+        "staff": 2,
+        "budget": 500
+      }
+    },
+    {
+      "id": "H",
+      "name": "Property Appraisal",
+      "duration": 30,
+      "optimistic": 21,
+      "most_likely": 30,
+      "pessimistic": 45,
+      "resources": {
+        "staff": 1,
+        "consultants": {
+          "appraiser": 1
+        },
+        "budget": 12000
+      }
+    },
+    {
+      "id": "I",
+      "name": "Prepare Form 2 (Notice of Application)",
+      "duration": 5,
+      "optimistic": 3,
+      "most_likely": 5,
+      "pessimistic": 7,
+      "resources": {
+        "staff": 1,
+        "consultants": {
+          "legal": 1
+        },
+        "budget": 2000
+      }
+    },
+    {
+      "id": "J",
+      "name": "Serve Form 2 on Owners",
+      "duration": 1,
+      "optimistic": 1,
+      "most_likely": 1,
+      "pessimistic": 3,
+      "resources": {
+        "staff": 1,
+        "budget": 500
+      }
+    }
+  ],
+  "dependencies": [
+    ["A", "B"],
+    ["A", "H"],
+    ["B", "C"],
+    ["C", "D"],
+    ["D", "E"],
+    ["E", "F"],
+    ["F", "G"],
+    ["A", "I"],
+    ["I", "J"]
+  ],
+  "statutory_deadlines": {
+    "G": 90
+  },
+  "buffer_days": 10
+}

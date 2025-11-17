@@ -1,0 +1,304 @@
+{
+  "project_name": "Highway 401 Widening - Complex Corridor Assembly",
+  "start_date": "2025-01-15",
+  "notes": "Complex multi-property corridor acquisition requiring coordination of 8 properties with varying ownership structures. Includes residential, commercial, and agricultural parcels. Critical path constrained by statutory 3-month registration deadline.",
+  "tasks": [
+    {
+      "id": "A",
+      "name": "Obtain council approval (Form 1)",
+      "duration": 30,
+      "optimistic": 20,
+      "most_likely": 30,
+      "pessimistic": 45
+    },
+    {
+      "id": "B",
+      "name": "Register approval with Land Registry (3-month statutory deadline)",
+      "duration": 15,
+      "optimistic": 10,
+      "most_likely": 15,
+      "pessimistic": 20
+    },
+    {
+      "id": "C",
+      "name": "Commission property appraisals (8 properties)",
+      "duration": 60,
+      "optimistic": 45,
+      "most_likely": 60,
+      "pessimistic": 90
+    },
+    {
+      "id": "D",
+      "name": "Title searches and legal due diligence",
+      "duration": 30,
+      "optimistic": 20,
+      "most_likely": 30,
+      "pessimistic": 45
+    },
+    {
+      "id": "E",
+      "name": "Environmental Phase I assessments",
+      "duration": 45,
+      "optimistic": 30,
+      "most_likely": 45,
+      "pessimistic": 60
+    },
+    {
+      "id": "F",
+      "name": "Survey and boundary determinations",
+      "duration": 40,
+      "optimistic": 30,
+      "most_likely": 40,
+      "pessimistic": 60
+    },
+    {
+      "id": "G",
+      "name": "Prepare compensation offers (8 packages)",
+      "duration": 20,
+      "optimistic": 15,
+      "most_likely": 20,
+      "pessimistic": 30
+    },
+    {
+      "id": "H",
+      "name": "Serve Form 2 notices to owners",
+      "duration": 5,
+      "optimistic": 3,
+      "most_likely": 5,
+      "pessimistic": 7
+    },
+    {
+      "id": "I",
+      "name": "Initial negotiation round (simple properties)",
+      "duration": 60,
+      "optimistic": 45,
+      "most_likely": 60,
+      "pessimistic": 90
+    },
+    {
+      "id": "J",
+      "name": "Complex negotiations (holdout properties)",
+      "duration": 90,
+      "optimistic": 60,
+      "most_likely": 90,
+      "pessimistic": 120
+    },
+    {
+      "id": "K",
+      "name": "Prepare Form 4 notices (if settlements fail)",
+      "duration": 15,
+      "optimistic": 10,
+      "most_likely": 15,
+      "pessimistic": 20
+    },
+    {
+      "id": "L",
+      "name": "Serve Form 4 notices",
+      "duration": 5,
+      "optimistic": 3,
+      "most_likely": 5,
+      "pessimistic": 7
+    },
+    {
+      "id": "M",
+      "name": "Prepare expropriation bylaws",
+      "duration": 30,
+      "optimistic": 20,
+      "most_likely": 30,
+      "pessimistic": 45
+    },
+    {
+      "id": "N",
+      "name": "Obtain council approval for expropriation",
+      "duration": 30,
+      "optimistic": 20,
+      "most_likely": 30,
+      "pessimistic": 45
+    },
+    {
+      "id": "O",
+      "name": "Serve Form 5 notices and register",
+      "duration": 10,
+      "optimistic": 7,
+      "most_likely": 10,
+      "pessimistic": 15
+    },
+    {
+      "id": "P",
+      "name": "Deposit compensation with court",
+      "duration": 15,
+      "optimistic": 10,
+      "most_likely": 15,
+      "pessimistic": 20
+    },
+    {
+      "id": "Q",
+      "name": "Post-expropriation negotiations",
+      "duration": 60,
+      "optimistic": 45,
+      "most_likely": 60,
+      "pessimistic": 90
+    },
+    {
+      "id": "R",
+      "name": "Hearing preparation (if needed)",
+      "duration": 120,
+      "optimistic": 90,
+      "most_likely": 120,
+      "pessimistic": 150
+    }
+  ],
+  "dependencies": [
+    ["A", "B"],
+    ["B", "C"],
+    ["B", "D"],
+    ["B", "E"],
+    ["B", "F"],
+    ["C", "G"],
+    ["D", "G"],
+    ["E", "G"],
+    ["F", "G"],
+    ["G", "H"],
+    ["H", "I"],
+    ["I", "J"],
+    ["J", "K"],
+    ["K", "L"],
+    ["L", "M"],
+    ["M", "N"],
+    ["N", "O"],
+    ["O", "P"],
+    ["P", "Q"],
+    ["Q", "R"]
+  ],
+  "deadlines": {
+    "B": 90,
+    "H": 95,
+    "O": 365
+  },
+  "resource_requirements": {
+    "A": {
+      "staff": 1,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 5000
+    },
+    "B": {
+      "staff": 1,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 2000
+    },
+    "C": {
+      "staff": 1,
+      "consultants": {
+        "appraisal": 3
+      },
+      "budget": 80000
+    },
+    "D": {
+      "staff": 1,
+      "consultants": {
+        "legal": 2
+      },
+      "budget": 15000
+    },
+    "E": {
+      "staff": 1,
+      "consultants": {
+        "environmental": 2
+      },
+      "budget": 40000
+    },
+    "F": {
+      "staff": 1,
+      "consultants": {
+        "engineering": 2
+      },
+      "budget": 35000
+    },
+    "G": {
+      "staff": 2,
+      "consultants": {
+        "legal": 1,
+        "appraisal": 1
+      },
+      "budget": 10000
+    },
+    "H": {
+      "staff": 1,
+      "consultants": {},
+      "budget": 1000
+    },
+    "I": {
+      "staff": 2,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 15000
+    },
+    "J": {
+      "staff": 3,
+      "consultants": {
+        "legal": 2
+      },
+      "budget": 35000
+    },
+    "K": {
+      "staff": 1,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 3000
+    },
+    "L": {
+      "staff": 1,
+      "consultants": {},
+      "budget": 1000
+    },
+    "M": {
+      "staff": 2,
+      "consultants": {
+        "legal": 2
+      },
+      "budget": 8000
+    },
+    "N": {
+      "staff": 1,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 5000
+    },
+    "O": {
+      "staff": 1,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 3000
+    },
+    "P": {
+      "staff": 1,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 2000
+    },
+    "Q": {
+      "staff": 2,
+      "consultants": {
+        "legal": 1
+      },
+      "budget": 20000
+    },
+    "R": {
+      "staff": 3,
+      "consultants": {
+        "legal": 3,
+        "appraisal": 2
+      },
+      "budget": 150000
+    }
+  }
+}

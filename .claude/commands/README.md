@@ -4,7 +4,7 @@ Automated workflows for commercial real estate lease analysis, property valuatio
 
 ## Structure
 
-Commands are organized into 10 categories (33 total):
+Commands are organized into 11 categories (39 total):
 
 ### 1. Abstraction (2 commands)
 
@@ -83,7 +83,18 @@ Transit station site evaluation and scoring.
 
 - **`/transit-station-scoring`** - Systematic evaluation of transit station site alternatives using TOD potential (density, mix, walkability), multi-modal connections, acquisition complexity, community impact, and holdout risk (normalized 0-100 scoring with 4-tier recommendations)
 
-### 10. Utilities (1 command)
+### 10. Process (6 commands)
+
+Executive reporting and project management for infrastructure acquisitions.
+
+- **`/briefing-note`** - Generate executive briefing note (1-2 pages, decision-focused) for infrastructure acquisition projects
+- **`/board-memo`** - Board approval memo with comprehensive financial summary, risk analysis, and board resolution language
+- **`/public-consultation-summary`** - Summarize stakeholder feedback and response strategy from public meetings and written submissions
+- **`/expropriation-timeline`** - Generate critical path timeline with Ontario Expropriations Act regulatory deadlines using PERT/CPM methodology
+- **`/negotiation-strategy`** - Develop negotiation approach and settlement range based on owner psychology and property characteristics
+- **`/settlement-analysis`** - Analyze settlement scenarios vs. hearing risk with probability-weighted outcomes and expected value comparison
+
+### 11. Utilities (1 command)
 
 Document conversion and utility tools.
 

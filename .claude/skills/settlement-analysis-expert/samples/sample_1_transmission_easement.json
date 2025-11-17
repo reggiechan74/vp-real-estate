@@ -1,0 +1,49 @@
+{
+  "case_id": "HYDRO-2025-001",
+  "property_description": "Transmission line easement across 50-acre farm property",
+  "settlement_offer": 180000,
+  "counteroffer": 220000,
+  "buyer_max_settlement": 250000,
+  "hearing_probabilities": {
+    "low_award": 0.2,
+    "mid_award": 0.5,
+    "high_award": 0.3
+  },
+  "hearing_costs": {
+    "low_award_amount": 150000,
+    "mid_award_amount": 185000,
+    "high_award_amount": 230000,
+    "legal_fees": 50000,
+    "expert_fees": 30000,
+    "time_cost": 10000
+  },
+  "settlement_costs": {
+    "legal_fees_to_settle": 5000,
+    "settlement_risk": 0.1
+  },
+  "owner_profile": {
+    "motivation": {
+      "financial_need": "low",
+      "emotional_attachment": "high",
+      "business_impact": "moderate"
+    },
+    "sophistication": {
+      "real_estate_experience": "medium",
+      "legal_representation": true,
+      "previous_negotiations": 1
+    },
+    "alternatives": {
+      "relocation_options": "some",
+      "financial_flexibility": "medium",
+      "timeline_pressure": "low"
+    }
+  },
+  "case_factors": {
+    "valuation_gap": 40000,
+    "property_value": 200000,
+    "legal_complexity": "medium",
+    "precedent_clarity": "mixed",
+    "jurisdiction_history": "neutral"
+  },
+  "discount_rate": 0.05
+}

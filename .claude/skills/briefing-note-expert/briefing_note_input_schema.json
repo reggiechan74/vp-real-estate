@@ -1,0 +1,384 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lease-abstract.com/schemas/briefing-note-input.json",
+  "title": "Briefing Note Input Schema",
+  "description": "Schema for executive briefing note generation inputs for infrastructure acquisition projects",
+  "type": "object",
+  "required": ["project_name", "issue", "background", "financial_summary", "recommendation"],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Name of the infrastructure acquisition project",
+      "examples": ["Transit Station Site Acquisition", "Light Rail Corridor Assembly"]
+    },
+    "issue": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Decision required or issue to be addressed",
+      "examples": ["Board approval required for $1.8M acquisition", "Settlement authorization request"]
+    },
+    "urgency": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Urgency level of the decision",
+      "default": "medium"
+    },
+    "background": {
+      "type": "object",
+      "required": ["context", "project_timeline"],
+      "properties": {
+        "context": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Background context and history"
+        },
+        "project_timeline": {
+          "type": "object",
+          "properties": {
+            "start_date": {
+              "type": "string",
+              "format": "date",
+              "description": "Project start date (YYYY-MM-DD)"
+            },
+            "key_milestones": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["milestone", "date"],
+                "properties": {
+                  "milestone": {
+                    "type": "string",
+                    "description": "Milestone description"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Milestone date (YYYY-MM-DD)"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["completed", "in_progress", "pending"],
+                    "default": "pending"
+                  }
+                }
+              }
+            },
+            "critical_deadline": {
+              "type": "string",
+              "format": "date",
+              "description": "Critical project deadline (YYYY-MM-DD)"
+            }
+          }
+        },
+        "stakeholders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "role"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Stakeholder name"
+              },
+              "role": {
+                "type": "string",
+                "description": "Stakeholder role"
+              },
+              "position": {
+                "type": "string",
+                "enum": ["supportive", "neutral", "opposed", "unknown"],
+                "default": "neutral"
+              }
+            }
+          }
+        }
+      }
+    },
+    "financial_summary": {
+      "type": "object",
+      "required": ["total_cost"],
+      "properties": {
+        "total_cost": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total project cost"
+        },
+        "breakdown": {
+          "type": "object",
+          "description": "Cost breakdown by category",
+          "properties": {
+            "acquisition": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Land acquisition cost"
+            },
+            "legal": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Legal fees"
+            },
+            "expert": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Expert appraisal and consulting fees"
+            },
+            "disturbance": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Disturbance compensation"
+            },
+            "other": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Other costs"
+            }
+          }
+        },
+        "contingency": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Contingency amount",
+          "default": 0
+        },
+        "contingency_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Contingency as percentage of total (0-1)",
+          "default": 0.1
+        },
+        "budget_comparison": {
+          "type": "object",
+          "properties": {
+            "approved_budget": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Previously approved budget"
+            },
+            "variance": {
+              "type": "number",
+              "description": "Variance from budget (positive = over budget)"
+            },
+            "variance_pct": {
+              "type": "number",
+              "description": "Variance as percentage"
+            }
+          }
+        },
+        "funding_source": {
+          "type": "string",
+          "description": "Source of funding",
+          "examples": ["Capital Budget 2025", "Transit Expansion Fund", "Municipal Allocation"]
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "strategic_rationale": {
+          "type": "string",
+          "description": "Strategic justification for the decision"
+        },
+        "alternatives_considered": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["alternative", "pros", "cons", "cost"],
+            "properties": {
+              "alternative": {
+                "type": "string",
+                "description": "Alternative approach"
+              },
+              "pros": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "cons": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "cost": {
+                "type": "number",
+                "description": "Estimated cost"
+              },
+              "timeline_impact": {
+                "type": "string",
+                "description": "Impact on project timeline"
+              }
+            }
+          }
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Key benefits of recommended approach"
+        },
+        "precedents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "project": {
+                "type": "string",
+                "description": "Precedent project name"
+              },
+              "similarity": {
+                "type": "string",
+                "description": "How this precedent is similar"
+              },
+              "outcome": {
+                "type": "string",
+                "description": "Outcome of precedent"
+              }
+            }
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Primary recommendation",
+      "examples": ["Approve acquisition at $1.8M", "Settle at $185,000", "Proceed to expropriation"]
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Brief rationale for recommendation"
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk", "severity"],
+        "properties": {
+          "risk": {
+            "type": "string",
+            "description": "Risk description"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+            "description": "Risk severity level"
+          },
+          "probability": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Probability of occurrence (0-1)"
+          },
+          "impact": {
+            "type": "string",
+            "description": "Impact if risk materializes"
+          },
+          "mitigation": {
+            "type": "string",
+            "description": "Mitigation strategy"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Risk owner/responsible party"
+          }
+        }
+      },
+      "description": "Risk assessment"
+    },
+    "action_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "responsible"],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action item description"
+          },
+          "responsible": {
+            "type": "string",
+            "description": "Responsible party"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date",
+            "description": "Deadline date (YYYY-MM-DD)"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH"],
+            "default": "MEDIUM",
+            "description": "Priority level"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Dependencies on other actions"
+          }
+        }
+      }
+    },
+    "approvals_required": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["authority", "level"],
+        "properties": {
+          "authority": {
+            "type": "string",
+            "description": "Approval authority name"
+          },
+          "level": {
+            "type": "string",
+            "description": "Authorization level required"
+          },
+          "threshold": {
+            "type": "number",
+            "description": "Dollar threshold for this authority"
+          },
+          "timing": {
+            "type": "string",
+            "description": "When approval is needed"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "prepared_by": {
+          "type": "string",
+          "description": "Name of person preparing briefing note"
+        },
+        "department": {
+          "type": "string",
+          "description": "Department name"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Preparation date"
+        },
+        "distribution_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Distribution list for briefing note"
+        },
+        "classification": {
+          "type": "string",
+          "enum": ["PUBLIC", "CONFIDENTIAL", "RESTRICTED"],
+          "default": "CONFIDENTIAL"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
