@@ -1,0 +1,45 @@
+{
+  "site_type": "Commercial Land Lease",
+  "land_rent": {
+    "annual_rent": 15000,
+    "lease_term": 25,
+    "escalations": "CPI annual"
+  },
+  "market_data": {
+    "comparable_rents": [
+      {
+        "location": "Comparable site 1",
+        "annual_rent": 14500
+      },
+      {
+        "location": "Comparable site 2",
+        "annual_rent": 16200
+      },
+      {
+        "location": "Comparable site 3",
+        "annual_rent": 15800
+      }
+    ],
+    "cap_rate_range": {
+      "low": 0.065,
+      "high": 0.085
+    },
+    "comparable_sales": [
+      {
+        "location": "Sale 1",
+        "sale_price": 200000,
+        "noi": 15000
+      },
+      {
+        "location": "Sale 2",
+        "sale_price": 220000,
+        "noi": 16500
+      }
+    ]
+  },
+  "operating_expenses": {
+    "property_tax": 2500,
+    "insurance": 1000,
+    "maintenance": 1500
+  }
+}

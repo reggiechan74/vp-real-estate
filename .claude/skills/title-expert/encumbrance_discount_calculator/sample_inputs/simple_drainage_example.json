@@ -1,0 +1,20 @@
+{
+  "property": {
+    "pin": "55555-1111",
+    "address": "1250 Industrial Parkway, Business District",
+    "total_area_acres": 10.0,
+    "unencumbered_value": 500000,
+    "zoning": "Industrial",
+    "highest_best_use": "Industrial warehouse development"
+  },
+  "encumbrances": [
+    {
+      "type": "drainage_easement",
+      "area_acres": 0.8,
+      "width_feet": 30,
+      "length_feet": 1160,
+      "impact_percentage": 5,
+      "description": "Storm water drainage easement along rear property line"
+    }
+  ]
+}

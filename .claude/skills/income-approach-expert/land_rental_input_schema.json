@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/land-rental-input.json",
+  "title": "Land Capitalization Input",
+  "description": "Input schema for income approach land valuation using capitalization of net rental income. Supports agricultural land, ground leases, telecom tower sites, and parking lot valuations.",
+  "type": "object",
+  "required": [
+    "site_type",
+    "land_rent",
+    "market_data",
+    "operating_expenses"
+  ],
+  "properties": {
+    "site_type": {
+      "type": "string",
+      "enum": [
+        "Telecom tower site",
+        "Agricultural land",
+        "Ground lease",
+        "Parking lot"
+      ],
+      "description": "Classification of the land use type for valuation purposes"
+    },
+    "land_rent": {
+      "type": "object",
+      "description": "Rental income and lease term parameters",
+      "required": [
+        "annual_rent",
+        "lease_term"
+      ],
+      "properties": {
+        "annual_rent": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual rental income in dollars"
+        },
+        "lease_term": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Lease term in years"
+        },
+        "escalations": {
+          "type": "string",
+          "description": "Rent escalation terms (e.g., 'Annual 2% CPI', 'Fixed 3% per annum', 'Market review every 5 years')"
+        },
+        "commencement_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Lease commencement date in YYYY-MM-DD format"
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_data": {
+      "type": "object",
+      "description": "Market-based valuation inputs including comparable rents, cap rates, and comparable sales",
+      "required": [
+        "comparable_rents"
+      ],
+      "properties": {
+        "comparable_rents": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Array of comparable rental transactions for market analysis",
+          "items": {
+            "type": "object",
+            "required": [
+              "location",
+              "annual_rent"
+            ],
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "Geographic location or property identification of comparable"
+              },
+              "annual_rent": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Annual rent for the comparable property"
+              },
+              "lease_term": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Lease term of the comparable in years"
+              },
+              "adjustment_factor": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 1.5,
+                "description": "Adjustment multiplier for differences from subject property (0.5-1.5 range)"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "cap_rate_range": {
+          "type": "object",
+          "description": "Capitalization rate range for valuation",
+          "properties": {
+            "low": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Low end of cap rate range (e.g., 0.04 for 4%)"
+            },
+            "high": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "High end of cap rate range (e.g., 0.08 for 8%)"
+            },
+            "selected": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Selected cap rate for valuation (must be between low and high)"
+            }
+          },
+          "additionalProperties": false
+        },
+        "comparable_sales": {
+          "type": "array",
+          "description": "Comparable land sales used to derive market cap rates",
+          "items": {
+            "type": "object",
+            "properties": {
+              "property_id": {
+                "type": "string",
+                "description": "Identifier for the comparable sale"
+              },
+              "sale_price": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Sale price in dollars"
+              },
+              "sale_date": {
+                "type": "string",
+                "format": "date",
+                "description": "Date of sale in YYYY-MM-DD format"
+              },
+              "noi": {
+                "type": "number",
+                "description": "Net operating income in dollars (may be negative for cost-based operations)"
+              },
+              "implied_cap_rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Implied cap rate derived from sale (NOI / Sale Price)"
+              },
+              "adjustment_notes": {
+                "type": "string",
+                "description": "Notes on any adjustments needed to comparable sale"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "operating_expenses": {
+      "type": "object",
+      "description": "Annual operating expenses deducted from rental income to calculate NOI",
+      "properties": {
+        "property_tax": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual property tax expense in dollars"
+        },
+        "insurance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual insurance expense in dollars"
+        },
+        "maintenance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual maintenance and repairs expense in dollars"
+        },
+        "utilities": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual utilities expense in dollars"
+        },
+        "management_fee": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual property management fee in dollars or as percentage"
+        },
+        "other_expenses": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Other miscellaneous operating expenses in dollars"
+        }
+      },
+      "additionalProperties": false
+    },
+    "income_verification": {
+      "type": "object",
+      "description": "Optional documentation supporting rental income and operating expense amounts",
+      "properties": {
+        "source_documents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of source documents (e.g., 'lease agreement', 'tax returns', 'financial statements')"
+        },
+        "verification_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of verification in YYYY-MM-DD format"
+        },
+        "verified_by": {
+          "type": "string",
+          "description": "Party responsible for verification (e.g., 'appraiser', 'accountant', 'landlord')"
+        }
+      },
+      "additionalProperties": false
+    },
+    "assumptions_and_notes": {
+      "type": "object",
+      "description": "Valuation assumptions and supporting notes",
+      "properties": {
+        "analysis_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Valuation date in YYYY-MM-DD format"
+        },
+        "market_conditions": {
+          "type": "string",
+          "description": "Description of current market conditions affecting valuation"
+        },
+        "risk_factors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of material risk factors affecting the valuation"
+        },
+        "special_circumstances": {
+          "type": "string",
+          "description": "Any special circumstances affecting the valuation (e.g., environmental issues, zoning restrictions)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

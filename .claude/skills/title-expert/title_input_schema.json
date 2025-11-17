@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/title-input.json",
+  "title": "Title Analysis Input Schema",
+  "description": "Input schema for comprehensive title search analysis including registered instruments, encumbrances, restrictions, and registration defects",
+  "type": "object",
+  "required": [
+    "property_identifier",
+    "property_address"
+  ],
+  "properties": {
+    "property_identifier": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Property Identification Number (PIN) or legal property identifier. Example: 'PIN 12345-6789 (LT)'"
+    },
+    "property_address": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full property address including street, city, province, postal code. Example: '100 Industrial Road, Toronto, ON M5A 1B2'"
+    },
+    "registered_instruments": {
+      "type": "array",
+      "description": "List of registered instruments on title (easements, covenants, mortgages, liens, etc.)",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": [
+          "instrument_number",
+          "instrument_type"
+        ],
+        "properties": {
+          "instrument_number": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Registration number assigned by land registry. Example: 'AT1234567'"
+          },
+          "instrument_type": {
+            "type": "string",
+            "enum": [
+              "Easement",
+              "Covenant",
+              "Restriction",
+              "Lien",
+              "Mortgage",
+              "Lease",
+              "Right of Way",
+              "Encroachment",
+              "Notice",
+              "Court Order",
+              "Building Scheme",
+              "Notice of Security Interest",
+              "Caution",
+              "Certificate of Pending Litigation",
+              "Restrictive Covenant",
+              "Construction Lien",
+              "Other"
+            ],
+            "description": "Type of registered instrument on title"
+          },
+          "parties": {
+            "type": "object",
+            "description": "Parties to the instrument (grantor/grantee relationship)",
+            "properties": {
+              "grantor": {
+                "type": "string",
+                "description": "Party granting the right or interest (person/entity creating the instrument)"
+              },
+              "grantee": {
+                "type": "string",
+                "description": "Party receiving the right or interest (person/entity benefiting from the instrument)"
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the instrument, its purpose, and any relevant conditions or restrictions"
+          },
+          "registration_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date instrument was registered on title. Format: YYYY-MM-DD. Example: '1985-03-15'"
+          },
+          "area_affected": {
+            "type": "string",
+            "description": "Description of the area affected by the instrument. Example: '2.5 acres along eastern property boundary' or '10 foot wide corridor along southern boundary'"
+          },
+          "term": {
+            "type": "string",
+            "description": "Term length for Lease instruments. Example: '10 years'"
+          },
+          "expiry": {
+            "type": "string",
+            "format": "date",
+            "description": "Expiry/termination date for time-limited instruments. Format: YYYY-MM-DD"
+          },
+          "principal": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Principal amount for Mortgage instruments (in dollars)"
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Amount claimed/secured for Lien, Mortgage, or other financial instruments (in dollars)"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "restrictions": {
+      "type": "array",
+      "description": "List of zoning restrictions, use restrictions, or other regulatory limitations affecting the property",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of restriction. Example: 'Zoning Restriction', 'Environmental Restriction', 'Heritage Restriction'"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the restriction and its impact on land use"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date restriction was imposed or came into effect. Format: YYYY-MM-DD"
+          }
+        }
+      }
+    },
+    "encumbrances": {
+      "type": "array",
+      "description": "List of additional encumbrances or burdens on the property not otherwise categorized",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of encumbrance"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the encumbrance and its impact"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ],
+            "description": "Severity level of the encumbrance impact"
+          }
+        }
+      }
+    },
+    "defects": {
+      "type": "array",
+      "description": "List of registration defects, title defects, or procedural issues affecting instrument validity",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "instrument": {
+            "type": "string",
+            "description": "Instrument number affected by the defect. Example: 'AT6789012'"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Parties",
+              "Description",
+              "Registration",
+              "Signature",
+              "Date",
+              "Form",
+              "Missing Document",
+              "Conflicting Information",
+              "Other"
+            ],
+            "description": "Category of defect"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR"
+            ],
+            "description": "Severity of the defect"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the defect and what is problematic"
+          },
+          "impact": {
+            "type": "string",
+            "description": "Impact of the defect on title validity or enforceability"
+          },
+          "remedy": {
+            "type": "string",
+            "description": "Recommended remedy or action to cure the defect"
+          }
+        }
+      }
+    },
+    "analysis_parameters": {
+      "type": "object",
+      "description": "Optional parameters controlling analysis behavior and thresholds",
+      "properties": {
+        "marketability_thresholds": {
+          "type": "object",
+          "description": "Thresholds for determining marketability impact severity",
+          "properties": {
+            "high_impact": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Percentage value reduction threshold for high impact encumbrances"
+            },
+            "medium_impact": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Percentage value reduction threshold for medium impact encumbrances"
+            },
+            "low_impact": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Percentage value reduction threshold for low impact encumbrances"
+            }
+          }
+        },
+        "critical_instrument_types": {
+          "type": "array",
+          "description": "List of instrument types that should be flagged as critical for further analysis",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

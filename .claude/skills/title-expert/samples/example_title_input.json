@@ -1,0 +1,116 @@
+{
+  "property_identifier": "PIN 12345-6789 (LT)",
+  "property_address": "100 Industrial Road, Toronto, ON M5A 1B2",
+  "registered_instruments": [
+    {
+      "instrument_number": "AT1234567",
+      "instrument_type": "Easement",
+      "parties": {
+        "grantor": "Industrial Holdings Inc.",
+        "grantee": "Toronto Hydro Corporation"
+      },
+      "description": "Hydro transmission easement for overhead power lines, including right to construct, maintain, and operate transmission infrastructure",
+      "registration_date": "1985-03-15",
+      "area_affected": "2.5 acres along eastern property boundary"
+    },
+    {
+      "instrument_number": "AT2345678",
+      "instrument_type": "Restrictive Covenant",
+      "parties": {
+        "grantor": "City of Toronto",
+        "grantee": "Industrial Holdings Inc."
+      },
+      "description": "Covenant restricting building height to maximum 15 meters within 30 meters of eastern boundary, and prohibiting storage of hazardous materials within covenant area",
+      "registration_date": "1985-03-15",
+      "area_affected": "30 meter setback from eastern boundary"
+    },
+    {
+      "instrument_number": "AT3456789",
+      "instrument_type": "Right of Way",
+      "parties": {
+        "grantor": "Industrial Holdings Inc.",
+        "grantee": "City of Toronto"
+      },
+      "description": "Municipal drainage easement for storm sewer infrastructure including access for maintenance and repairs",
+      "registration_date": "1988-06-22",
+      "area_affected": "15 foot wide corridor along north property line"
+    },
+    {
+      "instrument_number": "AT4567890",
+      "instrument_type": "Lease",
+      "parties": {
+        "grantor": "Industrial Holdings Inc.",
+        "grantee": "ABC Manufacturing Ltd."
+      },
+      "description": "Commercial lease for industrial warehouse facility, 10 year term with option to renew",
+      "registration_date": "2015-09-01",
+      "term": "10 years",
+      "expiry": "2025-08-31"
+    },
+    {
+      "instrument_number": "AT5678901",
+      "instrument_type": "Mortgage",
+      "parties": {
+        "grantor": "Industrial Holdings Inc.",
+        "grantee": "First National Bank"
+      },
+      "description": "First mortgage securing loan for property acquisition and improvements",
+      "registration_date": "2020-01-15",
+      "principal": 2500000,
+      "amount": 2500000
+    },
+    {
+      "instrument_number": "AT6789012",
+      "instrument_type": "Construction Lien",
+      "parties": {
+        "grantor": "N/A",
+        "grantee": "XYZ Construction Limited"
+      },
+      "description": "Construction lien for unpaid roofing repairs completed March 2024, amount claimed $45,000 plus interest and costs",
+      "registration_date": "2024-04-15",
+      "amount": 45000
+    },
+    {
+      "instrument_number": "AT7890123",
+      "instrument_type": "Easement",
+      "parties": {
+        "grantor": "Industrial Holdings Inc.",
+        "grantee": "Bell Canada"
+      },
+      "description": "Telecommunications easement for underground fiber optic cable installation and maintenance",
+      "registration_date": "2018-11-20",
+      "area_affected": "10 foot wide corridor along southern boundary"
+    }
+  ],
+  "restrictions": [
+    {
+      "type": "Zoning Restriction",
+      "description": "Property zoned Employment Industrial (EI) - permits manufacturing, warehousing, distribution. Maximum lot coverage 60%, minimum landscaping 15%",
+      "date": "2019-05-01"
+    }
+  ],
+  "encumbrances": [],
+  "defects": [
+    {
+      "instrument": "AT6789012",
+      "category": "Parties",
+      "severity": "MAJOR",
+      "description": "Construction lien lists grantor as 'N/A' - improper form",
+      "impact": "Lien may be defective due to missing grantor identification",
+      "remedy": "Verify lien validity and negotiate discharge or obtain legal opinion on enforceability"
+    }
+  ],
+  "analysis_parameters": {
+    "marketability_thresholds": {
+      "high_impact": 15.0,
+      "medium_impact": 5.0,
+      "low_impact": 0.0
+    },
+    "critical_instrument_types": [
+      "Lien",
+      "Mortgage",
+      "Court Order",
+      "Notice of Security Interest"
+    ]
+  }
+}

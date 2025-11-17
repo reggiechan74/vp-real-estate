@@ -1,0 +1,45 @@
+{
+  "asset_type": "Substation",
+  "specifications": {
+    "voltage_primary": "230kV",
+    "voltage_secondary": "115kV",
+    "transformer_capacity_mva": 150,
+    "land_area_sqm": 5000,
+    "installation_year": 1995,
+    "location": "Urban Ontario"
+  },
+  "construction_costs": {
+    "materials": 8000000,
+    "labor": 4500000,
+    "overhead_percentage": 0.16,
+    "profit_percentage": 0.14
+  },
+  "depreciation": {
+    "age_years": 30,
+    "effective_age_years": 35,
+    "economic_life_years": 50,
+    "physical_condition": "Fair",
+    "functional_obsolescence": 500000,
+    "external_obsolescence": 250000
+  },
+  "market_data": {
+    "comparable_sales": [
+      {
+        "sale_price": 7500000,
+        "asset_type": "Substation",
+        "sale_date": "2023-11-20",
+        "location": "GTA",
+        "condition": "Good",
+        "notes": "Similar capacity, 25 years old, recently modernized"
+      },
+      {
+        "sale_price": 6800000,
+        "asset_type": "Substation",
+        "sale_date": "2024-03-15",
+        "location": "Ottawa",
+        "condition": "Fair",
+        "notes": "Slightly smaller capacity, 32 years old"
+      }
+    ]
+  }
+}

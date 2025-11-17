@@ -1,0 +1,71 @@
+{
+  "site_address": "456 Manufacturing Way, Hamilton, ON",
+  "phase_1_esa": {
+    "findings": [
+      "Former metal fabrication facility (1980-2010)",
+      "One 5,000L AST for heating oil - properly maintained",
+      "Minor staining observed near loading dock"
+    ],
+    "recs": [
+      {
+        "description": "Minor soil staining near loading dock - investigate further",
+        "severity": "MEDIUM",
+        "location": "Loading dock area"
+      }
+    ],
+    "data_gaps": []
+  },
+  "phase_2_esa": {
+    "soil_samples": [
+      {
+        "sample_id": "SS-01",
+        "location": "Loading dock",
+        "depth_m": 1.0,
+        "contaminants": ["F2 Petroleum Hydrocarbons"],
+        "exceedance": true
+      },
+      {
+        "sample_id": "SS-02",
+        "location": "Fabrication area",
+        "depth_m": 1.5,
+        "contaminants": ["Nickel"],
+        "exceedance": true
+      }
+    ],
+    "groundwater_samples": [],
+    "exceedances": [
+      {
+        "contaminant": "F2 Petroleum Hydrocarbons",
+        "location": "Loading dock soil",
+        "measured_value": 450,
+        "standard_limit": 150,
+        "exceedance_factor": 3.0,
+        "description": "Petroleum hydrocarbons exceed Table 3 standards by 3x - localized impact",
+        "severity": "MEDIUM"
+      },
+      {
+        "contaminant": "Nickel",
+        "location": "Fabrication area soil",
+        "measured_value": 145,
+        "standard_limit": 100,
+        "exceedance_factor": 1.45,
+        "description": "Nickel slightly exceeds Table 3 standards - likely from metal fabrication",
+        "severity": "LOW"
+      }
+    ],
+    "contaminants": [
+      "Petroleum hydrocarbons (F2)",
+      "Nickel"
+    ]
+  },
+  "cleanup_scenarios": {
+    "risk_assessment": {
+      "cost_low": 60000,
+      "cost_high": 120000
+    },
+    "remediation": {
+      "cost_low": 150000,
+      "cost_high": 350000
+    }
+  }
+}

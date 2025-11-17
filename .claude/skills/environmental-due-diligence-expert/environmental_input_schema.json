@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/environmental-input.json",
+  "title": "Environmental Risk Assessment Input Schema",
+  "description": "JSON Schema for environmental due diligence risk assessment input data. Validates Phase I/II ESA findings, contamination data, and cleanup cost scenarios for environmental liability analysis.",
+  "type": "object",
+  "required": [
+    "site_address"
+  ],
+  "properties": {
+    "site_address": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Property address for the environmental assessment. Required field used in report generation and site identification."
+    },
+    "phase_1_esa": {
+      "type": "object",
+      "description": "Phase I Environmental Site Assessment findings. Documents historical uses, recognized environmental conditions (RECs), and data gaps from Phase I inspection.",
+      "properties": {
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "description": "List of Phase I findings from site inspection. Examples: AST presence, historical industrial uses, soil staining evidence, etc."
+        },
+        "recs": {
+          "type": "array",
+          "description": "Recognized Environmental Conditions (RECs) identified in Phase I. Each REC requires a description and optional severity/location fields.",
+          "items": {
+            "type": "object",
+            "required": [
+              "description"
+            ],
+            "properties": {
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "description": "Detailed description of the recognized environmental condition."
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH"
+                ],
+                "description": "Severity classification of the REC. Optional but recommended for risk scoring."
+              },
+              "location": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Specific location on property where the REC is found (e.g., 'Northwest corner', 'Former dry cleaner building')."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "data_gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "description": "Identified data gaps from Phase I investigation that may require Phase II work. Examples: missing historical records, no groundwater wells, adjacent property status unknown."
+        }
+      },
+      "additionalProperties": false
+    },
+    "phase_2_esa": {
+      "type": "object",
+      "description": "Phase II Environmental Site Assessment results. Documents soil and groundwater sampling, contaminant analysis, and exceedances of regulatory standards.",
+      "properties": {
+        "soil_samples": {
+          "type": "array",
+          "description": "Soil sample data from Phase II testing. Each sample includes location, depth, detected contaminants, and exceedance status.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sample_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50,
+                "description": "Unique identifier for the soil sample (e.g., 'SS-01', 'Soil-North-1m')."
+              },
+              "location": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Physical location of sample on property (e.g., 'AST area', 'Former dry cleaner')."
+              },
+              "depth_m": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Sampling depth in meters below ground surface."
+              },
+              "contaminants": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "description": "List of contaminants detected in this soil sample."
+              },
+              "exceedance": {
+                "type": "boolean",
+                "description": "Whether sample exceeds applicable Ontario Table 3 or 4 standards."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "groundwater_samples": {
+          "type": "array",
+          "description": "Groundwater sample data from Phase II testing. Each sample includes location, depth, detected contaminants, and exceedance status.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sample_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50,
+                "description": "Unique identifier for the groundwater sample (e.g., 'GW-01', 'Well-South')."
+              },
+              "location": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Physical location of monitoring well (e.g., 'Downgradient of dry cleaner', 'Upgradient')."
+              },
+              "depth_m": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Monitoring well depth in meters below ground surface."
+              },
+              "contaminants": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "description": "List of contaminants detected in this groundwater sample."
+              },
+              "exceedance": {
+                "type": "boolean",
+                "description": "Whether sample exceeds Ontario Drinking Water Standards or environmental standards."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "exceedances": {
+          "type": "array",
+          "description": "Detailed documentation of all regulatory exceedances. Quantifies contamination relative to Table 3/4 or drinking water standards.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "contaminant": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Name of the contaminant that exceeds standards (e.g., 'Tetrachloroethylene (PCE)', 'F2 Petroleum Hydrocarbons')."
+              },
+              "location": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "Where the exceedance was found (e.g., 'AST area soil', 'Downgradient groundwater')."
+              },
+              "measured_value": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Measured concentration of the contaminant in applicable units (mg/kg for soil, µg/L for water)."
+              },
+              "standard_limit": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Applicable regulatory standard limit for comparison (Ontario Table 3, 4, or Drinking Water Standard)."
+              },
+              "exceedance_factor": {
+                "type": "number",
+                "minimum": 1,
+                "description": "Calculated exceedance factor (measured_value ÷ standard_limit). Values >1 indicate exceedance."
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "description": "Detailed description of the exceedance, its significance, and regulatory context."
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH"
+                ],
+                "description": "Severity classification of the exceedance based on magnitude and contamination pathway."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "contaminants": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "description": "Summary list of all contaminants detected across all soil and groundwater samples."
+        }
+      },
+      "additionalProperties": false
+    },
+    "cleanup_scenarios": {
+      "type": "object",
+      "description": "Cleanup cost scenarios for different environmental response options. Includes risk assessment only, remediation, and comprehensive brownfield approaches.",
+      "properties": {
+        "risk_assessment": {
+          "type": "object",
+          "description": "Risk Assessment-based approach: baseline risk characterization without cleanup action. Lowest cost option, appropriate only if contamination does not pose unacceptable risk.",
+          "properties": {
+            "cost_low": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Low-end cost estimate for risk assessment in USD. Typical range: $50,000 - $150,000."
+            },
+            "cost_high": {
+              "type": "number",
+              "minimum": 0,
+              "description": "High-end cost estimate for risk assessment in USD."
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000,
+              "description": "Narrative explanation of what this scenario includes and when it is appropriate."
+            }
+          },
+          "additionalProperties": false
+        },
+        "remediation": {
+          "type": "object",
+          "description": "Remediation-based approach: active cleanup to meet Table 4 (residential) or Table 3 (commercial/industrial) standards. Includes soil excavation and/or groundwater treatment.",
+          "properties": {
+            "cost_low": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Low-end cost estimate for remediation in USD. Typical range: $200,000 - $600,000 depending on contamination extent."
+            },
+            "cost_high": {
+              "type": "number",
+              "minimum": 0,
+              "description": "High-end cost estimate for remediation in USD."
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000,
+              "description": "Narrative explanation of remediation approach, including soil excavation, groundwater treatment, and expected timeline."
+            }
+          },
+          "additionalProperties": false
+        },
+        "brownfield": {
+          "type": "object",
+          "description": "Brownfield approach: comprehensive remediation with long-term monitoring/treatment and use of Ontario Brownfield Statute (O. Reg. 153/04) exemptions if applicable.",
+          "properties": {
+            "cost_low": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Low-end cost estimate for comprehensive brownfield remediation in USD. Typical range: $500,000 - $1,500,000+ for complex sites."
+            },
+            "cost_high": {
+              "type": "number",
+              "minimum": 0,
+              "description": "High-end cost estimate for comprehensive brownfield remediation in USD."
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000,
+              "description": "Narrative explanation of comprehensive approach, including engineering controls, deed registration, long-term stewardship, and potential brownfield tax credits."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

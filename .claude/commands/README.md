@@ -4,7 +4,7 @@ Automated workflows for commercial real estate lease analysis, property valuatio
 
 ## Structure
 
-Commands are organized into 11 categories (39 total):
+Commands are organized into 12 categories (44 total):
 
 ### 1. Abstraction (2 commands)
 
@@ -94,7 +94,17 @@ Executive reporting and project management for infrastructure acquisitions.
 - **`/negotiation-strategy`** - Develop negotiation approach and settlement range based on owner psychology and property characteristics
 - **`/settlement-analysis`** - Analyze settlement scenarios vs. hearing risk with probability-weighted outcomes and expected value comparison
 
-### 11. Utilities (1 command)
+### 11. Specialized (5 commands)
+
+Environmental, title, utility, and advanced valuation analysis for infrastructure projects.
+
+- **`/environmental-due-diligence`** - Phase I/II ESA summary with contamination risk scoring (HIGH/MEDIUM/LOW), cleanup cost estimation ($50K-$1M+ ranges), MOE regulatory pathway timeline (0-24 months), and liability allocation (indemnity, holdback, insurance)
+- **`/title-analysis`** - Title search analysis identifying 14+ instrument types, encumbrance impact assessment (CRITICAL/HIGH/MEDIUM/LOW), registration defect detection, marketability scoring (0-100), and remedial action recommendations
+- **`/utility-conflict-analysis`** - Utility conflict detection with geometric analysis (horizontal/vertical clearances), relocation requirements by utility type (transmission, gas, water, telecom), cost estimation ($200K-$3.5M/km ranges), and coordination timeline (PERT/CPM critical path)
+- **`/income-approach-land`** - Income approach land valuation by capitalizing rent with market rent analysis, cap rate selection (3 methods: market extraction, band of investment, buildup), NOI calculation, reconciliation with sales, and sensitivity analysis
+- **`/cost-approach-infrastructure`** - Cost approach infrastructure valuation (transmission towers, telecom sites, substations) using replacement cost new, depreciation analysis (physical, functional, external), and market reconciliation
+
+### 12. Utilities (1 command)
 
 Document conversion and utility tools.
 

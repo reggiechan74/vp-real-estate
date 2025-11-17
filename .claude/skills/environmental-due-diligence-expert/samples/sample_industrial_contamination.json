@@ -1,0 +1,131 @@
+{
+  "site_address": "2550 Industrial Parkway, Burlington, ON",
+  "phase_1_esa": {
+    "findings": [
+      "Two 10,000L above-ground storage tanks (ASTs) present",
+      "Historical dry cleaning operation (1985-2002)",
+      "Evidence of soil staining near AST area",
+      "Former auto repair shop on adjacent property",
+      "Asbestos-containing materials in building (managed)"
+    ],
+    "recs": [
+      {
+        "description": "Soil staining near AST storage area - potential petroleum hydrocarbon release",
+        "severity": "HIGH",
+        "location": "Northwest corner of property"
+      },
+      {
+        "description": "Historical dry cleaner operations - potential solvent contamination",
+        "severity": "HIGH",
+        "location": "Former dry cleaner building"
+      }
+    ],
+    "data_gaps": [
+      "No groundwater monitoring wells on site",
+      "Limited historical records for dry cleaner operations",
+      "Adjacent property environmental status unknown"
+    ]
+  },
+  "phase_2_esa": {
+    "soil_samples": [
+      {
+        "sample_id": "SS-01",
+        "location": "AST area",
+        "depth_m": 1.5,
+        "contaminants": ["F2 Petroleum Hydrocarbons"],
+        "exceedance": true
+      },
+      {
+        "sample_id": "SS-02",
+        "location": "Former dry cleaner",
+        "depth_m": 2.0,
+        "contaminants": ["Tetrachloroethylene (PCE)", "Trichloroethylene (TCE)"],
+        "exceedance": true
+      },
+      {
+        "sample_id": "SS-03",
+        "location": "Background area",
+        "depth_m": 1.0,
+        "contaminants": [],
+        "exceedance": false
+      }
+    ],
+    "groundwater_samples": [
+      {
+        "sample_id": "GW-01",
+        "location": "Downgradient of dry cleaner",
+        "depth_m": 4.5,
+        "contaminants": ["Tetrachloroethylene (PCE)"],
+        "exceedance": true
+      },
+      {
+        "sample_id": "GW-02",
+        "location": "Upgradient",
+        "depth_m": 4.0,
+        "contaminants": [],
+        "exceedance": false
+      }
+    ],
+    "exceedances": [
+      {
+        "contaminant": "F2 Petroleum Hydrocarbons",
+        "location": "AST area soil",
+        "measured_value": 3500,
+        "standard_limit": 150,
+        "exceedance_factor": 23.3,
+        "description": "Petroleum hydrocarbons exceed Table 3 commercial/industrial standards by 23x",
+        "severity": "HIGH"
+      },
+      {
+        "contaminant": "Tetrachloroethylene (PCE)",
+        "location": "Former dry cleaner soil",
+        "measured_value": 85,
+        "standard_limit": 0.5,
+        "exceedance_factor": 170,
+        "description": "PCE exceeds Table 3 standards by 170x - significant dry cleaner contamination",
+        "severity": "HIGH"
+      },
+      {
+        "contaminant": "Trichloroethylene (TCE)",
+        "location": "Former dry cleaner soil",
+        "measured_value": 12,
+        "standard_limit": 0.5,
+        "exceedance_factor": 24,
+        "description": "TCE exceeds Table 3 standards by 24x",
+        "severity": "HIGH"
+      },
+      {
+        "contaminant": "Tetrachloroethylene (PCE)",
+        "location": "Downgradient groundwater",
+        "measured_value": 42,
+        "standard_limit": 5,
+        "exceedance_factor": 8.4,
+        "description": "PCE in groundwater exceeds Ontario Drinking Water Standards by 8x",
+        "severity": "HIGH"
+      }
+    ],
+    "contaminants": [
+      "Petroleum hydrocarbons (F2)",
+      "Volatile Organic Compounds (VOCs)",
+      "Tetrachloroethylene (PCE)",
+      "Trichloroethylene (TCE)"
+    ]
+  },
+  "cleanup_scenarios": {
+    "risk_assessment": {
+      "cost_low": 75000,
+      "cost_high": 150000,
+      "description": "Risk assessment only - not viable due to groundwater contamination"
+    },
+    "remediation": {
+      "cost_low": 250000,
+      "cost_high": 600000,
+      "description": "Soil excavation + groundwater monitoring/treatment"
+    },
+    "brownfield": {
+      "cost_low": 500000,
+      "cost_high": 1200000,
+      "description": "Comprehensive remediation with ongoing groundwater treatment"
+    }
+  }
+}

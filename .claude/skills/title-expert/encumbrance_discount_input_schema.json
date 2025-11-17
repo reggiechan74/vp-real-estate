@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/encumbrance-discount-input.json",
+  "title": "Encumbrance Discount Input",
+  "description": "Input schema for encumbrance discount valuation - quantifies impact of easements, rights of way, and other encumbrances on property value using before/after methodology",
+  "type": "object",
+  "required": ["property", "encumbrances"],
+  "properties": {
+    "property": {
+      "type": "object",
+      "description": "Property identification and valuation parameters",
+      "required": ["pin", "address", "total_area_acres", "unencumbered_value"],
+      "properties": {
+        "pin": {
+          "type": "string",
+          "description": "Property Identification Number (PID/PIN)"
+        },
+        "address": {
+          "type": "string",
+          "description": "Property street address",
+          "minLength": 1
+        },
+        "total_area_acres": {
+          "type": "number",
+          "description": "Total property area in acres",
+          "minimum": 0
+        },
+        "unencumbered_value": {
+          "type": "number",
+          "description": "Property value without encumbrances ($/acre or total value)",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "encumbrances": {
+      "type": "array",
+      "description": "Array of easements, rights of way, and other encumbrances affecting the property",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "description": "Individual encumbrance details",
+        "required": ["type", "area_acres"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of encumbrance",
+            "enum": [
+              "transmission_easement",
+              "pipeline_easement",
+              "drainage_easement",
+              "access_easement",
+              "conservation_easement",
+              "telecom_easement"
+            ]
+          },
+          "area_acres": {
+            "type": "number",
+            "description": "Area affected by encumbrance in acres",
+            "minimum": 0
+          },
+          "voltage": {
+            "type": "string",
+            "description": "Voltage level (for transmission easements: 115kV, 230kV, 500kV, etc.)"
+          },
+          "impact_percentage": {
+            "type": "number",
+            "description": "Percentage impact on property value (0-100%)",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "agricultural_impacts": {
+      "type": "object",
+      "description": "Annual agricultural productivity impacts (for cropland or agricultural property)",
+      "properties": {
+        "annual_crop_loss": {
+          "type": "number",
+          "description": "Annual crop loss or productivity impact in dollars",
+          "minimum": 0
+        },
+        "cap_rate": {
+          "type": "number",
+          "description": "Capitalization rate for converting annual losses to present value",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

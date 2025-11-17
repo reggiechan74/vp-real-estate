@@ -1,0 +1,31 @@
+{
+  "property_identifier": "PIN 98765-4321 (LT)",
+  "property_address": "250 Commercial Drive, Toronto, ON M4E 1Z1",
+  "registered_instruments": [
+    {
+      "instrument_number": "CT1000001",
+      "instrument_type": "Easement",
+      "parties": {
+        "grantor": "Commercial Properties Ltd.",
+        "grantee": "City of Toronto"
+      },
+      "description": "Municipal water main easement for underground infrastructure, 10 foot wide corridor",
+      "registration_date": "1995-06-15",
+      "area_affected": "10 foot wide corridor along west boundary"
+    },
+    {
+      "instrument_number": "CT1000002",
+      "instrument_type": "Restrictive Covenant",
+      "parties": {
+        "grantor": "Commercial Properties Ltd.",
+        "grantee": "City of Toronto"
+      },
+      "description": "Covenant to maintain landscaping along street frontage as per approved plan",
+      "registration_date": "1995-06-15",
+      "area_affected": "Front 20 feet of property"
+    }
+  ],
+  "restrictions": [],
+  "encumbrances": [],
+  "defects": []
+}

@@ -1,0 +1,573 @@
+{
+  "metadata": {
+    "property_id": "PIN 12345-6789 (LT)",
+    "property_address": "100 Industrial Road, Toronto, ON M5A 1B2",
+    "analysis_date": "2025-11-16T20:02:05.931466-05:00",
+    "analyzer_version": "1.0.0"
+  },
+  "marketability": {
+    "overall_score": 49.5,
+    "rating": "POOR",
+    "component_scores": {
+      "encumbrances": 25.0,
+      "defects": 60.0,
+      "financing": 50.0,
+      "liquidity": 85.0
+    },
+    "buyer_pool": {
+      "estimated_percentage": 15,
+      "description": "Severely limited buyer pool - most buyers will not consider",
+      "buyer_types": [
+        "Highly sophisticated buyers only",
+        "Buyers with specific use that accommodates encumbrances",
+        "Speculative investors at significant discount"
+      ]
+    },
+    "financing_availability": {
+      "availability": "NOT AVAILABLE",
+      "details": "Standard financing unavailable due to critical title issues",
+      "lender_types": []
+    },
+    "recommendations": [
+      "PRIORITY: Resolve 1 critical issue(s) before marketing property",
+      "  - Discharge/resolve Lien: Construction lien for unpaid roofing repairs completed March 2024, amount claimed $45,000 plus inter",
+      "Address 1 high-severity encumbrance(s) to improve marketability",
+      "Expect significant buyer resistance and value discount (20-30%)"
+    ],
+    "summary": "Property has poor marketability (score: 49.5/100). Significant title issues present. Limited buyer pool; financing difficult to obtain."
+  },
+  "value_impact": {
+    "min_discount_pct": 18.0,
+    "max_discount_pct": 35.0,
+    "likely_discount_pct": 26.5,
+    "basis": "POOR marketability rating (score: 49.5/100)",
+    "interpretation": "Significant value impact - title issues substantially reduce market value and buyer pool"
+  },
+  "encumbrances": {
+    "summary": {
+      "total": 8,
+      "by_severity": {
+        "MEDIUM": 6,
+        "CRITICAL": 1,
+        "HIGH": 1
+      },
+      "action_required_count": 4,
+      "average_value_impact": 13.7,
+      "total_value_impact_range": {
+        "min": 40.0,
+        "max": 180.0
+      }
+    },
+    "critical": [
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT6789012",
+        "type": "Lien",
+        "description": "Construction lien for unpaid roofing repairs completed March 2024, amount claimed $45,000 plus interest and costs",
+        "priority": "Subsequent Priority",
+        "severity": "CRITICAL",
+        "use_restrictions": {
+          "building_restrictions": true,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": false,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 20.0,
+          "max": 50.0,
+          "likely": 35.0,
+          "basis": "CRITICAL severity with 1 use restrictions"
+        },
+        "registration_date": "2024-04-15",
+        "parties": {
+          "grantor": "N/A",
+          "grantee": "XYZ Construction Limited"
+        },
+        "requires_action": true,
+        "recommended_actions": [
+          "Immediate legal review required",
+          "Obtain discharge or postponement before closing",
+          "Negotiate resolution with lienholder"
+        ]
+      }
+    ],
+    "high": [
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT5678901",
+        "type": "Mortgage",
+        "description": "First mortgage securing loan for property acquisition and improvements",
+        "priority": "Subsequent Priority",
+        "severity": "HIGH",
+        "use_restrictions": {
+          "building_restrictions": false,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": false,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 10.0,
+          "max": 30.0,
+          "likely": 20.0,
+          "basis": "HIGH severity with 0 use restrictions"
+        },
+        "registration_date": "2020-01-15",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "First National Bank"
+        },
+        "requires_action": true,
+        "recommended_actions": [
+          "Obtain discharge at closing",
+          "Verify payout amount",
+          "Arrange postponement if necessary"
+        ]
+      }
+    ],
+    "all": [
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT1234567",
+        "type": "Easement",
+        "description": "Hydro transmission easement for overhead power lines, including right to construct, maintain, and operate transmission infrastructure",
+        "priority": "First Priority",
+        "severity": "MEDIUM",
+        "use_restrictions": {
+          "building_restrictions": true,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": true,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 2.0,
+          "max": 19.0,
+          "likely": 10.5,
+          "basis": "MEDIUM severity with 2 use restrictions"
+        },
+        "registration_date": "1985-03-15",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "Toronto Hydro Corporation"
+        },
+        "requires_action": false,
+        "recommended_actions": [
+          "Survey to confirm easement location",
+          "Review development restrictions within easement area",
+          "Confirm utility access requirements"
+        ]
+      },
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT2345678",
+        "type": "Covenant",
+        "description": "Covenant restricting building height to maximum 15 meters within 30 meters of eastern boundary, and prohibiting storage of hazardous materials within covenant area",
+        "priority": "Second Priority",
+        "severity": "MEDIUM",
+        "use_restrictions": {
+          "building_restrictions": true,
+          "height_restrictions": true,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": false,
+          "environmental_restrictions": true
+        },
+        "value_impact": {
+          "min": 2.0,
+          "max": 21.0,
+          "likely": 11.5,
+          "basis": "MEDIUM severity with 3 use restrictions"
+        },
+        "registration_date": "1985-03-15",
+        "parties": {
+          "grantor": "City of Toronto",
+          "grantee": "Industrial Holdings Inc."
+        },
+        "requires_action": true,
+        "recommended_actions": [
+          "Review restriction against intended use",
+          "Assess compliance requirements",
+          "Consider application to modify/discharge if necessary"
+        ]
+      },
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT3456789",
+        "type": "Easement",
+        "description": "Municipal drainage easement for storm sewer infrastructure including access for maintenance and repairs",
+        "priority": "3th Priority",
+        "severity": "MEDIUM",
+        "use_restrictions": {
+          "building_restrictions": true,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": true,
+          "drainage_restrictions": true,
+          "utility_access": true,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 2.0,
+          "max": 23.0,
+          "likely": 12.5,
+          "basis": "MEDIUM severity with 4 use restrictions"
+        },
+        "registration_date": "1988-06-22",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "City of Toronto"
+        },
+        "requires_action": false,
+        "recommended_actions": [
+          "Survey to confirm easement location",
+          "Review development restrictions within easement area",
+          "Confirm utility access requirements"
+        ]
+      },
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT4567890",
+        "type": "Lease",
+        "description": "Commercial lease for industrial warehouse facility, 10 year term with option to renew",
+        "priority": "4th Priority",
+        "severity": "MEDIUM",
+        "use_restrictions": {
+          "building_restrictions": false,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": true,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": false,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 2.0,
+          "max": 17.0,
+          "likely": 9.5,
+          "basis": "MEDIUM severity with 1 use restrictions"
+        },
+        "registration_date": "2015-09-01",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "ABC Manufacturing Ltd."
+        },
+        "requires_action": true,
+        "recommended_actions": [
+          "Review lease terms and expiry",
+          "Confirm tenant rights",
+          "Consider estoppel certificate"
+        ]
+      },
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT7890123",
+        "type": "Easement",
+        "description": "Telecommunications easement for underground fiber optic cable installation and maintenance",
+        "priority": "5th Priority",
+        "severity": "MEDIUM",
+        "use_restrictions": {
+          "building_restrictions": false,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": false,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 2.0,
+          "max": 15.0,
+          "likely": 8.5,
+          "basis": "MEDIUM severity with 0 use restrictions"
+        },
+        "registration_date": "2018-11-20",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "Bell Canada"
+        },
+        "requires_action": false,
+        "recommended_actions": [
+          "Survey to confirm easement location",
+          "Review development restrictions within easement area",
+          "Confirm utility access requirements"
+        ]
+      },
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT6789012",
+        "type": "Lien",
+        "description": "Construction lien for unpaid roofing repairs completed March 2024, amount claimed $45,000 plus interest and costs",
+        "priority": "Subsequent Priority",
+        "severity": "CRITICAL",
+        "use_restrictions": {
+          "building_restrictions": true,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": false,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 20.0,
+          "max": 50.0,
+          "likely": 35.0,
+          "basis": "CRITICAL severity with 1 use restrictions"
+        },
+        "registration_date": "2024-04-15",
+        "parties": {
+          "grantor": "N/A",
+          "grantee": "XYZ Construction Limited"
+        },
+        "requires_action": true,
+        "recommended_actions": [
+          "Immediate legal review required",
+          "Obtain discharge or postponement before closing",
+          "Negotiate resolution with lienholder"
+        ]
+      },
+      {
+        "source": "registered_instrument",
+        "instrument_number": "AT5678901",
+        "type": "Mortgage",
+        "description": "First mortgage securing loan for property acquisition and improvements",
+        "priority": "Subsequent Priority",
+        "severity": "HIGH",
+        "use_restrictions": {
+          "building_restrictions": false,
+          "height_restrictions": false,
+          "setback_restrictions": false,
+          "use_type_restrictions": false,
+          "access_restrictions": false,
+          "drainage_restrictions": false,
+          "utility_access": false,
+          "environmental_restrictions": false
+        },
+        "value_impact": {
+          "min": 10.0,
+          "max": 30.0,
+          "likely": 20.0,
+          "basis": "HIGH severity with 0 use restrictions"
+        },
+        "registration_date": "2020-01-15",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "First National Bank"
+        },
+        "requires_action": true,
+        "recommended_actions": [
+          "Obtain discharge at closing",
+          "Verify payout amount",
+          "Arrange postponement if necessary"
+        ]
+      },
+      {
+        "source": "restriction",
+        "instrument_number": "N/A",
+        "type": "Zoning Restriction",
+        "description": "Property zoned Employment Industrial (EI) - permits manufacturing, warehousing, distribution. Maximum lot coverage 60%, minimum landscaping 15%",
+        "priority": "N/A",
+        "severity": "MEDIUM",
+        "use_restrictions": {
+          "building_height": false,
+          "setbacks": false,
+          "use_limitations": true,
+          "architectural": false
+        },
+        "value_impact": {
+          "min": 0.0,
+          "max": 5.0,
+          "likely": 2.0
+        },
+        "registration_date": "2019-05-01",
+        "parties": {},
+        "requires_action": false,
+        "recommended_actions": [
+          "Review restriction details with planning consultant"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "defects": [
+      {
+        "instrument": "AT6789012",
+        "category": "Parties",
+        "severity": "MAJOR",
+        "defect": "Construction lien lists grantor as 'N/A' - improper form",
+        "impact": "Lien may be defective due to missing grantor identification",
+        "remedy": "Verify lien validity and negotiate discharge or obtain legal opinion on enforceability"
+      }
+    ],
+    "categorized": {
+      "critical": [],
+      "major": [
+        {
+          "instrument": "AT6789012",
+          "category": "Parties",
+          "severity": "MAJOR",
+          "defect": "Construction lien lists grantor as 'N/A' - improper form",
+          "impact": "Lien may be defective due to missing grantor identification",
+          "remedy": "Verify lien validity and negotiate discharge or obtain legal opinion on enforceability"
+        }
+      ],
+      "minor": []
+    },
+    "validity": {
+      "status": "NEEDS_REVIEW",
+      "message": "1 major defects and 0 minor defects - review recommended",
+      "marketable": true,
+      "critical_count": 0,
+      "major_count": 1,
+      "minor_count": 0,
+      "recommendation": "Acceptable to proceed with conditions. Address major defects before or at closing."
+    },
+    "summary": {
+      "total_defects": 1,
+      "critical_defects": 0,
+      "major_defects": 1,
+      "minor_defects": 0,
+      "overall_status": "NEEDS_REVIEW"
+    }
+  },
+  "instruments": {
+    "summary": {
+      "total_instruments": 7,
+      "by_type_count": {
+        "Easement": 3,
+        "Covenant": 1,
+        "Lease": 1,
+        "Mortgage": 1,
+        "Lien": 1
+      },
+      "critical_count": 2,
+      "earliest_date": "1985-03-15",
+      "latest_date": "2024-04-15"
+    },
+    "by_priority": [
+      {
+        "instrument_number": "AT1234567",
+        "instrument_type": "Easement",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "Toronto Hydro Corporation"
+        },
+        "description": "Hydro transmission easement for overhead power lines, including right to construct, maintain, and operate transmission infrastructure",
+        "registration_date": "1985-03-15",
+        "area_affected": "2.5 acres along eastern property boundary",
+        "classified_type": "Easement",
+        "priority_number": 1
+      },
+      {
+        "instrument_number": "AT2345678",
+        "instrument_type": "Restrictive Covenant",
+        "parties": {
+          "grantor": "City of Toronto",
+          "grantee": "Industrial Holdings Inc."
+        },
+        "description": "Covenant restricting building height to maximum 15 meters within 30 meters of eastern boundary, and prohibiting storage of hazardous materials within covenant area",
+        "registration_date": "1985-03-15",
+        "area_affected": "30 meter setback from eastern boundary",
+        "classified_type": "Covenant",
+        "priority_number": 2
+      },
+      {
+        "instrument_number": "AT3456789",
+        "instrument_type": "Right of Way",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "City of Toronto"
+        },
+        "description": "Municipal drainage easement for storm sewer infrastructure including access for maintenance and repairs",
+        "registration_date": "1988-06-22",
+        "area_affected": "15 foot wide corridor along north property line",
+        "classified_type": "Easement",
+        "priority_number": 3
+      },
+      {
+        "instrument_number": "AT4567890",
+        "instrument_type": "Lease",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "ABC Manufacturing Ltd."
+        },
+        "description": "Commercial lease for industrial warehouse facility, 10 year term with option to renew",
+        "registration_date": "2015-09-01",
+        "term": "10 years",
+        "expiry": "2025-08-31",
+        "classified_type": "Lease",
+        "priority_number": 4
+      },
+      {
+        "instrument_number": "AT7890123",
+        "instrument_type": "Easement",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "Bell Canada"
+        },
+        "description": "Telecommunications easement for underground fiber optic cable installation and maintenance",
+        "registration_date": "2018-11-20",
+        "area_affected": "10 foot wide corridor along southern boundary",
+        "classified_type": "Easement",
+        "priority_number": 5
+      },
+      {
+        "instrument_number": "AT5678901",
+        "instrument_type": "Mortgage",
+        "parties": {
+          "grantor": "Industrial Holdings Inc.",
+          "grantee": "First National Bank"
+        },
+        "description": "First mortgage securing loan for property acquisition and improvements",
+        "registration_date": "2020-01-15",
+        "principal": 2500000,
+        "amount": 2500000,
+        "classified_type": "Mortgage",
+        "priority_number": 6
+      },
+      {
+        "instrument_number": "AT6789012",
+        "instrument_type": "Construction Lien",
+        "parties": {
+          "grantor": "N/A",
+          "grantee": "XYZ Construction Limited"
+        },
+        "description": "Construction lien for unpaid roofing repairs completed March 2024, amount claimed $45,000 plus interest and costs",
+        "registration_date": "2024-04-15",
+        "amount": 45000,
+        "classified_type": "Lien",
+        "priority_number": 7
+      }
+    ]
+  },
+  "data_quality": {
+    "quality_score": 100.0,
+    "completeness": "100.0%",
+    "complete": 7,
+    "partial": 0,
+    "minimal": 0,
+    "total": 7,
+    "issues": []
+  },
+  "warnings": [
+    "Instrument 1: Unknown instrument_type 'Restrictive Covenant' (will be treated as 'Other')",
+    "Instrument 5: Unknown instrument_type 'Construction Lien' (will be treated as 'Other')"
+  ]
+}

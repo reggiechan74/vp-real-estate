@@ -296,6 +296,115 @@
         "aerial spraying restrictions",
         "irrigation restrictions"
       ]
+    },
+    {
+      "name": "environmental-due-diligence-expert",
+      "keywords": [
+        "environmental",
+        "Phase I ESA",
+        "Phase II ESA",
+        "contamination",
+        "cleanup cost",
+        "brownfield",
+        "environmental liability",
+        "MOE approval",
+        "Record of Site Condition",
+        "RSC",
+        "soil contamination",
+        "groundwater contamination",
+        "petroleum hydrocarbons",
+        "VOCs",
+        "environmental due diligence",
+        "environmental assessment",
+        "remediation",
+        "risk assessment environmental"
+      ]
+    },
+    {
+      "name": "title-expert",
+      "keywords": [
+        "title search",
+        "title analysis",
+        "encumbrance",
+        "easement title",
+        "covenant",
+        "lien",
+        "mortgage",
+        "restriction",
+        "registered instruments",
+        "marketability",
+        "registration defect",
+        "PIN",
+        "property identifier",
+        "title defect",
+        "encumbrance discount",
+        "buyer pool",
+        "financing availability"
+      ]
+    },
+    {
+      "name": "right-of-way-expert",
+      "keywords": [
+        "utility conflict",
+        "right-of-way",
+        "ROW",
+        "utility relocation",
+        "transmission line",
+        "gas pipeline",
+        "water main",
+        "sewer",
+        "telecom fiber",
+        "utility corridor",
+        "conflict detection",
+        "clearance requirements",
+        "relocation cost",
+        "Hydro One",
+        "Enbridge",
+        "utility coordination",
+        "horizontal clearance",
+        "vertical clearance"
+      ]
+    },
+    {
+      "name": "income-approach-expert",
+      "keywords": [
+        "income approach",
+        "capitalization",
+        "cap rate",
+        "land rent",
+        "telecom site",
+        "agricultural rent",
+        "ground lease",
+        "NOI",
+        "net operating income",
+        "market rent",
+        "band of investment",
+        "buildup method",
+        "market extraction",
+        "income capitalization",
+        "land valuation",
+        "rent capitalization"
+      ]
+    },
+    {
+      "name": "cost-approach-expert",
+      "keywords": [
+        "cost approach",
+        "replacement cost",
+        "depreciation",
+        "infrastructure valuation",
+        "transmission tower",
+        "telecom site",
+        "substation",
+        "RCN",
+        "replacement cost new",
+        "physical depreciation",
+        "functional obsolescence",
+        "external obsolescence",
+        "age-life method",
+        "depreciated replacement cost",
+        "infrastructure cost"
+      ]
     }
   ]
 }

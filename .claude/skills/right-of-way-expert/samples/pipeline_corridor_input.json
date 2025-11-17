@@ -1,0 +1,65 @@
+{
+  "project_alignment": {
+    "type": "pipeline",
+    "name": "Natural Gas Transmission Pipeline",
+    "location": {
+      "address": "Rural corridor, Vaughan to Markham",
+      "x": 0,
+      "y": 0,
+      "excavation_depth": 2.5
+    },
+    "description": "20-inch natural gas transmission pipeline, 5km corridor"
+  },
+  "existing_utilities": [
+    {
+      "utility_type": "Transmission line",
+      "owner": "Hydro One",
+      "voltage": "230kV",
+      "location": {
+        "x": 25,
+        "y": 10
+      },
+      "height": 22,
+      "clearance_required": 15,
+      "relocation_length_km": 0.5
+    },
+    {
+      "utility_type": "Gas main",
+      "owner": "Enbridge",
+      "size": "16-inch transmission",
+      "location": {
+        "x": 8,
+        "y": 5
+      },
+      "depth": 2.0,
+      "relocation_length_km": 0.3
+    },
+    {
+      "utility_type": "Water main",
+      "owner": "York Region",
+      "size": "400mm",
+      "location": {
+        "x": 12,
+        "y": 3
+      },
+      "depth": 2.2,
+      "diameter_mm": 400,
+      "relocation_length_m": 180
+    },
+    {
+      "utility_type": "Telecom conduit",
+      "owner": "Rogers Communications",
+      "location": {
+        "x": 6,
+        "y": 2
+      },
+      "depth": 1.2,
+      "relocation_length_m": 250
+    }
+  ],
+  "design_constraints": {
+    "horizontal_clearance_min": 10.0,
+    "vertical_clearance_min": 1.0,
+    "protection_zone_width": 15.0
+  }
+}
