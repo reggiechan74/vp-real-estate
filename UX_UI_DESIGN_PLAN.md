@@ -567,7 +567,7 @@ lease-abstract/
 ├── Default_Calculator/        # Tenant default damage quantification
 ├── Relative_Valuation/        # MCDA competitive positioning (25 variables)
 ├── MLS_Extractor/             # MLS PDF to Excel extraction
-├── Planning/                  # Source lease documents
+├── Sample_Inputs/             # Sample lease documents for testing
 ├── Templates/                 # Industrial/Office lease templates (24 sections)
 ├── Reports/                   # Generated abstracts & analysis (timestamped)
 └── .claude/
@@ -630,7 +630,8 @@ Build a **multi-page Streamlit app** with professional institutional design:
   └─ Export Archive
 ─────────────────
 ⚙️ UTILITIES
-  └─ PDF Converter
+  ├─ PDF Converter
+  └─ Templates Library
 ```
 
 ---
@@ -933,8 +934,12 @@ st.set_page_config(
     --card-bg: #ffffff;
 }
 
-/* Sidebar styling */
-.css-1d391kg {
+/* Sidebar styling - use stable data-testid selector */
+section[data-testid="stSidebar"] {
+    background-color: var(--primary-navy);
+}
+
+section[data-testid="stSidebar"] > div {
     background-color: var(--primary-navy);
 }
 
@@ -986,31 +991,38 @@ utils/
 ```python
 import streamlit as st
 
-# Page config
-st.set_page_config(...)
+# Page config (Main landing page)
+st.set_page_config(
+    page_title="VP Real Estate Platform",
+    page_icon="🏢",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # Inject custom CSS
 from utils.styling import inject_custom_css
 inject_custom_css()
 
-# Sidebar navigation
-st.sidebar.title("🏢 VP REAL ESTATE")
-page = st.sidebar.radio("Navigate", [
-    "Dashboard",
-    "Team Room",
-    "Financial Analysis",
-    ...
-])
+# This is the main landing page (Dashboard)
+st.title("🏢 VP Real Estate Platform")
+st.markdown("### Welcome to your Institutional Real Estate Command Center")
 
-# Route to appropriate page
-if page == "Dashboard":
-    from pages import dashboard
-    dashboard.render()
-elif page == "Team Room":
-    from pages import team_room
-    team_room.render()
-...
+# Dashboard content goes here (metrics, quick actions, etc.)
+# ... (See Dashboard implementation in Section 3.1)
+
+# NOTE: All other pages are automatically loaded from the pages/ directory
+# Streamlit creates navigation automatically based on files in pages/
+# Each file in pages/ becomes a separate page in the app
 ```
+
+**Important: How Streamlit Multi-Page Apps Work**
+
+Streamlit automatically creates navigation from files in the `pages/` directory:
+- Files are sorted by filename (use prefixes like `01_`, `02_` to control order)
+- Navigation appears in the sidebar automatically
+- Each file must have `st.set_page_config()` at the top
+- No manual routing needed - Streamlit handles it all
+- Example: `pages/01_Dashboard.py` becomes "Dashboard" in the sidebar
 
 **Dummy Functions (for now):**
 ```python
@@ -1126,6 +1138,7 @@ def create_cash_flow_chart(monthly_data):
 **Sensitivity Heatmap Example:**
 ```python
 import plotly.express as px
+import numpy as np
 
 def create_sensitivity_heatmap():
     # Generate sensitivity data
