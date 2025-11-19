@@ -4,6 +4,10 @@
 # Core dependencies
 anthropic>=0.40.0  # For Claude API integration
 
+# Streamlit UI dependencies
+streamlit>=1.40.0  # For web interface
+plotly>=5.24.0  # For interactive charts
+
 # Document processing
 markitdown>=0.1.0  # For converting Word/PDF documents to markdown
 python-docx>=1.1.0  # For reading/writing Word documents
