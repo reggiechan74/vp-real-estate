@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This document expands Gemini's initial UI/UX concept to encompass the **entire scope** of your institutional real estate platform. Your repository contains far more than 3 calculators - it's a comprehensive suite of 25+ slash commands, 10 financial calculators, 41+ specialized skills, and 3 AI personas.
+This document expands the initial UI/UX concept to encompass the **entire scope** of your institutional real estate platform. Your repository contains far more than 3 calculators - it's a comprehensive suite of 25+ slash commands, 10 financial calculators, 41+ specialized skills, and 3 AI personas.
 
 **Scale of Platform:**
 - **25 Slash Commands** across 6 categories
@@ -533,12 +533,14 @@ IMPACT ANALYSIS:
 
 ---
 
-## Phase 4: Enhanced Gemini Prompt
+## Phase 4: Complete Implementation Prompt
 
-### 4.1 Complete Prompt for Gemini
+### 4.1 Prompt for Claude Code
+
+Use this prompt with Claude Code to generate the complete Streamlit application:
 
 ```markdown
-I have a **comprehensive Python-based Institutional Real Estate AI Platform**. The repository contains:
+I have a **comprehensive Python-based Institutional Real Estate AI Platform** in this repository. The codebase contains:
 
 - **10 Financial Calculators** (Effective Rent, Credit Analysis, IFRS 16, Renewal Economics, Rental Variance, Option Valuation, Rollover Analysis, Default Calculator, Relative Valuation, MLS Extractor)
 - **25 Slash Commands** across 6 categories (Abstraction, Financial Analysis, Accounting, Comparison, Compliance, Utilities)
@@ -1314,11 +1316,11 @@ This should be a production-ready UI that I can immediately run with `streamlit 
 ### 5.1 Development Phases
 
 **Phase 1: Foundation (Week 1)**
-- Feed prompt to Gemini, generate initial codebase
-- Set up project structure
-- Implement navigation skeleton
-- Build Dashboard page
-- Test dummy functions
+- Use Claude Code with the prompt from Section 4.1 to generate initial codebase
+- Review generated project structure
+- Test navigation skeleton
+- Verify Dashboard page
+- Test dummy functions work as expected
 
 **Phase 2: Core Tools (Week 2-3)**
 - Implement all 10 Financial Analysis pages
@@ -1449,7 +1451,7 @@ This should be a production-ready UI that I can immediately run with `streamlit 
 
 ## Conclusion
 
-This expanded UI/UX plan transforms Gemini's basic concept into a **complete institutional real estate platform**. By feeding the enhanced prompt to Gemini, you'll receive production-ready code that covers:
+This expanded UI/UX plan provides a complete specification for building an **institutional real estate platform UI**. By using Claude Code with the implementation prompt (Section 4.1), you'll generate production-ready code that covers:
 
 ✅ All 25 slash commands with dedicated interfaces
 ✅ 10 financial calculators with visualizations
@@ -1462,4 +1464,4 @@ This expanded UI/UX plan transforms Gemini's basic concept into a **complete ins
 
 The result: A powerful, professional platform that VP Leasing teams can use immediately, with room to grow into a full enterprise solution.
 
-**Next Step:** Copy the Enhanced Gemini Prompt (Section 4.1) and feed it to Gemini Pro to generate your production codebase.
+**Next Step:** Copy the Implementation Prompt (Section 4.1) and use Claude Code to generate your production-ready Streamlit codebase. Claude Code will create all files, implement the UI components, and provide a working application you can run immediately with `streamlit run app.py`.
