@@ -1,9 +1,24 @@
 """
-Comparable Sales Adjustment Module
-Auto-extracted from comparable_sales_calculator.py
+Comparable Sales Adjustment Module - Site Improvements
+
+Provides 6 site improvement adjustments:
+1. Paving / hardscape
+2. Fencing / security
+3. Site lighting
+4. Landscaping
+5. Stormwater management
+6. Yard area (secured outdoor storage)
+
+CUSPAP 2024 & USPAP 2024 Compliant
 """
 
+import logging
 from typing import Dict, List
+
+from .validation import validate_adjustment_inputs
+
+logger = logging.getLogger(__name__)
+
 
 def calculate_adjustments(
     subject: Dict,
@@ -20,11 +35,21 @@ def calculate_adjustments(
         comparable: Comparable sale characteristics
         base_price: Base price after previous adjustments
         market_params: Market parameters for adjustments
+        property_type: 'industrial' or 'office'
 
     Returns:
         List of adjustment dictionaries
     """
     adjustments = []
+
+    # Input validation
+    is_valid, errors = validate_adjustment_inputs(subject, comparable, base_price, market_params)
+    if not is_valid:
+        logger.error(f"Site adjustment validation failed: {errors}")
+        return adjustments
+
+    if market_params is None:
+        market_params = {}
 
     # =========================================================================
     # SITE IMPROVEMENTS (6 subcategories)

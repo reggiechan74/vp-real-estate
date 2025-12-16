@@ -32,9 +32,16 @@ Adjustments must be applied in proper sequence because some adjustments affect t
 - Apply compound appreciation formula
 - **Why fourth**: Establish current market value
 
-**Stage 5: Location**
+**Stage 5: Location (Non-Linear Tiered Model)**
 - Adjust for micro-market differences, accessibility, visibility
 - **Why fifth**: Location affects value independent of physical characteristics
+- **Non-Linear Model**: Uses tiered adjustment rates that reflect real market behavior:
+  - Premium (85-100): 1.5%/point - steep premiums for prime locations
+  - Good (70-84): 1.0%/point - moderate premiums
+  - Average (50-69): 0.5%/point - baseline pricing
+  - Below Average (30-49): 0.75%/point - moderate discounts
+  - Poor (0-29): 1.0%/point - steep discounts
+- **Specific Feature Premiums**: Highway frontage, visibility, access layered on tier adjustment
 
 **Stage 6: Physical Characteristics**
 - Apply 49 adjustments across 7 categories:
@@ -58,6 +65,32 @@ Adjustments must be applied in proper sequence because some adjustments affect t
 **4. Income Approach** - Capitalize rental differential for income properties
 
 **5. Professional Judgment** - Reasoned judgment when market data insufficient (with sensitivity testing)
+
+### CUSPAP-Compliant Paired Sales Analyzer
+
+The calculator includes an integrated paired sales analyzer (`paired_sales_analyzer.py`) that derives adjustment factors from comparable sales data in accordance with CUSPAP 2024 Standards Rules 6.2.15-6.2.17.
+
+**Key Features:**
+- **Transaction Verification** (CUSPAP 6.2.15): Verifies arm's-length status, applies cash equivalency adjustments for non-market financing
+- **Paired Sales Isolation**: Finds pairs nearly identical except for one characteristic to isolate value impact
+- **Quality-Weighted Reconciliation**: Weights adjustments by pair similarity score, not simple averaging
+- **Confidence Metrics**: Tracks coefficient of variation (CV) to assess adjustment reliability
+- **Disclosure Tracking**: Categorizes disclosures (extraordinary assumptions, limiting conditions, data limitations)
+- **Scope of Work Output**: Generates CUSPAP 2024 Rule 6.2.3 compliant scope of work documentation
+
+**Confidence Levels:**
+- **High**: 5+ pairs with CV < 20%
+- **Medium**: 3+ pairs with CV < 35%
+- **Low**: 2 pairs (requires disclosure)
+- **Single Pair**: Requires strong disclosure
+- **Default**: Industry default used (requires non-market-derived disclosure)
+
+**Derivation Methods Tracked:**
+- `paired_sales_isolation` - Market derived (preferred)
+- `time_series_regression` - Market derived (for time adjustments)
+- `submarket_average` - Market derived (lower confidence)
+- `cost_approach` - Secondary support
+- `industry_default` - Requires CUSPAP disclosure
 
 ### Validation Criteria
 
@@ -279,16 +312,17 @@ cd /workspaces/lease-abstract/.claude/skills/comparable-sales-adjustment-methodo
 python3 comparable_sales_calculator.py inputs/comps_input_[timestamp].json --output results/comps_results_[timestamp].json --verbose
 ```
 
-**Calculator modules** (refactored into 7 specialized files):
-- `adjustments/land.py` - Land characteristic adjustments (10 adjustments)
-- `adjustments/site.py` - Site improvement adjustments (7 adjustments)
-- `adjustments/building_general.py` - General building adjustments (7 adjustments)
-- `adjustments/industrial_building.py` - Industrial-specific adjustments (8 adjustments)
-- `adjustments/office_building.py` - Office-specific adjustments (6 adjustments)
+**Calculator modules** (refactored into 8 specialized files):
+- `adjustments/land.py` - Land characteristic adjustments (8 adjustments)
+- `adjustments/site.py` - Site improvement adjustments (6 adjustments)
+- `adjustments/building_general.py` - General building adjustments (6 adjustments)
+- `adjustments/industrial_building.py` - Industrial-specific adjustments (10 adjustments)
+- `adjustments/office_building.py` - Office-specific adjustments (8 adjustments)
 - `adjustments/special_features.py` - Special features adjustments (6 adjustments)
 - `adjustments/zoning_legal.py` - Zoning/legal adjustments (5 adjustments)
+- `adjustments/validation.py` - Input validation utilities (NEW)
 
-**Total**: 49 physical characteristic adjustments across 7 categories
+**Total**: 49 physical characteristic adjustments across 7 categories + validation utilities
 
 Capture the console output for the markdown report.
 
@@ -324,6 +358,37 @@ Create a comprehensive markdown report in `/workspaces/lease-abstract/Reports/` 
 
 **Value Conclusion:**
 Based on the sales comparison approach, the indicated fee simple value of the subject property as of [Valuation Date] is **$XXX,XXX** ($XX/SF or $XXX/acre).
+
+---
+
+## Adjustment Factor Sources (CUSPAP 6.2.15 Disclosure)
+
+The following table discloses the source of each adjustment factor used in this analysis, as required by CUSPAP 2024 Rule 6.2.15-6.2.17.
+
+### Market-Derived Factors (CUSPAP Preferred)
+
+| Parameter | Value | Confidence | Derivation Method | Pairs/Observations |
+|-----------|-------|------------|-------------------|--------------------|
+| Clear Height ($/ft/SF) | $X.XX | Medium | Paired Sales Isolation | X pairs |
+| Condition (% per level) | X.X% | Medium | Paired Sales Isolation | X pairs |
+| Loading Dock ($/dock) | $XX,XXX | Medium | Paired Sales Isolation | X pairs |
+| Highway Frontage (%) | X.X% | Medium | Paired Sales Isolation | X pairs |
+| Age Depreciation (%/year) | X.X% | Medium | Paired Sales Isolation | X pairs |
+| Size Adjustment (%/10,000 SF) | -X.X% | Medium | Paired Sales Isolation | X pairs |
+
+### Industry Default Factors (REQUIRES DISCLOSURE)
+
+| Parameter | Value | Source | Rationale |
+|-----------|-------|--------|-----------|
+| [Parameter] | [Value] | Marshall & Swift / Altus Group | Insufficient market evidence for derivation |
+
+⚠️ **CUSPAP 6.2.17 Disclosure**: Where industry defaults are used in lieu of market-derived adjustments, the appraiser acknowledges this represents secondary support per CUSPAP 2024 guidance. Market-derived adjustments from paired sales analysis are preferred and have been used where sufficient data was available.
+
+### Sanity Bounds Applied (CUSPAP Methodology Limitation)
+
+| Parameter | Derived Value | Bounded Value | Reason |
+|-----------|---------------|---------------|--------|
+| [Parameter] | [Original] | [Bounded] | Value outside reasonable range based on cost approach support |
 
 ---
 
@@ -401,11 +466,17 @@ Based on the sales comparison approach, the indicated fee simple value of the su
 
 ## Comparable Sales Summary
 
-| Comp | Address | Sale Date | Sale Price | $/SF | Gross Adj % | Net Adj % | Adjusted Price | $/SF | Weight |
-|------|---------|-----------|------------|------|-------------|-----------|----------------|------|--------|
-| 1 | [Address] | [Date] | $X,XXX,XXX | $XXX | XX% | ±XX% | $X,XXX,XXX | $XXX | XX% |
-| 2 | [Address] | [Date] | $X,XXX,XXX | $XXX | XX% | ±XX% | $X,XXX,XXX | $XXX | XX% |
-| 3 | [Address] | [Date] | $X,XXX,XXX | $XXX | XX% | ±XX% | $X,XXX,XXX | $XXX | XX% |
+| Comp | Address | Sale Date | Sale Price | $/SF | Gross Adj % | Net Adj % | Adjusted Price | $/SF | Raw Weight | Normalized Weight |
+|------|---------|-----------|------------|------|-------------|-----------|----------------|------|------------|-------------------|
+| 1 | [Address] | [Date] | $X,XXX,XXX | $XXX | XX% | ±XX% | $X,XXX,XXX | $XXX | X.XXX | XX.X% |
+| 2 | [Address] | [Date] | $X,XXX,XXX | $XXX | XX% | ±XX% | $X,XXX,XXX | $XXX | X.XXX | XX.X% |
+| 3 | [Address] | [Date] | $X,XXX,XXX | $XXX | XX% | ±XX% | $X,XXX,XXX | $XXX | X.XXX | XX.X% |
+| | | | | | | | | **Sum:** | X.XXX | **100.0%** |
+
+**Weight Calculation:**
+- Raw Weight = 1 / (1 + |Net Adjustment %| / 100)
+- Normalized Weight = Raw Weight / Sum of All Raw Weights
+- Comparables with smaller net adjustments receive higher weights
 
 **Validation Status:**
 - Comp 1: [ACCEPTABLE/CAUTION/REJECT] (Gross: XX%, Net: ±XX%)
@@ -554,12 +625,14 @@ Based on the sales comparison approach, the indicated fee simple value of the su
 
 ### Adjusted Sale Price Range
 
-| Comparable | Adjusted Price | $/SF | Gross Adj % | Net Adj % | Weight | Weighted Value |
-|------------|----------------|------|-------------|-----------|--------|----------------|
-| Comp 1 | $X,XXX,XXX | $XXX | XX% | ±XX% | XX% | $XXX,XXX |
-| Comp 2 | $X,XXX,XXX | $XXX | XX% | ±XX% | XX% | $XXX,XXX |
-| Comp 3 | $X,XXX,XXX | $XXX | XX% | ±XX% | XX% | $XXX,XXX |
-| **Weighted Average** | | | | | **100%** | **$X,XXX,XXX** |
+| Comparable | Adjusted Price | $/SF | Gross Adj % | Net Adj % | Raw Weight | Normalized | Weighted Value |
+|------------|----------------|------|-------------|-----------|------------|------------|----------------|
+| Comp 1 | $X,XXX,XXX | $XXX | XX% | ±XX% | X.XXX | XX.X% | $XXX,XXX |
+| Comp 2 | $X,XXX,XXX | $XXX | XX% | ±XX% | X.XXX | XX.X% | $XXX,XXX |
+| Comp 3 | $X,XXX,XXX | $XXX | XX% | ±XX% | X.XXX | XX.X% | $XXX,XXX |
+| **Weighted Average** | | | | | **X.XXX** | **100.0%** | **$X,XXX,XXX** |
+
+**Weight Formula**: Raw Weight = 1 / (1 + |Net Adj %| / 100), then Normalized = Raw / Sum(All Raw)
 
 **Indicated Value Range:** $XXX,XXX - $XXX,XXX
 
@@ -567,7 +640,11 @@ Based on the sales comparison approach, the indicated fee simple value of the su
 - **Mean:** $XXX,XXX
 - **Median:** $XXX,XXX
 - **Standard Deviation:** $XX,XXX
-- **Coefficient of Variation:** X.X%
+- **Coefficient of Variation (CV):** X.X% (reliability indicator)
+  - CV < 10%: Excellent consistency (high confidence)
+  - CV 10-20%: Good consistency (medium-high confidence)
+  - CV 20-35%: Moderate consistency (medium confidence)
+  - CV > 35%: High variability (review comparables or expand search)
 
 ### Weighting Rationale
 
@@ -652,6 +729,17 @@ Testing ±10% variation in key adjustments:
 - Section 4.2.3: Sales comparison approach properly applied
 - Section 4.2.4: Adjustments quantified and supported
 - Section 4.2.5: Reconciliation methodology disclosed
+- **Rule 6.2.3: Scope of Work** (auto-generated by calculator):
+  - Problem identification (assignment type, property type, valuation date)
+  - Data research summary (comparables provided/verified/excluded)
+  - Analysis applied (methods, thresholds, market-derived vs non-market-derived)
+  - Limiting conditions (data limitations, methodology limitations)
+  - Competency statement
+- **Rules 6.2.15-6.2.17**: Paired sales analyzer tracks all required disclosures:
+  - Extraordinary assumptions
+  - Hypothetical conditions
+  - Limiting conditions
+  - Non-market-derived adjustments (flagged with source documentation)
 
 **IVS 2022 (International Valuation Standards):**
 - IVS 105 Valuation Approaches and Methods: Sales comparison approach
@@ -738,16 +826,18 @@ Sequential 6-stage framework ensures proper mathematical relationship between ad
 - Validation Report: `.claude/skills/comparable-sales-adjustment-methodology/validation_report_[timestamp].txt`
 
 **Calculator Modules:**
-- Main: `comparable_sales_calculator.py`
+- Main: `comparable_sales_calculator.py` (6-stage hierarchy with non-linear location model)
+- Paired Sales Analyzer: `paired_sales_analyzer.py` (CUSPAP-compliant adjustment derivation)
 - Validator: `validate_comparables.py`
 - Adjustment Modules:
-  - `adjustments/land.py` (10 adjustments)
-  - `adjustments/site.py` (7 adjustments)
-  - `adjustments/building_general.py` (7 adjustments)
-  - `adjustments/industrial_building.py` (8 adjustments)
-  - `adjustments/office_building.py` (6 adjustments)
+  - `adjustments/land.py` (8 adjustments)
+  - `adjustments/site.py` (6 adjustments)
+  - `adjustments/building_general.py` (6 adjustments)
+  - `adjustments/industrial_building.py` (10 adjustments)
+  - `adjustments/office_building.py` (8 adjustments)
   - `adjustments/special_features.py` (6 adjustments)
   - `adjustments/zoning_legal.py` (5 adjustments)
+  - `adjustments/validation.py` (input validation utilities)
 
 ### D. Market Conditions Analysis
 
@@ -878,10 +968,14 @@ After creating all files, provide the user with:
   - `adjustments/zoning_legal.py` - Zoning and legal
 
 **Sample Files:**
-- `sample_industrial_comps.json` - Original format (backward compatible)
+- `sample_industrial_comps.json` - Standard industrial with mixed transaction types (VTB, non-arm's-length)
 - `sample_industrial_comps_ENHANCED.json` - Enhanced format with all 49 fields
-- `sample_industrial_comps_OFFICE.json` - Office building example
-- `sample_industrial_comps_RETAIL.json` - Retail property example
+- `sample_industrial_comps_tight.json` - Tight comparable set for paired sales testing
+- `sample_industrial_rail_yard.json` - Industrial with rail spur features
+- `sample_office_class_a.json` - Class A office building example
+- `sample_office_class_b.json` - Class B office building example
+- `sample_office_class_c.json` - Class C office building example
+- `adjustment_factors_template.json` - Template for custom adjustment factors
 
 **Documentation:**
 - `SKILL.md` - Comprehensive adjustment methodology (543 lines)

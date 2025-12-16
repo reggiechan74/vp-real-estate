@@ -16,6 +16,7 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ├── Rollover_Analysis/      # Portfolio lease expiry and renewal prioritization
 ├── Default_Calculator/     # Tenant default damage quantification
 ├── Relative_Valuation/     # MCDA competitive positioning (25 variables) + statistical analysis
+├── MCDA_Sales_Comparison/  # MCDA ordinal ranking for fee simple valuation (74 tests)
 ├── MLS_Extractor/          # MLS PDF to Excel extraction with subject highlighting
 ├── Planning/               # Source lease documents
 ├── Templates/              # Industrial/Office lease templates (24 sections, MD/JSON/Schema)
@@ -197,7 +198,7 @@ Strategic implications? → Consult Dennis (wisdom, not analysis)
 
 **Example**: `2025-10-31_143022_lease_abstract_acme_corp.md`
 
-## Slash Commands (25 total)
+## Slash Commands (26 total)
 
 All commands follow **PDF → JSON → Python → Report** automated workflow (except utilities).
 
@@ -234,6 +235,9 @@ All commands follow **PDF → JSON → Python → Report** automated workflow (e
 - `/insurance-audit` - Insurance requirement verification
 - `/notice-generator` - Generate lease notices
 - `/work-letter` - Generate work letter from TI provisions
+
+### Valuation (1)
+- `/mcda-sales-comparison` - MCDA ordinal ranking for fee simple valuation (score-to-price mapping)
 
 ### Utilities (1)
 - `/convert-to-pdf` - Convert markdown files to PDF format

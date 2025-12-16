@@ -1,14 +1,22 @@
 {
   "subject_property": {
     "address": "2550 Industrial Parkway North, Hamilton, ON",
+    "property_type": "industrial",
     "property_rights": "fee_simple",
     "size_sf": 50000,
-    "location_score": 85,
+    "lot_size_acres": 5.0,
+    "clear_height_feet": 28,
+    "loading_docks_dock_high": 4,
+    "loading_docks_grade_level": 2,
+    "year_built": 2005,
     "condition": "average",
-    "highway_frontage": true
+    "location_submarket": "Hamilton Industrial East",
+    "highway_frontage": true,
+    "zoning": "M2_general_industrial"
   },
   "comparable_sales": [
     {
+      "id": "COMP_1",
       "address": "2300 Industrial Parkway North, Hamilton, ON",
       "sale_price": 4500000,
       "sale_date": "2024-03-15",
@@ -20,11 +28,18 @@
         "arms_length": true
       },
       "size_sf": 48000,
-      "location_score": 90,
+      "lot_size_acres": 4.8,
+      "clear_height_feet": 30,
+      "loading_docks_dock_high": 5,
+      "loading_docks_grade_level": 2,
+      "year_built": 2008,
       "condition": "good",
-      "highway_frontage": true
+      "location_submarket": "Hamilton Industrial East",
+      "highway_frontage": true,
+      "zoning": "M2_general_industrial"
     },
     {
+      "id": "COMP_2",
       "address": "1850 Barton Street East, Hamilton, ON",
       "sale_price": 3200000,
       "sale_date": "2023-11-22",
@@ -40,16 +55,24 @@
         "arms_length": true
       },
       "size_sf": 55000,
-      "location_score": 75,
+      "lot_size_acres": 5.5,
+      "clear_height_feet": 26,
+      "loading_docks_dock_high": 4,
+      "loading_docks_grade_level": 3,
+      "year_built": 2000,
       "condition": "average",
-      "highway_frontage": false
+      "location_submarket": "Hamilton Industrial Central",
+      "highway_frontage": false,
+      "zoning": "M2_general_industrial"
     },
     {
+      "id": "COMP_3",
       "address": "3100 Centennial Parkway North, Stoney Creek, ON",
       "sale_price": 5800000,
       "sale_date": "2024-08-10",
       "property_rights": "leasehold",
       "ground_rent_annual": 85000,
+      "lease_term_remaining_years": 40,
       "financing": {
         "type": "cash"
       },
@@ -57,11 +80,18 @@
         "arms_length": true
       },
       "size_sf": 72000,
-      "location_score": 80,
+      "lot_size_acres": 7.2,
+      "clear_height_feet": 32,
+      "loading_docks_dock_high": 8,
+      "loading_docks_grade_level": 4,
+      "year_built": 2015,
       "condition": "good",
-      "highway_frontage": true
+      "location_submarket": "Stoney Creek Industrial",
+      "highway_frontage": true,
+      "zoning": "M2_general_industrial"
     },
     {
+      "id": "COMP_4",
       "address": "1200 Burlington Street East, Hamilton, ON",
       "sale_price": 2800000,
       "sale_date": "2023-06-18",
@@ -71,14 +101,22 @@
       },
       "conditions_of_sale": {
         "arms_length": false,
-        "motivation_discount_pct": 12
+        "motivation": "related_party_sale",
+        "estimated_discount_pct": 12
       },
       "size_sf": 42000,
-      "location_score": 70,
+      "lot_size_acres": 4.0,
+      "clear_height_feet": 24,
+      "loading_docks_dock_high": 3,
+      "loading_docks_grade_level": 1,
+      "year_built": 1995,
       "condition": "fair",
-      "highway_frontage": false
+      "location_submarket": "Hamilton Industrial North",
+      "highway_frontage": false,
+      "zoning": "M1_light_industrial"
     },
     {
+      "id": "COMP_5",
       "address": "4500 North Service Road, Burlington, ON",
       "sale_price": 6200000,
       "sale_date": "2024-02-28",
@@ -90,11 +128,18 @@
         "arms_length": true
       },
       "size_sf": 65000,
-      "location_score": 95,
+      "lot_size_acres": 6.5,
+      "clear_height_feet": 32,
+      "loading_docks_dock_high": 7,
+      "loading_docks_grade_level": 3,
+      "year_built": 2018,
       "condition": "excellent",
-      "highway_frontage": true
+      "location_submarket": "Burlington QEW Corridor",
+      "highway_frontage": true,
+      "zoning": "M2_general_industrial"
     },
     {
+      "id": "COMP_6",
       "address": "950 Queenston Road, Hamilton, ON",
       "sale_price": 3750000,
       "sale_date": "2024-05-12",
@@ -106,18 +151,20 @@
         "arms_length": true
       },
       "size_sf": 50000,
-      "location_score": 82,
+      "lot_size_acres": 5.0,
+      "clear_height_feet": 28,
+      "loading_docks_dock_high": 4,
+      "loading_docks_grade_level": 2,
+      "year_built": 2006,
       "condition": "average",
-      "highway_frontage": false
+      "location_submarket": "Hamilton Industrial East",
+      "highway_frontage": false,
+      "zoning": "M2_general_industrial"
     }
   ],
   "market_parameters": {
-    "appreciation_rate_annual": 3.5,
-    "cap_rate": 7.0,
-    "location_premium_highway": 15,
-    "location_premium_per_point": 1.0,
-    "size_adjustment_per_sf": 3.0,
-    "condition_adjustment_pct_per_level": 5.0,
-    "valuation_date": "2025-01-15"
+    "valuation_date": "2025-01-15",
+    "data_sources": ["GeoWarehouse", "MPAC", "CoStar", "local MLS"],
+    "market_area": "Greater Hamilton Industrial"
   }
 }

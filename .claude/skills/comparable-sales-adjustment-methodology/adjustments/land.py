@@ -1,9 +1,32 @@
 """
-Comparable Sales Adjustment Module
-Auto-extracted from comparable_sales_calculator.py
+Comparable Sales Adjustment Module - Land Characteristics
+
+Provides 8 land characteristic adjustments:
+1. Lot size / land area
+2. Shape / frontage-to-depth ratio
+3. Topography
+4. Utilities - availability and capacity
+5. Drainage
+6. Flood zone
+7. Environmental constraints
+8. Soil / bearing capacity
+
+CUSPAP 2024 & USPAP 2024 Compliant
 """
 
+import logging
 from typing import Dict, List
+
+from .validation import (
+    validate_adjustment_inputs,
+    safe_get_numeric,
+    safe_get_positive,
+    safe_get_string,
+    clamp_adjustment_amount
+)
+
+logger = logging.getLogger(__name__)
+
 
 def calculate_adjustments(
     subject: Dict,
@@ -20,11 +43,22 @@ def calculate_adjustments(
         comparable: Comparable sale characteristics
         base_price: Base price after previous adjustments
         market_params: Market parameters for adjustments
+        property_type: 'industrial' or 'office'
 
     Returns:
         List of adjustment dictionaries
     """
     adjustments = []
+
+    # Input validation
+    is_valid, errors = validate_adjustment_inputs(subject, comparable, base_price, market_params)
+    if not is_valid:
+        logger.error(f"Land adjustment validation failed: {errors}")
+        return adjustments  # Return empty list on invalid input
+
+    # Ensure market_params is dict
+    if market_params is None:
+        market_params = {}
 
     # 1. LOT SIZE / LAND AREA
     subject_lot_acres = subject.get('lot_size_acres', 0)

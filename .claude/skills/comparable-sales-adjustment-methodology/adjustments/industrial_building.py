@@ -1,9 +1,28 @@
 """
-Comparable Sales Adjustment Module
-Auto-extracted from comparable_sales_calculator.py
+Comparable Sales Adjustment Module - Industrial Building
+
+Provides 10 industrial building characteristic adjustments:
+1. Building size (sq ft)
+2. Clear height (critical for warehousing)
+3. Loading docks (number and type)
+4. Column spacing (for racking efficiency)
+5. Floor load capacity
+6. Office finish percentage
+7. Bay depth
+8. ESFR sprinkler system
+9. Truck court depth
+10. Condition (industrial-specific)
+
+CUSPAP 2024 & USPAP 2024 Compliant
 """
 
+import logging
 from typing import Dict, List
+
+from .validation import validate_adjustment_inputs
+
+logger = logging.getLogger(__name__)
+
 
 def calculate_adjustments(
     subject: Dict,
@@ -16,15 +35,25 @@ def calculate_adjustments(
     Industrial Building Adjustments (10 subcategories)
 
     Args:
-    subject: Subject property characteristics
-    comparable: Comparable sale characteristics
-    base_price: Base price after previous adjustments
-    market_params: Market parameters for adjustments
+        subject: Subject property characteristics
+        comparable: Comparable sale characteristics
+        base_price: Base price after previous adjustments
+        market_params: Market parameters for adjustments
+        property_type: Should be 'industrial' for this module
 
     Returns:
-    List of adjustment dictionaries
+        List of adjustment dictionaries
     """
     adjustments = []
+
+    # Input validation
+    is_valid, errors = validate_adjustment_inputs(subject, comparable, base_price, market_params)
+    if not is_valid:
+        logger.error(f"Industrial building adjustment validation failed: {errors}")
+        return adjustments
+
+    if market_params is None:
+        market_params = {}
 
     # =========================================================================
     # BUILDING - INDUSTRIAL SPECIFIC (10 subcategories)
@@ -82,10 +111,21 @@ def calculate_adjustments(
     comp_grade_level = comparable.get('loading_docks_grade_level', 0)
     comp_drive_in = comparable.get('loading_docks_drive_in', 0)
     
-    # Value per dock type
-    dock_high_value = 25000  # Most valuable
-    grade_level_value = 15000
-    drive_in_value = 50000  # Drive-in doors most valuable for certain uses
+    # Value per dock type - use market-derived if available, else industry defaults
+    # If aggregate per-dock value provided (from paired sales), use ratio allocation
+    # Note: Use .get() with truthy check to allow None/0 to fall through to individual values
+    aggregate_value = market_params.get('loading_dock_value_per_dock')
+    if aggregate_value:
+        # Allocate by typical value ratios: dock-high 70%, grade-level 40%, drive-in 140%
+        # These ratios reflect relative functional utility
+        dock_high_value = aggregate_value * 0.70
+        grade_level_value = aggregate_value * 0.40
+        drive_in_value = aggregate_value * 1.40  # Drive-in typically most valuable
+    else:
+        # Individual values if specified, else industry defaults (Marshall & Swift)
+        dock_high_value = market_params.get('loading_dock_value_dock_high', 25000)
+        grade_level_value = market_params.get('loading_dock_value_grade_level', 15000)
+        drive_in_value = market_params.get('loading_dock_value_drive_in', 50000)
     
     subject_dock_value = (subject_dock_high * dock_high_value +
                          subject_grade_level * grade_level_value +
@@ -225,30 +265,78 @@ def calculate_adjustments(
     # 23. TRUCK COURT DEPTH
     subject_truck_court = subject.get('truck_court_depth_feet', 0)
     comp_truck_court = comparable.get('truck_court_depth_feet', 0)
-    
-    if subject_truck_court != comp_truck_court:
-        # Minimum: 120' for trailer maneuvering
-        # Preferred: 150-180'
+
+    if subject_truck_court > 0 and comp_truck_court > 0 and subject_truck_court != comp_truck_court:
+        # Truck court thresholds:
+        # - Minimum: 120' for standard trailer maneuvering
+        # - Adequate: 130-150' for comfortable operations
+        # - Preferred: 150-180' for high-volume distribution
+        # - Premium: 180'+ for cross-dock and multi-trailer staging
+        MINIMUM_TRUCK_COURT = 120
+        ADEQUATE_TRUCK_COURT = 150
+        PREMIUM_TRUCK_COURT = 180
+
         truck_court_diff = subject_truck_court - comp_truck_court
-    
-        if abs(truck_court_diff) >= 30:  # Material difference
-            # Penalty for inadequate truck court: 2-5% of value
-            if subject_truck_court < 120 or comp_truck_court < 120:
-                truck_court_adjustment_pct = 3.0  # 3% penalty if below minimum
+
+        # Case 1: One or both below minimum (penalty-based)
+        if subject_truck_court < MINIMUM_TRUCK_COURT or comp_truck_court < MINIMUM_TRUCK_COURT:
+            # Significant penalty for inadequate truck court
+            truck_court_adjustment_pct = 3.0  # 3% penalty per inadequate property
+
+            if subject_truck_court < MINIMUM_TRUCK_COURT and comp_truck_court >= MINIMUM_TRUCK_COURT:
+                # Subject is inadequate, comp is adequate - negative adjustment
+                truck_court_adjustment = -base_price * (truck_court_adjustment_pct / 100)
+                explanation = f'Subject truck court ({subject_truck_court}\') below minimum 120\' - penalty {truck_court_adjustment_pct}%'
+            elif comp_truck_court < MINIMUM_TRUCK_COURT and subject_truck_court >= MINIMUM_TRUCK_COURT:
+                # Comp is inadequate, subject is adequate - positive adjustment
                 truck_court_adjustment = base_price * (truck_court_adjustment_pct / 100)
-    
-                if subject_truck_court < comp_truck_court:
-                    truck_court_adjustment = -truck_court_adjustment
-    
-    
-                adjustments.append({
-                    'category': 'Industrial Building',
-                    'characteristic': 'Truck Court Depth',
-                    'subject_value': f'{subject_truck_court} feet',
-                    'comp_value': f'{comp_truck_court} feet',
-                    'adjustment': truck_court_adjustment,
-                    'explanation': f'Inadequate truck court penalty: {truck_court_adjustment_pct}% of property value'
-                })
+                explanation = f'Comparable truck court ({comp_truck_court}\') below minimum 120\' - adjustment {truck_court_adjustment_pct}%'
+            else:
+                # Both inadequate - adjust based on relative deficiency
+                subject_deficiency = max(0, MINIMUM_TRUCK_COURT - subject_truck_court)
+                comp_deficiency = max(0, MINIMUM_TRUCK_COURT - comp_truck_court)
+                deficiency_diff = comp_deficiency - subject_deficiency
+                truck_court_adjustment = base_price * (deficiency_diff / MINIMUM_TRUCK_COURT) * (truck_court_adjustment_pct / 100)
+                explanation = f'Both below minimum - relative deficiency adjustment'
+
+            adjustments.append({
+                'category': 'Industrial Building',
+                'characteristic': 'Truck Court Depth',
+                'subject_value': f'{subject_truck_court} feet',
+                'comp_value': f'{comp_truck_court} feet',
+                'adjustment': truck_court_adjustment,
+                'explanation': explanation
+            })
+
+        # Case 2: Both above minimum - premium/value differential
+        elif abs(truck_court_diff) >= 20:  # Material difference (reduced from 30')
+            # Tiered premium system for above-minimum truck courts
+            # Premium value: ~$0.50-$1.00/sf per 30' of additional depth
+            truck_court_premium_per_30ft_per_sf = market_params.get('truck_court_premium_per_30ft_per_sf', 0.75)
+
+            # Calculate per-SF adjustment based on building size
+            truck_court_adjustment = (truck_court_diff / 30) * truck_court_premium_per_30ft_per_sf * comp_building_sf
+
+            # Additional premium for reaching premium threshold
+            if subject_truck_court >= PREMIUM_TRUCK_COURT and comp_truck_court < PREMIUM_TRUCK_COURT:
+                premium_bonus = base_price * 0.01  # 1% bonus for premium truck court
+                truck_court_adjustment += premium_bonus
+                explanation = f'{truck_court_diff:+}\' differential + premium threshold bonus'
+            elif comp_truck_court >= PREMIUM_TRUCK_COURT and subject_truck_court < PREMIUM_TRUCK_COURT:
+                premium_bonus = base_price * 0.01
+                truck_court_adjustment -= premium_bonus
+                explanation = f'{truck_court_diff:+}\' differential - comparable has premium truck court'
+            else:
+                explanation = f'{truck_court_diff:+}\' × ${truck_court_premium_per_30ft_per_sf}/sf per 30\' × {comp_building_sf:,} sf'
+
+            adjustments.append({
+                'category': 'Industrial Building',
+                'characteristic': 'Truck Court Depth',
+                'subject_value': f'{subject_truck_court} feet',
+                'comp_value': f'{comp_truck_court} feet',
+                'adjustment': truck_court_adjustment,
+                'explanation': explanation
+            })
     
     # 24. CONDITION (Industrial-specific)
     condition_hierarchy = {'poor': 1, 'fair': 2, 'average': 3, 'good': 4, 'excellent': 5}

@@ -57,28 +57,31 @@ def calculate_adjustments(
     # 46. FLOOR AREA RATIO (FAR) / DEVELOPMENT POTENTIAL
     subject_far = subject.get('floor_area_ratio', 0)
     comp_far = comparable.get('floor_area_ratio', 0)
-    
+
     if subject_far > 0 and comp_far > 0:
         far_diff = subject_far - comp_far
-    
+
         # Higher FAR = more development potential
         # Value: Market-dependent, typically $5-$15/sf of additional buildable area
         far_value_per_buildable_sf = market_params.get('far_value_per_buildable_sf', 10.0)
-    
+
         # Calculate additional buildable area based on lot size
-        subject_lot_sf = subject_lot_acres * 43560
-        additional_buildable_sf = far_diff * subject_lot_sf
-    
-        far_adjustment = additional_buildable_sf * far_value_per_buildable_sf
-    
-        adjustments.append({
-            'category': 'Zoning/Legal',
-            'characteristic': 'Floor Area Ratio',
-            'subject_value': f'{subject_far:.2f} FAR',
-            'comp_value': f'{comp_far:.2f} FAR',
-            'adjustment': far_adjustment,
-            'explanation': f'{far_diff:+.2f} FAR × {subject_lot_sf:,.0f} sf lot × ${far_value_per_buildable_sf}/sf buildable'
-        })
+        # FIX: Get lot_size_acres from subject property (was undefined)
+        subject_lot_acres = subject.get('lot_size_acres', 0)
+        if subject_lot_acres > 0:
+            subject_lot_sf = subject_lot_acres * 43560
+            additional_buildable_sf = far_diff * subject_lot_sf
+
+            far_adjustment = additional_buildable_sf * far_value_per_buildable_sf
+
+            adjustments.append({
+                'category': 'Zoning/Legal',
+                'characteristic': 'Floor Area Ratio',
+                'subject_value': f'{subject_far:.2f} FAR',
+                'comp_value': f'{comp_far:.2f} FAR',
+                'adjustment': far_adjustment,
+                'explanation': f'{far_diff:+.2f} FAR × {subject_lot_sf:,.0f} sf lot × ${far_value_per_buildable_sf}/sf buildable'
+            })
     
     # 47. VARIANCE / SPECIAL USE PERMIT
     subject_variance = subject.get('has_variance', False)
