@@ -1,0 +1,313 @@
+# Location Overview
+
+**Generated:** {{ generated_at.strftime('%B %d, %Y at %H:%M') }}
+
+---
+
+## Property Identification
+
+| Attribute | Value |
+|-----------|-------|
+| **Address** | {{ property_id.address }} |
+{% if property_id.pin %}| **PIN** | {{ property_id.pin }} |
+{% endif %}{% if property_id.legal_description %}| **Legal Description** | {{ property_id.legal_description }} |
+{% endif %}| **Municipality** | {{ property_id.municipality }} |
+{% if property_id.ward %}| **Ward** | {{ property_id.ward }}{% if property_id.ward_name %} - {{ property_id.ward_name }}{% endif %} |
+{% endif %}{% if property_id.neighbourhood %}| **Neighbourhood** | {{ property_id.neighbourhood }}{% if property_id.neighbourhood_id %} (ID: {{ property_id.neighbourhood_id }}){% endif %} |
+{% endif %}| **Coordinates** | {{ "%.6f"|format(property_id.latitude) }}, {{ "%.6f"|format(property_id.longitude) }} |
+
+---
+
+## Regional Context
+
+{{ regional_context }}
+
+---
+
+{% if neighbourhood.neighbourhood_name or neighbourhood.census_year %}
+## Neighbourhood Profile
+
+| Metric | Value | Source |
+|--------|-------|--------|
+{% if neighbourhood.neighbourhood_name %}| **Neighbourhood** | {{ neighbourhood.neighbourhood_name }}{% if neighbourhood.neighbourhood_id %} (ID: {{ neighbourhood.neighbourhood_id }}){% endif %} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}{% if neighbourhood.census_year %}| **Census Year** | {{ neighbourhood.census_year }} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}{% if neighbourhood.population %}| **Population** | {{ "{:,}".format(neighbourhood.population) }} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}{% if neighbourhood.population_growth %}| **Growth (prior period)** | {{ neighbourhood.population_growth }} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}{% if neighbourhood.density %}| **Density (persons/km²)** | {{ neighbourhood.density }} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}{% if neighbourhood.median_income %}| **Median Household Income** | {{ neighbourhood.median_income }} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}{% if neighbourhood.renter_share %}| **Renter Households** | {{ neighbourhood.renter_share }} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}{% if neighbourhood.highrise_share %}| **5+ Storey Apartments** | {{ neighbourhood.highrise_share }} | {{ neighbourhood.neighbourhood_source or "N/A" }} |
+{% endif %}
+
+{% if neighbourhood.profile_notes %}
+{{ neighbourhood.profile_notes }}
+{% endif %}
+
+---
+{% endif %}
+
+## Planning Framework
+
+### Official Plan
+
+{% if planning.official_plan_designation %}
+**Designation:** {{ planning.official_plan_designation }}
+
+{% if planning.official_plan_policies %}
+**Policies:**
+{% for policy in planning.official_plan_policies %}
+- {{ policy }}
+{% endfor %}
+{% endif %}
+{% else %}
+*Official Plan designation not available from current data sources*
+{% endif %}
+
+### Zoning
+
+{% if planning.zoning_designation %}
+| Attribute | Value |
+|-----------|-------|
+| **Zone** | {{ planning.zoning_designation }} |
+{% if planning.zoning_category %}| **Category** | {{ planning.zoning_category }} |
+{% endif %}| **Site Plan Control** | {{ "Yes" if planning.site_plan_control else "No (assumed)" }} |
+{% if planning.governing_bylaw %}| **Governing By-law** | {{ planning.governing_bylaw }} |
+{% endif %}
+
+{% if planning.permitted_uses %}
+**Permitted Uses:**
+{% for use in planning.permitted_uses %}
+- {{ use }}
+{% endfor %}
+{% endif %}
+{% else %}
+*Zoning information not available from current data sources*
+{% endif %}
+
+{% if planning.secondary_plan %}
+### Secondary Plan
+
+**Area:** {{ planning.secondary_plan }}
+{% if planning.secondary_plan_amendment %}
+**OPA / Amendment:** {{ planning.secondary_plan_amendment }}
+{% endif %}
+
+{% if planning.secondary_plan_policies %}
+**Policies:**
+{% for policy in planning.secondary_plan_policies %}
+- {{ policy }}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+### Provincial Plans
+
+| Plan | Status | Designation |
+|------|--------|-------------|
+| **Greenbelt Plan** | {{ "✓ Within" if provincial_plans.greenbelt_area else "✗ Outside" }} | {{ provincial_plans.greenbelt_designation or "N/A" }} |
+| **Growth Plan** | {{ provincial_plans.growth_plan_area or "Not determined" }} | - |
+| **Oak Ridges Moraine** | {{ "✓ Within" if provincial_plans.oak_ridges_moraine else "✗ Outside" }} | {{ provincial_plans.orm_designation or "N/A" }} |
+| **Niagara Escarpment** | {{ "✓ Within" if provincial_plans.niagara_escarpment else "✗ Outside" }} | {{ provincial_plans.nec_designation or "N/A" }} |
+{% if provincial_plans.natural_heritage %}| **Natural Heritage System** | ✓ Within | - |
+{% endif %}
+
+---
+
+## Transportation & Access
+
+{% if transport.rapid_transit or transport.regional_transit or transport.cycling_network %}
+| Mode | Details |
+|------|---------|
+{% if transport.rapid_transit %}| **Rapid Transit** | {{ transport.rapid_transit }} |
+{% endif %}{% if transport.regional_transit %}| **Regional Transit** | {{ transport.regional_transit }} |
+{% endif %}{% if transport.cycling_network %}| **Cycling Network** | {{ transport.cycling_network }} |
+{% endif %}
+{% endif %}
+
+{% if transport.walk_transit_bike_scores %}
+**Indicative Scores:** {{ transport.walk_transit_bike_scores }} *(Third-party; indicative only)*
+{% endif %}
+
+{% if not transport.rapid_transit and not transport.regional_transit %}
+*Transportation details from transit-specific data sources not available in current version*
+{% endif %}
+
+---
+
+## Neighbourhood Description
+
+{% if neighbourhood.neighbourhood_name %}
+### Location
+
+**Neighbourhood:** {{ neighbourhood.neighbourhood_name }}
+{% endif %}
+
+{% if neighbourhood.character_description %}
+{{ neighbourhood.character_description }}
+{% endif %}
+
+{% if neighbourhood.surrounding_uses %}
+### Surrounding Uses
+
+| Direction | Land Use |
+|-----------|----------|
+{% for use in neighbourhood.surrounding_uses %}
+| {{ use.direction }} | {{ use.land_use }} - {{ use.description }} |
+{% endfor %}
+{% endif %}
+
+### Amenities & Services
+
+{% if neighbourhood.transit_accessibility %}
+**Transit Accessibility:** {{ neighbourhood.transit_accessibility }}
+{% endif %}
+
+{% if neighbourhood.amenities %}
+| Amenity | Type | Distance |
+|---------|------|----------|
+{% for amenity in neighbourhood.amenities[:15] %}
+| {{ amenity.name }} | {{ amenity.type.replace('_', ' ').title() }} | {{ amenity.distance_m }}m |
+{% endfor %}
+{% if neighbourhood.amenities|length > 15 %}
+*... and {{ neighbourhood.amenities|length - 15 }} more amenities within search radius*
+{% endif %}
+{% else %}
+*Amenity data not available*
+{% endif %}
+
+{% if neighbourhood.bia_note %}
+**Main-street/BIA:** {{ neighbourhood.bia_note }}
+{% endif %}
+
+{% if neighbourhood.parks_note %}
+**Parks/Open Space:** {{ neighbourhood.parks_note }}
+{% endif %}
+
+{% if neighbourhood.walkability_notes %}
+
+{{ neighbourhood.walkability_notes }}
+{% endif %}
+
+---
+
+## Planning & Development Context
+
+{% if planning.major_projects %}
+**Major Projects/Infrastructure:** {{ planning.major_projects }}
+{% endif %}
+
+{% if market.development_activity %}
+**Development Pipeline:** {{ market.development_activity }}
+{% endif %}
+
+{% if planning.governing_bylaw %}
+**Governing By-law:** {{ planning.governing_bylaw }}
+{% endif %}
+
+{% if not planning.major_projects and not market.development_activity %}
+*Development activity data requires municipal planning application database integration (Phase 2)*
+{% endif %}
+
+---
+
+## Environmental Factors
+
+### Constraints & Designations
+
+| Factor | Status | Details |
+|--------|--------|---------|
+| **Floodplain** | {{ "⚠️ Yes" if environmental.floodplain else "✓ No indication" }} | {{ environmental.floodplain_type or "N/A" }} |
+| **Wetland** | {{ "⚠️ Yes" if environmental.wetland else "✓ No indication" }} | - |
+| **Valley/Stream Corridor** | {{ "⚠️ Yes" if environmental.valley_corridor else "✓ No indication" }} | - |
+| **Heritage Designation** | {{ "Yes" if environmental.heritage_designated else "No indication" }} | {{ environmental.heritage_type or "N/A" }} |
+| **Brownfield Record** | {{ "⚠️ RSC on file" if environmental.brownfield_record else "✓ None found" }} | {{ environmental.rsc_number or "N/A" }} |
+
+*Note: Environmental data sourced from Heritage Registry, Brownfields ESR, and Conservation Authority APIs. Verify with authoritative sources.*
+
+### Servicing
+
+| Service | Available |
+|---------|-----------|
+| **Municipal Water** | {{ "✓" if environmental.servicing.get("water") else "✗" }} |
+| **Municipal Sewer** | {{ "✓" if environmental.servicing.get("sewer") else "✗" }} |
+| **Natural Gas** | {{ "✓" if environmental.servicing.get("gas") else "✗" }} |
+| **Hydro** | {{ "✓" if environmental.servicing.get("hydro") else "✗" }} |
+
+*Note: Servicing status assumed for urban areas. Verify with municipality.*
+
+---
+
+{% if market.assessment_value %}
+## Market Context
+
+| Attribute | Value |
+|-----------|-------|
+| **Assessment Value** | ${{ "{:,.0f}".format(market.assessment_value) }} |
+{% if market.assessment_year %}| **Assessment Year** | {{ market.assessment_year }} |
+{% endif %}{% if market.property_class %}| **Property Class** | {{ market.property_class }} |
+{% endif %}
+
+{% if market.development_activity_details %}
+{{ market.development_activity_details }}
+{% endif %}
+{% endif %}
+
+---
+
+## Data Sources
+
+{% if data_sources and data_sources[0].__class__.__name__ == 'DataSource' %}
+| Source | Type | Last Updated | Link |
+|--------|------|--------------|------|
+{% for source in data_sources %}
+| {{ source.name }} | {{ source.type }} | {{ source.last_updated or "N/A" }} | {{ source.link or "-" }} |
+{% endfor %}
+{% elif data_sources %}
+{% for source in data_sources %}
+- {{ source.name if source.name is defined else source }}
+{% endfor %}
+{% else %}
+*Data sources information not available*
+{% endif %}
+
+{% if warnings %}
+### ⚠️ Warnings
+
+{% for warning in warnings %}
+- {{ warning }}
+{% endfor %}
+{% endif %}
+
+{% if errors %}
+### ❌ Errors (Data Unavailable)
+
+{% for error in errors %}
+- {{ error }}
+{% endfor %}
+{% endif %}
+
+---
+
+## Limiting Conditions
+
+This location overview was generated automatically for appraisal purposes and is subject to the following limiting conditions:
+
+1. **Data Currency**: Information is current as of the date of this report. Zoning, official plan designations, and provincial plan boundaries are subject to change through municipal and provincial planning processes.
+
+2. **Verification Required**: Data should be verified with authoritative sources before reliance. This includes confirming zoning designations with the municipal planning department and environmental constraints with the relevant conservation authority.
+
+3. **Third-Party Data**: Amenity and transit information sourced from OpenStreetMap (via Overpass API) is contributed by community members and may not be complete or current.
+
+4. **Environmental Screening**: Environmental factors shown are indicative only. Phase I Environmental Site Assessment and specific inquiries with MECP and conservation authorities are recommended for any transaction.
+
+5. **Provincial Plans**: Provincial plan boundary determinations are based on official Ontario GeoHub data layers. For sites near boundaries, verification with the relevant provincial ministry is recommended.
+
+6. **CUSPAP Compliance**: This report is designed to support CUSPAP-compliant appraisals but does not constitute a complete appraisal report. Jurisdictional exceptions apply where municipal or statutory requirements conflict with CUSPAP standards.
+
+---
+
+*Generated by Location Overview v2.0 (Phase 2 Enhanced)*
+
+*© OpenStreetMap contributors (amenity data)*
+
+*Data sources: Ontario GeoHub, City of Toronto Open Data, City of Ottawa Open Data, Heritage Registry, Brownfields ESR, TRCA Conservation, Transit GTFS, Census Demographics, OpenStreetMap*
