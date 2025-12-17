@@ -5,7 +5,7 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ## Structure
 
 ```
-├── Shared_Utils/           # Shared financial utilities (NPV, IRR, PV, ratios, statistics)
+├── Shared_Utils/           # Shared financial utilities (NPV, IRR, PV, ratios, statistics) + schemas/
 ├── Eff_Rent_Calculator/    # Effective rent, NPV, breakeven analysis
 ├── Rental_Yield_Curve/     # Term structure pricing using implied termination options
 ├── Rental_Variance/        # Rental variance decomposition (rate, area, term)
