@@ -1,0 +1,142 @@
+{
+  "subject_property": {
+    "address": "Lot 15, Concession 5, Township of Puslinch, Wellington County, ON",
+    "property_type": "agricultural",
+    "property_rights": "fee_simple",
+    "lot_size_acres": 250,
+    "soil_class": "Class 1",
+    "topography": "level",
+    "drainage": "good",
+    "road_frontage_feet": 1320,
+    "utilities": "hydro_at_road",
+    "zoning": "Agricultural A1",
+    "current_use": "Cash crop (corn/soybean)",
+    "improvements": "Farmhouse, barn, grain storage",
+    "improvement_value": 450000
+  },
+  "comparable_sales": [
+    {
+      "id": "Comp1",
+      "address": "Lot 12, Concession 6, Township of Puslinch, Wellington County, ON",
+      "sale_price": 7500000,
+      "sale_date": "2024-09-15",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 200,
+      "price_per_acre": 37500,
+      "soil_class": "Class 1",
+      "topography": "level",
+      "drainage": "excellent",
+      "road_frontage_feet": 1000,
+      "utilities": "hydro_at_road",
+      "zoning": "Agricultural A1",
+      "current_use": "Cash crop",
+      "improvements": "Farmhouse, machine shed",
+      "improvement_value": 300000,
+      "verification": "MLS, confirmed with selling agent",
+      "notes": "Clean sale, active farmer purchaser, no hydro corridors"
+    },
+    {
+      "id": "Comp2",
+      "address": "Lot 22, Concession 4, Township of Guelph/Eramosa, Wellington County, ON",
+      "sale_price": 9100000,
+      "sale_date": "2024-07-20",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 280,
+      "price_per_acre": 32500,
+      "soil_class": "Class 2",
+      "topography": "gently_sloped",
+      "drainage": "good",
+      "road_frontage_feet": 1500,
+      "utilities": "hydro_gas_at_road",
+      "zoning": "Agricultural A1",
+      "current_use": "Mixed farming",
+      "improvements": "Older farmhouse, barn complex",
+      "improvement_value": 250000,
+      "verification": "Teranet, broker interview",
+      "notes": "Slightly inferior soils, larger parcel"
+    },
+    {
+      "id": "Comp3",
+      "address": "Part Lot 5, Concession 7, Township of Centre Wellington, Wellington County, ON",
+      "sale_price": 6800000,
+      "sale_date": "2024-11-01",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "conventional",
+        "rate": 5.5,
+        "market_rate": 5.5,
+        "term_years": 5,
+        "loan_amount": 4000000
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 175,
+      "price_per_acre": 38857,
+      "soil_class": "Class 1",
+      "topography": "level",
+      "drainage": "good",
+      "road_frontage_feet": 900,
+      "utilities": "hydro_at_road",
+      "zoning": "Agricultural A1",
+      "current_use": "Cash crop",
+      "improvements": "Modern farmhouse (2018), new barn",
+      "improvement_value": 600000,
+      "verification": "MLS, Teranet",
+      "notes": "Superior improvements, smaller lot, recent sale"
+    },
+    {
+      "id": "Comp4",
+      "address": "Lot 18, Concession 3, Township of Puslinch, Wellington County, ON",
+      "sale_price": 7200000,
+      "sale_date": "2024-05-10",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true,
+        "notes": "Estate sale, marketed 120 days"
+      },
+      "lot_size_acres": 225,
+      "price_per_acre": 32000,
+      "soil_class": "Class 1",
+      "topography": "level",
+      "drainage": "adequate",
+      "road_frontage_feet": 1200,
+      "utilities": "hydro_at_road",
+      "zoning": "Agricultural A1",
+      "current_use": "Cash crop",
+      "improvements": "Original farmhouse (1920), barn",
+      "improvement_value": 200000,
+      "verification": "Teranet, estate lawyer",
+      "notes": "Estate sale, inferior drainage, dated improvements"
+    }
+  ],
+  "market_parameters": {
+    "valuation_date": "2025-01-15",
+    "cap_rate": 0.07,
+    "appreciation_rate_annual": 3.5,
+    "adjustment_rates": {
+      "lot_adjustment_per_acre": 35000,
+      "soil_class_adjustment_pct_per_level": 5.0,
+      "topography_adjustment_pct_per_level": 2.0,
+      "drainage_adjustment_pct_per_level": 3.0,
+      "frontage_adjustment_per_foot": 50,
+      "improvement_adjustment_multiplier": 1.0
+    }
+  },
+  "analysis_notes": "Four comparable sales of agricultural land in Wellington County within the past 12 months. All are arm's length transactions with verified sale prices. Subject is a productive cash crop operation with Class 1 soils. Adjustments required for lot size, soil quality, drainage, improvements, and time."
+}

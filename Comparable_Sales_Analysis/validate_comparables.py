@@ -30,9 +30,16 @@ except ImportError:
 class ComparableValidator:
     """Validates and optionally fixes LLM-extracted comparable sales JSON data."""
 
-    def __init__(self, schema_path: str = "comparable_sales_input_schema.json"):
-        """Initialize validator with JSON schema."""
-        self.schema_path = Path(schema_path)
+    # Default schema location (shared across calculators)
+    DEFAULT_SCHEMA = Path(__file__).parent.parent / "Shared_Utils" / "schemas" / "comparable_sales_input_schema.json"
+
+    def __init__(self, schema_path: str = None):
+        """Initialize validator with JSON schema.
+
+        Args:
+            schema_path: Path to schema file. If None, uses shared schema location.
+        """
+        self.schema_path = Path(schema_path) if schema_path else self.DEFAULT_SCHEMA
         self.schema = self._load_schema()
         self.errors = []
         self.warnings = []

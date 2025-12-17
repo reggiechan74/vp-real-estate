@@ -8,15 +8,27 @@ Provides sales-specific validation functions:
 - Cash equivalent adjustments
 - Time/market condition adjustments
 - Monotonicity validation for score-to-price mapping
-- Input data schema validation
+- Input data schema validation (JSON Schema Draft 2020-12)
 
 Author: Claude Code
-Version: 1.0.0
-Date: 2025-12-16
+Version: 1.1.0
+Date: 2025-12-17
 """
 
+import json
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, List, Tuple, Any, Optional
+
+# JSON Schema validation (optional - graceful degradation if not installed)
+try:
+    from jsonschema import validate, ValidationError, Draft202012Validator
+    JSONSCHEMA_AVAILABLE = True
+except ImportError:
+    JSONSCHEMA_AVAILABLE = False
+
+# Shared schema location (unified schema for both DCA and MCDA calculators)
+SHARED_SCHEMA_PATH = Path(__file__).parent.parent / "Shared_Utils" / "schemas" / "comparable_sales_input_schema.json"
 
 
 # =============================================================================
@@ -252,12 +264,93 @@ def validate_monotonicity(scores_prices: List[Tuple[float, float]]) -> Dict[str,
 
 
 # =============================================================================
+# JSON SCHEMA VALIDATION
+# =============================================================================
+
+def load_unified_schema(schema_path: Path = None) -> Optional[Dict]:
+    """
+    Load the unified JSON schema for comparable sales input.
+
+    Args:
+        schema_path: Custom schema path (defaults to shared location)
+
+    Returns:
+        Schema dictionary, or None if not available
+    """
+    path = schema_path or SHARED_SCHEMA_PATH
+
+    if not path.exists():
+        return None
+
+    try:
+        with open(path, 'r') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return None
+
+
+def validate_against_schema(
+    data: Dict[str, Any],
+    schema_path: Path = None,
+    strict: bool = False
+) -> Tuple[bool, List[str]]:
+    """
+    Validate input data against the unified JSON schema.
+
+    Uses the shared schema that is compatible with both Traditional DCA
+    (Comparable_Sales_Analysis) and MCDA (MCDA_Sales_Comparison) calculators.
+
+    Args:
+        data: Input data dictionary to validate
+        schema_path: Custom schema path (defaults to shared location)
+        strict: If True, raise exception on schema errors; if False, return errors
+
+    Returns:
+        Tuple of (is_valid, error_messages)
+        - is_valid: True if data passes schema validation
+        - error_messages: List of validation error descriptions
+    """
+    errors = []
+
+    # Check if jsonschema is available
+    if not JSONSCHEMA_AVAILABLE:
+        errors.append("WARNING: jsonschema library not installed - skipping schema validation")
+        return True, errors  # Graceful degradation - don't block on missing dependency
+
+    # Load schema
+    schema = load_unified_schema(schema_path)
+    if schema is None:
+        path = schema_path or SHARED_SCHEMA_PATH
+        errors.append(f"WARNING: Schema file not found at {path} - skipping schema validation")
+        return True, errors  # Graceful degradation
+
+    # Validate
+    try:
+        validate(instance=data, schema=schema)
+        return True, []
+    except ValidationError as e:
+        # Extract meaningful error message
+        error_path = " -> ".join(str(p) for p in e.absolute_path) if e.absolute_path else "root"
+        error_msg = f"Schema validation failed at '{error_path}': {e.message}"
+        errors.append(error_msg)
+
+        if strict:
+            raise
+
+        return False, errors
+
+
+# =============================================================================
 # INPUT DATA VALIDATION
 # =============================================================================
 
-def validate_input_data(data: Dict[str, Any]) -> List[str]:
+def validate_input_data(data: Dict[str, Any], use_schema: bool = True) -> List[str]:
     """
     Validate complete input data structure.
+
+    Performs two levels of validation:
+    1. JSON Schema validation (if use_schema=True and jsonschema available)
+    2. Semantic validation for MCDA-specific requirements
 
     Required fields:
     - analysis_date (root level, or defaults to today)
@@ -269,12 +362,22 @@ def validate_input_data(data: Dict[str, Any]) -> List[str]:
 
     Args:
         data: Input data dictionary
+        use_schema: If True, run JSON Schema validation first (default: True)
 
     Returns:
         List of validation error messages (empty if valid)
     """
     errors = []
 
+    # 1. JSON Schema validation (optional, graceful degradation)
+    if use_schema:
+        schema_valid, schema_errors = validate_against_schema(data, strict=False)
+        # Only add schema errors that are actual errors (not warnings)
+        for err in schema_errors:
+            if not err.startswith("WARNING:"):
+                errors.append(err)
+
+    # 2. Semantic validation (MCDA-specific requirements)
     # Check for required structural fields
     if 'subject_property' not in data:
         errors.append("Missing required field: subject_property")

@@ -1,0 +1,153 @@
+{
+  "subject_property": {
+    "address": "1 King Street West, Hamilton, ON",
+    "property_type": "office",
+    "property_rights": "fee_simple",
+
+    "_comment_land": "===== LAND CHARACTERISTICS =====",
+    "lot_size_acres": 2.5,
+    "frontage_linear_feet": 250,
+    "depth_feet": 435,
+    "topography": "level",
+    "utilities": "full_services_adequate",
+    "drainage": "excellent",
+    "flood_zone": "none",
+    "environmental_status": "clean",
+    "soil_quality": "excellent",
+
+    "_comment_site": "===== SITE IMPROVEMENTS =====",
+    "paved_area_acres": 1.8,
+    "fencing": "none",
+    "site_lighting": "extensive",
+    "landscaping": "extensive",
+    "stormwater_management": "advanced_system",
+    "secured_yard_acres": 0,
+
+    "_comment_building_office": "===== OFFICE BUILDING CHARACTERISTICS =====",
+    "building_sf": 120000,
+    "floor_plate_efficiency_pct": 88,
+    "parking_spaces_per_1000sf": 4.2,
+    "building_class": "A",
+    "ceiling_height_feet": 10,
+    "elevator_count": 4,
+    "window_line_percentage": 35,
+
+    "_comment_building_general": "===== GENERAL BUILDING CHARACTERISTICS =====",
+    "effective_age_years": 5,
+    "construction_quality": "superior",
+    "functional_utility": "superior",
+    "energy_certification": "leed_gold",
+    "architectural_appeal": "exceptional",
+    "hvac_system": "high_efficiency",
+    "condition": "excellent",
+
+    "_comment_special": "===== SPECIAL FEATURES =====",
+    "specialized_hvac": "none",
+    "backup_generator_kw": 500,
+
+    "_comment_zoning": "===== ZONING/LEGAL =====",
+    "zoning": "CBD_commercial",
+    "floor_area_ratio": 2.5,
+    "has_variance": false,
+    "non_conforming_use": false,
+    "lot_coverage_pct": 45,
+
+    "_comment_legacy": "===== LEGACY FIELDS =====",
+    "location_score": 95
+  },
+  "comparable_sales": [
+    {
+      "_comment": "COMP 1: Similar Class A, slightly smaller, fewer amenities",
+      "address": "100 Main Street West, Hamilton, ON",
+      "sale_price": 28000000,
+      "sale_date": "2024-04-20",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 2.2,
+      "building_sf": 110000,
+      "floor_plate_efficiency_pct": 85,
+      "parking_spaces_per_1000sf": 3.8,
+      "building_class": "A",
+      "ceiling_height_feet": 9,
+      "elevator_count": 3,
+      "window_line_percentage": 32,
+      "effective_age_years": 7,
+      "energy_certification": "leed_silver",
+      "backup_generator_kw": 400,
+
+      "location_score": 92,
+      "condition": "good"
+    },
+    {
+      "_comment": "COMP 2: Class A+, larger, premium location",
+      "address": "55 Bay Street North, Hamilton, ON",
+      "sale_price": 38500000,
+      "sale_date": "2024-07-10",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 3.0,
+      "building_sf": 145000,
+      "floor_plate_efficiency_pct": 90,
+      "parking_spaces_per_1000sf": 4.5,
+      "building_class": "A+",
+      "ceiling_height_feet": 12,
+      "elevator_count": 6,
+      "window_line_percentage": 38,
+      "effective_age_years": 3,
+      "energy_certification": "leed_platinum",
+      "backup_generator_kw": 750,
+
+      "location_score": 98,
+      "condition": "excellent"
+    },
+    {
+      "_comment": "COMP 3: Class A-, older, less efficient layout",
+      "address": "200 James Street South, Hamilton, ON",
+      "sale_price": 22000000,
+      "sale_date": "2023-12-05",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 2.0,
+      "building_sf": 105000,
+      "floor_plate_efficiency_pct": 80,
+      "parking_spaces_per_1000sf": 3.5,
+      "building_class": "A-",
+      "ceiling_height_feet": 9,
+      "elevator_count": 3,
+      "window_line_percentage": 28,
+      "effective_age_years": 12,
+      "energy_certification": "leed_certified",
+      "backup_generator_kw": 300,
+
+      "location_score": 88,
+      "condition": "good"
+    }
+  ],
+  "market_parameters": {
+    "appreciation_rate_annual": 3.5,
+    "valuation_date": "2025-01-15",
+    "cap_rate": 6.5,
+
+    "location_premium_per_point": 1.0,
+
+    "building_size_adjustment_per_sf": 3.0,
+    "efficiency_adjustment_pct_per_5pts": 1.5,
+    "parking_value_per_space": 4000,
+    "building_class_adjustment_pct_per_level": 10.0,
+    "ceiling_height_premium_per_sf": 3.0,
+    "elevator_value_each": 125000,
+    "window_line_premium_per_sf": 7.0,
+    "condition_adjustment_pct_per_level": 8.0,
+
+    "annual_depreciation_pct": 1.0,
+    "construction_quality_adjustment_pct_per_level": 7.0,
+
+    "generator_value_per_kw": 750
+  }
+}

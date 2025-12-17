@@ -10,11 +10,17 @@ You are an expert in technical adjustment grid construction for comparable sales
 
 ## Implementation
 
-**When users need to perform comparable sales calculations, use the Python calculator provided in this skill folder.**
+**When users need to perform comparable sales calculations, use the Python calculator in the Comparable_Sales_Analysis directory.**
 
 ### Calculator Tool
 
-**File**: `comparable_sales_calculator.py` (located in same folder as this SKILL.md)
+**Location**: `/workspaces/lease-abstract/Comparable_Sales_Analysis/`
+
+**Main Files**:
+- `comparable_sales_calculator.py` - Main calculator with adjustment grid construction
+- `paired_sales_analyzer.py` - Paired sales analysis tool
+- `validate_comparables.py` - Input validation utility
+- `adjustments/` - Modular adjustment calculations by category
 
 **Capabilities**:
 - Complete 6-stage adjustment hierarchy (property rights through physical characteristics)
@@ -26,7 +32,7 @@ You are an expert in technical adjustment grid construction for comparable sales
 
 ### Input Format
 
-**JSON structure** (see `sample_industrial_comps.json` or `sample_industrial_comps_ENHANCED.json` for complete examples):
+**JSON structure** (see `sample_inputs/sample_industrial_comps.json` or `sample_inputs/sample_industrial_comps_ENHANCED.json` in the Comparable_Sales_Analysis directory for complete examples):
 
 ```json
 {
@@ -64,8 +70,8 @@ You are an expert in technical adjustment grid construction for comparable sales
 
 **Command-line**:
 ```bash
-cd /workspaces/lease-abstract/.claude/skills/comparable-sales-adjustment-methodology/
-python comparable_sales_calculator.py input.json --output results.json --verbose
+cd /workspaces/lease-abstract/Comparable_Sales_Analysis/
+python comparable_sales_calculator.py sample_inputs/sample_industrial_comps.json --output results.json --verbose
 ```
 
 **When assisting users**:
@@ -89,8 +95,10 @@ python comparable_sales_calculator.py input.json --output results.json --verbose
 
 ### Sample Files
 
+Located in `Comparable_Sales_Analysis/sample_inputs/`:
 - **`sample_industrial_comps.json`**: Original format (backward compatible)
 - **`sample_industrial_comps_ENHANCED.json`**: Enhanced format with all 49 adjustment fields
+- **`sample_office_class_a.json`**, **`sample_office_class_b.json`**, **`sample_office_class_c.json`**: Office property examples
 
 ### Validated Coverage
 

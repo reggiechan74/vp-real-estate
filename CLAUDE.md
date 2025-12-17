@@ -11,6 +11,7 @@ Commercial real estate lease analysis toolkit: abstraction, financial analysis, 
 ├── Rental_Variance/        # Rental variance decomposition (rate, area, term)
 ├── IFRS16_Calculator/      # IFRS 16/ASC 842 lease accounting (liability, ROU asset, schedules)
 ├── Credit_Analysis/        # Tenant credit scoring and financial analysis
+├── Comparable_Sales_Analysis/  # Traditional DCA comparable sales (dollar adjustments)
 ├── Renewal_Analysis/       # Renewal vs. relocation economic analysis
 ├── Option_Valuation/       # Real options valuation (Black-Scholes) for lease flexibility
 ├── Rollover_Analysis/      # Portfolio lease expiry and renewal prioritization

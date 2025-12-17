@@ -1,0 +1,171 @@
+{
+  "subject_property": {
+    "address": "1500 Rail Yard Drive, Burlington, ON",
+    "property_type": "industrial",
+    "property_rights": "fee_simple",
+
+    "_comment_land": "===== LAND CHARACTERISTICS =====",
+    "lot_size_acres": 12.5,
+    "frontage_linear_feet": 600,
+    "depth_feet": 900,
+    "topography": "level",
+    "utilities": "full_services_adequate",
+    "drainage": "excellent",
+    "flood_zone": "none",
+    "environmental_status": "clean",
+    "soil_quality": "excellent",
+
+    "_comment_site": "===== SITE IMPROVEMENTS =====",
+    "paved_area_acres": 4.0,
+    "fencing": "security_fence",
+    "site_lighting": "extensive",
+    "landscaping": "moderate",
+    "stormwater_management": "retention_pond",
+    "secured_yard_acres": 3.5,
+
+    "_comment_building": "===== BUILDING CHARACTERISTICS =====",
+    "building_sf": 85000,
+    "clear_height_feet": 32,
+    "loading_docks_dock_high": 12,
+    "loading_docks_grade_level": 4,
+    "loading_docks_drive_in": 2,
+    "column_spacing_feet": 55,
+    "floor_load_capacity_psf": 250,
+    "office_finish_percentage": 10,
+    "bay_depth_feet": 120,
+    "effective_age_years": 8,
+    "construction_quality": "good",
+    "functional_utility": "adequate",
+    "energy_certification": "leed_certified",
+    "architectural_appeal": "average",
+    "hvac_system": "modern_standard",
+
+    "_comment_special": "===== SPECIAL FEATURES =====",
+    "rail_spur": true,
+    "crane_system": "bridge_crane_20ton",
+    "crane_age_years": 5,
+    "electrical_service_amps": 1200,
+    "truck_scales": true,
+    "specialized_hvac": "none",
+    "backup_generator_kw": 250,
+
+    "_comment_zoning": "===== ZONING/LEGAL =====",
+    "zoning": "M3_heavy_industrial",
+    "floor_area_ratio": 0.45,
+    "has_variance": false,
+    "non_conforming_use": false,
+    "lot_coverage_pct": 35,
+
+    "_comment_legacy": "===== LEGACY FIELDS =====",
+    "location_score": 88,
+    "condition": "good",
+    "highway_frontage": true
+  },
+  "comparable_sales": [
+    {
+      "_comment": "COMP 1: Similar rail-served facility, slightly smaller, no crane",
+      "address": "1200 Railway Avenue, Hamilton, ON",
+      "sale_price": 9500000,
+      "sale_date": "2024-06-15",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 10.0,
+      "building_sf": 75000,
+      "clear_height_feet": 30,
+      "loading_docks_dock_high": 10,
+      "loading_docks_grade_level": 3,
+      "loading_docks_drive_in": 1,
+      "column_spacing_feet": 50,
+      "floor_load_capacity_psf": 250,
+
+      "rail_spur": true,
+      "crane_system": "none",
+      "electrical_service_amps": 1000,
+      "truck_scales": true,
+      "backup_generator_kw": 150,
+
+      "location_score": 85,
+      "condition": "good",
+      "highway_frontage": true
+    },
+    {
+      "_comment": "COMP 2: Larger facility with gantry crane, no rail spur",
+      "address": "2800 Industrial Boulevard, Stoney Creek, ON",
+      "sale_price": 11200000,
+      "sale_date": "2024-03-22",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 15.0,
+      "building_sf": 95000,
+      "clear_height_feet": 36,
+      "loading_docks_dock_high": 14,
+      "loading_docks_grade_level": 5,
+      "loading_docks_drive_in": 3,
+      "column_spacing_feet": 60,
+      "floor_load_capacity_psf": 300,
+
+      "rail_spur": false,
+      "crane_system": "gantry_crane",
+      "crane_age_years": 8,
+      "electrical_service_amps": 1500,
+      "truck_scales": true,
+      "backup_generator_kw": 300,
+
+      "location_score": 90,
+      "condition": "excellent",
+      "highway_frontage": true
+    },
+    {
+      "_comment": "COMP 3: Smaller, older facility, limited power, no special features",
+      "address": "950 Old Factory Road, Hamilton, ON",
+      "sale_price": 6800000,
+      "sale_date": "2023-11-10",
+      "property_rights": "fee_simple",
+      "financing": {"type": "cash"},
+      "conditions_of_sale": {"arms_length": true},
+
+      "lot_size_acres": 8.5,
+      "building_sf": 65000,
+      "clear_height_feet": 24,
+      "loading_docks_dock_high": 8,
+      "loading_docks_grade_level": 2,
+      "loading_docks_drive_in": 0,
+      "column_spacing_feet": 40,
+      "floor_load_capacity_psf": 150,
+
+      "rail_spur": false,
+      "crane_system": "jib_crane",
+      "crane_age_years": 15,
+      "electrical_service_amps": 600,
+      "truck_scales": false,
+      "backup_generator_kw": 0,
+
+      "location_score": 78,
+      "condition": "average",
+      "highway_frontage": false
+    }
+  ],
+  "market_parameters": {
+    "appreciation_rate_annual": 3.5,
+    "valuation_date": "2025-01-15",
+    "cap_rate": 7.0,
+
+    "location_premium_highway": 15,
+    "location_premium_per_point": 1.0,
+
+    "size_adjustment_per_sf": 3.0,
+    "condition_adjustment_pct_per_level": 5.0,
+
+    "lot_adjustment_per_acre": 15000,
+    "topography_adjustment_pct_per_level": 3.5,
+
+    "rail_spur_premium_pct": 7.0,
+    "electrical_capacity_value_per_amp": 15.0,
+    "truck_scales_value": 75000,
+    "generator_value_per_kw": 750
+  }
+}

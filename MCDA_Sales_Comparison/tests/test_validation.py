@@ -256,10 +256,18 @@ class TestMonotonicityValidation:
 
 
 class TestInputValidation:
-    """Tests for validate_input_data() function"""
+    """Tests for validate_input_data() function (semantic validation)
+
+    Note: These tests use use_schema=False to test MCDA-specific semantic
+    validation independently of JSON Schema validation. The MCDA calculator
+    has flexible field handling (e.g., valuation_date at root OR in
+    market_parameters) that differs from the strict unified schema.
+
+    For JSON Schema validation tests, see test_schema_validation below.
+    """
 
     def test_valid_complete_input(self):
-        """Valid input with all required fields should pass"""
+        """Valid input with all required fields should pass semantic validation"""
         from validation import validate_input_data
 
         data = {
@@ -296,7 +304,8 @@ class TestInputValidation:
                 }
             ]
         }
-        errors = validate_input_data(data)
+        # Test semantic validation only (use_schema=False)
+        errors = validate_input_data(data, use_schema=False)
         assert len(errors) == 0, f"Unexpected errors: {errors}"
 
     def test_missing_required_field(self):
@@ -316,7 +325,7 @@ class TestInputValidation:
         assert len(errors) > 0
 
     def test_insufficient_comparables(self):
-        """Less than 3 comparables should fail validation"""
+        """Less than 3 comparables should fail semantic validation"""
         from validation import validate_input_data
 
         data = {
@@ -330,9 +339,84 @@ class TestInputValidation:
                 {'address': 'Comp1', 'sale_price': 1000000, 'sale_date': '2024-01-01', 'building_sf': 50000}
             ]
         }
-        errors = validate_input_data(data)
+        # Test semantic validation only (use_schema=False)
+        errors = validate_input_data(data, use_schema=False)
         assert len(errors) > 0
         assert any('minimum' in e.lower() or '3' in e for e in errors)
+
+
+class TestSchemaValidation:
+    """Tests for JSON Schema validation against unified schema"""
+
+    def test_schema_validation_with_complete_data(self):
+        """Complete data matching unified schema should pass schema validation"""
+        from validation import validate_against_schema, JSONSCHEMA_AVAILABLE
+
+        if not JSONSCHEMA_AVAILABLE:
+            pytest.skip("jsonschema not installed")
+
+        # Data matching the unified schema (all required fields per schema)
+        data = {
+            'subject_property': {
+                'address': '2550 Industrial Parkway North, Hamilton, ON',
+                'property_type': 'industrial',
+                'property_rights': 'fee_simple',
+                'building_sf': 50000,
+                'lot_size_acres': 5.0
+            },
+            'comparable_sales': [
+                {
+                    'address': '2480 Industrial Parkway North, Hamilton',
+                    'sale_price': 4650000,
+                    'sale_date': '2024-09-15',
+                    'property_rights': 'fee_simple',  # Required by schema
+                    'building_sf': 48500
+                },
+                {
+                    'address': '2650 Parkdale Avenue North, Hamilton',
+                    'sale_price': 4100000,
+                    'sale_date': '2024-07-22',
+                    'property_rights': 'fee_simple',  # Required by schema
+                    'building_sf': 52000
+                },
+                {
+                    'address': '2320 Industrial Parkway North, Hamilton',
+                    'sale_price': 4850000,
+                    'sale_date': '2024-06-10',
+                    'property_rights': 'fee_simple',  # Required by schema
+                    'building_sf': 47000
+                }
+            ],
+            'market_parameters': {
+                'valuation_date': '2025-01-15',
+                'appreciation_rate_annual': 3.5,
+                'cap_rate': 7.0  # Required by schema
+            }
+        }
+
+        is_valid, errors = validate_against_schema(data)
+        assert is_valid, f"Schema validation failed: {errors}"
+
+    def test_schema_validation_missing_market_parameters(self):
+        """Missing market_parameters should fail schema validation"""
+        from validation import validate_against_schema, JSONSCHEMA_AVAILABLE
+
+        if not JSONSCHEMA_AVAILABLE:
+            pytest.skip("jsonschema not installed")
+
+        data = {
+            'subject_property': {
+                'address': 'Test Address',
+                'property_type': 'industrial',
+                'property_rights': 'fee_simple'
+            },
+            'comparable_sales': []
+            # Missing market_parameters
+        }
+
+        is_valid, errors = validate_against_schema(data)
+        assert not is_valid
+        assert any('market_parameters' in e for e in errors)
 
 
 if __name__ == '__main__':
