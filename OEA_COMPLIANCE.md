@@ -131,31 +131,32 @@ Interest accrues on compensation from:
 
 ## 3. Procedural Requirements
 
-### Forms 1-12 Overview
+### Forms 1-12 Overview (O.Reg. 363/90)
 
 | Form | Name | Purpose | Timing |
 |------|------|---------|--------|
-| **Form 1** | Certificate of Approval | Approving authority's approval | Before Form 2 |
-| **Form 2** | Notice of Application for Approval | Notice to owner of intent | Serve on owners, publish 3 weeks |
-| **Form 3** | Request for Hearing of Necessity | Owner requests inquiry | Within 30 days of Form 2 |
-| **Form 4** | Certificate of Inquiry Officer | Inquiry officer's recommendation | After hearing |
-| **Form 5** | Notice of Approval | Approval granted | After inquiry (if held) |
-| **Form 6** | Plan of Expropriation | Legal description of taking | Register within 3 months |
-| **Form 7** | Notice of Expropriation | Notice after registration | Within 30 days of registration |
-| **Form 8** | Notice to Elect | Election of compensation | With Form 7 |
-| **Form 9** | Owner's Election | Owner elects compensation | Within 3 months of Form 8 |
-| **Form 10** | Statement of Compensation | Offer of compensation | Ongoing |
-| **Form 11** | Notice of Possession | Taking possession | After s.39 requirements |
-| **Form 12** | Certificate of Payment | Payment into court | As required |
+| **Form 1** | Application for Approval to Expropriate Land | Expropriating authority applies for approval | First step |
+| **Form 2** | Notice of Application for Approval to Expropriate | Notice to owner of intent | Serve on owners, publish 3 weeks |
+| **Form 3** | Notice of Hearing | Notice of s.7 hearing date/location | If owner requests hearing within 30 days of Form 2 |
+| **Form 4** | Consent of Registered Owner | Owner consents to expropriation | Alternative to hearing |
+| **Form 5** | Certificate of Approval | Approving authority certifies approval granted | After inquiry (if held) or consent |
+| **Form 6** | Certificate of Approval (on Expropriation Plan) | Certificate placed on registered plan | Register plan within 3 months of approval |
+| **Form 7** | Notice of Expropriation | Notice that land has been expropriated/vested | Within 30 days of plan registration |
+| **Form 8** | Notice of Election | Owner elects valuation date for compensation | Response to Form 7 |
+| **Form 9** | Notice of Possession | Expropriating authority takes possession | After s.39 requirements met |
+| **Form 10** | Notice of Abandonment of Land | Authority proposes to abandon expropriated land | If abandonment contemplated |
+| **Form 11** | Declaration of Abandonment (Registry Act) | Formal abandonment for Registry land | If abandoning expropriated land |
+| **Form 12** | Declaration of Abandonment (Land Titles Act) | Formal abandonment for Land Titles land | If abandoning expropriated land |
+
+**Source:** [Expropriation_Forms/](/workspaces/lease-abstract/Expropriation_Forms/) - Official Ontario forms per O.Reg. 363/90
 
 ### Critical Deadlines
 
 | Deadline | Trigger | Consequence of Miss |
 |----------|---------|---------------------|
-| **3 months** | From approval to registration | **Approval expires** - must restart |
-| **30 days** | From Form 2 to request inquiry | Owner loses inquiry right |
-| **30 days** | From registration to Form 7 service | Procedural defect |
-| **3 months** | From Form 8 to owner election | Owner loses election right |
+| **3 months** | From approval (Form 5) to plan registration | **Approval expires** - must restart |
+| **30 days** | From Form 2 service to request hearing | Owner loses inquiry/hearing right |
+| **30 days** | From plan registration to Form 7 service | Procedural defect |
 | **30 days** | From tribunal decision to appeal | Appeal rights lost |
 | **90 days** | Before hearing for appraisal exchange | Evidence may be excluded |
 
@@ -176,15 +177,16 @@ Per [Ontario Land Registration Guide](https://www.ontario.ca/land-registration/2
 
 ### Service Requirements
 
-**Form 2 Service:**
+**Form 2 Service (Notice of Application):**
 - Personal service on registered owners
 - Publication in local newspaper for 3 consecutive weeks
 - Proof of service required (affidavit)
+- Owner has 30 days to request hearing (triggers Form 3)
 
-**Form 7 Service:**
-- Within 30 days of plan registration
+**Form 7 Service (Notice of Expropriation):**
+- Within 30 days of plan registration (Form 6)
 - Personal service or registered mail
-- Must include Notice to Elect (Form 8)
+- Owner may respond with Form 8 (Notice of Election) to select valuation date
 
 ---
 
@@ -459,22 +461,37 @@ Key points:
 
 ### Forms 1-12 Verification Checklist
 
+**Form 1 - Application for Approval:**
+- [ ] Complete legal description of land
+- [ ] Purpose of expropriation stated
+- [ ] Expropriating authority identified
+- [ ] Submitted to approving authority
+
 **Form 2 - Notice of Application:**
 - [ ] Correct legal description
 - [ ] All registered owners identified
 - [ ] Proper service affidavit
-- [ ] Publication proof attached
+- [ ] Publication proof attached (3 consecutive weeks)
+
+**Form 5/6 - Certificate of Approval:**
+- [ ] Approval granted by approving authority
+- [ ] Form 6 placed on plan for registration
+- [ ] Registration within 3 months of approval
 
 **Form 7 - Notice of Expropriation:**
-- [ ] Served within 30 days of registration
+- [ ] Served within 30 days of plan registration
 - [ ] Correct registered owners
-- [ ] Form 8 attached
 - [ ] Proof of service
 
-**Form 9 - Owner's Election:**
-- [ ] Received within 3 months of Form 8
+**Form 8 - Notice of Election:**
 - [ ] Owner signature
-- [ ] Election clearly stated
+- [ ] Valuation date election clearly stated
+- [ ] (a) hearing date, (b) registration date, (c) service date, or (d) regulation date
+
+**Form 9 - Notice of Possession:**
+- [ ] Possession date specified
+- [ ] Served on registered owner
+- [ ] Meets s.39 requirements
 
 ### Compensation Calculation Checklist
 
