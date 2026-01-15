@@ -1,0 +1,437 @@
+{
+  "subject_property": {
+    "address": "321 Humberline Drive, Etobicoke, ON",
+    "building_sf": 27334,
+    "composite_score": 11.594
+  },
+  "comparable_analysis": [
+    {
+      "id": "7491 Pacific Circle,",
+      "address": "7491 Pacific Circle, Mississauga, ON",
+      "sale_price": 6250000,
+      "sale_date": "2019-05-24",
+      "building_sf": 27235,
+      "price_psf": 229.48,
+      "composite_score": 7.937,
+      "variable_ranks": {
+        "location_score": 1.5,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 9.0
+      }
+    },
+    {
+      "id": "2395 Lucknow Drive, ",
+      "address": "2395 Lucknow Drive, Mississauga, ON",
+      "sale_price": 4725000,
+      "sale_date": "2018-12-05",
+      "building_sf": 27500,
+      "price_psf": 171.82,
+      "composite_score": 12.438,
+      "variable_ranks": {
+        "location_score": 18.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 15.0
+      }
+    },
+    {
+      "id": "324 Traders Boulevar",
+      "address": "324 Traders Boulevard East, Mississauga, ON",
+      "sale_price": 5770000,
+      "sale_date": "2019-07-31",
+      "building_sf": 27507,
+      "price_psf": 209.76,
+      "composite_score": 8.281,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 2.5,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 14.0
+      }
+    },
+    {
+      "id": "400 Ambassador Drive",
+      "address": "400 Ambassador Drive, Mississauga, ON",
+      "sale_price": 7000000,
+      "sale_date": "2019-12-17",
+      "building_sf": 27961,
+      "price_psf": 250.35,
+      "composite_score": 9.562,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 9.0
+      }
+    },
+    {
+      "id": "6691 Edwards Bouleva",
+      "address": "6691 Edwards Boulevard, Mississauga, ON",
+      "sale_price": 6500000,
+      "sale_date": "2019-04-01",
+      "building_sf": 28020,
+      "price_psf": 231.98,
+      "composite_score": 11.281,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 16.5,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 11.0
+      }
+    },
+    {
+      "id": "7361 Pacific Circle,",
+      "address": "7361 Pacific Circle, Mississauga, ON",
+      "sale_price": 6553346,
+      "sale_date": "2019-08-01",
+      "building_sf": 28431,
+      "price_psf": 230.5,
+      "composite_score": 13.812,
+      "variable_ranks": {
+        "location_score": 18.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 18.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 7.0
+      }
+    },
+    {
+      "id": "380 Orenda Road, Bra",
+      "address": "380 Orenda Road, Brampton, ON",
+      "sale_price": 6250000,
+      "sale_date": "2019-09-27",
+      "building_sf": 25704,
+      "price_psf": 243.15,
+      "composite_score": 12.25,
+      "variable_ranks": {
+        "location_score": 13.0,
+        "clear_height_feet": 21.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 2.0
+      }
+    },
+    {
+      "id": "5915 Wallace Street,",
+      "address": "5915 Wallace Street, Mississauga, ON",
+      "sale_price": 6000000,
+      "sale_date": "2019-07-03",
+      "building_sf": 25640,
+      "price_psf": 234.01,
+      "composite_score": 11.844,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 19.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 12.5
+      }
+    },
+    {
+      "id": "5228 Everest Drive, ",
+      "address": "5228 Everest Drive, Mississauga, ON",
+      "sale_price": 5850000,
+      "sale_date": "2019-05-01",
+      "building_sf": 25567,
+      "price_psf": 228.81,
+      "composite_score": 12.281,
+      "variable_ranks": {
+        "location_score": 18.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 12.5
+      }
+    },
+    {
+      "id": "105 Brockhouse Road,",
+      "address": "105 Brockhouse Road, Etobicoke, ON",
+      "sale_price": 4325000,
+      "sale_date": "2018-03-27",
+      "building_sf": 25000,
+      "price_psf": 173.0,
+      "composite_score": 13.438,
+      "variable_ranks": {
+        "location_score": 20.5,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 21.0
+      }
+    },
+    {
+      "id": "105 Claireport Cresc",
+      "address": "105 Claireport Crescent, Etobicoke, ON",
+      "sale_price": 5400000,
+      "sale_date": "2018-02-15",
+      "building_sf": 30095,
+      "price_psf": 179.43,
+      "composite_score": 10.844,
+      "variable_ranks": {
+        "location_score": 15.0,
+        "clear_height_feet": 1.0,
+        "condition": 11.0,
+        "effective_age_years": 16.5,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 6.0
+      }
+    },
+    {
+      "id": "5145 Satellite Drive",
+      "address": "5145 Satellite Drive, Mississauga, ON",
+      "sale_price": 5000000,
+      "sale_date": "2018-06-15",
+      "building_sf": 30549,
+      "price_psf": 163.67,
+      "composite_score": 9.312,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 5.0
+      }
+    },
+    {
+      "id": "255 Carrier Drive, E",
+      "address": "255 Carrier Drive, Etobicoke, ON",
+      "sale_price": 5850000,
+      "sale_date": "2019-09-23",
+      "building_sf": 30571,
+      "price_psf": 191.36,
+      "composite_score": 10.875,
+      "variable_ranks": {
+        "location_score": 20.5,
+        "clear_height_feet": 4.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 1.0
+      }
+    },
+    {
+      "id": "70 Galaxy Boulevard,",
+      "address": "70 Galaxy Boulevard, Etobicoke, ON",
+      "sale_price": 5500000,
+      "sale_date": "2019-11-01",
+      "building_sf": 23690,
+      "price_psf": 232.17,
+      "composite_score": 8.312,
+      "variable_ranks": {
+        "location_score": 3.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 9.0
+      }
+    },
+    {
+      "id": "1830 Meyerside Drive",
+      "address": "1830 Meyerside Drive, Mississauga, ON",
+      "sale_price": 5680000,
+      "sale_date": "2019-12-19",
+      "building_sf": 22671,
+      "price_psf": 250.54,
+      "composite_score": 8.469,
+      "variable_ranks": {
+        "location_score": 1.5,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 17.5
+      }
+    },
+    {
+      "id": "5672 McAdam Road, Mi",
+      "address": "5672 McAdam Road, Mississauga, ON",
+      "sale_price": 5264000,
+      "sale_date": "2019-06-01",
+      "building_sf": 22591,
+      "price_psf": 233.01,
+      "composite_score": 10.188,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 19.0
+      }
+    },
+    {
+      "id": "6605 Kestrel Road, M",
+      "address": "6605 Kestrel Road, Mississauga, ON",
+      "sale_price": 5500000,
+      "sale_date": "2019-10-01",
+      "building_sf": 22235,
+      "price_psf": 247.36,
+      "composite_score": 10.25,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 11.0,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 20.0
+      }
+    },
+    {
+      "id": "190 Norseman Street,",
+      "address": "190 Norseman Street, Etobicoke, ON",
+      "sale_price": 6100000,
+      "sale_date": "2019-01-30",
+      "building_sf": 32581,
+      "price_psf": 187.23,
+      "composite_score": 15.125,
+      "variable_ranks": {
+        "location_score": 15.0,
+        "clear_height_feet": 20.0,
+        "condition": 11.0,
+        "effective_age_years": 21.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 4.0
+      }
+    },
+    {
+      "id": "5926 Shawson Drive, ",
+      "address": "5926 Shawson Drive, Mississauga, ON",
+      "sale_price": 4700000,
+      "sale_date": "2019-05-01",
+      "building_sf": 21931,
+      "price_psf": 214.31,
+      "composite_score": 11.406,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 18.5,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 16.0
+      }
+    },
+    {
+      "id": "3121 Universal Drive",
+      "address": "3121 Universal Drive, Mississauga, ON",
+      "sale_price": 4280000,
+      "sale_date": "2019-12-11",
+      "building_sf": 21400,
+      "price_psf": 200.0,
+      "composite_score": 11.5,
+      "variable_ranks": {
+        "location_score": 8.0,
+        "clear_height_feet": 18.5,
+        "condition": 11.0,
+        "effective_age_years": 8.0,
+        "highway_frontage": 11.0,
+        "lot_size_acres": 17.5
+      }
+    }
+  ],
+  "composite_scores": {
+    "7491 Pacific Circle, Mississauga, ON": 7.937,
+    "2395 Lucknow Drive, Mississauga, ON": 12.438,
+    "324 Traders Boulevard East, Mississauga, ON": 8.281,
+    "400 Ambassador Drive, Mississauga, ON": 9.562,
+    "6691 Edwards Boulevard, Mississauga, ON": 11.281,
+    "7361 Pacific Circle, Mississauga, ON": 13.812,
+    "380 Orenda Road, Brampton, ON": 12.25,
+    "5915 Wallace Street, Mississauga, ON": 11.844,
+    "5228 Everest Drive, Mississauga, ON": 12.281,
+    "105 Brockhouse Road, Etobicoke, ON": 13.438,
+    "105 Claireport Crescent, Etobicoke, ON": 10.844,
+    "5145 Satellite Drive, Mississauga, ON": 9.312,
+    "255 Carrier Drive, Etobicoke, ON": 10.875,
+    "70 Galaxy Boulevard, Etobicoke, ON": 8.312,
+    "1830 Meyerside Drive, Mississauga, ON": 8.469,
+    "5672 McAdam Road, Mississauga, ON": 10.188,
+    "6605 Kestrel Road, Mississauga, ON": 10.25,
+    "190 Norseman Street, Etobicoke, ON": 15.125,
+    "5926 Shawson Drive, Mississauga, ON": 11.406,
+    "3121 Universal Drive, Mississauga, ON": 11.5,
+    "321 Humberline Drive, Etobicoke, ON": 11.594
+  },
+  "value_indication": {
+    "indicated_value_psf": 210.58,
+    "indicated_value_total": 5755892.0,
+    "value_range_psf": [
+      198.81,
+      222.93
+    ],
+    "value_range_total": [
+      5468097.0,
+      6043686.0
+    ],
+    "interpolation": {
+      "indicated_psf": 209.28,
+      "confidence": "high",
+      "lower_bracket": "3121 Universal Drive",
+      "upper_bracket": "5915 Wallace Street,"
+    },
+    "regression": {
+      "indicated_psf": 212.31,
+      "method": "ols",
+      "r_squared": 0.096,
+      "beta": -4.4687
+    },
+    "reconciliation": {
+      "method_weights": {
+        "interpolation": 0.57,
+        "regression": 0.43
+      },
+      "rationale": "Subject well-bracketed by comparables"
+    }
+  },
+  "analysis_summary": {
+    "analysis_date": "2026-01-15",
+    "valuation_date": "2026-01-15",
+    "market_area": "Unknown",
+    "property_type": "industrial",
+    "comparables_submitted": 20,
+    "comparables_used": 20,
+    "comparables_excluded": 0,
+    "weights_profile": "industrial_default",
+    "regression_method": "ols",
+    "methodology": "MCDA Ordinal Ranking with Score-to-Price Mapping",
+    "warnings": [
+      "7491 Pacific Circle, Mississauga, ON: Time adjustment recommended: 79.8 months (~23.9%)",
+      "2395 Lucknow Drive, Mississauga, ON: Time adjustment recommended: 85.3 months (~25.6%)",
+      "324 Traders Boulevard East, Mississauga, ON: Time adjustment recommended: 77.5 months (~23.3%)",
+      "400 Ambassador Drive, Mississauga, ON: Time adjustment recommended: 73.0 months (~21.9%)",
+      "6691 Edwards Boulevard, Mississauga, ON: Time adjustment recommended: 81.5 months (~24.5%)",
+      "7361 Pacific Circle, Mississauga, ON: Time adjustment recommended: 77.5 months (~23.2%)",
+      "380 Orenda Road, Brampton, ON: Time adjustment recommended: 75.6 months (~22.7%)",
+      "5915 Wallace Street, Mississauga, ON: Time adjustment recommended: 78.4 months (~23.5%)",
+      "5228 Everest Drive, Mississauga, ON: Time adjustment recommended: 80.5 months (~24.2%)",
+      "105 Brockhouse Road, Etobicoke, ON: Time adjustment recommended: 93.7 months (~28.1%)",
+      "105 Claireport Crescent, Etobicoke, ON: Time adjustment recommended: 95.0 months (~28.5%)",
+      "5145 Satellite Drive, Mississauga, ON: Time adjustment recommended: 91.0 months (~27.3%)",
+      "255 Carrier Drive, Etobicoke, ON: Time adjustment recommended: 75.8 months (~22.7%)",
+      "70 Galaxy Boulevard, Etobicoke, ON: Time adjustment recommended: 74.5 months (~22.3%)",
+      "1830 Meyerside Drive, Mississauga, ON: Time adjustment recommended: 72.9 months (~21.9%)",
+      "5672 McAdam Road, Mississauga, ON: Time adjustment recommended: 79.5 months (~23.9%)",
+      "6605 Kestrel Road, Mississauga, ON: Time adjustment recommended: 75.5 months (~22.6%)",
+      "190 Norseman Street, Etobicoke, ON: Time adjustment recommended: 83.5 months (~25.1%)",
+      "5926 Shawson Drive, Mississauga, ON: Time adjustment recommended: 80.5 months (~24.2%)",
+      "3121 Universal Drive, Mississauga, ON: Time adjustment recommended: 73.2 months (~21.9%)"
+    ]
+  }
+}

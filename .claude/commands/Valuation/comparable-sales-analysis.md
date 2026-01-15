@@ -216,7 +216,7 @@ Prompt user for market parameters (or extract from provided data):
 Before running calculator, validate using the validator:
 
 ```bash
-cd /workspaces/lease-abstract/.claude/skills/comparable-sales-adjustment-methodology/
+cd /workspaces/lease-abstract/Comparable_Sales_Analysis/
 python3 validate_comparables.py input_file.json
 ```
 
@@ -299,7 +299,7 @@ Create a JSON file with structure compliant with `comparable_sales_input_schema.
 5. Include all physical characteristics that differ from subject
 
 **Save the JSON file as**:
-`/workspaces/lease-abstract/.claude/skills/comparable-sales-adjustment-methodology/inputs/comps_input_[YYYY-MM-DD]_[HHMMSS].json`
+`/workspaces/lease-abstract/Comparable_Sales_Analysis/inputs/comps_input_[YYYY-MM-DD]_[HHMMSS].json`
 
 Create the `inputs/` directory if it doesn't exist.
 
@@ -308,7 +308,7 @@ Create the `inputs/` directory if it doesn't exist.
 Execute the calculator using Bash tool:
 
 ```bash
-cd /workspaces/lease-abstract/.claude/skills/comparable-sales-adjustment-methodology/
+cd /workspaces/lease-abstract/Comparable_Sales_Analysis/
 python3 comparable_sales_calculator.py inputs/comps_input_[timestamp].json --output results/comps_results_[timestamp].json --verbose
 ```
 
@@ -818,12 +818,11 @@ Sequential 6-stage framework ensures proper mathematical relationship between ad
 ### C. Calculator Output Files
 
 **Input Files:**
-- JSON Input: `.claude/skills/comparable-sales-adjustment-methodology/inputs/comps_input_[timestamp].json`
-- JSON Schema: `.claude/skills/comparable-sales-adjustment-methodology/comparable_sales_input_schema.json`
-
+- JSON Input: `Comparable_Sales_Analysis/inputs/comps_input_[timestamp].json`
+- JSON Schema: `Comparable_Sales_Analysis/schemas/comparable_sales_input_schema.json` 
 **Output Files:**
-- JSON Results: `.claude/skills/comparable-sales-adjustment-methodology/results/comps_results_[timestamp].json`
-- Validation Report: `.claude/skills/comparable-sales-adjustment-methodology/validation_report_[timestamp].txt`
+- JSON Results: `Comparable_Sales_Analysis/results/comps_results_[timestamp].json`
+- Validation Report: `Comparable_Sales_Analysis/validation_report_[timestamp].txt`
 
 **Calculator Modules:**
 - Main: `comparable_sales_calculator.py` (6-stage hierarchy with non-linear location model)
@@ -953,8 +952,8 @@ After creating all files, provide the user with:
 - `commercial-lease-expert` - Lease analysis and property evaluation
 
 **Validator:**
-- `.claude/skills/comparable-sales-adjustment-methodology/validate_comparables.py`
-- Schema: `comparable_sales_input_schema.json` (JSON Schema Draft 2020-12)
+- `Comparable_Sales_Analysis/validate_comparables.py`
+- Schema: `Comparable_Sales_Analysis/schemas/comparable_sales_input_schema.json` (JSON Schema Draft 2020-12, TODO: create)
 
 **Calculator Modules:**
 - Main: `comparable_sales_calculator.py` (35KB, 6-stage hierarchy)

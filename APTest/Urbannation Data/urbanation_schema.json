@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lease-abstract.com/schemas/urbanation-industrial-building.json",
+  "title": "Urbanation Industrial Building Sale Record",
+  "description": "JSON schema for Urbanation commercial real estate industrial building sale data sheets",
+  "type": "object",
+  "required": ["property", "sale_date", "sale_price", "vendor", "purchaser", "land_area", "registry_details", "features"],
+  "properties": {
+    "property": {
+      "type": "object",
+      "description": "Property identification and location",
+      "required": ["street_address", "city"],
+      "properties": {
+        "street_address": {
+          "type": "string",
+          "description": "Full street address of the property"
+        },
+        "city": {
+          "type": "string",
+          "description": "Municipality (e.g., Mississauga, Etobicoke, Brampton)"
+        },
+        "province": {
+          "type": "string",
+          "default": "ON",
+          "description": "Province code"
+        },
+        "postal_code": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$",
+          "description": "Canadian postal code if available"
+        }
+      }
+    },
+    "sale_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of sale in YYYY-MM-DD format"
+    },
+    "sale_price": {
+      "type": "object",
+      "description": "Sale price breakdown",
+      "required": ["total"],
+      "properties": {
+        "total": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total sale price in CAD"
+        },
+        "cash": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Cash portion of sale price"
+        },
+        "vtb": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Vendor Take-Back mortgage portion"
+        },
+        "price_per_acre": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Sale price per acre of land"
+        },
+        "price_per_sf": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Sale price per square foot of floor area"
+        }
+      }
+    },
+    "vendor": {
+      "type": "object",
+      "description": "Seller information",
+      "required": ["company_name"],
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "Legal name of selling entity"
+        },
+        "legal_representative": {
+          "type": ["string", "null"],
+          "description": "Law firm or legal representative"
+        },
+        "address": {
+          "type": ["string", "null"],
+          "description": "Full address of vendor"
+        },
+        "officer": {
+          "type": ["string", "null"],
+          "description": "Signing officer or contact person"
+        },
+        "phone": {
+          "type": ["string", "null"],
+          "description": "Contact phone number"
+        },
+        "website": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "Company website"
+        }
+      }
+    },
+    "purchaser": {
+      "type": "object",
+      "description": "Buyer information",
+      "required": ["company_name"],
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "Legal name of purchasing entity"
+        },
+        "address": {
+          "type": ["string", "null"],
+          "description": "Full address of purchaser"
+        },
+        "officer": {
+          "type": ["string", "null"],
+          "description": "Signing officer or contact person"
+        },
+        "phone": {
+          "type": ["string", "null"],
+          "description": "Contact phone number"
+        },
+        "website": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "Company website"
+        }
+      }
+    },
+    "land_area": {
+      "type": "object",
+      "description": "Land area measurements",
+      "required": ["acres"],
+      "properties": {
+        "acres": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Land area in acres"
+        },
+        "price_per_acre": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Price per acre in CAD"
+        },
+        "sqm": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Land area in square meters"
+        },
+        "price_per_sqm": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Price per square meter in CAD"
+        }
+      }
+    },
+    "registry_details": {
+      "type": "object",
+      "description": "Ontario Land Registry information",
+      "properties": {
+        "file": {
+          "type": ["string", "null"],
+          "description": "Registry file number (e.g., P-67043, M-54893)"
+        },
+        "pin": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{5}-[0-9]{4}$",
+          "description": "Property Identification Number"
+        },
+        "ar": {
+          "type": ["string", "null"],
+          "description": "Assessment Roll number"
+        }
+      }
+    },
+    "mortgage": {
+      "type": ["object", "null"],
+      "description": "Mortgage financing details if applicable",
+      "properties": {
+        "lender": {
+          "type": ["string", "null"],
+          "description": "Name of lender (bank or personal name)"
+        },
+        "amount": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Mortgage amount in CAD"
+        },
+        "terms": {
+          "type": ["string", "null"],
+          "description": "Mortgage terms (e.g., 'Demand loan, RBC P + 5%')"
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "Building physical characteristics",
+      "required": ["floor_area_sf"],
+      "properties": {
+        "floor_area_sf": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total floor area in square feet"
+        },
+        "office_portion_sf": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Office space portion in square feet"
+        },
+        "office_storeys": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Number of office storeys"
+        },
+        "total_storeys": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "description": "Total building storeys"
+        },
+        "site_density_pct": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Site coverage/density percentage"
+        },
+        "year_built": {
+          "type": ["integer", "null"],
+          "minimum": 1800,
+          "maximum": 2030,
+          "description": "Year building was constructed"
+        },
+        "plant_ceiling_ft": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Clear height / plant ceiling in feet"
+        },
+        "truck_level_doors": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Number of truck-level shipping doors"
+        },
+        "dock_high_doors": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Number of dock-high shipping doors"
+        },
+        "drive_in_doors": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Number of drive-in / grade-level doors"
+        },
+        "tenant_units": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Number of tenant units"
+        },
+        "rail_access": {
+          "type": ["boolean", "null"],
+          "description": "Whether property has rail access"
+        },
+        "basement": {
+          "type": ["boolean", "null"],
+          "description": "Whether building has a basement"
+        }
+      }
+    },
+    "comments": {
+      "type": "object",
+      "description": "Narrative descriptions and notes",
+      "properties": {
+        "land_area_details": {
+          "type": ["string", "null"],
+          "description": "Description of lot shape, dimensions, and location"
+        },
+        "building_comments": {
+          "type": ["string", "null"],
+          "description": "Building description and sale history"
+        },
+        "occupancy": {
+          "type": ["string", "null"],
+          "description": "Occupancy status at time of sale"
+        },
+        "zoning_notes": {
+          "type": ["string", "null"],
+          "description": "Zoning designation and by-law references"
+        },
+        "street_quality": {
+          "type": ["string", "null"],
+          "description": "Description of street characteristics and accessibility"
+        },
+        "broker_details": {
+          "type": ["string", "null"],
+          "description": "Listing broker information and marketing history"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Extraction metadata",
+      "properties": {
+        "source_file": {
+          "type": "string",
+          "description": "Original source filename"
+        },
+        "extraction_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date data was extracted"
+        },
+        "data_source": {
+          "type": "string",
+          "const": "Urbanation",
+          "description": "Data provider"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
