@@ -198,7 +198,8 @@ class HeritageProvider(BaseProvider):
         """
         Query Ontario Heritage Trust for provincial designations.
 
-        Uses web scraping as no API is available.
+        Uses Ontario LIO (Land Information Ontario) services where available,
+        and falls back to the Canadian Register of Historic Places API.
 
         Args:
             lat: Latitude
@@ -207,9 +208,133 @@ class HeritageProvider(BaseProvider):
         Returns:
             Provincial heritage data or None
         """
-        # Ontario Heritage Trust doesn't have a public spatial API
-        # This would require web scraping their property search
-        # For MVP, return None and log that full implementation is pending
+        # Try Ontario LIO first for provincial heritage properties
+        lio_result = await self._query_lio_heritage(lat, lon)
+        if lio_result:
+            return lio_result
+
+        # Fallback to Canadian Register of Historic Places
+        crhp_result = await self._query_crhp(lat, lon)
+        if crhp_result:
+            return crhp_result
+
+        return None
+
+    async def _query_lio_heritage(
+        self,
+        lat: float,
+        lon: float,
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Query Ontario LIO for provincial heritage properties.
+
+        The Ontario Heritage Trust data is available via the Ministry of
+        Citizenship and Multiculturalism's heritage property registry.
+
+        Args:
+            lat: Latitude
+            lon: Longitude
+
+        Returns:
+            Heritage data or None
+        """
+        # LIO Provincial Heritage Properties layer
+        lio_url = "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open01/MapServer/67/query"
+
+        try:
+            params = {
+                "geometry": f"{lon},{lat}",
+                "geometryType": "esriGeometryPoint",
+                "inSR": "4326",
+                "spatialRel": "esriSpatialRelIntersects",
+                "distance": 100,
+                "units": "esriSRUnit_Meter",
+                "outFields": "*",
+                "returnGeometry": "false",
+                "f": "json",
+            }
+
+            async with httpx.AsyncClient() as client:
+                response = await client.get(
+                    lio_url,
+                    params=params,
+                    timeout=15.0,
+                    headers={"User-Agent": "LocationOverview/1.0"},
+                )
+
+                if response.status_code == 200:
+                    data = response.json()
+                    features = data.get("features", [])
+
+                    if features:
+                        attrs = features[0].get("attributes", {})
+                        return {
+                            "heritage_designated": True,
+                            "designation_type": "provincial",
+                            "designation_description": self.DESIGNATION_TYPES["provincial"],
+                            "property_name": attrs.get("PROPERTY_NAME") or attrs.get("NAME"),
+                            "municipality": attrs.get("MUNICIPALITY"),
+                            "source": "Ontario Heritage Trust via LIO",
+                        }
+
+        except Exception:
+            pass  # Graceful degradation
+
+        return None
+
+    async def _query_crhp(
+        self,
+        lat: float,
+        lon: float,
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Query Canadian Register of Historic Places for federal designations.
+
+        Args:
+            lat: Latitude
+            lon: Longitude
+
+        Returns:
+            Federal heritage data or None
+        """
+        # CRHP API endpoint (Parks Canada)
+        crhp_api_url = "https://www.pc.gc.ca/apps/DFHD/api/search"
+
+        try:
+            # Search within 200m radius
+            params = {
+                "lat": lat,
+                "lng": lon,
+                "radius": 0.2,  # km
+                "format": "json",
+            }
+
+            async with httpx.AsyncClient() as client:
+                response = await client.get(
+                    crhp_api_url,
+                    params=params,
+                    timeout=15.0,
+                    headers={"User-Agent": "LocationOverview/1.0"},
+                )
+
+                if response.status_code == 200:
+                    data = response.json()
+                    places = data.get("places", [])
+
+                    if places:
+                        place = places[0]
+                        return {
+                            "heritage_designated": True,
+                            "designation_type": "federal",
+                            "designation_description": self.DESIGNATION_TYPES["federal"],
+                            "property_name": place.get("name"),
+                            "designation_date": place.get("designationDate"),
+                            "source": "Canadian Register of Historic Places",
+                        }
+
+        except Exception:
+            pass  # Graceful degradation
+
         return None
 
     async def _query_heritage_district(

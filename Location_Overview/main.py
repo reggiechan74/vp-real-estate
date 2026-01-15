@@ -29,6 +29,9 @@ from .providers.trca import TRCAProvider
 from .providers.ottawa_arcgis import OttawaArcGISProvider
 from .providers.gtfs import GTFSProvider
 from .providers.census import CensusProvider
+# Phase 2.5 providers (Additional Municipalities)
+from .providers.mississauga_arcgis import MississaugaArcGISProvider
+from .providers.hamilton_arcgis import HamiltonArcGISProvider
 from .aggregator.engine import AggregationEngine, AggregationResult
 from .aggregator.merger import ResultMerger
 from .aggregator.validator import CompletenessValidator
@@ -178,6 +181,10 @@ async def location_overview(
             engine.register_provider(GTFSProvider())
         if config.providers.census_enabled:
             engine.register_provider(CensusProvider())
+
+        # Phase 2.5 providers (Additional Municipalities)
+        engine.register_provider(MississaugaArcGISProvider())
+        engine.register_provider(HamiltonArcGISProvider())
 
         aggregation_result = await engine.execute(lat, lon, municipality)
         logger.info(

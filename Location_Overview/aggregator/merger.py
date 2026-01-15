@@ -5,8 +5,9 @@ Combines results from multiple providers into a unified LocationOverview.
 Handles conflict resolution based on source priority.
 """
 
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from datetime import datetime
+from math import atan2, degrees
 
 from ..schemas.location_data import (
     LocationOverview,
@@ -43,6 +44,8 @@ class ResultMerger:
         # Phase 2 (municipal/regulatory)
         "Toronto Open Data": 80,
         "Ottawa Open Data": 80,
+        "Mississauga Open Data": 80,
+        "Hamilton Open Data": 80,
         "Heritage Registry": 75,
         "Brownfields ESR": 75,
         "TRCA Conservation": 75,
@@ -80,7 +83,7 @@ class ResultMerger:
             property_id=self._create_property_id(base_info, provider_results),
             planning=self._merge_planning(provider_results),
             provincial_plans=self._merge_provincial_plans(provider_results),
-            neighbourhood=self._merge_neighbourhood(provider_results),
+            neighbourhood=self._merge_neighbourhood(provider_results, base_info),
             environmental=self._merge_environmental(provider_results),
             market=self._merge_market(provider_results),
             transport=self._merge_transport(provider_results),
@@ -107,11 +110,13 @@ class ResultMerger:
         provider_results: Dict[str, Dict[str, Any]],
     ) -> PropertyIdentification:
         """Create PropertyIdentification from base info and provider data."""
-        # Get neighbourhood from Toronto Open Data or Ottawa Open Data
+        # Get neighbourhood from municipal data providers
         toronto_data = provider_results.get("Toronto Open Data", {})
         ottawa_data = provider_results.get("Ottawa Open Data", {})
+        mississauga_data = provider_results.get("Mississauga Open Data", {})
+        hamilton_data = provider_results.get("Hamilton Open Data", {})
 
-        # Prefer Toronto data for Toronto, Ottawa data for Ottawa
+        # Prefer municipality-specific data
         municipality = base_info.get("municipality", "").lower()
 
         if municipality in ["toronto", "city of toronto"]:
@@ -124,11 +129,26 @@ class ResultMerger:
             ward_name = ottawa_data.get("ward_name")
             neighbourhood = ottawa_data.get("neighbourhood_name")
             neighbourhood_id = ottawa_data.get("neighbourhood_id")
+        elif municipality in ["mississauga", "city of mississauga"]:
+            ward = mississauga_data.get("ward")
+            ward_name = mississauga_data.get("ward_name")
+            neighbourhood = mississauga_data.get("neighbourhood_name")
+            neighbourhood_id = mississauga_data.get("neighbourhood_id")
+        elif municipality in ["hamilton", "city of hamilton"]:
+            ward = hamilton_data.get("ward")
+            ward_name = hamilton_data.get("ward_name")
+            neighbourhood = hamilton_data.get("neighbourhood_name")
+            neighbourhood_id = hamilton_data.get("neighbourhood_id")
         else:
-            ward = toronto_data.get("ward") or ottawa_data.get("ward")
-            ward_name = toronto_data.get("ward_name") or ottawa_data.get("ward_name")
-            neighbourhood = toronto_data.get("neighbourhood_name") or ottawa_data.get("neighbourhood_name")
-            neighbourhood_id = toronto_data.get("neighbourhood_id") or ottawa_data.get("neighbourhood_id")
+            # Try to find data from any available provider
+            ward = (toronto_data.get("ward") or ottawa_data.get("ward")
+                    or mississauga_data.get("ward") or hamilton_data.get("ward"))
+            ward_name = (toronto_data.get("ward_name") or ottawa_data.get("ward_name")
+                        or mississauga_data.get("ward_name") or hamilton_data.get("ward_name"))
+            neighbourhood = (toronto_data.get("neighbourhood_name") or ottawa_data.get("neighbourhood_name")
+                            or mississauga_data.get("neighbourhood_name") or hamilton_data.get("neighbourhood_name"))
+            neighbourhood_id = (toronto_data.get("neighbourhood_id") or ottawa_data.get("neighbourhood_id")
+                               or mississauga_data.get("neighbourhood_id") or hamilton_data.get("neighbourhood_id"))
 
         return PropertyIdentification(
             address=base_info.get("address", ""),
@@ -149,10 +169,13 @@ class ResultMerger:
         """Merge planning data from providers."""
         planning = PlanningFramework()
 
-        # Get Toronto Open Data results (most authoritative for Toronto)
+        # Get data from all municipal providers
         toronto_data = provider_results.get("Toronto Open Data", {})
         ottawa_data = provider_results.get("Ottawa Open Data", {})
+        mississauga_data = provider_results.get("Mississauga Open Data", {})
+        hamilton_data = provider_results.get("Hamilton Open Data", {})
 
+        # Find first available municipal data (in priority order)
         if toronto_data and toronto_data.get("zoning_designation"):
             planning.zoning_designation = toronto_data.get("zoning_designation")
             planning.zoning_category = toronto_data.get("zoning_category")
@@ -161,12 +184,9 @@ class ResultMerger:
             planning.official_plan_policies = toronto_data.get("official_plan_policies", [])
             planning.secondary_plan = toronto_data.get("secondary_plan")
             planning.secondary_plan_policies = toronto_data.get("secondary_plan_policies", [])
-
-            # Set governing bylaw for Toronto
             planning.governing_bylaw = "569-2013 (Toronto)"
 
         elif ottawa_data and ottawa_data.get("zoning_designation"):
-            # Use Ottawa data if Toronto data not available
             planning.zoning_designation = ottawa_data.get("zoning_designation")
             planning.zoning_category = ottawa_data.get("zoning_category")
             planning.permitted_uses = ottawa_data.get("permitted_uses", [])
@@ -174,13 +194,33 @@ class ResultMerger:
             planning.official_plan_policies = ottawa_data.get("official_plan_policies", [])
             planning.secondary_plan = ottawa_data.get("secondary_plan")
             planning.secondary_plan_policies = ottawa_data.get("secondary_plan_policies", [])
-
-            # Set governing bylaw for Ottawa
             planning.governing_bylaw = "2008-250 (Ottawa)"
-
-            # Add exception number if present
             if ottawa_data.get("zoning_exception"):
                 planning.holding_provisions = [f"Exception {ottawa_data['zoning_exception']}"]
+
+        elif mississauga_data and mississauga_data.get("zoning_designation"):
+            planning.zoning_designation = mississauga_data.get("zoning_designation")
+            planning.zoning_category = mississauga_data.get("zoning_category")
+            planning.permitted_uses = mississauga_data.get("permitted_uses", [])
+            planning.official_plan_designation = mississauga_data.get("official_plan_designation")
+            planning.official_plan_policies = mississauga_data.get("official_plan_policies", [])
+            planning.secondary_plan = mississauga_data.get("secondary_plan")
+            planning.secondary_plan_policies = mississauga_data.get("secondary_plan_policies", [])
+            planning.governing_bylaw = "0225-2007 (Mississauga)"
+            if mississauga_data.get("zoning_exception"):
+                planning.holding_provisions = [f"Exception {mississauga_data['zoning_exception']}"]
+
+        elif hamilton_data and hamilton_data.get("zoning_designation"):
+            planning.zoning_designation = hamilton_data.get("zoning_designation")
+            planning.zoning_category = hamilton_data.get("zoning_category")
+            planning.permitted_uses = hamilton_data.get("permitted_uses", [])
+            planning.official_plan_designation = hamilton_data.get("official_plan_designation")
+            planning.official_plan_policies = hamilton_data.get("official_plan_policies", [])
+            planning.secondary_plan = hamilton_data.get("secondary_plan")
+            planning.secondary_plan_policies = hamilton_data.get("secondary_plan_policies", [])
+            planning.governing_bylaw = "05-200 (Hamilton)"
+            if hamilton_data.get("zoning_exception"):
+                planning.holding_provisions = [f"Exception {hamilton_data['zoning_exception']}"]
 
         return planning
 
@@ -208,9 +248,14 @@ class ResultMerger:
     def _merge_neighbourhood(
         self,
         provider_results: Dict[str, Dict[str, Any]],
+        base_info: Optional[Dict[str, Any]] = None,
     ) -> NeighbourhoodAnalysis:
         """Merge neighbourhood analysis from multiple sources."""
         neighbourhood = NeighbourhoodAnalysis()
+
+        # Extract base coordinates for surrounding uses analysis
+        base_lat = base_info.get("latitude", 0.0) if base_info else 0.0
+        base_lon = base_info.get("longitude", 0.0) if base_info else 0.0
 
         # Get Toronto or Ottawa data for neighbourhood name
         toronto_data = provider_results.get("Toronto Open Data", {})
@@ -284,7 +329,173 @@ class ResultMerger:
                 summary, neighbourhood.neighbourhood_name
             )
 
+            # Generate surrounding uses from amenity data
+            neighbourhood.surrounding_uses = self._analyze_surrounding_uses(
+                raw_amenities, base_lat, base_lon
+            )
+
         return neighbourhood
+
+    def _analyze_surrounding_uses(
+        self,
+        amenities: List[Dict[str, Any]],
+        origin_lat: float,
+        origin_lon: float,
+    ) -> List[SurroundingUse]:
+        """
+        Analyze amenities to determine surrounding land uses by direction.
+
+        Uses bearing calculation to categorize amenities into cardinal directions,
+        then determines dominant land use for each direction.
+
+        Args:
+            amenities: List of amenity dictionaries with lat/lon
+            origin_lat: Subject property latitude
+            origin_lon: Subject property longitude
+
+        Returns:
+            List of SurroundingUse objects for each cardinal direction
+        """
+        # Cardinal directions with bearing ranges
+        directions = {
+            "N": (337.5, 22.5),
+            "NE": (22.5, 67.5),
+            "E": (67.5, 112.5),
+            "SE": (112.5, 157.5),
+            "S": (157.5, 202.5),
+            "SW": (202.5, 247.5),
+            "W": (247.5, 292.5),
+            "NW": (292.5, 337.5),
+        }
+
+        # Land use mappings from amenity categories
+        category_to_land_use = {
+            "education": "Institutional",
+            "healthcare": "Institutional",
+            "recreation": "Parks/Open Space",
+            "shopping": "Commercial",
+            "transit": "Transportation",
+            "services": "Commercial/Institutional",
+            "food": "Commercial",
+            "other": "Mixed Use",
+        }
+
+        # Collect amenities by direction
+        direction_amenities: Dict[str, List[Dict]] = {d: [] for d in directions}
+
+        for amenity in amenities:
+            a_lat = amenity.get("lat")
+            a_lon = amenity.get("lon")
+            if not (a_lat and a_lon):
+                continue
+
+            bearing = self._calculate_bearing(origin_lat, origin_lon, a_lat, a_lon)
+            direction = self._bearing_to_direction(bearing, directions)
+            direction_amenities[direction].append(amenity)
+
+        # Determine dominant land use for each direction
+        surrounding_uses = []
+        for direction in ["N", "E", "S", "W"]:  # Primary cardinals only for cleaner output
+            amenities_in_dir = direction_amenities[direction]
+
+            if not amenities_in_dir:
+                # Check adjacent directions
+                adjacent = {
+                    "N": ["NE", "NW"],
+                    "E": ["NE", "SE"],
+                    "S": ["SE", "SW"],
+                    "W": ["NW", "SW"],
+                }
+                for adj_dir in adjacent[direction]:
+                    amenities_in_dir.extend(direction_amenities[adj_dir])
+
+            if amenities_in_dir:
+                # Count categories
+                category_counts: Dict[str, int] = {}
+                for a in amenities_in_dir:
+                    cat = a.get("category", "other")
+                    category_counts[cat] = category_counts.get(cat, 0) + 1
+
+                # Find dominant category
+                dominant_cat = max(category_counts, key=category_counts.get) if category_counts else "other"
+                land_use = category_to_land_use.get(dominant_cat, "Mixed Use")
+
+                # Build description from nearest amenities
+                nearest = sorted(amenities_in_dir, key=lambda x: x.get("distance_m", 9999))[:3]
+                descriptions = [a.get("name", "Unknown") for a in nearest if a.get("name")]
+                description = ", ".join(descriptions) if descriptions else f"{land_use} uses"
+
+                surrounding_uses.append(
+                    SurroundingUse(
+                        direction=direction,
+                        land_use=land_use,
+                        description=description,
+                    )
+                )
+            else:
+                # No data for this direction
+                surrounding_uses.append(
+                    SurroundingUse(
+                        direction=direction,
+                        land_use="Unknown",
+                        description="Insufficient data",
+                    )
+                )
+
+        return surrounding_uses
+
+    def _calculate_bearing(
+        self,
+        lat1: float,
+        lon1: float,
+        lat2: float,
+        lon2: float,
+    ) -> float:
+        """
+        Calculate bearing from point 1 to point 2.
+
+        Args:
+            lat1, lon1: Origin coordinates
+            lat2, lon2: Destination coordinates
+
+        Returns:
+            Bearing in degrees (0-360)
+        """
+        from math import radians, sin, cos
+
+        lat1_r = radians(lat1)
+        lat2_r = radians(lat2)
+        dlon = radians(lon2 - lon1)
+
+        x = sin(dlon) * cos(lat2_r)
+        y = cos(lat1_r) * sin(lat2_r) - sin(lat1_r) * cos(lat2_r) * cos(dlon)
+
+        bearing = degrees(atan2(x, y))
+        return (bearing + 360) % 360
+
+    def _bearing_to_direction(
+        self,
+        bearing: float,
+        directions: Dict[str, Tuple[float, float]],
+    ) -> str:
+        """
+        Convert bearing to cardinal/intercardinal direction.
+
+        Args:
+            bearing: Bearing in degrees (0-360)
+            directions: Dict mapping direction to (min, max) bearing range
+
+        Returns:
+            Direction string (N, NE, E, etc.)
+        """
+        for direction, (min_b, max_b) in directions.items():
+            if direction == "N":
+                # N spans 337.5-360 and 0-22.5
+                if bearing >= min_b or bearing < max_b:
+                    return direction
+            elif min_b <= bearing < max_b:
+                return direction
+        return "N"  # Default
 
     def _generate_character_description(
         self,

@@ -15,6 +15,10 @@ from .ottawa_arcgis import OttawaArcGISProvider
 from .gtfs import GTFSProvider
 from .census import CensusProvider
 
+# Phase 2.5 providers (Additional Municipalities)
+from .mississauga_arcgis import MississaugaArcGISProvider
+from .hamilton_arcgis import HamiltonArcGISProvider
+
 __all__ = [
     # Base classes
     "BaseProvider",
@@ -32,4 +36,7 @@ __all__ = [
     "OttawaArcGISProvider",
     "GTFSProvider",
     "CensusProvider",
+    # Phase 2.5 providers
+    "MississaugaArcGISProvider",
+    "HamiltonArcGISProvider",
 ]

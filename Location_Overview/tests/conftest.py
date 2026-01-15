@@ -5,18 +5,13 @@ Shared fixtures for Location Overview tests.
 """
 
 import pytest
-import asyncio
+import pytest_asyncio
 from typing import Dict, Any
 
 from Location_Overview.config import Config, reset_config
 
 
-@pytest.fixture(scope="session")
-def event_loop():
-    """Create an instance of the default event loop for the test session."""
-    loop = asyncio.get_event_loop_policy().new_event_loop()
-    yield loop
-    loop.close()
+# pytest-asyncio configuration is in pytest.ini (asyncio_mode = auto)
 
 
 @pytest.fixture
