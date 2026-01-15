@@ -1,0 +1,29 @@
+{
+  "property": {
+    "pin": "98765-4321",
+    "address": "500 Woodland Trail, Conservation Area",
+    "total_area_acres": 50.0,
+    "unencumbered_value": 800000,
+    "zoning": "Rural Residential",
+    "highest_best_use": "Residential development (5 lots)"
+  },
+  "encumbrances": [
+    {
+      "type": "conservation_easement",
+      "area_acres": 30.0,
+      "impact_percentage": 40,
+      "description": "Perpetual conservation easement - prohibits development, preserves natural habitat"
+    },
+    {
+      "type": "access_easement",
+      "area_acres": 1.5,
+      "impact_percentage": 5,
+      "description": "Shared driveway access easement"
+    }
+  ],
+  "marketability_factors": {
+    "has_wetlands": true,
+    "environmental_restrictions": true,
+    "limited_buyer_pool": true
+  }
+}

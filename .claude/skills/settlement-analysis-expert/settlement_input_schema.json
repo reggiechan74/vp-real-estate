@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lease-abstract.com/schemas/settlement-analysis-input.json",
+  "title": "Settlement Analysis Input Schema",
+  "description": "Input schema for settlement scenario analysis vs. hearing risk with probability-weighted outcomes",
+  "type": "object",
+  "required": [
+    "case_id",
+    "settlement_offer",
+    "hearing_probabilities",
+    "hearing_costs"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "description": "Unique identifier for the case",
+      "minLength": 1
+    },
+    "property_description": {
+      "type": "string",
+      "description": "Brief description of the property being acquired"
+    },
+    "settlement_offer": {
+      "type": "number",
+      "description": "Current settlement offer amount",
+      "minimum": 0
+    },
+    "counteroffer": {
+      "type": "number",
+      "description": "Owner's counteroffer amount (optional)",
+      "minimum": 0
+    },
+    "buyer_max_settlement": {
+      "type": "number",
+      "description": "Maximum amount buyer willing to settle for (BATNA)",
+      "minimum": 0
+    },
+    "hearing_probabilities": {
+      "type": "object",
+      "description": "Probability distribution for hearing outcomes",
+      "required": ["low_award", "mid_award", "high_award"],
+      "properties": {
+        "low_award": {
+          "type": "number",
+          "description": "Probability of low award scenario",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "mid_award": {
+          "type": "number",
+          "description": "Probability of mid award scenario",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "high_award": {
+          "type": "number",
+          "description": "Probability of high award scenario",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "hearing_costs": {
+      "type": "object",
+      "description": "Expected costs for hearing scenarios",
+      "required": [
+        "low_award_amount",
+        "mid_award_amount",
+        "high_award_amount",
+        "legal_fees",
+        "expert_fees"
+      ],
+      "properties": {
+        "low_award_amount": {
+          "type": "number",
+          "description": "Expected award in low scenario",
+          "minimum": 0
+        },
+        "mid_award_amount": {
+          "type": "number",
+          "description": "Expected award in mid scenario",
+          "minimum": 0
+        },
+        "high_award_amount": {
+          "type": "number",
+          "description": "Expected award in high scenario",
+          "minimum": 0
+        },
+        "legal_fees": {
+          "type": "number",
+          "description": "Expected legal fees for hearing",
+          "minimum": 0
+        },
+        "expert_fees": {
+          "type": "number",
+          "description": "Expected expert witness fees",
+          "minimum": 0
+        },
+        "time_cost": {
+          "type": "number",
+          "description": "Cost of staff time and delays",
+          "minimum": 0,
+          "default": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "settlement_costs": {
+      "type": "object",
+      "description": "Costs associated with settlement",
+      "properties": {
+        "legal_fees_to_settle": {
+          "type": "number",
+          "description": "Legal fees to complete settlement",
+          "minimum": 0,
+          "default": 5000
+        },
+        "settlement_risk": {
+          "type": "number",
+          "description": "Probability that settlement negotiations fail",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.1
+        }
+      },
+      "additionalProperties": false
+    },
+    "owner_profile": {
+      "type": "object",
+      "description": "Owner risk profile for holdout assessment",
+      "properties": {
+        "motivation": {
+          "type": "object",
+          "properties": {
+            "financial_need": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Owner's financial need level"
+            },
+            "emotional_attachment": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Owner's emotional attachment to property"
+            },
+            "business_impact": {
+              "type": "string",
+              "enum": ["minimal", "moderate", "critical"],
+              "description": "Impact of acquisition on owner's business"
+            }
+          },
+          "additionalProperties": false
+        },
+        "sophistication": {
+          "type": "object",
+          "properties": {
+            "real_estate_experience": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Owner's real estate experience level"
+            },
+            "legal_representation": {
+              "type": "boolean",
+              "description": "Whether owner has legal representation"
+            },
+            "previous_negotiations": {
+              "type": "integer",
+              "description": "Number of previous negotiations",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "alternatives": {
+          "type": "object",
+          "properties": {
+            "relocation_options": {
+              "type": "string",
+              "enum": ["many", "some", "limited", "none"],
+              "description": "Availability of relocation options"
+            },
+            "financial_flexibility": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Owner's financial flexibility"
+            },
+            "timeline_pressure": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Time pressure on owner"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "case_factors": {
+      "type": "object",
+      "description": "Factors affecting litigation risk",
+      "properties": {
+        "valuation_gap": {
+          "type": "number",
+          "description": "Difference between buyer and seller valuations",
+          "minimum": 0
+        },
+        "property_value": {
+          "type": "number",
+          "description": "Estimated property value",
+          "minimum": 0
+        },
+        "owner_risk_profile": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+          "description": "Risk profile from owner assessment"
+        },
+        "legal_complexity": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "Legal complexity of the case"
+        },
+        "precedent_clarity": {
+          "type": "string",
+          "enum": ["clear", "mixed", "unclear"],
+          "description": "Clarity of legal precedent"
+        },
+        "jurisdiction_history": {
+          "type": "string",
+          "enum": ["owner_favorable", "neutral", "buyer_favorable"],
+          "description": "Historical jurisdiction tendency"
+        }
+      },
+      "additionalProperties": false
+    },
+    "discount_rate": {
+      "type": "number",
+      "description": "Annual discount rate for NPV calculations",
+      "minimum": 0,
+      "maximum": 1,
+      "default": 0.05
+    }
+  },
+  "additionalProperties": false
+}

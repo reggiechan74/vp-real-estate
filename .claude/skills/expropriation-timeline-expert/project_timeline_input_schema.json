@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/project_timeline_input.json",
+  "title": "Expropriation Project Timeline Input",
+  "description": "Input schema for critical path analysis with OEA statutory deadlines using PERT/CPM methodology",
+  "type": "object",
+  "required": ["project_name", "approval_date", "tasks", "dependencies"],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Project name or identifier"
+    },
+    "approval_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date approval received (YYYY-MM-DD)"
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "description": "List of project tasks",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "duration"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique task identifier (e.g., 'A', 'B', 'APPR')"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Task name (e.g., 'Obtain approval', 'Prepare appraisal')"
+          },
+          "duration": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Task duration in days (deterministic)"
+          },
+          "optimistic": {
+            "type": "number",
+            "minimum": 0,
+            "description": "PERT optimistic duration (best case)"
+          },
+          "most_likely": {
+            "type": "number",
+            "minimum": 0,
+            "description": "PERT most likely duration"
+          },
+          "pessimistic": {
+            "type": "number",
+            "minimum": 0,
+            "description": "PERT pessimistic duration (worst case)"
+          },
+          "resources": {
+            "type": "object",
+            "description": "Resource requirements for this task",
+            "properties": {
+              "staff": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Number of staff required"
+              },
+              "consultants": {
+                "type": "object",
+                "description": "Consultant requirements by type",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "budget": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Budget allocated to task"
+              }
+            }
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Task dependencies as [predecessor, successor] pairs",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": "Dependency pair [predecessor_id, successor_id]"
+      }
+    },
+    "statutory_deadlines": {
+      "type": "object",
+      "description": "Absolute statutory deadlines by task ID (days from approval date)",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "buffer_days": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Minimum buffer days required for statutory deadlines (default 10)"
+    }
+  },
+  "additionalProperties": false
+}

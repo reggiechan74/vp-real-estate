@@ -1,0 +1,43 @@
+{
+  "site_address": "123 Office Boulevard, Mississauga, ON",
+  "phase_1_esa": {
+    "findings": [
+      "No storage tanks identified",
+      "No evidence of environmental impact",
+      "Property historically used as office building since 1995",
+      "Adjacent properties are commercial/office use"
+    ],
+    "recs": [],
+    "data_gaps": [
+      "Limited pre-1995 historical records"
+    ]
+  },
+  "phase_2_esa": {
+    "soil_samples": [
+      {
+        "sample_id": "SS-01",
+        "location": "Front lawn area",
+        "depth_m": 1.0,
+        "contaminants": [],
+        "exceedance": false
+      },
+      {
+        "sample_id": "SS-02",
+        "location": "Rear parking lot",
+        "depth_m": 1.5,
+        "contaminants": [],
+        "exceedance": false
+      }
+    ],
+    "groundwater_samples": [],
+    "exceedances": [],
+    "contaminants": []
+  },
+  "cleanup_scenarios": {
+    "risk_assessment": {
+      "cost_low": 0,
+      "cost_high": 5000,
+      "description": "No cleanup required - maintain documentation only"
+    }
+  }
+}

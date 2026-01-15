@@ -1,0 +1,45 @@
+{
+  "property": {
+    "address": "1234 County Road 25, Caledon, ON",
+    "legal_description": "Part of Lot 8, Concession 3, Town of Caledon, designated as Part 2 on Reference Plan 43R-98765",
+    "total_acres": 50,
+    "fee_simple_value": 2500000,
+    "fee_simple_value_per_acre": 50000,
+    "zoning": "Rural Residential (RR)",
+    "official_plan": "Rural Area",
+    "highest_and_best_use": "Rural estate residential with hobby farm",
+    "current_use": "Single-family residence with horse paddocks",
+    "improvements": "4,500 SF custom home (2015), 6-stall barn, riding arena",
+    "soil_class": "Class 3 agricultural"
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "utility": "Hydro One Networks Inc.",
+    "project_name": "Peel Region Supply Enhancement",
+    "voltage_kv": 230,
+    "circuit_count": 1,
+    "tower_type": "Steel monopole",
+    "tower_count_on_property": 2,
+    "area_acres": 2.5,
+    "width_meters": 50,
+    "length_meters": 400,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "height_restrictions",
+      "access_limitations"
+    ],
+    "hbu_impact": "minor",
+    "access_requirements": "Shared laneway access to tower locations",
+    "vegetation_management": "Selective clearing, no tall trees",
+    "easement_rent_factor": 0.30
+  },
+  "market_parameters": {
+    "valuation_date": "2025-01-15",
+    "cap_rate": 0.055,
+    "annual_rent_per_acre": 400,
+    "market_appreciation_rate": 0.04,
+    "comparable_sales_source": "MLS, Teranet"
+  },
+  "appraiser_notes": "Rural estate property with significant improvements. The 230kV line will traverse the rear portion of the property, well separated from the residence and barn. Two steel monopole towers. Impact to highest and best use is minor as the corridor follows the property boundary away from improvements."
+}

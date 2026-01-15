@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/negotiation-settlement-input.schema.json",
+  "title": "Negotiation Settlement Calculator Input Schema",
+  "description": "JSON Schema for negotiation settlement calculator input data (BATNA/ZOPA analysis)",
+  "type": "object",
+  "required": [
+    "buyer_max",
+    "seller_min",
+    "hearing_probabilities",
+    "hearing_costs"
+  ],
+  "properties": {
+    "buyer_max": {
+      "type": "number",
+      "minimum": 0,
+      "exclusiveMinimum": true,
+      "description": "Maximum amount buyer is willing to pay for the property"
+    },
+    "seller_min": {
+      "type": "number",
+      "minimum": 0,
+      "exclusiveMinimum": true,
+      "description": "Minimum amount seller is willing to accept"
+    },
+    "hearing_probabilities": {
+      "type": "object",
+      "description": "Probability distribution for hearing outcomes (must sum to 1.0)",
+      "required": [
+        "low_award",
+        "mid_award",
+        "high_award"
+      ],
+      "properties": {
+        "low_award": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability of low valuation award at hearing"
+        },
+        "mid_award": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability of mid valuation award at hearing"
+        },
+        "high_award": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability of high valuation award at hearing"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hearing_costs": {
+      "type": "object",
+      "description": "Cost estimates for expropriation hearing",
+      "required": [
+        "low_award_amount",
+        "mid_award_amount",
+        "high_award_amount",
+        "legal_fees",
+        "expert_fees",
+        "time_cost"
+      ],
+      "properties": {
+        "low_award_amount": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Expected award amount in low valuation scenario"
+        },
+        "mid_award_amount": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Expected award amount in mid valuation scenario"
+        },
+        "high_award_amount": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Expected award amount in high valuation scenario"
+        },
+        "legal_fees": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Legal fees for hearing process"
+        },
+        "expert_fees": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Expert witness and appraisal fees"
+        },
+        "time_cost": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Staff time and project delay costs"
+        }
+      },
+      "additionalProperties": false
+    },
+    "owner_profile": {
+      "type": "object",
+      "description": "Owner characteristics for holdout risk assessment (optional)",
+      "properties": {
+        "motivation": {
+          "type": "object",
+          "description": "Owner motivation factors",
+          "properties": {
+            "financial_need": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Owner's financial need to sell (low need = higher holdout risk)"
+            },
+            "emotional_attachment": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Emotional attachment to property (high = higher holdout risk)"
+            },
+            "business_impact": {
+              "type": "string",
+              "enum": ["minimal", "moderate", "critical"],
+              "description": "Impact on owner's business operations"
+            }
+          },
+          "additionalProperties": false
+        },
+        "sophistication": {
+          "type": "object",
+          "description": "Owner sophistication factors",
+          "properties": {
+            "real_estate_experience": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Owner's real estate transaction experience"
+            },
+            "legal_representation": {
+              "type": "boolean",
+              "description": "Whether owner has legal representation"
+            },
+            "previous_negotiations": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of previous property negotiations"
+            }
+          },
+          "additionalProperties": false
+        },
+        "alternatives": {
+          "type": "object",
+          "description": "Owner's alternative options",
+          "properties": {
+            "relocation_options": {
+              "type": "string",
+              "enum": ["many", "some", "limited", "none"],
+              "description": "Availability of relocation alternatives (fewer = higher holdout)"
+            },
+            "financial_flexibility": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Owner's financial flexibility"
+            },
+            "timeline_pressure": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Time pressure on owner (high pressure = lower holdout)"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "settlement_offer": {
+      "type": "number",
+      "minimum": 0,
+      "exclusiveMinimum": true,
+      "description": "Proposed settlement amount for comparison analysis (optional)"
+    },
+    "legal_costs_to_settle": {
+      "type": "number",
+      "minimum": 0,
+      "default": 5000,
+      "description": "Legal costs to complete settlement (optional, default: $5,000)"
+    },
+    "confidence_level": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "exclusiveMinimum": true,
+      "default": 0.8,
+      "description": "Confidence level for optimal settlement range (optional, default: 0.8)"
+    },
+    "num_negotiation_rounds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 3,
+      "description": "Number of negotiation rounds for concession strategy (optional, default: 3)"
+    },
+    "property_description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Description of property or acquisition for reporting (optional)"
+    }
+  },
+  "additionalProperties": false
+}

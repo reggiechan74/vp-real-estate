@@ -1,0 +1,36 @@
+{
+  "property": {
+    "address": "1550 Municipal Parkland Reserve",
+    "total_acres": 45.0,
+    "fee_simple_value": 900000,
+    "zoning": "OS - Open Space",
+    "highest_and_best_use": "Parkland and passive recreation"
+  },
+  "easement": {
+    "type": "pipeline",
+    "pipeline_type": "water_transmission",
+    "area_acres": 3.2,
+    "width_meters": 18,
+    "pressure_psi": 450,
+    "diameter_mm": 500,
+    "depth_meters": 2.0,
+    "has_leak_detection": true,
+    "has_cathodic_protection": true,
+    "requires_access_road": false,
+    "distance_to_water_m": 25,
+    "installation_method": "open_cut",
+    "pipeline_age_years": 22,
+    "class_location": 2,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "excavation_prohibited"
+    ],
+    "hbu_impact": "minor",
+    "productivity_loss_pct": 0.12
+  },
+  "market_parameters": {
+    "cap_rate": 0.050,
+    "annual_rent_per_acre": 180
+  }
+}

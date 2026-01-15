@@ -1,0 +1,28 @@
+{
+  "asset_type": "Pipeline",
+  "specifications": {
+    "diameter_inches": 36,
+    "length_km": 5.5,
+    "material": "Steel",
+    "coating": "Fusion-bonded epoxy",
+    "installation_year": 2005,
+    "operating_pressure_psi": 1440
+  },
+  "construction_costs": {
+    "materials": 3500000,
+    "labor": 1800000,
+    "overhead_percentage": 0.18,
+    "profit_percentage": 0.15
+  },
+  "depreciation": {
+    "age_years": 20,
+    "effective_age_years": 18,
+    "economic_life_years": 60,
+    "physical_condition": "Good",
+    "functional_obsolescence": 75000,
+    "external_obsolescence": 150000
+  },
+  "market_data": {
+    "comparable_sales": []
+  }
+}

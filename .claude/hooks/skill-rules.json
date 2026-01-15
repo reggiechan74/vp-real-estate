@@ -1,0 +1,410 @@
+{
+  "skills": [
+    {
+      "name": "easement-valuation-methods",
+      "keywords": [
+        "easement valuation",
+        "percentage of fee",
+        "utility easement",
+        "transmission easement",
+        "pipeline easement",
+        "telecom easement",
+        "easement compensation",
+        "income capitalization",
+        "paired sales",
+        "before/after comparison"
+      ]
+    },
+    {
+      "name": "severance-damages-quantification",
+      "keywords": [
+        "severance damages",
+        "access impairment",
+        "landlocked parcel",
+        "frontage loss",
+        "shape irregularity",
+        "remainder parcel",
+        "development yield",
+        "highest and best use loss",
+        "farm operation disruption",
+        "field division"
+      ]
+    },
+    {
+      "name": "injurious-affection-assessment",
+      "keywords": [
+        "injurious affection",
+        "construction impacts",
+        "noise impact",
+        "vibration damage",
+        "dust impacts",
+        "traffic disruption",
+        "visual impact",
+        "proximity impacts",
+        "business losses construction",
+        "Antrim test"
+      ]
+    },
+    {
+      "name": "comparable-sales-adjustment-methodology",
+      "keywords": [
+        "comparable sales",
+        "adjustment grid",
+        "paired sales",
+        "hedonic regression",
+        "adjustment methodology",
+        "market comparables",
+        "gross adjustment",
+        "net adjustment",
+        "validation reconciliation"
+      ]
+    },
+    {
+      "name": "transit-station-site-acquisition-strategy",
+      "keywords": [
+        "transit station",
+        "site acquisition",
+        "TOD",
+        "transit-oriented development",
+        "property assembly",
+        "holdout risk",
+        "site selection",
+        "multi-modal connections",
+        "joint development"
+      ]
+    },
+    {
+      "name": "residential-displacement-mitigation-protocols",
+      "keywords": [
+        "residential displacement",
+        "household vulnerability",
+        "relocation assistance",
+        "displacement mitigation",
+        "enhanced compensation",
+        "buyback option",
+        "phased relocation",
+        "cultural sensitivity"
+      ]
+    },
+    {
+      "name": "public-consultation-process-design",
+      "keywords": [
+        "public consultation",
+        "stakeholder engagement",
+        "IAP2",
+        "engagement spectrum",
+        "community consultation",
+        "hostile audience",
+        "feedback analysis",
+        "What We Heard"
+      ]
+    },
+    {
+      "name": "nimby-objection-analysis-response",
+      "keywords": [
+        "NIMBY",
+        "community opposition",
+        "objection analysis",
+        "misinformation",
+        "fundamental opposition",
+        "coalition building",
+        "impact studies",
+        "mitigation measures"
+      ]
+    },
+    {
+      "name": "agricultural-easement-negotiation-frameworks",
+      "keywords": [
+        "agricultural easement",
+        "farm easement",
+        "utility easement farm",
+        "crop production impacts",
+        "irrigation impacts",
+        "livestock operation",
+        "farm succession",
+        "multi-generational farm"
+      ]
+    },
+    {
+      "name": "transmission-line-technical-specifications",
+      "keywords": [
+        "transmission line",
+        "easement width",
+        "voltage requirements",
+        "NESC clearances",
+        "conductor clearance",
+        "tower placement",
+        "land use restrictions",
+        "utility corridor"
+      ]
+    },
+    {
+      "name": "expropriation-statutory-deadline-tracking",
+      "keywords": [
+        "expropriation deadlines",
+        "3-month registration",
+        "statutory deadlines",
+        "Form 2 service",
+        "Form 7 notice",
+        "registration window",
+        "approval expiry",
+        "escalation protocols"
+      ]
+    },
+    {
+      "name": "forms-1-12-completeness-verification",
+      "keywords": [
+        "expropriation forms",
+        "Form 1",
+        "Form 2",
+        "Form 6",
+        "Form 7",
+        "procedural compliance",
+        "O.Reg. 363/90",
+        "form defects",
+        "statutory authority citation"
+      ]
+    },
+    {
+      "name": "ontario-expropriations-act-statutory-interpretation",
+      "keywords": [
+        "Expropriations Act",
+        "OEA",
+        "section 13",
+        "section 18",
+        "market value",
+        "disturbance damages",
+        "injurious affection",
+        "Antrim",
+        "Gossen",
+        "Highway Properties"
+      ]
+    },
+    {
+      "name": "expropriation-compensation-entitlement-analysis",
+      "keywords": [
+        "compensation entitlement",
+        "valuation date",
+        "highest and best use",
+        "special purchaser",
+        "but-for test",
+        "reasonableness",
+        "foreseeability",
+        "goodwill",
+        "business losses"
+      ]
+    },
+    {
+      "name": "expropriation-procedural-defect-analysis",
+      "keywords": [
+        "procedural defect",
+        "ultra vires",
+        "void expropriation",
+        "voidable expropriation",
+        "defective notice",
+        "cure strategies",
+        "bad faith",
+        "limitation period"
+      ]
+    },
+    {
+      "name": "commercial-tenancies-act-enforcement-remedies",
+      "keywords": [
+        "Commercial Tenancies Act",
+        "CTA",
+        "distress for rent",
+        "re-entry",
+        "lease termination",
+        "overholding",
+        "double rent",
+        "relief from forfeiture",
+        "mitigation duty"
+      ]
+    },
+    {
+      "name": "commercial-lease-assignment-consent-framework",
+      "keywords": [
+        "assignment consent",
+        "commercial assignment",
+        "unreasonable withholding",
+        "recapture rights",
+        "section 24",
+        "Citibank",
+        "Lehndorff",
+        "assignment profit"
+      ]
+    },
+    {
+      "name": "residential-tenancies-act-eviction-procedures",
+      "keywords": [
+        "Residential Tenancies Act",
+        "RTA",
+        "N4 notice",
+        "N5 notice",
+        "N12 notice",
+        "LTB",
+        "eviction",
+        "landlord own use",
+        "renoviction",
+        "good faith"
+      ]
+    },
+    {
+      "name": "ltb-application-hearing-procedures",
+      "keywords": [
+        "LTB application",
+        "L1 application",
+        "L2 application",
+        "T2 application",
+        "T5 application",
+        "LTB hearing",
+        "disclosure",
+        "conditional order",
+        "sheriff enforcement"
+      ]
+    },
+    {
+      "name": "tenant-relief-from-eviction-analysis",
+      "keywords": [
+        "section 83",
+        "s.83 discretion",
+        "relief from eviction",
+        "payment plan",
+        "tenant circumstances",
+        "landlord prejudice",
+        "adjudicator patterns",
+        "repeat default"
+      ]
+    },
+    {
+      "name": "cropland-out-of-production-agreements",
+      "keywords": [
+        "cropland out of production",
+        "annual compensation",
+        "headlands loss",
+        "precision agriculture impacts",
+        "ongoing productivity loss",
+        "per-structure payments",
+        "Alberta Surface Rights Board",
+        "OFA guidance",
+        "Ontario Federation of Agriculture",
+        "transmission towers farm",
+        "right-of-way impacts",
+        "Hydro One compensation",
+        "ATCO Electric",
+        "farming around towers",
+        "aerial spraying restrictions",
+        "irrigation restrictions"
+      ]
+    },
+    {
+      "name": "environmental-due-diligence-expert",
+      "keywords": [
+        "environmental",
+        "Phase I ESA",
+        "Phase II ESA",
+        "contamination",
+        "cleanup cost",
+        "brownfield",
+        "environmental liability",
+        "MOE approval",
+        "Record of Site Condition",
+        "RSC",
+        "soil contamination",
+        "groundwater contamination",
+        "petroleum hydrocarbons",
+        "VOCs",
+        "environmental due diligence",
+        "environmental assessment",
+        "remediation",
+        "risk assessment environmental"
+      ]
+    },
+    {
+      "name": "title-expert",
+      "keywords": [
+        "title search",
+        "title analysis",
+        "encumbrance",
+        "easement title",
+        "covenant",
+        "lien",
+        "mortgage",
+        "restriction",
+        "registered instruments",
+        "marketability",
+        "registration defect",
+        "PIN",
+        "property identifier",
+        "title defect",
+        "encumbrance discount",
+        "buyer pool",
+        "financing availability"
+      ]
+    },
+    {
+      "name": "right-of-way-expert",
+      "keywords": [
+        "utility conflict",
+        "right-of-way",
+        "ROW",
+        "utility relocation",
+        "transmission line",
+        "gas pipeline",
+        "water main",
+        "sewer",
+        "telecom fiber",
+        "utility corridor",
+        "conflict detection",
+        "clearance requirements",
+        "relocation cost",
+        "Hydro One",
+        "Enbridge",
+        "utility coordination",
+        "horizontal clearance",
+        "vertical clearance"
+      ]
+    },
+    {
+      "name": "income-approach-expert",
+      "keywords": [
+        "income approach",
+        "capitalization",
+        "cap rate",
+        "land rent",
+        "telecom site",
+        "agricultural rent",
+        "ground lease",
+        "NOI",
+        "net operating income",
+        "market rent",
+        "band of investment",
+        "buildup method",
+        "market extraction",
+        "income capitalization",
+        "land valuation",
+        "rent capitalization"
+      ]
+    },
+    {
+      "name": "cost-approach-expert",
+      "keywords": [
+        "cost approach",
+        "replacement cost",
+        "depreciation",
+        "infrastructure valuation",
+        "transmission tower",
+        "telecom site",
+        "substation",
+        "RCN",
+        "replacement cost new",
+        "physical depreciation",
+        "functional obsolescence",
+        "external obsolescence",
+        "age-life method",
+        "depreciated replacement cost",
+        "infrastructure cost"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "asset_type": "Transmission tower",
+  "specifications": {
+    "voltage": "500kV",
+    "height_meters": 45,
+    "foundation_type": "Caisson",
+    "location": "Rural Ontario",
+    "installation_year": 2010
+  },
+  "construction_costs": {
+    "materials": 150000,
+    "labor": 80000,
+    "overhead_percentage": 0.15,
+    "profit_percentage": 0.12
+  },
+  "depreciation": {
+    "age_years": 15,
+    "effective_age_years": 12,
+    "economic_life_years": 50,
+    "physical_condition": "Good",
+    "functional_obsolescence": 0,
+    "external_obsolescence": 0
+  },
+  "market_data": {
+    "comparable_sales": [
+      {
+        "sale_price": 180000,
+        "asset_type": "Transmission tower",
+        "sale_date": "2024-06-15",
+        "location": "Southwestern Ontario",
+        "condition": "Good",
+        "notes": "Similar 500kV tower, 14 years old"
+      },
+      {
+        "sale_price": 195000,
+        "asset_type": "Transmission tower",
+        "sale_date": "2024-08-22",
+        "location": "Eastern Ontario",
+        "condition": "Excellent",
+        "notes": "500kV tower, recently upgraded, 10 years old"
+      },
+      {
+        "sale_price": 172000,
+        "asset_type": "Transmission tower",
+        "sale_date": "2024-09-10",
+        "location": "Northern Ontario",
+        "condition": "Fair",
+        "notes": "500kV tower, remote location, 18 years old"
+      }
+    ]
+  }
+}

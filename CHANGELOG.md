@@ -5,6 +5,74 @@ All notable changes to the Commercial Real Estate Lease Analysis Toolkit will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-12-17
+
+### Added
+
+#### 🏗️ Comparable Sales Analysis Module (New Directory)
+
+**Created dedicated calculator directory for Traditional DCA (Direct Comparison Approach)**
+
+Moved from `.claude/skills/comparable-sales-adjustment-methodology/` (1.3MB, 58 files) to new top-level `Comparable_Sales_Analysis/` directory. Skills directory now contains only SKILL.md (~28KB) as intended.
+
+**New Directory Structure**:
+- `comparable_sales_calculator.py` - Main calculator with adjustment grid construction
+- `paired_sales_analyzer.py` - Paired sales analysis for market-derived factors
+- `validate_comparables.py` - Input validation and data quality checks
+- `adjustments/` - 10 modular adjustment calculation modules:
+  - `transactional.py` - Property rights, financing, conditions of sale
+  - `market_conditions.py` - Time/appreciation adjustments
+  - `location.py` - Submarket, highway access, accessibility
+  - `land.py` - 8 land characteristics (lot size, shape, topography, utilities, etc.)
+  - `industrial_building.py` - Clear height, loading docks, rail spur, power
+  - `office_building.py` - Building class, floor plate, ceiling height, systems
+  - `site.py` - 6 site improvements (paving, fencing, lighting, etc.)
+  - `condition_age.py` - Effective age, condition rating adjustments
+  - `parameter_mapping.py` - Derived factor name → module parameter mapping
+  - `validation.py` - Input sanitization and clamping utilities
+- `schemas/` - `adjustment_factors_template.json`
+- `sample_inputs/` - 8 sample data files for testing
+- `tests/` - 53 unit tests (all passing)
+- `docs/` - SCHEMA_DOCUMENTATION.md
+
+#### 📋 Unified JSON Schema Architecture
+
+**Created shared schema location**: `Shared_Utils/schemas/`
+
+- Moved `comparable_sales_input_schema.json` to `Shared_Utils/schemas/`
+- Single source of truth for both Traditional DCA and MCDA calculators
+- Draft 2020-12 JSON Schema (~22KB) with comprehensive validation rules
+
+**Added JSON Schema validation to MCDA_Sales_Comparison**:
+- New `validate_against_schema()` function with graceful degradation
+- Integrated with `validate_input_data(use_schema=True)`
+- Falls back to semantic-only validation if `jsonschema` library unavailable
+- 76 tests passing (including new schema validation tests)
+
+#### 📊 MCDA Sales Comparison Module
+
+**Added MCDA ordinal ranking for fee simple valuation** (from Phase 3)
+
+- Multi-Criteria Decision Analysis for comparable sales ranking
+- Score-to-price mapping via interpolation/regression
+- 14 weighted characteristics with 5 weight profiles
+- `/mcda-sales-comparison` slash command
+
+### Changed
+
+- **validate_comparables.py**: Updated to reference shared schema at `Shared_Utils/schemas/`
+- **MCDA validation.py**: Enhanced with optional JSON Schema validation
+- **SKILL.md**: Updated paths to reference new `Comparable_Sales_Analysis/` location
+- **CLAUDE.md**: Added `Comparable_Sales_Analysis/` to project structure
+
+### Technical Notes
+
+- All file moves preserved git history using `git mv`
+- Total test count: 129 tests passing (53 + 76)
+- Backward compatible: Schema validation is optional (`use_schema=False` for semantic-only)
+
+---
+
 ## [2.0.0] - 2025-11-13
 
 ### Added

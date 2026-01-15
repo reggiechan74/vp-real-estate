@@ -1,0 +1,46 @@
+{
+  "property": {
+    "address": "Lot 15, Concession 5, Township of Puslinch, Wellington County, ON",
+    "legal_description": "Part of Lot 15, Concession 5, designated as Part 1 on Reference Plan 61R-12345",
+    "total_acres": 250,
+    "fee_simple_value": 8750000,
+    "fee_simple_value_per_acre": 35000,
+    "zoning": "Agricultural (A1)",
+    "official_plan": "Prime Agricultural Area",
+    "highest_and_best_use": "Cash crop farming (corn/soybean rotation)",
+    "current_use": "Active cash crop operation",
+    "improvements": "Century farmhouse, barn, grain bins",
+    "soil_class": "Class 1 agricultural"
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "utility": "Hydro One Networks Inc.",
+    "project_name": "Southwest GTA Transmission Reinforcement",
+    "voltage_kv": 500,
+    "circuit_count": 2,
+    "tower_type": "Steel lattice",
+    "tower_count_on_property": 3,
+    "area_acres": 4.0,
+    "width_meters": 80,
+    "length_meters": 500,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "no_trees",
+      "height_restrictions",
+      "excavation_prohibited"
+    ],
+    "hbu_impact": "moderate",
+    "access_requirements": "Permanent access road to tower locations",
+    "vegetation_management": "Annual clearing required",
+    "easement_rent_factor": 0.40
+  },
+  "market_parameters": {
+    "valuation_date": "2025-01-15",
+    "cap_rate": 0.07,
+    "annual_rent_per_acre": 275,
+    "market_appreciation_rate": 0.035,
+    "comparable_sales_source": "GeoWarehouse, local MLS"
+  },
+  "appraiser_notes": "Subject property is a productive cash crop operation with Class 1 soils. The 500kV transmission line will cross the property diagonally, affecting approximately 4 acres. Three steel lattice towers will be located on the property. Permanent access road required. Highest and best use remains agricultural but with moderate operational impact."
+}

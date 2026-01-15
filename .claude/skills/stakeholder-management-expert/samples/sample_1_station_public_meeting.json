@@ -1,0 +1,169 @@
+{
+  "meeting_info": {
+    "meeting_date": "2025-10-15",
+    "meeting_type": "public_meeting",
+    "attendance": 85,
+    "location": "Community Center, 123 Main Street",
+    "project_name": "North Transit Station Project",
+    "phase": "preliminary_design"
+  },
+
+  "demographics": {
+    "residents": 52,
+    "business_owners": 18,
+    "property_owners": 10,
+    "elected_officials": 2,
+    "advocacy_groups": 3
+  },
+
+  "comments": [
+    "Very concerned about traffic congestion during construction. Main Street is already backed up during rush hour.",
+    "Property values will decline if construction takes 2 years. What compensation is available?",
+    "When will construction start? Need more information about timeline.",
+    "Support this project! We desperately need better transit access in this neighborhood.",
+    "Noise from construction will be unacceptable for residents. What are the noise mitigation measures?",
+    "My business relies on street parking. Will parking be available during construction?",
+    "Worried about pedestrian safety during construction. How will you maintain sidewalks?",
+    "This is a great opportunity to improve our community. Fully support the transit station.",
+    "Concerned about dust and air quality impacts. Do you have environmental monitoring planned?",
+    "Traffic on Oak Avenue is already terrible. This will make it worse.",
+    "Property assessments will go up because of the station. Will taxes increase?",
+    "Need better bike access to the station. Current bike lanes are inadequate.",
+    "Construction noise will disrupt my home office. Can you limit hours to evenings only?",
+    "How will emergency vehicles access our street during construction?",
+    "Support the project but concerned about gentrification and displacement of long-time residents.",
+    "My elderly mother lives on Main Street. She is worried about vibration damage to her house.",
+    "When will you provide written updates? Need regular communication.",
+    "Business customers won't be able to find parking. This will destroy my business.",
+    "Excited about improved transit access! This will help people get to work.",
+    "Worried about crime and safety at the station after it opens. What security measures?",
+    "Construction trucks should not use residential streets. Use the highway route instead.",
+    "Property values near transit usually increase. This is good for homeowners.",
+    "How will you maintain access to the medical clinic during construction?",
+    "Concerned about tree removal. Will you replace trees after construction?",
+    "Support this project. Better transit means less traffic and pollution.",
+    "Noise barriers should be installed before construction starts.",
+    "My business is already struggling. Cannot afford revenue loss during construction.",
+    "What compensation for businesses affected by construction?",
+    "Traffic study is incomplete. Did you consider peak hours on Fridays?",
+    "Wheelchair access to the station is essential. Current plans look inadequate.",
+    "Support improved transit but opposed to high-rise development near station.",
+    "Construction vibration could damage historic building at 456 Main Street.",
+    "Need protected bike lanes connecting to the station.",
+    "How will you handle snow removal and winter access during construction?",
+    "Property owners should receive compensation for loss of street parking.",
+    "This project will bring jobs and economic development to the area.",
+    "Concerned about loss of neighborhood character with transit-oriented development.",
+    "Traffic management plan is insufficient. Need traffic police during peak hours.",
+    "Support the station but need guarantees about noise limits after opening.",
+    "Will there be public art at the station? This is important for community identity.",
+    "My rental tenants are worried about construction noise. May lose tenants.",
+    "How will deliveries to businesses be maintained during construction?",
+    "Excited about this project! Finally investing in our neighborhood.",
+    "Concerned about rodent problems during excavation. What pest control measures?",
+    "Traffic detours will confuse drivers and cause accidents.",
+    "Support better transit access. Climate change requires us to reduce car use.",
+    "Property value impacts need independent assessment, not developer-funded study.",
+    "Construction hours should be limited to 9am-3pm to avoid rush hour.",
+    "How will you compensate homeowners for property damage from vibration?",
+    "Station design looks ugly. Need better architecture that fits neighborhood.",
+    "Parking at the station is insufficient. Need at least 200 spaces for park-and-ride.",
+    "Support this project. Will reduce traffic and improve air quality.",
+    "Concerned about light pollution from station at night.",
+    "Business liaison is needed to coordinate with affected businesses weekly.",
+    "How will you handle utility disruptions during construction?",
+    "Worried about basement flooding from changed drainage patterns.",
+    "Support the transit station but construction timeline is too aggressive.",
+    "Need community benefits agreement to ensure local hiring.",
+    "Traffic study assumptions are wrong. Need new study during school year.",
+    "Will there be accessible washrooms at the station?",
+    "Concerned about increased crime and loitering near station.",
+    "Support project if you commit to maintaining tree canopy.",
+    "Construction staging area should not be in residential neighborhood.",
+    "How will you manage construction traffic on narrow streets?",
+    "Excited for transit improvements! Long overdue investment.",
+    "Worried about impact on property insurance rates during construction.",
+    "Will station have weather protection and heated shelters?",
+    "Need dedicated bus lane to make transit competitive with driving.",
+    "Concerned about lack of affordable housing near station.",
+    "Support the project but timeline conflicts with school construction.",
+    "Will you provide advance notice of road closures?",
+    "Noise monitoring should be done by independent third party.",
+    "My property value has already declined because of uncertainty.",
+    "Support improved transit but need parking enforcement at station.",
+    "How will construction affect commute times on Main Street?",
+    "Concerned about loss of green space for station construction.",
+    "This station will transform our neighborhood for the better.",
+    "Need guarantees about air quality monitoring during construction.",
+    "Will local businesses get preference for construction contracts?",
+    "Worried about safety of children walking to school during construction.",
+    "Support better transit. Essential for reducing greenhouse gas emissions.",
+    "Construction should be phased to maintain at least one lane of traffic.",
+    "How will you address concerns about gentrification?",
+    "Need community input on station design and public art.",
+    "Concerned about impact on septic systems from vibration.",
+    "Support this project wholeheartedly. Best thing for our community."
+  ],
+
+  "theme_categories": {
+    "Traffic": [
+      "traffic", "congestion", "parking", "road", "detour", "lane", "rush hour",
+      "vehicles", "commute", "highway", "street"
+    ],
+    "Property Values": [
+      "property value", "assessment", "market", "home value", "real estate",
+      "taxes", "insurance", "equity"
+    ],
+    "Noise": [
+      "noise", "sound", "quiet", "loud", "decibel", "disruption", "barrier"
+    ],
+    "Construction Impact": [
+      "construction", "timeline", "phase", "staging", "schedule", "duration",
+      "start date", "completion"
+    ],
+    "Business Impact": [
+      "business", "customer", "sales", "revenue", "commerce", "retail",
+      "deliveries", "economic"
+    ],
+    "Safety": [
+      "safety", "accident", "crime", "security", "emergency", "police",
+      "dangerous", "children", "pedestrian"
+    ],
+    "Accessibility": [
+      "access", "wheelchair", "disability", "barrier-free", "mobility",
+      "walkway", "sidewalk", "bike", "bicycle"
+    ],
+    "Environmental": [
+      "dust", "air quality", "pollution", "emissions", "environmental",
+      "monitoring", "climate", "green space", "trees"
+    ],
+    "Compensation": [
+      "compensation", "damages", "payment", "reimbursement", "liability",
+      "loss", "financial"
+    ],
+    "Communication": [
+      "communication", "information", "notice", "update", "meeting",
+      "feedback", "consultation"
+    ]
+  },
+
+  "priorities": {
+    "Traffic": 1,
+    "Construction Impact": 1,
+    "Business Impact": 2,
+    "Property Values": 2,
+    "Safety": 2,
+    "Noise": 3,
+    "Accessibility": 3,
+    "Environmental": 3,
+    "Compensation": 4,
+    "Communication": 4
+  },
+
+  "output_options": {
+    "include_quotes": true,
+    "max_quotes_per_sentiment": 5,
+    "include_commitments": true,
+    "output_format": "markdown"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "site_identification": {
+    "site_id": "SITE-C",
+    "site_name": "Historic Chinatown Station",
+    "location": "Spadina Avenue & Dundas Street, Historic Chinatown",
+    "station_type": "urban",
+    "description": "Highly desirable TOD location in historic ethnic neighborhood with excellent density, walkability, and transit connections. However, significant acquisition complexity with 18+ property owners, substantial residential and business displacement in a low-income community with strong cultural ties. High gentrification risk and significant community opposition. Critical holdout risk from sophisticated commercial property owners."
+  },
+  "tod_characteristics": {
+    "population_density_per_ha": 385.0,
+    "employment_density_per_ha": 220.0,
+    "number_of_uses": 5,
+    "jobs_housing_ratio": 0.95,
+    "sidewalk_coverage_pct": 98.0,
+    "crossings_quality": "excellent",
+    "intersection_density_per_km2": 168.0,
+    "underutilized_land_pct": 8.0,
+    "zoning_supportiveness": "supportive"
+  },
+  "multi_modal_connections": {
+    "bus_routes_within_200m": 18,
+    "bus_terminal_location": "onsite",
+    "bike_network_quality": "complete",
+    "bike_parking_spaces": 450,
+    "walkshed_population_800m": 42000,
+    "kiss_ride_spaces": 15,
+    "park_ride_spaces": null,
+    "is_urban_station": true
+  },
+  "acquisition_complexity": {
+    "number_of_owners": 22,
+    "households_displaced": 65,
+    "businesses_displaced": 28,
+    "institutional_impacts": 3,
+    "contamination_level": "moderate",
+    "wetland_archaeological_count": 1,
+    "easements_covenants_count": 7,
+    "complex_tenancies_count": 12,
+    "litigation_title_disputes": 2
+  },
+  "community_impact": {
+    "total_households_displaced": 65,
+    "low_income_households": 52,
+    "senior_households": 28,
+    "disability_households": 8,
+    "neighborhood_income_level": "low_income",
+    "existing_displacement_pressure": true,
+    "has_community_ties": true,
+    "heritage_resources_count": 4,
+    "community_support_level": "opposition"
+  },
+  "holdout_risk": {
+    "owner_motivation": "reluctant",
+    "owner_sophistication": "sophisticated",
+    "owner_alternatives": "few"
+  }
+}

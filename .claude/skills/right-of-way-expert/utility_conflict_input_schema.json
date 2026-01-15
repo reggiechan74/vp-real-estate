@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/utility-conflict-analysis-input.json",
+  "title": "Utility Conflict Analysis Input Schema",
+  "description": "Input schema for utility conflict detection and relocation analysis in infrastructure projects (transit stations, transmission lines, pipelines, highway corridors). Defines project alignment geometry and existing utility locations for conflict detection.",
+  "type": "object",
+  "required": [
+    "project_alignment",
+    "existing_utilities"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "project_alignment": {
+      "type": "object",
+      "title": "Project Alignment",
+      "description": "Infrastructure project geometry and scope definition",
+      "required": [
+        "type",
+        "location"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Project Type",
+          "description": "Infrastructure project category",
+          "enum": [
+            "transit_station",
+            "transit_corridor",
+            "highway_expansion",
+            "pipeline",
+            "transmission_line",
+            "building_foundation",
+            "underground_parking",
+            "tunnel",
+            "subway"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "title": "Project Name",
+          "description": "Human-readable project identifier",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "location": {
+          "type": "object",
+          "title": "Location",
+          "description": "Geographic location and excavation parameters",
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "address": {
+              "type": "string",
+              "title": "Street Address",
+              "description": "Physical address of project location",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "x": {
+              "type": "number",
+              "title": "X Coordinate",
+              "description": "X coordinate in project reference system (meters or feet)",
+              "minimum": -999999,
+              "maximum": 999999
+            },
+            "y": {
+              "type": "number",
+              "title": "Y Coordinate",
+              "description": "Y coordinate in project reference system (meters or feet)",
+              "minimum": -999999,
+              "maximum": 999999
+            },
+            "excavation_depth": {
+              "type": "number",
+              "title": "Excavation Depth",
+              "description": "Maximum excavation depth below grade (meters)",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "height": {
+              "type": "number",
+              "title": "Vertical Height",
+              "description": "Vertical extent of project structure above/below reference (meters)",
+              "minimum": -100,
+              "maximum": 500
+            }
+          }
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "Project scope and key characteristics",
+          "minLength": 0,
+          "maxLength": 1000
+        }
+      }
+    },
+    "existing_utilities": {
+      "type": "array",
+      "title": "Existing Utilities",
+      "description": "List of existing utilities that may conflict with project",
+      "minItems": 1,
+      "maxItems": 100,
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "title": "Utility",
+        "description": "Single utility infrastructure element",
+        "required": [
+          "utility_type",
+          "owner",
+          "location"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "utility_type": {
+            "type": "string",
+            "title": "Utility Type",
+            "description": "Category of utility infrastructure",
+            "enum": [
+              "Gas main",
+              "Gas service",
+              "Transmission line",
+              "Distribution line",
+              "Water main",
+              "Water service",
+              "Sanitary sewer",
+              "Storm sewer",
+              "Telecom conduit",
+              "Fiber optic",
+              "Cable TV",
+              "Street lighting",
+              "Traffic signal",
+              "Hydro vault",
+              "Gas valve",
+              "Water valve"
+            ]
+          },
+          "owner": {
+            "type": "string",
+            "title": "Utility Owner",
+            "description": "Organization that owns/operates the utility",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "location": {
+            "type": "object",
+            "title": "Location",
+            "description": "Geographic location coordinates",
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number",
+                "title": "X Coordinate",
+                "description": "X coordinate in project reference system (meters or feet)",
+                "minimum": -999999,
+                "maximum": 999999
+              },
+              "y": {
+                "type": "number",
+                "title": "Y Coordinate",
+                "description": "Y coordinate in project reference system (meters or feet)",
+                "minimum": -999999,
+                "maximum": 999999
+              }
+            }
+          },
+          "size": {
+            "type": "string",
+            "title": "Utility Size",
+            "description": "Diameter, voltage, pressure, or capacity descriptor",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "depth": {
+            "type": "number",
+            "title": "Burial Depth",
+            "description": "Depth below ground surface (meters)",
+            "minimum": 0,
+            "maximum": 50
+          },
+          "height": {
+            "type": "number",
+            "title": "Vertical Height",
+            "description": "Height above ground surface for overhead utilities (meters)",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "voltage": {
+            "type": "string",
+            "title": "Voltage Level",
+            "description": "Voltage classification for transmission/distribution lines",
+            "enum": [
+              "44kV",
+              "115kV",
+              "230kV",
+              "500kV"
+            ]
+          },
+          "pressure": {
+            "type": "string",
+            "title": "Gas Pressure",
+            "description": "Pressure classification for gas utilities",
+            "enum": [
+              "Low pressure",
+              "Medium pressure",
+              "High pressure",
+              "Transmission"
+            ]
+          },
+          "clearance_required": {
+            "type": "number",
+            "title": "Clearance Required",
+            "description": "Minimum horizontal clearance from project (meters)",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "diameter_mm": {
+            "type": "number",
+            "title": "Diameter (mm)",
+            "description": "Pipe/conduit diameter in millimeters",
+            "minimum": 10,
+            "maximum": 3000
+          },
+          "relocation_length_km": {
+            "type": "number",
+            "title": "Relocation Length (km)",
+            "description": "Estimated length of utility that requires relocation (kilometers)",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "relocation_length_m": {
+            "type": "number",
+            "title": "Relocation Length (m)",
+            "description": "Estimated length of utility that requires relocation (meters)",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "underground": {
+            "type": "boolean",
+            "title": "Underground",
+            "description": "Whether utility is buried or overhead"
+          },
+          "criticality": {
+            "type": "string",
+            "title": "Utility Criticality",
+            "description": "Service importance classification",
+            "enum": [
+              "Critical",
+              "Essential",
+              "Standard"
+            ]
+          }
+        }
+      }
+    },
+    "design_constraints": {
+      "type": "object",
+      "title": "Design Constraints",
+      "description": "Project-specific clearance and protection zone requirements",
+      "additionalProperties": false,
+      "properties": {
+        "horizontal_clearance_min": {
+          "type": "number",
+          "title": "Minimum Horizontal Clearance",
+          "description": "Minimum horizontal distance from project to utility (meters)",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 5.0
+        },
+        "vertical_clearance_min": {
+          "type": "number",
+          "title": "Minimum Vertical Clearance",
+          "description": "Minimum vertical distance from project to utility (meters)",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 3.0
+        },
+        "protection_zone_width": {
+          "type": "number",
+          "title": "Protection Zone Width",
+          "description": "Width of buffer zone around utilities (meters)",
+          "minimum": 0,
+          "maximum": 200,
+          "default": 10.0
+        }
+      }
+    }
+  }
+}

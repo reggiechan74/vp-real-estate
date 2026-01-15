@@ -1,0 +1,150 @@
+{
+  "property_info": {
+    "address": "450 King Street West, Toronto, ON",
+    "property_type": "commercial",
+    "size_sqft": 12500,
+    "current_use": "Mixed retail/office building (4 stories)",
+    "zoning": "CR-4.0 (Commercial Residential)",
+    "year_built": 1985,
+    "lot_size_sqft": 6800,
+    "improvements": "4-story brick building, ground floor retail, upper floors office"
+  },
+  "valuation": {
+    "market_value": 4250000,
+    "seller_minimum": 4100000,
+    "buyer_target": 3800000,
+    "appraisal_range": {
+      "low": 3900000,
+      "mid": 4250000,
+      "high": 4600000
+    },
+    "land_value": 2800000,
+    "improvement_value": 1450000
+  },
+  "owner_profile": {
+    "owner_name": "Westside Properties Inc.",
+    "ownership_duration_years": 18,
+    "owner_background": "Local real estate investor, owns 6 commercial properties in downtown Toronto",
+    "motivation": {
+      "financial_need": "low",
+      "emotional_attachment": "medium",
+      "business_impact": "moderate"
+    },
+    "sophistication": {
+      "real_estate_experience": "high",
+      "legal_representation": true,
+      "previous_negotiations": 8,
+      "professional_advisors": ["Real estate lawyer", "Commercial appraiser", "Property tax consultant"]
+    },
+    "alternatives": {
+      "relocation_options": "some",
+      "financial_flexibility": "high",
+      "timeline_pressure": "low"
+    },
+    "current_situation": {
+      "occupancy": "85% leased",
+      "annual_noi": 285000,
+      "financing": "Mortgage paid off in 2019",
+      "recent_improvements": "Roof replacement 2022 ($180K), HVAC upgrade 2021 ($95K)"
+    }
+  },
+  "hearing_analysis": {
+    "probabilities": {
+      "low_award": 0.2,
+      "mid_award": 0.5,
+      "high_award": 0.3
+    },
+    "costs": {
+      "low_award_amount": 3900000,
+      "mid_award_amount": 4250000,
+      "high_award_amount": 4600000,
+      "legal_fees": 125000,
+      "expert_fees": 85000,
+      "time_cost": 45000
+    },
+    "expected_duration_months": 18,
+    "legal_complexity": "medium",
+    "precedent_clarity": "clear",
+    "jurisdiction_history": "neutral"
+  },
+  "project_context": {
+    "project_type": "transit",
+    "project_name": "King Street LRT Station",
+    "timeline_pressure": "high",
+    "project_phase": "design",
+    "construction_start_target": "Q3 2026",
+    "budget_constraint": "moderate",
+    "political_sensitivity": "high",
+    "public_visibility": "Very high - major transit project in downtown core",
+    "required_acquisition": "Partial taking - 2,400 sqft for station entrance and ventilation shaft"
+  },
+  "market_conditions": {
+    "market_trend": "rising",
+    "supply_demand": "undersupply",
+    "cap_rate": 6.7,
+    "recent_sales_activity": "Strong investor demand for downtown commercial",
+    "comparable_transactions": [
+      {
+        "address": "515 King Street West",
+        "sale_price": 5100000,
+        "sale_date": "2024-08-15",
+        "property_type": "commercial",
+        "size_sqft": 14800,
+        "price_per_sqft": 345
+      },
+      {
+        "address": "382 King Street West",
+        "sale_price": 3650000,
+        "sale_date": "2024-05-22",
+        "property_type": "commercial",
+        "size_sqft": 11200,
+        "price_per_sqft": 326
+      },
+      {
+        "address": "627 King Street West",
+        "sale_price": 4800000,
+        "sale_date": "2024-03-10",
+        "property_type": "commercial",
+        "size_sqft": 13500,
+        "price_per_sqft": 356
+      }
+    ],
+    "avg_price_per_sqft": 342,
+    "market_commentary": "King Street West experiencing strong investor interest due to transit improvements and neighborhood gentrification"
+  },
+  "additional_considerations": {
+    "tenant_situation": {
+      "ground_floor_retail": "Independent coffee shop - 5 year lease expires 2027",
+      "upper_floors": "3 small office tenants - Various lease terms",
+      "relocation_impact": "Station construction may disrupt retail tenant access"
+    },
+    "property_challenges": {
+      "parking": "Limited - only 4 spaces at rear",
+      "loading": "No dedicated loading area - street access only",
+      "accessibility": "No elevator - stairs only to upper floors"
+    },
+    "negotiation_history": {
+      "initial_contact": "2024-09-15",
+      "initial_offer": 3500000,
+      "owner_response": "Rejected without counter",
+      "subsequent_meetings": 1,
+      "current_status": "Owner requests detailed valuation methodology and project impact analysis"
+    }
+  },
+  "strategic_notes": {
+    "owner_psychology": "Sophisticated investor with strong BATNA. No financial pressure. Knows market is rising. Will negotiate professionally but firmly. Likely to counter any offer below appraisal range.",
+    "key_challenges": [
+      "Owner has no urgency to sell",
+      "Rising market favors waiting",
+      "Sophisticated with legal/appraisal advisors",
+      "Recent capital improvements increase basis",
+      "High political visibility limits aggressive tactics"
+    ],
+    "potential_leverage": [
+      "Project timeline pressure (buyer disadvantage)",
+      "Partial taking creates operational disruption beyond compensation",
+      "Construction impact on retail tenant may trigger lease issues",
+      "Station will ultimately benefit remaining property value"
+    ]
+  }
+}

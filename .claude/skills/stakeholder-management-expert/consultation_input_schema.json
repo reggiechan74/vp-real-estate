@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vp-real-estate.com/schemas/consultation-summary-input.json",
+  "title": "Stakeholder Consultation Summary Input",
+  "description": "JSON Schema for stakeholder consultation feedback summarization and response strategy",
+  "type": "object",
+  "required": ["meeting_info", "comments", "theme_categories"],
+  "additionalProperties": false,
+  "properties": {
+    "meeting_info": {
+      "type": "object",
+      "description": "Meeting metadata and attendance information",
+      "required": ["meeting_date", "attendance"],
+      "properties": {
+        "meeting_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Meeting date in YYYY-MM-DD format"
+        },
+        "meeting_type": {
+          "type": "string",
+          "enum": ["public_meeting", "open_house", "workshop", "focus_group", "stakeholder_roundtable", "community_consultation"],
+          "description": "Type of consultation meeting"
+        },
+        "attendance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Total number of attendees"
+        },
+        "location": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Meeting location"
+        },
+        "project_name": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Project name"
+        },
+        "phase": {
+          "type": "string",
+          "enum": ["initial_consultation", "preliminary_design", "detailed_design", "construction", "operation"],
+          "description": "Project phase"
+        }
+      }
+    },
+
+    "comments": {
+      "type": "array",
+      "description": "Array of stakeholder comments and feedback",
+      "minItems": 1,
+      "maxItems": 10000,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000,
+        "description": "Individual comment or feedback statement"
+      }
+    },
+
+    "theme_categories": {
+      "type": "object",
+      "description": "Theme categories with keyword patterns for classification",
+      "minProperties": 1,
+      "maxProperties": 30,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "description": "List of keywords for this theme"
+      },
+      "examples": [
+        {
+          "Traffic": ["traffic", "congestion", "parking", "road"],
+          "Property Values": ["property value", "assessment", "market"],
+          "Noise": ["noise", "sound", "quiet", "loud"],
+          "Accessibility": ["access", "pedestrian", "wheelchair", "bike"],
+          "Business Impact": ["business", "customer", "sales", "revenue"]
+        }
+      ]
+    },
+
+    "priorities": {
+      "type": "object",
+      "description": "Priority levels for each theme (1=highest, 5=lowest)",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 5,
+        "description": "Priority level for theme"
+      },
+      "examples": [
+        {
+          "Traffic": 1,
+          "Property Values": 2,
+          "Noise": 3
+        }
+      ]
+    },
+
+    "demographics": {
+      "type": "object",
+      "description": "Optional demographic breakdown of attendees",
+      "properties": {
+        "residents": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of residents"
+        },
+        "business_owners": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of business owners"
+        },
+        "property_owners": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of property owners"
+        },
+        "elected_officials": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of elected officials"
+        },
+        "advocacy_groups": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of advocacy group representatives"
+        },
+        "other": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of other attendees"
+        }
+      }
+    },
+
+    "output_options": {
+      "type": "object",
+      "description": "Output formatting options",
+      "properties": {
+        "include_quotes": {
+          "type": "boolean",
+          "description": "Include key representative quotes in output",
+          "default": true
+        },
+        "max_quotes_per_sentiment": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Maximum number of quotes per sentiment category",
+          "default": 5
+        },
+        "include_commitments": {
+          "type": "boolean",
+          "description": "Extract and track commitments made",
+          "default": true
+        },
+        "output_format": {
+          "type": "string",
+          "enum": ["markdown", "json"],
+          "description": "Output format",
+          "default": "markdown"
+        }
+      }
+    }
+  }
+}

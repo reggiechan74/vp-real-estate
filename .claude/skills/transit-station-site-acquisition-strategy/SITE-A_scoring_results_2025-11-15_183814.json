@@ -1,0 +1,52 @@
+{
+  "site_id": "SITE-A",
+  "site_name": "Downtown Commerce Station",
+  "tod_score": 121.5,
+  "tod_breakdown": {
+    "population_density": 18,
+    "employment_density": 23,
+    "land_use_mix": 23.5,
+    "walkability": 26.5,
+    "development_potential": 30.5
+  },
+  "multi_modal_score": 85.5,
+  "multi_modal_breakdown": {
+    "bus_integration": 33,
+    "cycling": 17,
+    "pedestrian_catchment": 20.5,
+    "parking": 15
+  },
+  "complexity_score": 68.5,
+  "complexity_breakdown": {
+    "ownership": 23,
+    "land_use_conflicts": 30,
+    "environmental": 5.5,
+    "legal": 10
+  },
+  "community_impact_score": 53.0,
+  "community_impact_breakdown": {
+    "direct_displacement": 23,
+    "gentrification_risk": 15.0,
+    "cultural_heritage": 10,
+    "community_support": 5
+  },
+  "holdout_risk_score": 12,
+  "holdout_risk_breakdown": {
+    "motivation": 4,
+    "sophistication": 4,
+    "alternatives": 4,
+    "risk_level": "Moderate risk (may require mediation or premium)"
+  },
+  "desirability_score": 103.5,
+  "feasibility_score": 39.2,
+  "overall_score": 69.1,
+  "recommendation": "RECOMMENDED - Good balance of benefits and feasibility",
+  "key_strengths": [
+    "Excellent TOD potential (122/100)",
+    "Strong multi-modal connections (86/100)"
+  ],
+  "key_challenges": [
+    "High acquisition complexity (68/100)",
+    "Significant community impact (53/100)"
+  ]
+}

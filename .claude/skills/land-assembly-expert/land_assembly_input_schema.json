@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lease-abstract.com/schemas/land-assembly-input.json",
+  "title": "Land Assembly Calculator Input Schema",
+  "description": "Input schema for multi-parcel acquisition budgeting, phasing strategy, and resource allocation",
+  "type": "object",
+  "required": ["project_name", "parcels", "priorities", "resources", "contingencies"],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "description": "Name of the land assembly project",
+      "minLength": 1
+    },
+    "project_type": {
+      "type": "string",
+      "description": "Type of infrastructure project",
+      "enum": ["transit_corridor", "highway", "transmission_line", "pipeline", "mixed_use_development", "other"]
+    },
+    "parcels": {
+      "type": "array",
+      "description": "List of parcels to be acquired",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "address", "estimated_value", "criticality"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique parcel identifier",
+            "pattern": "^P[0-9]{3,}$"
+          },
+          "address": {
+            "type": "string",
+            "description": "Property address",
+            "minLength": 1
+          },
+          "area_sqm": {
+            "type": "number",
+            "description": "Parcel area in square meters",
+            "minimum": 0
+          },
+          "estimated_value": {
+            "type": "number",
+            "description": "Estimated acquisition cost",
+            "minimum": 0
+          },
+          "criticality": {
+            "type": "string",
+            "description": "Criticality level for project success",
+            "enum": ["critical", "high", "medium", "low"]
+          },
+          "complexity": {
+            "type": "string",
+            "description": "Acquisition complexity",
+            "enum": ["low", "medium", "high"],
+            "default": "medium"
+          },
+          "holdout_risk": {
+            "type": "number",
+            "description": "Holdout risk probability (0.0 to 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.3
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "priorities": {
+      "type": "object",
+      "description": "Priority weights for phasing strategy (must sum to 1.0)",
+      "required": ["criticality", "holdout_risk", "complexity"],
+      "properties": {
+        "criticality": {
+          "type": "number",
+          "description": "Weight for criticality score",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "holdout_risk": {
+          "type": "number",
+          "description": "Weight for holdout risk",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "complexity": {
+          "type": "number",
+          "description": "Weight for complexity",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "resources": {
+      "type": "object",
+      "description": "Available resources for acquisition",
+      "required": ["appraisers", "negotiators"],
+      "properties": {
+        "appraisers": {
+          "type": "integer",
+          "description": "Number of appraisers available",
+          "minimum": 1
+        },
+        "negotiators": {
+          "type": "integer",
+          "description": "Number of negotiators available",
+          "minimum": 1
+        },
+        "legal_staff": {
+          "type": "integer",
+          "description": "Number of legal staff available",
+          "minimum": 1,
+          "default": 2
+        },
+        "appraisal_days_per_parcel": {
+          "type": "integer",
+          "description": "Days required for appraisal per parcel",
+          "minimum": 1,
+          "default": 10
+        },
+        "negotiation_days_per_parcel": {
+          "type": "integer",
+          "description": "Days required for negotiation per parcel",
+          "minimum": 1,
+          "default": 30
+        },
+        "legal_days_per_parcel": {
+          "type": "integer",
+          "description": "Days required for legal work per parcel",
+          "minimum": 1,
+          "default": 5
+        },
+        "daily_rates": {
+          "type": "object",
+          "description": "Daily rates for professional services",
+          "properties": {
+            "appraiser": {
+              "type": "number",
+              "minimum": 0,
+              "default": 1500
+            },
+            "negotiator": {
+              "type": "number",
+              "minimum": 0,
+              "default": 1200
+            },
+            "legal": {
+              "type": "number",
+              "minimum": 0,
+              "default": 2000
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "contingencies": {
+      "type": "object",
+      "description": "Contingency rates for budget calculation",
+      "properties": {
+        "valuation_uncertainty": {
+          "type": "number",
+          "description": "Percentage contingency for valuation uncertainty",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.10
+        },
+        "negotiation_premium": {
+          "type": "number",
+          "description": "Percentage premium for negotiation",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.05
+        },
+        "litigation_reserve": {
+          "type": "number",
+          "description": "Percentage reserve for potential litigation",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.15
+        },
+        "inflation": {
+          "type": "number",
+          "description": "Annual inflation rate",
+          "minimum": 0,
+          "maximum": 0.2,
+          "default": 0.03
+        },
+        "appraisal_cost_per_parcel": {
+          "type": "number",
+          "description": "Cost per appraisal",
+          "minimum": 0,
+          "default": 5000
+        },
+        "legal_cost_per_parcel": {
+          "type": "number",
+          "description": "Legal cost per parcel",
+          "minimum": 0,
+          "default": 3000
+        },
+        "environmental_cost_per_parcel": {
+          "type": "number",
+          "description": "Environmental assessment cost per parcel",
+          "minimum": 0,
+          "default": 2000
+        }
+      },
+      "additionalProperties": false
+    },
+    "delay_analysis": {
+      "type": "object",
+      "description": "Parameters for cost of delay analysis",
+      "properties": {
+        "interest_rate": {
+          "type": "number",
+          "description": "Annual interest rate for carrying costs",
+          "minimum": 0,
+          "maximum": 0.3,
+          "default": 0.05
+        },
+        "construction_cost_per_day": {
+          "type": "number",
+          "description": "Daily construction cost if delayed",
+          "minimum": 0,
+          "default": 50000
+        },
+        "revenue_loss_per_day": {
+          "type": "number",
+          "description": "Daily revenue loss from delayed opening",
+          "minimum": 0,
+          "default": 0
+        },
+        "project_start_delay_days": {
+          "type": "integer",
+          "description": "Days of project delay",
+          "minimum": 0,
+          "default": 90
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

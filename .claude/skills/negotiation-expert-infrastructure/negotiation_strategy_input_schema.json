@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lease-abstract.com/schemas/negotiation-strategy-input.json",
+  "title": "Negotiation Strategy Planner Input Schema",
+  "description": "Input schema for negotiation strategy planner - develops negotiation approach based on owner psychology, property characteristics, and settlement analysis",
+  "type": "object",
+  "required": ["property_info", "valuation", "owner_profile", "hearing_analysis"],
+  "properties": {
+    "property_info": {
+      "type": "object",
+      "description": "Property identification and characteristics",
+      "required": ["address", "property_type"],
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Property address"
+        },
+        "property_type": {
+          "type": "string",
+          "enum": ["residential", "commercial", "industrial", "mixed_use", "vacant_land", "special_purpose"],
+          "description": "Property classification"
+        },
+        "size_sqft": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Property size in square feet"
+        },
+        "current_use": {
+          "type": "string",
+          "description": "Current use of property"
+        },
+        "zoning": {
+          "type": "string",
+          "description": "Zoning classification"
+        }
+      },
+      "additionalProperties": true
+    },
+    "valuation": {
+      "type": "object",
+      "description": "Valuation estimates and ranges",
+      "required": ["seller_minimum"],
+      "properties": {
+        "market_value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Estimated market value"
+        },
+        "seller_minimum": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Seller's minimum acceptable price"
+        },
+        "buyer_target": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Buyer's target acquisition price"
+        },
+        "appraisal_range": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": "number",
+              "minimum": 0
+            },
+            "mid": {
+              "type": "number",
+              "minimum": 0
+            },
+            "high": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "owner_profile": {
+      "type": "object",
+      "description": "Owner psychology and characteristics for holdout risk assessment",
+      "required": ["motivation", "sophistication", "alternatives"],
+      "properties": {
+        "owner_name": {
+          "type": "string",
+          "description": "Owner name (optional)"
+        },
+        "ownership_duration_years": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Years of ownership"
+        },
+        "motivation": {
+          "type": "object",
+          "description": "Owner motivations affecting willingness to sell",
+          "required": ["financial_need", "emotional_attachment", "business_impact"],
+          "properties": {
+            "financial_need": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Financial pressure to sell (inverse - high need = lower holdout)"
+            },
+            "emotional_attachment": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Emotional connection to property (high = higher holdout)"
+            },
+            "business_impact": {
+              "type": "string",
+              "enum": ["minimal", "moderate", "critical"],
+              "description": "Impact on business operations (critical = higher holdout)"
+            }
+          }
+        },
+        "sophistication": {
+          "type": "object",
+          "description": "Owner experience and representation",
+          "required": ["real_estate_experience"],
+          "properties": {
+            "real_estate_experience": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Real estate negotiation experience"
+            },
+            "legal_representation": {
+              "type": "boolean",
+              "description": "Has legal counsel"
+            },
+            "previous_negotiations": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of previous real estate negotiations"
+            }
+          }
+        },
+        "alternatives": {
+          "type": "object",
+          "description": "Owner's alternatives and constraints",
+          "required": ["relocation_options"],
+          "properties": {
+            "relocation_options": {
+              "type": "string",
+              "enum": ["many", "some", "limited", "none"],
+              "description": "Availability of alternative properties (fewer = higher holdout)"
+            },
+            "financial_flexibility": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Financial capacity to hold out"
+            },
+            "timeline_pressure": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "Time pressure to settle (high = lower holdout)"
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "hearing_analysis": {
+      "type": "object",
+      "description": "Expropriation hearing analysis for BATNA calculation",
+      "required": ["probabilities", "costs"],
+      "properties": {
+        "probabilities": {
+          "type": "object",
+          "description": "Probability distribution of hearing outcomes",
+          "required": ["low_award", "mid_award", "high_award"],
+          "properties": {
+            "low_award": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Probability of low award outcome"
+            },
+            "mid_award": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Probability of mid award outcome"
+            },
+            "high_award": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Probability of high award outcome"
+            }
+          }
+        },
+        "costs": {
+          "type": "object",
+          "description": "Award amounts and hearing costs",
+          "required": ["low_award_amount", "mid_award_amount", "high_award_amount", "legal_fees", "expert_fees"],
+          "properties": {
+            "low_award_amount": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Low award valuation"
+            },
+            "mid_award_amount": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Mid award valuation"
+            },
+            "high_award_amount": {
+              "type": "number",
+              "minimum": 0,
+              "description": "High award valuation"
+            },
+            "legal_fees": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Estimated legal fees for hearing"
+            },
+            "expert_fees": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Estimated expert witness fees"
+            },
+            "time_cost": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Staff time and project delay costs"
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "project_context": {
+      "type": "object",
+      "description": "Project context and constraints",
+      "properties": {
+        "project_type": {
+          "type": "string",
+          "enum": ["transit", "highway", "utility", "redevelopment", "park"],
+          "description": "Type of infrastructure project"
+        },
+        "timeline_pressure": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "Project timeline urgency"
+        },
+        "project_phase": {
+          "type": "string",
+          "enum": ["early_stage", "planning", "design", "pre_construction", "construction"],
+          "description": "Current project phase"
+        },
+        "budget_constraint": {
+          "type": "string",
+          "enum": ["flexible", "moderate", "strict"],
+          "description": "Budget flexibility"
+        },
+        "political_sensitivity": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "Political visibility of project"
+        }
+      },
+      "additionalProperties": true
+    },
+    "market_conditions": {
+      "type": "object",
+      "description": "Current market conditions",
+      "properties": {
+        "market_trend": {
+          "type": "string",
+          "enum": ["declining", "stable", "rising"],
+          "description": "Property value trend"
+        },
+        "supply_demand": {
+          "type": "string",
+          "enum": ["oversupply", "balanced", "undersupply"],
+          "description": "Supply/demand balance"
+        },
+        "comparable_transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": {"type": "string"},
+              "sale_price": {"type": "number"},
+              "sale_date": {"type": "string"},
+              "property_type": {"type": "string"}
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

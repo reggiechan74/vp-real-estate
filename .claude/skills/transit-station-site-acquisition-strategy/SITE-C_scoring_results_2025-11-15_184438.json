@@ -1,0 +1,53 @@
+{
+  "site_id": "SITE-C",
+  "site_name": "Historic Chinatown Station",
+  "tod_score": 83.8,
+  "tod_breakdown": {
+    "population_density": 18.181818181818183,
+    "employment_density": 18.181818181818183,
+    "land_use_mix": 18.57707509881423,
+    "walkability": 20.948616600790515,
+    "development_potential": 7.905138339920949
+  },
+  "multi_modal_score": 92.6,
+  "multi_modal_breakdown": {
+    "bus_integration": 34.73684210526316,
+    "cycling": 17.894736842105264,
+    "pedestrian_catchment": 29.47368421052631,
+    "parking": 10.526315789473683
+  },
+  "complexity_score": 88.0,
+  "complexity_breakdown": {
+    "ownership": 35.5,
+    "land_use_conflicts": 30,
+    "environmental": 12.5,
+    "legal": 10
+  },
+  "community_impact_score": 97.5,
+  "community_impact_breakdown": {
+    "direct_displacement": 40,
+    "gentrification_risk": 27.5,
+    "cultural_heritage": 20,
+    "community_support": 10
+  },
+  "holdout_risk_score": 21,
+  "holdout_risk_breakdown": {
+    "motivation": 7,
+    "sophistication": 7,
+    "alternatives": 7,
+    "risk_level": "High risk (likely holdout, plan for expropriation)"
+  },
+  "desirability_score": 88.2,
+  "feasibility_score": 7.2,
+  "overall_score": 44.2,
+  "recommendation": "NOT RECOMMENDED - Significant obstacles",
+  "key_strengths": [
+    "Excellent TOD potential (84/100)",
+    "Strong multi-modal connections (93/100)"
+  ],
+  "key_challenges": [
+    "High acquisition complexity (88/100)",
+    "Significant community impact (98/100)",
+    "High holdout risk (21/30)"
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "input_data": {
+    "asset_type": "Transmission tower",
+    "specifications": {
+      "voltage": "500kV",
+      "height_meters": 45,
+      "foundation_type": "Caisson",
+      "location": "Rural Ontario",
+      "installation_year": 2010
+    },
+    "construction_costs": {
+      "materials": 150000,
+      "labor": 80000,
+      "overhead_percentage": 0.15,
+      "profit_percentage": 0.12
+    },
+    "depreciation": {
+      "age_years": 15,
+      "effective_age_years": 12,
+      "economic_life_years": 50,
+      "physical_condition": "Good",
+      "functional_obsolescence": 0,
+      "external_obsolescence": 0
+    },
+    "market_data": {
+      "comparable_sales": [
+        {
+          "sale_price": 180000,
+          "asset_type": "Transmission tower",
+          "sale_date": "2024-06-15",
+          "location": "Southwestern Ontario",
+          "condition": "Good",
+          "notes": "Similar 500kV tower, 14 years old"
+        },
+        {
+          "sale_price": 195000,
+          "asset_type": "Transmission tower",
+          "sale_date": "2024-08-22",
+          "location": "Eastern Ontario",
+          "condition": "Excellent",
+          "notes": "500kV tower, recently upgraded, 10 years old"
+        },
+        {
+          "sale_price": 172000,
+          "asset_type": "Transmission tower",
+          "sale_date": "2024-09-10",
+          "location": "Northern Ontario",
+          "condition": "Fair",
+          "notes": "500kV tower, remote location, 18 years old"
+        }
+      ]
+    }
+  },
+  "rcn_results": {
+    "materials": 150000,
+    "labor": 80000,
+    "direct_costs": 230000,
+    "overhead": 34500.0,
+    "overhead_percentage": 0.15,
+    "subtotal": 264500.0,
+    "profit": 31740.0,
+    "profit_percentage": 0.12,
+    "replacement_cost_new": 296240.0
+  },
+  "physical_depreciation": {
+    "method": "Age/Life (Primary) with Condition Validation",
+    "effective_age": 12,
+    "actual_age": 15,
+    "economic_life": 50,
+    "remaining_life": 38,
+    "percent_remaining": 76.0,
+    "depreciation_rate": 0.24,
+    "physical_depreciation": 71097.59999999999,
+    "condition_rating": "Good",
+    "condition_based_depreciation": 44436.0,
+    "variance_significant": false,
+    "variance_amount": 26661.59999999999,
+    "recommendation": "Age/life method and condition assessment are consistent"
+  },
+  "functional_obsolescence": {
+    "functional_obsolescence": 0,
+    "obsolescence_rate": 0.0,
+    "severity": "None",
+    "description": "No functional obsolescence identified",
+    "examples": [
+      "No functional issues identified"
+    ]
+  },
+  "external_obsolescence": {
+    "external_obsolescence": 0,
+    "obsolescence_rate": 0.0,
+    "severity": "None",
+    "description": "No external obsolescence identified",
+    "examples": [
+      "No external factors identified"
+    ]
+  },
+  "total_depreciation": {
+    "replacement_cost_new": 296240.0,
+    "physical_depreciation": 71097.59999999999,
+    "functional_obsolescence": 0,
+    "external_obsolescence": 0,
+    "total_depreciation": 71097.59999999999,
+    "total_depreciation_rate": 0.23999999999999996,
+    "depreciated_replacement_cost": 225142.40000000002,
+    "breakdown_percentages": {
+      "physical": 100.0,
+      "functional": 0.0,
+      "external": 0.0
+    }
+  },
+  "reconciliation": {
+    "cost_approach_value": 225142.40000000002,
+    "market_approach_available": true,
+    "comparable_sales_count": 3,
+    "relevant_sales_count": 3,
+    "market_statistics": {
+      "count": 3,
+      "mean": 182333.33333333334,
+      "median": 180000,
+      "min": 172000,
+      "max": 195000,
+      "range": 23000,
+      "std_dev": 11676.18659209133,
+      "coefficient_of_variation": 6.403758642828883
+    },
+    "variance_amount": 45142.40000000002,
+    "variance_percentage": 25.079111111111125,
+    "reconciled_value": 189000.0,
+    "reconciliation_method": "Market approach emphasized (cost appears high)",
+    "confidence_level": "Medium",
+    "notes": "Cost approach 25.1% higher than market. Market data given greater weight. Consider functional/external obsolescence.",
+    "comparable_sales_detail": [
+      {
+        "comp_number": 1,
+        "sale_price": 180000,
+        "asset_type": "Transmission tower",
+        "sale_date": "2024-06-15",
+        "location": "Southwestern Ontario",
+        "condition": "Good",
+        "notes": "Similar 500kV tower, 14 years old"
+      },
+      {
+        "comp_number": 2,
+        "sale_price": 195000,
+        "asset_type": "Transmission tower",
+        "sale_date": "2024-08-22",
+        "location": "Eastern Ontario",
+        "condition": "Excellent",
+        "notes": "500kV tower, recently upgraded, 10 years old"
+      },
+      {
+        "comp_number": 3,
+        "sale_price": 172000,
+        "asset_type": "Transmission tower",
+        "sale_date": "2024-09-10",
+        "location": "Northern Ontario",
+        "condition": "Fair",
+        "notes": "500kV tower, remote location, 18 years old"
+      }
+    ]
+  },
+  "confidence": {
+    "score": 85,
+    "rating": "Very High",
+    "factors": [
+      "Good market data (3 comparables): +15",
+      "Physical condition assessed (Good): +10",
+      "Age/life ratio reasonable (24.0%): +10"
+    ],
+    "interpretation": "Strong market data and well-documented depreciation analysis. High confidence in conclusion."
+  },
+  "timestamp": "2025-11-16_200556"
+}

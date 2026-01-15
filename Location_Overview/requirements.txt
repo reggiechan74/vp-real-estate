@@ -1,0 +1,27 @@
+# Location Overview Module Dependencies
+# Phase 1 (MVP) - Core dependencies
+
+# HTTP Client (async support)
+httpx>=0.25.0
+
+# Template rendering
+jinja2>=3.1.0
+
+# Data validation
+pydantic>=2.5.0
+
+# Date parsing
+python-dateutil>=2.8.0
+
+# Optional: Persistent caching (recommended for production)
+diskcache>=5.6.0
+
+# Optional: Coordinate transformations (for advanced GIS)
+# pyproj>=3.6.0
+# shapely>=2.0.0
+
+# Development dependencies (install with: pip install -r requirements-dev.txt)
+# pytest>=7.4.0
+# pytest-asyncio>=0.21.0
+# pytest-cov>=4.1.0
+# httpx-mock>=0.0.6

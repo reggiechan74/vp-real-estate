@@ -1,0 +1,124 @@
+{
+  "subject_property": {
+    "address": "1234 County Road 25, Caledon, ON",
+    "property_type": "rural_residential",
+    "property_rights": "fee_simple",
+    "lot_size_acres": 50,
+    "topography": "rolling",
+    "drainage": "good",
+    "road_frontage_feet": 660,
+    "utilities": "full_services",
+    "zoning": "Rural Residential RR",
+    "current_use": "Rural estate with horse facility",
+    "building_sf": 4500,
+    "building_age_years": 10,
+    "construction_quality": "custom",
+    "outbuildings": "6-stall barn, riding arena",
+    "outbuilding_value": 350000
+  },
+  "comparable_sales": [
+    {
+      "id": "Comp1",
+      "address": "5678 Mountainview Road, Caledon, ON",
+      "sale_price": 2850000,
+      "sale_date": "2024-08-22",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 45,
+      "price_per_acre": 63333,
+      "topography": "rolling",
+      "drainage": "good",
+      "road_frontage_feet": 500,
+      "utilities": "full_services",
+      "zoning": "Rural Residential RR",
+      "current_use": "Rural estate",
+      "building_sf": 4200,
+      "building_age_years": 8,
+      "construction_quality": "custom",
+      "outbuildings": "4-stall barn, workshop",
+      "outbuilding_value": 200000,
+      "verification": "MLS #W7654321, broker confirmation",
+      "notes": "Similar estate property, slightly smaller lot and home, no arena"
+    },
+    {
+      "id": "Comp2",
+      "address": "9012 King Street, King Township, ON",
+      "sale_price": 3200000,
+      "sale_date": "2024-06-15",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "conventional",
+        "rate": 5.25,
+        "market_rate": 5.25,
+        "term_years": 5,
+        "loan_amount": 2000000
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 60,
+      "price_per_acre": 53333,
+      "topography": "level",
+      "drainage": "excellent",
+      "road_frontage_feet": 800,
+      "utilities": "full_services",
+      "zoning": "Rural Residential",
+      "current_use": "Equestrian estate",
+      "building_sf": 5200,
+      "building_age_years": 5,
+      "construction_quality": "luxury",
+      "outbuildings": "10-stall barn, indoor arena, staff quarters",
+      "outbuilding_value": 750000,
+      "verification": "MLS #N8765432, Teranet",
+      "notes": "Superior equestrian facility in King, larger lot, newer/larger home"
+    },
+    {
+      "id": "Comp3",
+      "address": "3456 Heritage Road, Caledon, ON",
+      "sale_price": 2100000,
+      "sale_date": "2024-10-05",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 35,
+      "price_per_acre": 60000,
+      "topography": "rolling",
+      "drainage": "adequate",
+      "road_frontage_feet": 400,
+      "utilities": "well_septic",
+      "zoning": "Rural Residential RR",
+      "current_use": "Hobby farm",
+      "building_sf": 3200,
+      "building_age_years": 25,
+      "construction_quality": "good",
+      "outbuildings": "Small barn, detached garage",
+      "outbuilding_value": 100000,
+      "verification": "MLS #W9876543, selling agent",
+      "notes": "Smaller property, older home, well/septic vs municipal, no arena"
+    }
+  ],
+  "market_parameters": {
+    "valuation_date": "2025-01-15",
+    "cap_rate": 0.055,
+    "appreciation_rate_annual": 4.0,
+    "adjustment_rates": {
+      "lot_adjustment_per_acre": 50000,
+      "building_size_adjustment_per_sf": 150,
+      "building_age_adjustment_pct_per_year": 1.0,
+      "construction_quality_adjustment_pct_per_level": 8.0,
+      "outbuilding_adjustment_multiplier": 1.0,
+      "utility_adjustment_pct": 5.0,
+      "frontage_adjustment_per_foot": 200
+    }
+  },
+  "analysis_notes": "Three comparable sales of rural residential properties in Caledon and King Township within the past 8 months. Subject is a well-maintained equestrian estate with custom home and functional horse facility. Adjustments required for lot size, building size/age/quality, outbuildings, utilities, and location (King premium). The proposed 230kV transmission corridor will impact the rear portion of the property."
+}

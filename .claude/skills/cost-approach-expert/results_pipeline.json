@@ -1,0 +1,112 @@
+{
+  "input_data": {
+    "asset_type": "Pipeline",
+    "specifications": {
+      "diameter_inches": 36,
+      "length_km": 5.5,
+      "material": "Steel",
+      "coating": "Fusion-bonded epoxy",
+      "installation_year": 2005,
+      "operating_pressure_psi": 1440
+    },
+    "construction_costs": {
+      "materials": 3500000,
+      "labor": 1800000,
+      "overhead_percentage": 0.18,
+      "profit_percentage": 0.15
+    },
+    "depreciation": {
+      "age_years": 20,
+      "effective_age_years": 18,
+      "economic_life_years": 60,
+      "physical_condition": "Good",
+      "functional_obsolescence": 75000,
+      "external_obsolescence": 150000
+    },
+    "market_data": {
+      "comparable_sales": []
+    }
+  },
+  "rcn_results": {
+    "materials": 3500000,
+    "labor": 1800000,
+    "direct_costs": 5300000,
+    "overhead": 954000.0,
+    "overhead_percentage": 0.18,
+    "subtotal": 6254000.0,
+    "profit": 938100.0,
+    "profit_percentage": 0.15,
+    "replacement_cost_new": 7192100.0
+  },
+  "physical_depreciation": {
+    "method": "Age/Life (Primary) with Condition Validation",
+    "effective_age": 18,
+    "actual_age": 20,
+    "economic_life": 60,
+    "remaining_life": 42,
+    "percent_remaining": 70.0,
+    "depreciation_rate": 0.3,
+    "physical_depreciation": 2157630.0,
+    "condition_rating": "Good",
+    "condition_based_depreciation": 1078815.0,
+    "variance_significant": true,
+    "variance_amount": 1078815.0,
+    "recommendation": "REVIEW: Significant variance between age/life and condition methods - verify effective age"
+  },
+  "functional_obsolescence": {
+    "functional_obsolescence": 75000,
+    "obsolescence_rate": 0.010428108619179378,
+    "severity": "Minor",
+    "description": "Minor design inefficiencies or excess capacity",
+    "examples": [
+      "Slight excess capacity",
+      "Minor design inefficiencies",
+      "Non-critical outdated components"
+    ]
+  },
+  "external_obsolescence": {
+    "external_obsolescence": 150000,
+    "obsolescence_rate": 0.020856217238358756,
+    "severity": "Minor",
+    "description": "Minor market or regulatory impacts",
+    "examples": [
+      "Minor regulatory changes",
+      "Temporary market softness",
+      "Minor location disadvantages"
+    ]
+  },
+  "total_depreciation": {
+    "replacement_cost_new": 7192100.0,
+    "physical_depreciation": 2157630.0,
+    "functional_obsolescence": 75000,
+    "external_obsolescence": 150000,
+    "total_depreciation": 2382630.0,
+    "total_depreciation_rate": 0.33128432585753814,
+    "depreciated_replacement_cost": 4809470.0,
+    "breakdown_percentages": {
+      "physical": 90.55665378174538,
+      "functional": 3.1477820727515393,
+      "external": 6.295564145503079
+    }
+  },
+  "reconciliation": {
+    "cost_approach_value": 4809470.0,
+    "market_approach_available": false,
+    "reconciled_value": 4809470.0,
+    "reconciliation_method": "Cost approach only (no market data)",
+    "confidence_level": "Medium",
+    "notes": "Market data not available. Cost approach provides replacement cost indication. Consider seeking comparable sales to validate conclusion."
+  },
+  "confidence": {
+    "score": 60,
+    "rating": "Medium-High",
+    "factors": [
+      "No market data: -15",
+      "Physical condition assessed (Good): +10",
+      "Age/life ratio reasonable (30.0%): +10",
+      "Obsolescence factors documented: +5"
+    ],
+    "interpretation": "Adequate market data or depreciation analysis. Conclusion is reasonably reliable."
+  },
+  "timestamp": "2025-11-16_200103"
+}

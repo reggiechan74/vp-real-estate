@@ -1,0 +1,584 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vp-real-estate.com/schemas/comparable-sales-input.json",
+  "title": "Comparable Sales Analysis Input",
+  "description": "JSON Schema for comparable sales adjustment methodology input (USPAP 2024 & CUSPAP 2024 compliant)",
+  "type": "object",
+  "required": ["subject_property", "comparable_sales", "market_parameters"],
+  "additionalProperties": false,
+  "properties": {
+    "subject_property": {
+      "type": "object",
+      "description": "Subject property being valued",
+      "required": ["address", "property_type", "property_rights"],
+      "properties": {
+        "address": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 200,
+          "description": "Full property address"
+        },
+        "property_type": {
+          "type": "string",
+          "enum": ["industrial", "office", "retail", "multi-family"],
+          "description": "Primary property classification"
+        },
+        "property_rights": {
+          "type": "string",
+          "enum": ["fee_simple", "leasehold", "leased_fee"],
+          "description": "Property rights being valued"
+        },
+        "ground_rent_annual": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual ground rent (for leasehold interests)"
+        },
+
+        "_comment_land": {"type": "string"},
+        "lot_size_acres": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Land area in acres"
+        },
+        "frontage_linear_feet": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5000,
+          "description": "Street frontage in linear feet"
+        },
+        "depth_feet": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5000,
+          "description": "Lot depth in feet"
+        },
+        "topography": {
+          "type": "string",
+          "enum": ["severely_sloped", "moderately_sloped", "gently_sloped", "level"],
+          "description": "Site topography"
+        },
+        "utilities": {
+          "type": "string",
+          "enum": ["full_services_adequate", "full_services_limited", "partial_services", "no_services"],
+          "description": "Utility service availability and capacity"
+        },
+        "drainage": {
+          "type": "string",
+          "enum": ["poor", "adequate", "good", "excellent"],
+          "description": "Site drainage quality"
+        },
+        "flood_zone": {
+          "type": "string",
+          "enum": ["none", "flood_fringe", "floodway"],
+          "description": "FEMA flood zone designation"
+        },
+        "environmental_status": {
+          "type": "string",
+          "enum": ["contaminated", "brownfield", "wetlands_minor", "wetlands_major", "clean"],
+          "description": "Environmental condition"
+        },
+        "soil_quality": {
+          "type": "string",
+          "enum": ["poor_bearing", "adequate", "good_bearing", "excellent"],
+          "description": "Soil bearing capacity"
+        },
+
+        "_comment_site": {"type": "string"},
+        "paved_area_acres": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Paved/hardscaped area in acres"
+        },
+        "paving_condition": {
+          "type": "string",
+          "enum": ["poor", "fair", "good", "excellent"]
+        },
+        "fencing": {
+          "type": "string",
+          "enum": ["none", "chain_link", "vinyl", "security_fence"],
+          "description": "Perimeter fencing type"
+        },
+        "fence_age_years": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "site_lighting": {
+          "type": "string",
+          "enum": ["none", "minimal", "adequate", "extensive"],
+          "description": "Site lighting quality"
+        },
+        "landscaping": {
+          "type": "string",
+          "enum": ["none", "minimal", "moderate", "extensive"],
+          "description": "Landscaping quality"
+        },
+        "stormwater_management": {
+          "type": "string",
+          "enum": ["none", "basic", "retention_pond", "advanced_system"],
+          "description": "Stormwater management system"
+        },
+        "secured_yard_acres": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Secured outdoor storage area in acres"
+        },
+
+        "_comment_building": {"type": "string"},
+        "building_sf": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000000,
+          "description": "Gross building area in square feet"
+        },
+        "effective_age_years": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 200,
+          "description": "Effective age in years"
+        },
+        "construction_quality": {
+          "type": "string",
+          "enum": ["economy", "standard", "good", "superior", "exceptional"],
+          "description": "Construction quality grade"
+        },
+        "functional_utility": {
+          "type": "string",
+          "enum": ["severe_obsolescence", "moderate_obsolescence", "adequate", "superior"],
+          "description": "Functional utility rating"
+        },
+        "energy_certification": {
+          "type": "string",
+          "enum": ["none", "energy_star", "leed_certified", "leed_silver", "leed_gold", "leed_platinum"],
+          "description": "Energy/sustainability certification"
+        },
+        "architectural_appeal": {
+          "type": "string",
+          "enum": ["dated", "average", "good", "exceptional"],
+          "description": "Architectural appeal rating"
+        },
+        "hvac_system": {
+          "type": "string",
+          "enum": ["basic", "modern_standard", "high_efficiency", "zoned"],
+          "description": "HVAC system quality"
+        },
+
+        "_comment_industrial": {"type": "string"},
+        "clear_height_feet": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Clear ceiling height in feet (industrial)"
+        },
+        "loading_docks_dock_high": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Number of dock-high loading doors"
+        },
+        "loading_docks_grade_level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Number of grade-level loading doors"
+        },
+        "loading_docks_drive_in": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50,
+          "description": "Number of drive-in doors"
+        },
+        "column_spacing_feet": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 200,
+          "description": "Column spacing in feet"
+        },
+        "floor_load_capacity_psf": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2000,
+          "description": "Floor load capacity in PSF"
+        },
+        "office_finish_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of building finished as office space"
+        },
+        "bay_depth_feet": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 500,
+          "description": "Bay depth in feet"
+        },
+
+        "_comment_office": {"type": "string"},
+        "building_class": {
+          "type": "string",
+          "enum": ["C", "B-", "B", "B+", "A-", "A", "A+"],
+          "description": "Office building class rating"
+        },
+        "floor_plate_efficiency_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Rentable/usable area ratio percentage"
+        },
+        "parking_spaces_per_1000sf": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20,
+          "description": "Parking ratio per 1,000 SF"
+        },
+        "ceiling_height_feet": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30,
+          "description": "Ceiling height in feet (office)"
+        },
+        "elevator_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50,
+          "description": "Number of elevators"
+        },
+        "window_line_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of exterior wall with windows"
+        },
+
+        "_comment_special": {"type": "string"},
+        "rail_spur": {
+          "type": "boolean",
+          "description": "Rail spur access present"
+        },
+        "crane_system": {
+          "type": "string",
+          "enum": ["none", "jib_crane", "bridge_crane_5ton", "bridge_crane_10ton", "bridge_crane_20ton", "gantry_crane"],
+          "description": "Crane system type and capacity"
+        },
+        "crane_age_years": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "electrical_service_amps": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Electrical service capacity in amps"
+        },
+        "truck_scales": {
+          "type": "boolean",
+          "description": "Truck scales present"
+        },
+        "specialized_hvac": {
+          "type": "string",
+          "enum": ["none", "cleanroom", "humidity_controlled", "temperature_controlled"],
+          "description": "Specialized HVAC systems"
+        },
+        "backup_generator_kw": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Backup generator capacity in kW"
+        },
+
+        "_comment_zoning": {"type": "string"},
+        "zoning": {
+          "type": "string",
+          "description": "Zoning classification"
+        },
+        "floor_area_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "description": "Floor area ratio (FAR)"
+        },
+        "has_variance": {
+          "type": "boolean",
+          "description": "Property has zoning variance"
+        },
+        "non_conforming_use": {
+          "type": "boolean",
+          "description": "Property has legal non-conforming use"
+        },
+        "lot_coverage_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Lot coverage percentage"
+        },
+
+        "_comment_legacy": {"type": "string"},
+        "size_sf": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Legacy field: building size in SF"
+        },
+        "location_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Location quality score (0-100)"
+        },
+        "condition": {
+          "type": "string",
+          "enum": ["poor", "fair", "average", "good", "excellent"],
+          "description": "Overall condition rating"
+        },
+        "highway_frontage": {
+          "type": "boolean",
+          "description": "Highway frontage present"
+        }
+      }
+    },
+
+    "comparable_sales": {
+      "type": "array",
+      "description": "Array of comparable sale transactions",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["address", "sale_price", "sale_date", "property_rights"],
+        "properties": {
+          "_comment": {"type": "string"},
+          "address": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 200
+          },
+          "sale_price": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000000,
+            "description": "Transaction price in dollars"
+          },
+          "sale_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Sale date in YYYY-MM-DD format"
+          },
+          "property_rights": {
+            "type": "string",
+            "enum": ["fee_simple", "leasehold", "leased_fee"]
+          },
+          "ground_rent_annual": {
+            "type": "number",
+            "minimum": 0
+          },
+          "financing": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["cash", "seller_vtb", "conventional", "assumable"]
+              },
+              "rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30,
+                "description": "Financing rate percentage"
+              },
+              "market_rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30,
+                "description": "Market rate percentage for comparison"
+              },
+              "term_years": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 50
+              },
+              "loan_amount": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          "conditions_of_sale": {
+            "type": "object",
+            "required": ["arms_length"],
+            "properties": {
+              "arms_length": {
+                "type": "boolean",
+                "description": "Transaction was at arm's length"
+              },
+              "motivation_discount_pct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 50,
+                "description": "Discount percentage due to seller motivation"
+              }
+            }
+          },
+
+          "lot_size_acres": {"type": "number", "minimum": 0},
+          "frontage_linear_feet": {"type": "number", "minimum": 0},
+          "depth_feet": {"type": "number", "minimum": 0},
+          "topography": {"type": "string", "enum": ["severely_sloped", "moderately_sloped", "gently_sloped", "level"]},
+          "utilities": {"type": "string", "enum": ["full_services_adequate", "full_services_limited", "partial_services", "no_services"]},
+          "drainage": {"type": "string", "enum": ["poor", "adequate", "good", "excellent"]},
+          "flood_zone": {"type": "string", "enum": ["none", "flood_fringe", "floodway"]},
+          "environmental_status": {"type": "string", "enum": ["contaminated", "brownfield", "wetlands_minor", "wetlands_major", "clean"]},
+          "soil_quality": {"type": "string", "enum": ["poor_bearing", "adequate", "good_bearing", "excellent"]},
+
+          "paved_area_acres": {"type": "number", "minimum": 0},
+          "paving_condition": {"type": "string", "enum": ["poor", "fair", "good", "excellent"]},
+          "fencing": {"type": "string", "enum": ["none", "chain_link", "vinyl", "security_fence"]},
+          "fence_age_years": {"type": "number", "minimum": 0},
+          "site_lighting": {"type": "string", "enum": ["none", "minimal", "adequate", "extensive"]},
+          "landscaping": {"type": "string", "enum": ["none", "minimal", "moderate", "extensive"]},
+          "stormwater_management": {"type": "string", "enum": ["none", "basic", "retention_pond", "advanced_system"]},
+          "secured_yard_acres": {"type": "number", "minimum": 0},
+
+          "building_sf": {"type": "number", "minimum": 0},
+          "effective_age_years": {"type": "number", "minimum": 0},
+          "construction_quality": {"type": "string", "enum": ["economy", "standard", "good", "superior", "exceptional"]},
+          "functional_utility": {"type": "string", "enum": ["severe_obsolescence", "moderate_obsolescence", "adequate", "superior"]},
+          "energy_certification": {"type": "string", "enum": ["none", "energy_star", "leed_certified", "leed_silver", "leed_gold", "leed_platinum"]},
+          "architectural_appeal": {"type": "string", "enum": ["dated", "average", "good", "exceptional"]},
+          "hvac_system": {"type": "string", "enum": ["basic", "modern_standard", "high_efficiency", "zoned"]},
+
+          "clear_height_feet": {"type": "number", "minimum": 0, "maximum": 100},
+          "loading_docks_dock_high": {"type": "integer", "minimum": 0},
+          "loading_docks_grade_level": {"type": "integer", "minimum": 0},
+          "loading_docks_drive_in": {"type": "integer", "minimum": 0},
+          "column_spacing_feet": {"type": "number", "minimum": 0},
+          "floor_load_capacity_psf": {"type": "number", "minimum": 0},
+          "office_finish_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+          "bay_depth_feet": {"type": "number", "minimum": 0},
+
+          "building_class": {"type": "string", "enum": ["C", "B-", "B", "B+", "A-", "A", "A+"]},
+          "floor_plate_efficiency_pct": {"type": "number", "minimum": 0, "maximum": 100},
+          "parking_spaces_per_1000sf": {"type": "number", "minimum": 0},
+          "ceiling_height_feet": {"type": "number", "minimum": 0},
+          "elevator_count": {"type": "integer", "minimum": 0},
+          "window_line_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+
+          "rail_spur": {"type": "boolean"},
+          "crane_system": {"type": "string", "enum": ["none", "jib_crane", "bridge_crane_5ton", "bridge_crane_10ton", "bridge_crane_20ton", "gantry_crane"]},
+          "crane_age_years": {"type": "number", "minimum": 0},
+          "electrical_service_amps": {"type": "number", "minimum": 0},
+          "truck_scales": {"type": "boolean"},
+          "specialized_hvac": {"type": "string", "enum": ["none", "cleanroom", "humidity_controlled", "temperature_controlled"]},
+          "backup_generator_kw": {"type": "number", "minimum": 0},
+
+          "zoning": {"type": "string"},
+          "floor_area_ratio": {"type": "number", "minimum": 0},
+          "has_variance": {"type": "boolean"},
+          "non_conforming_use": {"type": "boolean"},
+          "lot_coverage_pct": {"type": "number", "minimum": 0, "maximum": 100},
+
+          "size_sf": {"type": "number", "minimum": 0},
+          "location_score": {"type": "number", "minimum": 0, "maximum": 100},
+          "condition": {"type": "string", "enum": ["poor", "fair", "average", "good", "excellent"]},
+          "highway_frontage": {"type": "boolean"}
+        }
+      }
+    },
+
+    "market_parameters": {
+      "type": "object",
+      "description": "Market adjustment parameters",
+      "required": ["appreciation_rate_annual", "valuation_date", "cap_rate"],
+      "properties": {
+        "_comment_time": {"type": "string"},
+        "appreciation_rate_annual": {
+          "type": "number",
+          "minimum": -10,
+          "maximum": 20,
+          "description": "Annual market appreciation rate percentage"
+        },
+        "valuation_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Valuation date in YYYY-MM-DD format"
+        },
+
+        "_comment_property_rights": {"type": "string"},
+        "cap_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20,
+          "description": "Market capitalization rate percentage"
+        },
+
+        "_comment_location": {"type": "string"},
+        "location_premium_highway": {
+          "type": "number",
+          "description": "Premium percentage for highway frontage"
+        },
+        "location_premium_per_point": {
+          "type": "number",
+          "description": "Adjustment per location score point"
+        },
+
+        "_comment_legacy_physical": {"type": "string"},
+        "size_adjustment_per_sf": {
+          "type": "number",
+          "description": "Dollar adjustment per square foot of size difference"
+        },
+        "condition_adjustment_pct_per_level": {
+          "type": "number",
+          "description": "Percentage adjustment per condition level"
+        },
+
+        "_comment_enhanced_land": {"type": "string"},
+        "lot_adjustment_per_acre": {
+          "type": "number",
+          "description": "Dollar adjustment per acre of lot size difference"
+        },
+        "shape_adjustment_per_0_1_deviation": {
+          "type": "number",
+          "description": "Adjustment per 0.1 deviation from optimal shape ratio"
+        },
+        "topography_adjustment_pct_per_level": {
+          "type": "number",
+          "description": "Percentage adjustment per topography level"
+        },
+        "utilities_adjustment_pct_per_level": {
+          "type": "number"},
+        "drainage_adjustment_pct_per_level": {
+          "type": "number"},
+
+        "_comment_site": {"type": "string"},
+        "paving_cost_per_acre": {"type": "number"},
+        "secured_yard_value_per_acre": {"type": "number"},
+
+        "_comment_industrial": {"type": "string"},
+        "building_size_adjustment_per_sf": {"type": "number"},
+        "clear_height_value_per_foot_per_sf": {"type": "number"},
+        "column_spacing_adjustment_per_sf": {"type": "number"},
+        "floor_load_adjustment_per_sf": {"type": "number"},
+        "office_finish_premium_per_sf": {"type": "number"},
+
+        "_comment_office": {"type": "string"},
+        "efficiency_adjustment_pct_per_5pts": {"type": "number"},
+        "parking_value_per_space": {"type": "number"},
+        "building_class_adjustment_pct_per_level": {"type": "number"},
+        "ceiling_height_premium_per_sf": {"type": "number"},
+        "elevator_value_each": {"type": "number"},
+        "window_line_premium_per_sf": {"type": "number"},
+
+        "_comment_general": {"type": "string"},
+        "annual_depreciation_pct": {"type": "number"},
+        "construction_quality_adjustment_pct_per_level": {"type": "number"},
+
+        "_comment_special": {"type": "string"},
+        "rail_spur_premium_pct": {"type": "number"},
+        "electrical_capacity_value_per_amp": {"type": "number"},
+        "truck_scales_value": {"type": "number"},
+        "generator_value_per_kw": {"type": "number"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

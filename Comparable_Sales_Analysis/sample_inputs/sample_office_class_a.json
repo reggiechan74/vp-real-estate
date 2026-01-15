@@ -1,0 +1,105 @@
+{
+  "subject_property": {
+    "address": "1 King Street West, Hamilton, ON",
+    "property_type": "office",
+    "property_rights": "fee_simple",
+    "lot_size_acres": 2.5,
+    "building_sf": 120000,
+    "floor_count": 12,
+    "floor_plate_sf": 10000,
+    "year_built": 2018,
+    "building_class": "A",
+    "parking_spaces": 500,
+    "parking_ratio_per_1000sf": 4.17,
+    "elevator_count": 4,
+    "condition": "excellent",
+    "location_submarket": "Hamilton CBD",
+    "energy_certification": "LEED_Gold",
+    "zoning": "CBD_commercial"
+  },
+  "comparable_sales": [
+    {
+      "id": "COMP_1",
+      "address": "100 Main Street West, Hamilton, ON",
+      "sale_price": 28000000,
+      "sale_date": "2024-04-20",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 2.2,
+      "building_sf": 110000,
+      "floor_count": 10,
+      "floor_plate_sf": 11000,
+      "year_built": 2016,
+      "building_class": "A",
+      "parking_spaces": 420,
+      "parking_ratio_per_1000sf": 3.82,
+      "elevator_count": 3,
+      "condition": "good",
+      "location_submarket": "Hamilton CBD",
+      "energy_certification": "LEED_Silver",
+      "zoning": "CBD_commercial"
+    },
+    {
+      "id": "COMP_2",
+      "address": "55 Bay Street North, Hamilton, ON",
+      "sale_price": 38500000,
+      "sale_date": "2024-07-10",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 3.0,
+      "building_sf": 145000,
+      "floor_count": 15,
+      "floor_plate_sf": 9667,
+      "year_built": 2020,
+      "building_class": "A+",
+      "parking_spaces": 650,
+      "parking_ratio_per_1000sf": 4.48,
+      "elevator_count": 6,
+      "condition": "excellent",
+      "location_submarket": "Hamilton CBD",
+      "energy_certification": "LEED_Platinum",
+      "zoning": "CBD_commercial"
+    },
+    {
+      "id": "COMP_3",
+      "address": "200 James Street South, Hamilton, ON",
+      "sale_price": 22000000,
+      "sale_date": "2023-12-05",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+      "lot_size_acres": 2.0,
+      "building_sf": 105000,
+      "floor_count": 11,
+      "floor_plate_sf": 9545,
+      "year_built": 2010,
+      "building_class": "A-",
+      "parking_spaces": 370,
+      "parking_ratio_per_1000sf": 3.52,
+      "elevator_count": 3,
+      "condition": "good",
+      "location_submarket": "Hamilton CBD South",
+      "energy_certification": "LEED_Certified",
+      "zoning": "CBD_commercial"
+    }
+  ],
+  "market_parameters": {
+    "valuation_date": "2025-01-15",
+    "data_sources": ["CoStar", "Altus Group", "CBRE Research"],
+    "market_area": "Hamilton CBD Office"
+  }
+}

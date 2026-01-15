@@ -1,0 +1,45 @@
+{
+  "property": {
+    "address": "2500 Industrial Parkway, Milton, ON",
+    "legal_description": "Block 45, Plan M-567, Town of Milton, designated as Part 1 on Reference Plan 20R-54321",
+    "total_acres": 10,
+    "fee_simple_value": 4500000,
+    "fee_simple_value_per_acre": 450000,
+    "zoning": "Employment (M2)",
+    "official_plan": "Employment Area",
+    "highest_and_best_use": "Light industrial/logistics development",
+    "current_use": "Vacant serviced industrial land",
+    "improvements": "None (serviced vacant land)",
+    "frontage_feet": 400,
+    "depth_feet": 1089
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "utility": "Hydro One Networks Inc.",
+    "project_name": "Milton Industrial Area Supply",
+    "voltage_kv": 115,
+    "circuit_count": 1,
+    "tower_type": "Wood pole H-frame",
+    "tower_count_on_property": 4,
+    "area_acres": 1.2,
+    "width_meters": 30,
+    "length_meters": 320,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "height_restrictions"
+    ],
+    "hbu_impact": "major",
+    "access_requirements": "Access from existing road",
+    "vegetation_management": "Grass only within corridor",
+    "easement_rent_factor": 0.25
+  },
+  "market_parameters": {
+    "valuation_date": "2025-01-15",
+    "cap_rate": 0.065,
+    "annual_rent_per_acre": 8000,
+    "market_appreciation_rate": 0.05,
+    "comparable_sales_source": "Altus, CBRE, Colliers market reports"
+  },
+  "appraiser_notes": "Serviced industrial land in high-demand Milton employment area. The 115kV line will bisect the property, significantly impacting development potential. The corridor effectively reduces buildable area and may affect site plan efficiency. Major impact to highest and best use as a logistics development site."
+}

@@ -1,0 +1,88 @@
+{
+  "project_alignment": {
+    "type": "transit_station",
+    "name": "Eglinton Station",
+    "location": {
+      "address": "Eglinton Avenue West at Yonge Street, Toronto",
+      "x": 0,
+      "y": 0,
+      "excavation_depth": 25,
+      "height": 0
+    },
+    "description": "Underground transit station with platform depth of 25m"
+  },
+  "existing_utilities": [
+    {
+      "utility_type": "Transmission line",
+      "owner": "Hydro One",
+      "voltage": "115kV",
+      "location": {
+        "x": 15,
+        "y": 5
+      },
+      "height": 18,
+      "clearance_required": 10,
+      "relocation_length_km": 0.3
+    },
+    {
+      "utility_type": "Gas main",
+      "owner": "Enbridge",
+      "size": "12-inch high pressure",
+      "location": {
+        "x": 8,
+        "y": 3
+      },
+      "depth": 3.5,
+      "relocation_length_km": 0.2
+    },
+    {
+      "utility_type": "Water main",
+      "owner": "City of Toronto",
+      "size": "600mm",
+      "location": {
+        "x": 4,
+        "y": 2
+      },
+      "depth": 2.8,
+      "diameter_mm": 600,
+      "relocation_length_m": 150
+    },
+    {
+      "utility_type": "Sanitary sewer",
+      "owner": "City of Toronto",
+      "size": "450mm",
+      "location": {
+        "x": 6,
+        "y": 4
+      },
+      "depth": 4.2,
+      "diameter_mm": 450,
+      "relocation_length_m": 120
+    },
+    {
+      "utility_type": "Fiber optic",
+      "owner": "Bell Canada",
+      "location": {
+        "x": 3,
+        "y": 1
+      },
+      "depth": 1.5,
+      "relocation_length_m": 200
+    },
+    {
+      "utility_type": "Distribution line",
+      "owner": "Toronto Hydro",
+      "location": {
+        "x": 12,
+        "y": 6
+      },
+      "underground": true,
+      "relocation_length_m": 80
+    }
+  ],
+  "design_constraints": {
+    "horizontal_clearance_min": 5.0,
+    "vertical_clearance_min": 3.0,
+    "protection_zone_width": 10.0
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "property_description": "125-acre farm property - transmission line easement acquisition (Township of Erin, Wellington County)",
+  "buyer_max": 200000,
+  "seller_min": 150000,
+  "hearing_probabilities": {
+    "low_award": 0.2,
+    "mid_award": 0.5,
+    "high_award": 0.3
+  },
+  "hearing_costs": {
+    "low_award_amount": 140000,
+    "mid_award_amount": 175000,
+    "high_award_amount": 210000,
+    "legal_fees": 50000,
+    "expert_fees": 30000,
+    "time_cost": 15000
+  },
+  "owner_profile": {
+    "motivation": {
+      "financial_need": "low",
+      "emotional_attachment": "high",
+      "business_impact": "critical"
+    },
+    "sophistication": {
+      "real_estate_experience": "high",
+      "legal_representation": true,
+      "previous_negotiations": 2
+    },
+    "alternatives": {
+      "relocation_options": "limited",
+      "financial_flexibility": "medium",
+      "timeline_pressure": "low"
+    }
+  },
+  "settlement_offer": 180000,
+  "legal_costs_to_settle": 5000,
+  "confidence_level": 0.8,
+  "num_negotiation_rounds": 3
+}

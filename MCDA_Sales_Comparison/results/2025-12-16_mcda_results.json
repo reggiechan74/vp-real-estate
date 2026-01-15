@@ -1,0 +1,176 @@
+{
+  "subject_property": {
+    "address": "2550 Industrial Parkway North, Hamilton, ON",
+    "building_sf": 50000,
+    "composite_score": 4.0
+  },
+  "comparable_analysis": [
+    {
+      "id": "COMP_1",
+      "address": "2480 Industrial Parkway North, Hamilton, ON",
+      "sale_price": 4650000,
+      "sale_date": "2024-09-15",
+      "building_sf": 48500,
+      "price_psf": 95.88,
+      "composite_score": 3.722,
+      "variable_ranks": {
+        "location_score": 3.0,
+        "clear_height_feet": 4.0,
+        "condition": 4.5,
+        "effective_age_years": 3.0,
+        "loading_docks_total": 4.5,
+        "highway_frontage": 3.0,
+        "lot_size_acres": 5.5
+      }
+    },
+    {
+      "id": "COMP_2",
+      "address": "2650 Parkdale Avenue North, Hamilton, ON",
+      "sale_price": 4100000,
+      "sale_date": "2024-07-22",
+      "building_sf": 52000,
+      "price_psf": 78.85,
+      "composite_score": 5.333,
+      "variable_ranks": {
+        "location_score": 6.0,
+        "clear_height_feet": 6.5,
+        "condition": 4.5,
+        "effective_age_years": 5.0,
+        "loading_docks_total": 4.5,
+        "highway_frontage": 6.5,
+        "lot_size_acres": 2.0
+      }
+    },
+    {
+      "id": "COMP_3",
+      "address": "2320 Industrial Parkway North, Hamilton, ON",
+      "sale_price": 4850000,
+      "sale_date": "2024-06-10",
+      "building_sf": 47000,
+      "price_psf": 103.19,
+      "composite_score": 2.0,
+      "variable_ranks": {
+        "location_score": 1.0,
+        "clear_height_feet": 1.5,
+        "condition": 1.5,
+        "effective_age_years": 2.0,
+        "loading_docks_total": 2.0,
+        "highway_frontage": 3.0,
+        "lot_size_acres": 7.0
+      }
+    },
+    {
+      "id": "COMP_4",
+      "address": "1150 South Service Road, Stoney Creek, ON",
+      "sale_price": 4400000,
+      "sale_date": "2024-08-05",
+      "building_sf": 50000,
+      "price_psf": 88.0,
+      "composite_score": 4.556,
+      "variable_ranks": {
+        "location_score": 5.0,
+        "clear_height_feet": 4.0,
+        "condition": 4.5,
+        "effective_age_years": 6.0,
+        "loading_docks_total": 4.5,
+        "highway_frontage": 3.0,
+        "lot_size_acres": 3.5
+      }
+    },
+    {
+      "id": "COMP_5",
+      "address": "890 Kenora Avenue, Hamilton, ON",
+      "sale_price": 3750000,
+      "sale_date": "2024-10-18",
+      "building_sf": 49000,
+      "price_psf": 76.53,
+      "composite_score": 6.778,
+      "variable_ranks": {
+        "location_score": 7.0,
+        "clear_height_feet": 6.5,
+        "condition": 7.0,
+        "effective_age_years": 7.0,
+        "loading_docks_total": 7.0,
+        "highway_frontage": 6.5,
+        "lot_size_acres": 5.5
+      }
+    },
+    {
+      "id": "COMP_6",
+      "address": "2700 Industrial Parkway North, Hamilton, ON",
+      "sale_price": 5100000,
+      "sale_date": "2024-05-28",
+      "building_sf": 55000,
+      "price_psf": 92.73,
+      "composite_score": 1.611,
+      "variable_ranks": {
+        "location_score": 2.0,
+        "clear_height_feet": 1.5,
+        "condition": 1.5,
+        "effective_age_years": 1.0,
+        "loading_docks_total": 1.0,
+        "highway_frontage": 3.0,
+        "lot_size_acres": 1.0
+      }
+    }
+  ],
+  "composite_scores": {
+    "2480 Industrial Parkway North, Hamilton, ON": 3.722,
+    "2650 Parkdale Avenue North, Hamilton, ON": 5.333,
+    "2320 Industrial Parkway North, Hamilton, ON": 2.0,
+    "1150 South Service Road, Stoney Creek, ON": 4.556,
+    "890 Kenora Avenue, Hamilton, ON": 6.778,
+    "2700 Industrial Parkway North, Hamilton, ON": 1.611,
+    "2550 Industrial Parkway North, Hamilton, ON": 4.0
+  },
+  "value_indication": {
+    "indicated_value_psf": 91.32,
+    "indicated_value_total": 4565982.0,
+    "value_range_psf": [
+      84.74,
+      97.91
+    ],
+    "value_range_total": [
+      4337683.0,
+      4794281.0
+    ],
+    "interpolation": {
+      "indicated_psf": 93.25,
+      "confidence": "high",
+      "lower_bracket": "COMP_1",
+      "upper_bracket": "COMP_4"
+    },
+    "regression": {
+      "indicated_psf": 89.2,
+      "method": "ols",
+      "r_squared": 0.756,
+      "beta": -4.4892
+    },
+    "reconciliation": {
+      "method_weights": {
+        "interpolation": 0.52,
+        "regression": 0.48
+      },
+      "rationale": "Small sample (n=6) favors interpolation; Strong model fit (R\u00b2=0.76) supports regression; Subject well-bracketed by comparables"
+    }
+  },
+  "analysis_summary": {
+    "analysis_date": "2025-12-16",
+    "valuation_date": "2025-01-15",
+    "market_area": "Greater Hamilton Industrial",
+    "property_type": "industrial",
+    "comparables_submitted": 6,
+    "comparables_used": 6,
+    "comparables_excluded": 0,
+    "weights_profile": "industrial_default",
+    "regression_method": "ols",
+    "methodology": "MCDA Ordinal Ranking with Score-to-Price Mapping",
+    "warnings": [
+      "2480 Industrial Parkway North, Hamilton, ON: Time adjustment recommended: 4.0 months (~1.2%)",
+      "2650 Parkdale Avenue North, Hamilton, ON: Time adjustment recommended: 5.8 months (~1.7%)",
+      "2320 Industrial Parkway North, Hamilton, ON: Time adjustment recommended: 7.2 months (~2.2%)",
+      "1150 South Service Road, Stoney Creek, ON: Time adjustment recommended: 5.4 months (~1.6%)",
+      "2700 Industrial Parkway North, Hamilton, ON: Time adjustment recommended: 7.6 months (~2.3%)"
+    ]
+  }
+}

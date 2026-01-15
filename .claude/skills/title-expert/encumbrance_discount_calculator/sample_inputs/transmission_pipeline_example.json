@@ -1,0 +1,74 @@
+{
+  "property": {
+    "pin": "12345-6789",
+    "address": "100 Farm Road, Rural Township",
+    "total_area_acres": 100.0,
+    "unencumbered_value": 1200000,
+    "zoning": "Agricultural",
+    "highest_best_use": "Agricultural with subdivision potential"
+  },
+  "encumbrances": [
+    {
+      "type": "transmission_easement",
+      "area_acres": 5.0,
+      "voltage": "500kV",
+      "width_feet": 150,
+      "length_feet": 1452,
+      "impact_percentage": 10,
+      "description": "High-voltage transmission line easement - no structures permitted"
+    },
+    {
+      "type": "pipeline_easement",
+      "area_acres": 3.0,
+      "width_feet": 50,
+      "length_feet": 2613,
+      "impact_percentage": 15,
+      "description": "Natural gas pipeline easement - no excavation or building permitted"
+    },
+    {
+      "type": "drainage_easement",
+      "area_acres": 2.0,
+      "impact_percentage": 5,
+      "description": "Municipal drainage easement - limited building restrictions"
+    }
+  ],
+  "agricultural_impacts": {
+    "annual_crop_loss": 5000,
+    "cap_rate": 0.05,
+    "operational_inefficiency_pct": 10
+  },
+  "paired_sales": [
+    {
+      "address": "200 Farm Road",
+      "sale_price": 1150000,
+      "sale_date": "2024-06-15",
+      "area_acres": 95.0,
+      "has_encumbrance": false
+    },
+    {
+      "address": "300 Farm Road",
+      "sale_price": 1180000,
+      "sale_date": "2024-08-20",
+      "area_acres": 98.0,
+      "has_encumbrance": false
+    },
+    {
+      "address": "400 Farm Road",
+      "sale_price": 950000,
+      "sale_date": "2024-07-10",
+      "area_acres": 102.0,
+      "has_encumbrance": true,
+      "encumbrance_type": "transmission_easement",
+      "encumbrance_area_acres": 4.5
+    },
+    {
+      "address": "500 Farm Road",
+      "sale_price": 880000,
+      "sale_date": "2024-09-05",
+      "area_acres": 97.0,
+      "has_encumbrance": true,
+      "encumbrance_type": "pipeline_easement",
+      "encumbrance_area_acres": 3.2
+    }
+  ]
+}

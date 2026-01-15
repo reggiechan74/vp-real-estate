@@ -1,0 +1,70 @@
+{
+  "site_type": "Telecom Tower Site",
+  "land_rent": {
+    "annual_rent": 12000,
+    "lease_term": 20,
+    "escalations": "3% per 5 years"
+  },
+  "market_data": {
+    "comparable_rents": [
+      {
+        "location": "Downtown site #1",
+        "annual_rent": 10000,
+        "site_type": "Cell tower"
+      },
+      {
+        "location": "Suburban site #2",
+        "annual_rent": 14000,
+        "site_type": "Cell tower"
+      },
+      {
+        "location": "Industrial area site #3",
+        "annual_rent": 11500,
+        "site_type": "Cell tower"
+      },
+      {
+        "location": "Commercial zone site #4",
+        "annual_rent": 13200,
+        "site_type": "Cell tower"
+      }
+    ],
+    "cap_rate_range": {
+      "low": 0.06,
+      "high": 0.09
+    },
+    "comparable_sales": [
+      {
+        "location": "Similar telecom site A",
+        "sale_price": 150000,
+        "noi": 10500
+      },
+      {
+        "location": "Similar telecom site B",
+        "sale_price": 180000,
+        "noi": 13500
+      },
+      {
+        "location": "Similar telecom site C",
+        "sale_price": 165000,
+        "noi": 12000
+      }
+    ],
+    "sales_comparison_value": 160000,
+    "financing": {
+      "ltv": 0.75,
+      "debt_yield": 0.055,
+      "equity_yield": 0.12
+    },
+    "risk_components": {
+      "risk_free_rate": 0.04,
+      "liquidity_premium": 0.01,
+      "inflation_premium": 0.02,
+      "business_risk": 0.02
+    }
+  },
+  "operating_expenses": {
+    "property_tax": 2000,
+    "insurance": 800,
+    "maintenance": 1200
+  }
+}

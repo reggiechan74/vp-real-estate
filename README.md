@@ -1,13 +1,13 @@
 # Meet Reggie Chan and His Team
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-235%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
+[![Tests](https://img.shields.io/badge/tests-364%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/vp-real-estate?style=social)](https://github.com/reggiechan74/vp-real-estate)
 
-**Version 2.0.0** • Released 2025-11-13
+**Version 2.1.0** • Released 2025-12-17
 
 ## The Digital Embodiment of a 20-Year Real Estate Veteran—And His Team
 
@@ -47,6 +47,45 @@ It's the perfect unspoken agreement. You hand them the unimpeachable, meticulous
 **[Why I Built This](WHY-I-BUILT-THIS.md)** ← From spreadsheet monk to deal closer. The origin story.
 
 **[FAQ](FAQ.md)** ← The questions you're already asking.
+
+---
+
+## NEW: Linear Infrastructure & Property Acquisition Toolkit
+
+Beyond commercial leasing, we've added a complete **infrastructure acquisition team** for transit corridors, utility transmission lines, highway expansion, and agricultural easements.
+
+### The Infrastructure Quintet
+
+| Agent | Role | Specialization |
+|-------|------|----------------|
+| **Alexi** | Valuation Expert (AACI) | Easement valuation, severance damages, comparable sales, before/after method |
+| **Christi** | Expropriation Law | Ontario Expropriations Act, legal entitlement, settlement strategy, hearing prep |
+| **Katy** | Transit Corridors | Station acquisitions, public consultation, stakeholder management |
+| **Shadi** | Utility Corridors | Transmission lines, farmer negotiations, 50-100+ parcel logistics |
+| **Stevi** | Compliance | Statutory deadlines, Forms 1-12 verification, procedural compliance |
+
+### Legal Specialists
+
+| Agent | Role | Specialization |
+|-------|------|----------------|
+| **Benji** | Commercial Tenancies Act | CTA interpretation, landlord remedies, lease disputes |
+| **Anni** | Residential Tenancies Act | RTA/LTB procedures, eviction law, tenant rights |
+
+### Quick Examples
+
+```
+"Alexi, value this 60m transmission line easement through farmland"
+
+"Christi, is the owner entitled to severance damages under the OEA?"
+
+"Katy, plan the public consultation for the new LRT station"
+
+"Shadi, develop an acquisition strategy for 75 parcels along the corridor"
+
+"Stevi, what statutory deadlines are we facing on this file?"
+```
+
+**[Complete Infrastructure Toolkit Guide](LINEAR_INFRASTRUCTURE.md)** ← Full documentation for the infrastructure team
 
 ---
 
@@ -464,12 +503,15 @@ Short-term priorities:
 
 ```
 vp-real-estate/
-├── Shared_Utils/              # NPV, IRR, ratio utilities
+├── Shared_Utils/              # NPV, IRR, ratio utilities + schemas
+│   └── schemas/               # Unified JSON schemas for validators
 ├── Eff_Rent_Calculator/       # Effective rent + yield curve engines
 ├── IFRS16_Calculator/         # Lease accounting workflows
 ├── Credit_Analysis/           # Tenant credit scoring
 ├── Renewal_Analysis/          # Renewal vs relocation modelling
 ├── Rental_Variance/           # Variance decomposition
+├── Comparable_Sales_Analysis/ # Traditional DCA with dollar adjustments (49 adjustments)
+├── MCDA_Sales_Comparison/     # MCDA ordinal ranking for fee simple valuation
 ├── Relative_Valuation/        # MCDA competitive positioning (25 variables) + statistical analysis
 ├── Rollover_Analysis/         # Portfolio lease expiry and renewal prioritization
 ├── Default_Calculator/        # Tenant default damage quantification

@@ -1,0 +1,48 @@
+{
+  "site_id": "SITE-D",
+  "site_name": "Oakridge Town Centre Station",
+  "tod_score": 58.9,
+  "tod_breakdown": {
+    "population_density": 8.300395256916996,
+    "employment_density": 8.300395256916996,
+    "land_use_mix": 14.229249011857709,
+    "walkability": 13.043478260869565,
+    "development_potential": 15.019762845849801
+  },
+  "multi_modal_score": 75.3,
+  "multi_modal_breakdown": {
+    "bus_integration": 24.736842105263158,
+    "cycling": 12.105263157894736,
+    "pedestrian_catchment": 21.578947368421055,
+    "parking": 16.842105263157894
+  },
+  "complexity_score": 42.0,
+  "complexity_breakdown": {
+    "ownership": 10.5,
+    "land_use_conflicts": 20.5,
+    "environmental": 1,
+    "legal": 10
+  },
+  "community_impact_score": 35.5,
+  "community_impact_breakdown": {
+    "direct_displacement": 23,
+    "gentrification_risk": 7.5,
+    "cultural_heritage": 0,
+    "community_support": 5
+  },
+  "holdout_risk_score": 12,
+  "holdout_risk_breakdown": {
+    "motivation": 4,
+    "sophistication": 4,
+    "alternatives": 4,
+    "risk_level": "Moderate risk (may require mediation or premium)"
+  },
+  "desirability_score": 67.1,
+  "feasibility_score": 61.2,
+  "overall_score": 63.3,
+  "recommendation": "RECOMMENDED - Good balance of benefits and feasibility",
+  "key_strengths": [
+    "Strong multi-modal connections (75/100)"
+  ],
+  "key_challenges": []
+}

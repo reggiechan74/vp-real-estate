@@ -1,0 +1,35 @@
+{
+  "property": {
+    "address": "3450 Highway 401 Corridor",
+    "total_acres": 120.0,
+    "fee_simple_value": 3600000,
+    "zoning": "AG - Agricultural",
+    "highest_and_best_use": "Agricultural with future highway commercial potential"
+  },
+  "easement": {
+    "type": "pipeline",
+    "pipeline_type": "natural_gas_transmission",
+    "area_acres": 6.8,
+    "width_meters": 25,
+    "pressure_psi": 1400,
+    "diameter_mm": 900,
+    "depth_meters": 3.5,
+    "has_leak_detection": true,
+    "has_cathodic_protection": true,
+    "requires_access_road": false,
+    "distance_to_water_m": 450,
+    "installation_method": "hdd",
+    "pipeline_age_years": 8,
+    "class_location": 2,
+    "term": "perpetual",
+    "restrictions": [
+      "excavation_prohibited"
+    ],
+    "hbu_impact": "minor",
+    "productivity_loss_pct": 0.15
+  },
+  "market_parameters": {
+    "cap_rate": 0.060,
+    "annual_rent_per_acre": 520
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/reggiechan74/vp-real-estate/easement-valuation-input-schema",
+  "title": "Easement Valuation Calculator Input Schema",
+  "description": "Input schema for easement valuation calculator using percentage of fee, income capitalization, and before/after methods",
+  "type": "object",
+  "required": ["property", "easement", "market_parameters"],
+  "properties": {
+    "property": {
+      "type": "object",
+      "description": "Subject property details",
+      "required": ["address", "total_acres", "fee_simple_value"],
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Property address"
+        },
+        "total_acres": {
+          "type": "number",
+          "minimum": 0.01,
+          "description": "Total property size in acres"
+        },
+        "fee_simple_value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Fee simple market value of entire property"
+        },
+        "zoning": {
+          "type": "string",
+          "description": "Current zoning classification"
+        },
+        "highest_and_best_use": {
+          "type": "string",
+          "description": "Highest and best use of property"
+        },
+        "value_after_easement": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Optional: Property value after easement (for before/after method)"
+        }
+      }
+    },
+    "easement": {
+      "type": "object",
+      "description": "Easement characteristics",
+      "required": ["type", "area_acres"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["utility_transmission", "pipeline", "telecom", "transit", "access"],
+          "description": "Type of easement"
+        },
+        "voltage_kv": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Voltage in kV (for utility transmission easements)"
+        },
+        "pipeline_type": {
+          "type": "string",
+          "enum": ["crude_oil", "natural_gas", "water", "sewer"],
+          "description": "Type of pipeline (for pipeline easements)"
+        },
+        "transit_type": {
+          "type": "string",
+          "enum": ["heavy_rail", "light_rail", "bus_rapid_transit"],
+          "description": "Type of transit (for transit easements)"
+        },
+        "area_acres": {
+          "type": "number",
+          "minimum": 0.01,
+          "description": "Easement area in acres"
+        },
+        "width_meters": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Easement width in meters"
+        },
+        "term": {
+          "type": "string",
+          "enum": ["perpetual", "temporary"],
+          "description": "Easement term"
+        },
+        "term_years": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Term length in years (for temporary easements)"
+        },
+        "restrictions": {
+          "type": "array",
+          "description": "List of use restrictions within easement",
+          "items": {
+            "type": "string",
+            "enum": ["no_buildings", "no_trees", "height_restrictions", "access_limitations", "excavation_prohibited"]
+          }
+        },
+        "hbu_impact": {
+          "type": "string",
+          "enum": ["none", "minor", "moderate", "major", "precludes_development"],
+          "description": "Impact on property's highest and best use"
+        },
+        "easement_rent_factor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Easement rent as percentage of full land rent (for income capitalization method)"
+        }
+      }
+    },
+    "market_parameters": {
+      "type": "object",
+      "description": "Market parameters for calculations",
+      "required": ["cap_rate"],
+      "properties": {
+        "cap_rate": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.20,
+          "description": "Capitalization rate as decimal (e.g., 0.07 for 7%)"
+        },
+        "annual_rent_per_acre": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual land rent per acre (optional - will be estimated if not provided)"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

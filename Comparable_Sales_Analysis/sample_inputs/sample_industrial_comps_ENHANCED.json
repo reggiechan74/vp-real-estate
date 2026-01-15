@@ -1,0 +1,223 @@
+{
+  "subject_property": {
+    "address": "2550 Industrial Parkway North, Hamilton, ON",
+    "property_type": "industrial",
+    "property_rights": "fee_simple",
+
+    "_comment_land": "===== ENHANCED LAND CHARACTERISTICS =====",
+    "lot_size_acres": 5.2,
+    "frontage_linear_feet": 350,
+    "depth_feet": 650,
+    "topography": "level",
+    "utilities": "full_services_adequate",
+    "drainage": "good",
+    "flood_zone": "none",
+    "environmental_status": "clean",
+    "soil_quality": "adequate",
+
+    "_comment_legacy": "===== LEGACY FIELDS (for backward compatibility) =====",
+    "size_sf": 50000,
+    "location_score": 85,
+    "condition": "average",
+    "highway_frontage": true
+  },
+  "comparable_sales": [
+    {
+      "_comment": "COMP 1: Similar size/quality, better location, good condition",
+      "address": "2300 Industrial Parkway North, Hamilton, ON",
+      "sale_price": 4500000,
+      "sale_date": "2024-03-15",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+
+      "lot_size_acres": 5.0,
+      "frontage_linear_feet": 330,
+      "depth_feet": 660,
+      "topography": "level",
+      "utilities": "full_services_adequate",
+      "drainage": "excellent",
+      "flood_zone": "none",
+      "environmental_status": "clean",
+      "soil_quality": "good_bearing",
+
+      "size_sf": 48000,
+      "location_score": 90,
+      "condition": "good",
+      "highway_frontage": true
+    },
+    {
+      "_comment": "COMP 2: Larger size, inferior location, seller financing (VTB), no highway access",
+      "address": "1850 Barton Street East, Hamilton, ON",
+      "sale_price": 3200000,
+      "sale_date": "2023-11-22",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "seller_vtb",
+        "rate": 3.5,
+        "market_rate": 6.5,
+        "term_years": 10,
+        "loan_amount": 1600000
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+
+      "lot_size_acres": 6.8,
+      "frontage_linear_feet": 280,
+      "depth_feet": 1060,
+      "topography": "gently_sloped",
+      "utilities": "full_services_limited",
+      "drainage": "adequate",
+      "flood_zone": "none",
+      "environmental_status": "clean",
+      "soil_quality": "adequate",
+
+      "size_sf": 55000,
+      "location_score": 75,
+      "condition": "average",
+      "highway_frontage": false
+    },
+    {
+      "_comment": "COMP 3: Much larger, leasehold interest (ground rent), excellent drainage",
+      "address": "3100 Centennial Parkway North, Stoney Creek, ON",
+      "sale_price": 5800000,
+      "sale_date": "2024-08-10",
+      "property_rights": "leasehold",
+      "ground_rent_annual": 85000,
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+
+      "lot_size_acres": 8.5,
+      "frontage_linear_feet": 420,
+      "depth_feet": 880,
+      "topography": "level",
+      "utilities": "full_services_adequate",
+      "drainage": "excellent",
+      "flood_zone": "none",
+      "environmental_status": "clean",
+      "soil_quality": "excellent",
+
+      "size_sf": 72000,
+      "location_score": 80,
+      "condition": "good",
+      "highway_frontage": true
+    },
+    {
+      "_comment": "COMP 4: Smaller, distressed sale (non-arm's length), poor condition, flood fringe zone",
+      "address": "1200 Burlington Street East, Hamilton, ON",
+      "sale_price": 2800000,
+      "sale_date": "2023-06-18",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": false,
+        "motivation_discount_pct": 12
+      },
+
+      "lot_size_acres": 4.2,
+      "frontage_linear_feet": 200,
+      "depth_feet": 910,
+      "topography": "moderately_sloped",
+      "utilities": "full_services_adequate",
+      "drainage": "poor",
+      "flood_zone": "flood_fringe",
+      "environmental_status": "clean",
+      "soil_quality": "poor_bearing",
+
+      "size_sf": 42000,
+      "location_score": 70,
+      "condition": "fair",
+      "highway_frontage": false
+    },
+    {
+      "_comment": "COMP 5: Premium property - larger, excellent condition, superior location, optimal lot shape",
+      "address": "4500 North Service Road, Burlington, ON",
+      "sale_price": 6200000,
+      "sale_date": "2024-02-28",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+
+      "lot_size_acres": 7.5,
+      "frontage_linear_feet": 500,
+      "depth_feet": 650,
+      "topography": "level",
+      "utilities": "full_services_adequate",
+      "drainage": "excellent",
+      "flood_zone": "none",
+      "environmental_status": "clean",
+      "soil_quality": "excellent",
+
+      "size_sf": 65000,
+      "location_score": 95,
+      "condition": "excellent",
+      "highway_frontage": true
+    },
+    {
+      "_comment": "COMP 6: Brownfield redevelopment - environmental constraint, but cleaned up",
+      "address": "950 Queenston Road, Hamilton, ON",
+      "sale_price": 3750000,
+      "sale_date": "2024-05-12",
+      "property_rights": "fee_simple",
+      "financing": {
+        "type": "cash"
+      },
+      "conditions_of_sale": {
+        "arms_length": true
+      },
+
+      "lot_size_acres": 5.0,
+      "frontage_linear_feet": 325,
+      "depth_feet": 670,
+      "topography": "level",
+      "utilities": "full_services_adequate",
+      "drainage": "good",
+      "flood_zone": "none",
+      "environmental_status": "brownfield",
+      "soil_quality": "adequate",
+
+      "size_sf": 50000,
+      "location_score": 82,
+      "condition": "average",
+      "highway_frontage": false
+    }
+  ],
+  "market_parameters": {
+    "_comment_time": "===== TIME ADJUSTMENTS (CUSPAP 2024 Compliant) =====",
+    "appreciation_rate_annual": 3.5,
+    "valuation_date": "2025-01-15",
+
+    "_comment_property_rights": "===== PROPERTY RIGHTS ADJUSTMENTS =====",
+    "cap_rate": 7.0,
+
+    "_comment_location": "===== LOCATION ADJUSTMENTS =====",
+    "location_premium_highway": 15,
+    "location_premium_per_point": 1.0,
+
+    "_comment_legacy_physical": "===== LEGACY PHYSICAL ADJUSTMENTS (backward compatibility) =====",
+    "size_adjustment_per_sf": 3.0,
+    "condition_adjustment_pct_per_level": 5.0,
+
+    "_comment_enhanced_land": "===== ENHANCED LAND CHARACTERISTICS ADJUSTMENTS =====",
+    "lot_adjustment_per_acre": 15000,
+    "shape_adjustment_per_0_1_deviation": 0.02,
+    "topography_adjustment_pct_per_level": 3.5,
+    "utilities_adjustment_pct_per_level": 5.0,
+    "drainage_adjustment_pct_per_level": 2.0
+  }
+}

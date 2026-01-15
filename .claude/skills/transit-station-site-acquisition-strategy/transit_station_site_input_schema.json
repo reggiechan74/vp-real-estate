@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/transit-station-site-input.json",
+  "title": "Transit Station Site Scoring Input",
+  "description": "Input schema for transit station site scoring calculator - evaluates TOD potential, multi-modal connections, acquisition complexity, community impact, and holdout risk",
+  "type": "object",
+  "required": [
+    "site_identification",
+    "tod_characteristics",
+    "multi_modal_connections",
+    "acquisition_complexity",
+    "community_impact",
+    "holdout_risk"
+  ],
+  "properties": {
+    "site_identification": {
+      "type": "object",
+      "description": "Site identification and basic information",
+      "required": ["site_id", "site_name", "location", "station_type"],
+      "properties": {
+        "site_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for the site (e.g., 'SITE-001', 'DOWNTOWN-A')"
+        },
+        "site_name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Descriptive name for the site (e.g., 'Main & Elm Station')"
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address or location description"
+        },
+        "station_type": {
+          "type": "string",
+          "enum": ["urban", "suburban", "greenfield"],
+          "description": "Type of station: urban (downtown core), suburban (established neighborhood), greenfield (new development area)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional detailed description of the site"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tod_characteristics": {
+      "type": "object",
+      "description": "Transit-Oriented Development characteristics",
+      "required": [
+        "population_density_per_ha",
+        "employment_density_per_ha",
+        "number_of_uses",
+        "jobs_housing_ratio",
+        "sidewalk_coverage_pct",
+        "crossings_quality",
+        "intersection_density_per_km2",
+        "underutilized_land_pct",
+        "zoning_supportiveness"
+      ],
+      "properties": {
+        "population_density_per_ha": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Population density in people per hectare. Thresholds: <50 (low), 50-150 (medium), 150-300 (high), >300 (very high)"
+        },
+        "employment_density_per_ha": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Employment density in jobs per hectare. Thresholds: <20 (low), 20-75 (medium), 75-150 (high), >150 (very high)"
+        },
+        "number_of_uses": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Number of land use types present (1=single-use like residential only, 2=two uses, 3+=mixed-use with residential+commercial+office)"
+        },
+        "jobs_housing_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Jobs to housing units ratio. Balanced range: 0.75-1.5. Values <0.75 are bedroom communities, >1.5 are employment centers"
+        },
+        "sidewalk_coverage_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of streets with sidewalks on both sides. Thresholds: <50% (poor), 50-80% (moderate), >80% (good)"
+        },
+        "crossings_quality": {
+          "type": "string",
+          "enum": ["poor", "adequate", "excellent"],
+          "description": "Quality of pedestrian crossings: poor (unmarked, no signals), adequate (some marked), excellent (signalized, protected)"
+        },
+        "intersection_density_per_km2": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Intersections per square kilometer (higher = more walkable grid). Thresholds: <80 (low), 80-120 (moderate), >120 (high)"
+        },
+        "underutilized_land_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of land that is underutilized (parking lots, vacant, low-density). Higher = more development potential"
+        },
+        "zoning_supportiveness": {
+          "type": "string",
+          "enum": ["restrictive", "moderate", "supportive"],
+          "description": "Zoning support for TOD: restrictive (low-density residential only), moderate (mid-rise mixed-use permitted), supportive (high-density as-of-right)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "multi_modal_connections": {
+      "type": "object",
+      "description": "Multi-modal transportation connections",
+      "required": [
+        "bus_routes_within_200m",
+        "bus_terminal_location",
+        "bike_network_quality",
+        "bike_parking_spaces",
+        "walkshed_population_800m",
+        "kiss_ride_spaces"
+      ],
+      "properties": {
+        "bus_routes_within_200m": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of bus routes within 200 meters. Thresholds: 0-2 (poor), 3-5 (moderate), 6-10 (good), >10 (excellent)"
+        },
+        "bus_terminal_location": {
+          "type": "string",
+          "enum": ["onsite", "adjacent", "remote"],
+          "description": "Bus terminal location: onsite (on station property), adjacent (within 100m), remote (>100m away)"
+        },
+        "bike_network_quality": {
+          "type": "string",
+          "enum": ["none", "some", "complete"],
+          "description": "Cycling network quality: none (no infrastructure), some (painted lanes), complete (protected cycle tracks)"
+        },
+        "bike_parking_spaces": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of secure bike parking spaces. Thresholds: <20 (minimal), 20-100 (moderate), 100-500 (good), >500 (excellent)"
+        },
+        "walkshed_population_800m": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Population within 800m walking distance. Thresholds: <2000 (low), 2000-10000 (moderate), 10000-30000 (high), >30000 (very high)"
+        },
+        "kiss_ride_spaces": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Kiss-and-ride drop-off spaces. Thresholds: 0 (none), 1-20 (minimal), 20-50 (moderate), >50 (ample)"
+        },
+        "park_ride_spaces": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Park-and-ride spaces (null for urban stations with car-free focus). Thresholds: <200 (minimal), 200-500 (moderate), >500 (large)"
+        },
+        "is_urban_station": {
+          "type": "boolean",
+          "description": "True if urban station with car-free focus (receives bonus points)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "acquisition_complexity": {
+      "type": "object",
+      "description": "Property acquisition complexity factors (LOWER score is better)",
+      "required": [
+        "number_of_owners",
+        "households_displaced",
+        "businesses_displaced",
+        "institutional_impacts",
+        "contamination_level",
+        "wetland_archaeological_count",
+        "easements_covenants_count",
+        "complex_tenancies_count",
+        "litigation_title_disputes"
+      ],
+      "properties": {
+        "number_of_owners": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of property owners requiring negotiation. Thresholds: 1-2 (simple), 3-5 (moderate), 6-15 (complex), >15 (very complex)"
+        },
+        "households_displaced": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of residential households displaced. Thresholds: 0 (none), 1-10 (minimal), 11-50 (moderate), >50 (high)"
+        },
+        "businesses_displaced": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of businesses displaced. Thresholds: 0 (none), 1-5 (minimal), 6-20 (moderate), >20 (high)"
+        },
+        "institutional_impacts": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of institutional impacts (schools, places of worship, heritage buildings). Each adds complexity"
+        },
+        "contamination_level": {
+          "type": "string",
+          "enum": ["minimal", "moderate", "severe"],
+          "description": "Environmental contamination: minimal (clean), moderate (Phase II required), severe (remediation >$1M)"
+        },
+        "wetland_archaeological_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of wetland or archaeological constraints (each adds 5-10 complexity points)"
+        },
+        "easements_covenants_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of easements or restrictive covenants (each adds 2-5 complexity points)"
+        },
+        "complex_tenancies_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of complex commercial tenancies requiring relocation (each adds 3-7 complexity points)"
+        },
+        "litigation_title_disputes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of active litigation or title disputes (each adds 5-10 complexity points)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "community_impact": {
+      "type": "object",
+      "description": "Community impact assessment (LOWER score is better)",
+      "required": [
+        "total_households_displaced",
+        "low_income_households",
+        "senior_households",
+        "disability_households",
+        "neighborhood_income_level",
+        "existing_displacement_pressure",
+        "has_community_ties",
+        "heritage_resources_count",
+        "community_support_level"
+      ],
+      "properties": {
+        "total_households_displaced": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total households displaced. Thresholds: 0 (none), 1-10 (minimal), 11-50 (moderate), >50 (high impact)"
+        },
+        "low_income_households": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of low-income households displaced (adds 5 points per 10 households)"
+        },
+        "senior_households": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of senior households displaced (adds 3 points per 10 households)"
+        },
+        "disability_households": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of households with disabilities displaced (adds 5 points per 5 households)"
+        },
+        "neighborhood_income_level": {
+          "type": "string",
+          "enum": ["high_income", "middle_income", "low_income"],
+          "description": "Neighborhood income level: high_income (low gentrification risk), middle_income (moderate risk), low_income (high risk)"
+        },
+        "existing_displacement_pressure": {
+          "type": "boolean",
+          "description": "True if neighborhood already experiencing displacement pressure (adds 5-10 points)"
+        },
+        "has_community_ties": {
+          "type": "boolean",
+          "description": "True if area has strong community ties (ethnic enclaves, multi-generational residents - adds 5-10 points)"
+        },
+        "heritage_resources_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of heritage resources affected (each adds 5-15 points)"
+        },
+        "community_support_level": {
+          "type": "string",
+          "enum": ["support", "mixed", "opposition"],
+          "description": "Community support level: support (0 points), mixed (5 points), opposition (10 points)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "holdout_risk": {
+      "type": "object",
+      "description": "Holdout risk assessment for critical parcels (LOWER score is better, 0-30 points)",
+      "required": [
+        "owner_motivation",
+        "owner_sophistication",
+        "owner_alternatives"
+      ],
+      "properties": {
+        "owner_motivation": {
+          "type": "string",
+          "enum": ["willing", "neutral", "reluctant", "ideological"],
+          "description": "Owner motivation to sell: willing (0-2 pts), neutral (3-5 pts), reluctant (6-8 pts), ideological (9-10 pts)"
+        },
+        "owner_sophistication": {
+          "type": "string",
+          "enum": ["unsophisticated", "moderate", "sophisticated", "serial_holdout"],
+          "description": "Owner sophistication: unsophisticated (0-2 pts), moderate (3-5 pts), sophisticated (6-8 pts), serial_holdout (9-10 pts)"
+        },
+        "owner_alternatives": {
+          "type": "string",
+          "enum": ["strong", "some", "few", "none"],
+          "description": "Alternative site options: strong (0-2 pts - many good alternatives), some (3-5 pts), few (6-8 pts), none (9-10 pts - owner critical)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

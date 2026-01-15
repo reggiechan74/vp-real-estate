@@ -1,0 +1,57 @@
+{
+  "site_identification": {
+    "site_id": "SITE-A",
+    "site_name": "Downtown Commerce Station",
+    "location": "Main Street & Commerce Avenue, Downtown Core",
+    "station_type": "urban",
+    "description": "High-density mixed-use urban core site with excellent transit connections and walkability. Former industrial lands now transitioning to mixed-use. Strong TOD potential but complex acquisition with multiple property owners and some residential displacement."
+  },
+  "tod_characteristics": {
+    "population_density_per_ha": 280.0,
+    "employment_density_per_ha": 165.0,
+    "number_of_uses": 4,
+    "jobs_housing_ratio": 1.2,
+    "sidewalk_coverage_pct": 95.0,
+    "crossings_quality": "excellent",
+    "intersection_density_per_km2": 145.0,
+    "underutilized_land_pct": 35.0,
+    "zoning_supportiveness": "supportive"
+  },
+  "multi_modal_connections": {
+    "bus_routes_within_200m": 12,
+    "bus_terminal_location": "onsite",
+    "bike_network_quality": "complete",
+    "bike_parking_spaces": 350,
+    "walkshed_population_800m": 28000,
+    "kiss_ride_spaces": 25,
+    "park_ride_spaces": null,
+    "is_urban_station": true
+  },
+  "acquisition_complexity": {
+    "number_of_owners": 8,
+    "households_displaced": 22,
+    "businesses_displaced": 7,
+    "institutional_impacts": 1,
+    "contamination_level": "moderate",
+    "wetland_archaeological_count": 0,
+    "easements_covenants_count": 3,
+    "complex_tenancies_count": 4,
+    "litigation_title_disputes": 0
+  },
+  "community_impact": {
+    "total_households_displaced": 22,
+    "low_income_households": 8,
+    "senior_households": 5,
+    "disability_households": 2,
+    "neighborhood_income_level": "middle_income",
+    "existing_displacement_pressure": true,
+    "has_community_ties": false,
+    "heritage_resources_count": 1,
+    "community_support_level": "mixed"
+  },
+  "holdout_risk": {
+    "owner_motivation": "neutral",
+    "owner_sophistication": "moderate",
+    "owner_alternatives": "some"
+  }
+}

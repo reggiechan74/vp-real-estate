@@ -1,0 +1,30 @@
+{
+  "property": {
+    "address": "980 Industrial Park Drive",
+    "total_acres": 12.5,
+    "fee_simple_value": 875000,
+    "zoning": "M1 - Light Industrial",
+    "highest_and_best_use": "Light industrial/warehousing"
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "voltage_kv": 69,
+    "area_acres": 1.8,
+    "width_meters": 22,
+    "tower_count": 0,
+    "vegetation_restrictions": [],
+    "requires_access_road": false,
+    "distance_to_buildings_m": 75,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "height_restrictions"
+    ],
+    "hbu_impact": "minor",
+    "productivity_loss_pct": 0.15
+  },
+  "market_parameters": {
+    "cap_rate": 0.060,
+    "annual_rent_per_acre": 1800
+  }
+}

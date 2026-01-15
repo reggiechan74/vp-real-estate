@@ -1,0 +1,34 @@
+{
+  "property": {
+    "address": "2750 Suburban Development Road",
+    "total_acres": 35.0,
+    "fee_simple_value": 1750000,
+    "zoning": "RR - Rural Residential",
+    "highest_and_best_use": "Residential subdivision potential"
+  },
+  "easement": {
+    "type": "utility_transmission",
+    "voltage_kv": 230,
+    "area_acres": 4.2,
+    "width_meters": 65,
+    "tower_count": 1,
+    "vegetation_restrictions": [
+      "no_trees",
+      "height_restrictions"
+    ],
+    "requires_access_road": false,
+    "distance_to_buildings_m": 45,
+    "term": "perpetual",
+    "restrictions": [
+      "no_buildings",
+      "no_trees",
+      "height_restrictions"
+    ],
+    "hbu_impact": "major",
+    "productivity_loss_pct": 0.40
+  },
+  "market_parameters": {
+    "cap_rate": 0.055,
+    "annual_rent_per_acre": 1200
+  }
+}

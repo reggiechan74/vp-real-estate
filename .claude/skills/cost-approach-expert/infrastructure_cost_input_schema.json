@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/infrastructure-cost-input.json",
+  "title": "Infrastructure Cost Approach Input Schema",
+  "description": "Input schema for cost approach infrastructure asset valuation. Specifies replacement cost new (RCN) estimation, physical depreciation, functional and external obsolescence, and optional market data reconciliation.",
+  "type": "object",
+  "required": [
+    "asset_type",
+    "construction_costs",
+    "depreciation"
+  ],
+  "properties": {
+    "asset_type": {
+      "type": "string",
+      "description": "Type of infrastructure asset being valued",
+      "enum": [
+        "Transmission tower",
+        "Transmission line",
+        "Substation",
+        "Pipeline",
+        "Pumping station",
+        "Storage facility",
+        "Access road",
+        "Utility corridor",
+        "Other infrastructure"
+      ],
+      "examples": [
+        "Transmission tower",
+        "Pipeline",
+        "Substation"
+      ]
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Asset-specific technical specifications. Optional but recommended for detailed valuation. Fields vary by asset type.",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "integer",
+          "boolean"
+        ]
+      },
+      "examples": [
+        {
+          "voltage": "500kV",
+          "height_meters": 45,
+          "foundation_type": "Caisson",
+          "location": "Rural Ontario",
+          "installation_year": 2010
+        },
+        {
+          "diameter_inches": 36,
+          "length_km": 5.5,
+          "material": "Steel",
+          "coating": "Fusion-bonded epoxy",
+          "operating_pressure_psi": 1440
+        }
+      ]
+    },
+    "construction_costs": {
+      "type": "object",
+      "description": "Construction cost components used to calculate Replacement Cost New (RCN)",
+      "required": [
+        "materials",
+        "labor",
+        "overhead_percentage",
+        "profit_percentage"
+      ],
+      "properties": {
+        "materials": {
+          "type": "number",
+          "description": "Cost of materials (in dollars)",
+          "minimum": 0,
+          "examples": [
+            150000,
+            3500000
+          ]
+        },
+        "labor": {
+          "type": "number",
+          "description": "Cost of labor (in dollars)",
+          "minimum": 0,
+          "examples": [
+            80000,
+            1800000
+          ]
+        },
+        "overhead_percentage": {
+          "type": "number",
+          "description": "Overhead as percentage of direct costs (0.0 to 1.0, typically 12-18%)",
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [
+            0.15,
+            0.18
+          ]
+        },
+        "profit_percentage": {
+          "type": "number",
+          "description": "Profit margin as percentage of direct costs (0.0 to 1.0, typically 10-15%)",
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [
+            0.12,
+            0.15
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "depreciation": {
+      "type": "object",
+      "description": "Depreciation parameters for physical deterioration and obsolescence calculations",
+      "required": [
+        "age_years",
+        "effective_age_years",
+        "economic_life_years"
+      ],
+      "properties": {
+        "age_years": {
+          "type": "number",
+          "description": "Actual age of the asset in years since installation",
+          "minimum": 0,
+          "examples": [
+            15,
+            20
+          ]
+        },
+        "effective_age_years": {
+          "type": "number",
+          "description": "Effective age considering maintenance and condition (typically <= actual age, max 1.5x actual)",
+          "minimum": 0,
+          "examples": [
+            12,
+            18
+          ]
+        },
+        "economic_life_years": {
+          "type": "number",
+          "description": "Total expected economic life of the asset in years (effective_age <= economic_life)",
+          "minimum": 1,
+          "examples": [
+            50,
+            60
+          ]
+        },
+        "physical_condition": {
+          "type": "string",
+          "description": "Overall physical condition assessment (optional, impacts physical depreciation calculation)",
+          "enum": [
+            "Excellent",
+            "Good",
+            "Fair",
+            "Poor",
+            "Very Poor"
+          ],
+          "examples": [
+            "Good",
+            "Excellent"
+          ]
+        },
+        "functional_obsolescence": {
+          "type": "number",
+          "description": "Dollar amount of functional obsolescence loss (optional, typically 0 for newer assets)",
+          "minimum": 0,
+          "examples": [
+            0,
+            75000
+          ]
+        },
+        "external_obsolescence": {
+          "type": "number",
+          "description": "Dollar amount of external obsolescence loss from market/location factors (optional)",
+          "minimum": 0,
+          "examples": [
+            0,
+            150000
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_data": {
+      "type": "object",
+      "description": "Optional market comparable sales data for market reconciliation. If omitted, cost approach value is used as-is.",
+      "properties": {
+        "comparable_sales": {
+          "type": "array",
+          "description": "Array of comparable asset sales used for market reconciliation",
+          "items": {
+            "type": "object",
+            "description": "Individual comparable sale transaction",
+            "required": [
+              "sale_price",
+              "asset_type"
+            ],
+            "properties": {
+              "sale_price": {
+                "type": "number",
+                "description": "Sale price of comparable asset (in dollars)",
+                "minimum": 0.01,
+                "examples": [
+                  180000,
+                  195000
+                ]
+              },
+              "asset_type": {
+                "type": "string",
+                "description": "Type of comparable asset",
+                "examples": [
+                  "Transmission tower",
+                  "Pipeline"
+                ]
+              },
+              "sale_date": {
+                "type": "string",
+                "description": "Date of comparable sale (ISO 8601 format: YYYY-MM-DD)",
+                "format": "date",
+                "examples": [
+                  "2024-06-15",
+                  "2024-08-22"
+                ]
+              },
+              "location": {
+                "type": "string",
+                "description": "Geographic location of comparable asset",
+                "examples": [
+                  "Southwestern Ontario",
+                  "Eastern Ontario"
+                ]
+              },
+              "condition": {
+                "type": "string",
+                "description": "Physical condition of comparable asset",
+                "enum": [
+                  "Excellent",
+                  "Good",
+                  "Fair",
+                  "Poor",
+                  "Very Poor"
+                ],
+                "examples": [
+                  "Good",
+                  "Excellent"
+                ]
+              },
+              "notes": {
+                "type": "string",
+                "description": "Additional notes about the comparable sale",
+                "examples": [
+                  "Similar 500kV tower, 14 years old",
+                  "Recently upgraded, 10 years old"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "examples": [
+            [
+              {
+                "sale_price": 180000,
+                "asset_type": "Transmission tower",
+                "sale_date": "2024-06-15",
+                "location": "Southwestern Ontario",
+                "condition": "Good",
+                "notes": "Similar 500kV tower, 14 years old"
+              }
+            ],
+            []
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "asset_type": "Transmission tower",
+      "specifications": {
+        "voltage": "500kV",
+        "height_meters": 45,
+        "foundation_type": "Caisson",
+        "location": "Rural Ontario",
+        "installation_year": 2010
+      },
+      "construction_costs": {
+        "materials": 150000,
+        "labor": 80000,
+        "overhead_percentage": 0.15,
+        "profit_percentage": 0.12
+      },
+      "depreciation": {
+        "age_years": 15,
+        "effective_age_years": 12,
+        "economic_life_years": 50,
+        "physical_condition": "Good",
+        "functional_obsolescence": 0,
+        "external_obsolescence": 0
+      },
+      "market_data": {
+        "comparable_sales": [
+          {
+            "sale_price": 180000,
+            "asset_type": "Transmission tower",
+            "sale_date": "2024-06-15",
+            "location": "Southwestern Ontario",
+            "condition": "Good",
+            "notes": "Similar 500kV tower, 14 years old"
+          },
+          {
+            "sale_price": 195000,
+            "asset_type": "Transmission tower",
+            "sale_date": "2024-08-22",
+            "location": "Eastern Ontario",
+            "condition": "Excellent",
+            "notes": "500kV tower, recently upgraded, 10 years old"
+          }
+        ]
+      }
+    },
+    {
+      "asset_type": "Pipeline",
+      "specifications": {
+        "diameter_inches": 36,
+        "length_km": 5.5,
+        "material": "Steel",
+        "coating": "Fusion-bonded epoxy",
+        "installation_year": 2005,
+        "operating_pressure_psi": 1440
+      },
+      "construction_costs": {
+        "materials": 3500000,
+        "labor": 1800000,
+        "overhead_percentage": 0.18,
+        "profit_percentage": 0.15
+      },
+      "depreciation": {
+        "age_years": 20,
+        "effective_age_years": 18,
+        "economic_life_years": 60,
+        "physical_condition": "Good",
+        "functional_obsolescence": 75000,
+        "external_obsolescence": 150000
+      },
+      "market_data": {
+        "comparable_sales": []
+      }
+    }
+  ]
+}
