@@ -1,13 +1,13 @@
 # Meet Reggie Chan and His Team
 
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/reggiechan74/vp-real-estate/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-brightgreen.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-364%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
+[![Tests](https://img.shields.io/badge/tests-450%2B%20passing-success.svg)](Eff_Rent_Calculator/Tests/)
 [![Code Style](https://img.shields.io/badge/code%20style-typed-black.svg)](https://docs.python.org/3/library/typing.html)
 [![GitHub Stars](https://img.shields.io/github/stars/reggiechan74/vp-real-estate?style=social)](https://github.com/reggiechan74/vp-real-estate)
 
-**Version 2.1.0** • Released 2025-12-17
+**Version 2.2.0** • Released 2026-01-15
 
 ## The Digital Embodiment of a 20-Year Real Estate Veteran—And His Team
 
@@ -19,7 +19,7 @@ You're not just getting software. You're getting:
 - **Reggie Chan, CFA, FRICS** - VP of Leasing & Asset Management with 20+ years of institutional real estate experience. Handles complex problems, crisis turnarounds, fraud detection, and multi-domain synthesis. The brain behind the operation.
 - **Adam** - Reggie's senior analyst and protégé. Handles routine lease analysis, credit checks, and professional communication. Fast execution for straightforward tasks.
 - **Dennis** - Reggie's former boss with 36+ years of battle-tested experience. Provides strategic wisdom, negotiation psychology, and brutal honesty when you need it most.
-- **Complete toolkit** - 11 financial calculators, **23 specialized skills** (NEW: +8 analytical skills), 28 automated workflows, and **intelligent hooks** that automatically suggest the right expertise at the right time
+- **Complete toolkit** - 11 financial calculators, **23+ specialized skills**, 30+ automated workflows, **Location Overview module** for appraisal research, and **intelligent hooks** that automatically suggest the right expertise at the right time
 
 Just address "Reggie," "Adam," or "Dennis" in your messages and watch the right team member handle your request—from everyday analysis to impossible problems to strategic decisions.
 
@@ -86,6 +86,45 @@ Beyond commercial leasing, we've added a complete **infrastructure acquisition t
 ```
 
 **[Complete Infrastructure Toolkit Guide](LINEAR_INFRASTRUCTURE.md)** ← Full documentation for the infrastructure team
+
+---
+
+## NEW: Location Overview Module for Appraisal Research
+
+Automate the tedious research phase of property appraisals with the `/location-overview` command. Query 11 data providers in parallel to compile zoning, planning, environmental, and neighbourhood data.
+
+### Supported Municipalities (82% Coverage)
+
+| Municipality | Zoning | Official Plan | Transit | Heritage | Conservation |
+|--------------|--------|---------------|---------|----------|--------------|
+| **Toronto** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Ottawa** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Mississauga** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Hamilton** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Other Ontario** | — | — | ✅ | ✅ | ✅ |
+
+### Data Providers
+
+- **Municipal**: Toronto/Ottawa/Mississauga/Hamilton Open Data (zoning, OP, secondary plans, wards)
+- **Provincial**: Ontario GeoHub (Greenbelt, Oak Ridges Moraine, Niagara Escarpment, Growth Plan)
+- **Environmental**: TRCA/CVC conservation areas, Brownfields ESR, Heritage registries
+- **Neighbourhood**: Census demographics, GTFS transit, Overpass POI amenities
+- **CUSPAP Compliance**: Built-in validator for appraisal report standards
+
+### Quick Example
+
+```bash
+/location-overview "100 Queen Street West, Toronto"
+```
+
+Generates a comprehensive location overview report with:
+- Zoning designation and permitted uses
+- Official Plan and Secondary Plan designations
+- Provincial plan overlays (Greenbelt, Growth Plan, etc.)
+- Surrounding land uses (N/S/E/W analysis)
+- Transit accessibility and amenities
+- Heritage and environmental constraints
+- CUSPAP compliance score
 
 ---
 
@@ -517,22 +556,26 @@ vp-real-estate/
 ├── Default_Calculator/        # Tenant default damage quantification
 ├── Option_Valuation/          # Real options valuation (Black-Scholes)
 ├── MLS_Extractor/             # MLS PDF to Excel with subject highlighting
+├── Location_Overview/         # NEW: Appraisal location research (11 providers, 4 municipalities)
+│   ├── providers/             # Data providers (Toronto, Ottawa, Mississauga, Hamilton, etc.)
+│   ├── aggregator/            # Result merging and validation
+│   └── output/                # Report generation + CUSPAP compliance
 ├── Templates/                 # Lease abstract templates (Industrial/Office)
 ├── Reports/                   # Timestamped analysis outputs
 ├── Repository_Dev_Plans/      # Development planning documents
 │   └── archive/               # Archived utilities and completed projects
-│       └── latex-conversion-2024/  # Completed LaTeX conversion scripts
 ├── Sample_Inputs/             # Example lease documents and data files
 ├── Sample_Outputs/            # Reference outputs for validation
 ├── Research_Reports/          # Research papers and technical documentation
 ├── requirements.txt           # Python dependencies
 └── .claude/                   # Automation commands, skills, agents, hooks
-    ├── commands/              # 28 slash commands (6 categories)
-    ├── skills/                # 23 specialized expert systems
-    ├── agents/                # Reggie and His Team
+    ├── commands/              # 30+ slash commands (7 categories)
+    ├── skills/                # 23+ specialized expert systems
+    ├── agents/                # Reggie and His Team + Infrastructure Specialists
     │   ├── reggie-chan-vp.md  # Reggie Chan, CFA, FRICS - VP (Sonnet)
     │   ├── adam.md            # Adam - Reggie's senior analyst (Haiku)
-    │   └── dennis.md          # Dennis - Reggie's former boss (Opus)
+    │   ├── dennis.md          # Dennis - Reggie's former boss (Opus)
+    │   └── [+7 infrastructure specialists]
     └── hooks/                 # Intelligent skill activation system
 ```
 
@@ -571,9 +614,9 @@ Academic foundations from R. Chan’s work on Ponzi Rental Rate and rental term 
 
 ## Support
 
-**Version**: 1.8.0 (Released 2025-11-07)
+**Version**: 2.2.0 (Released 2026-01-15)
 **Your VP of Leasing & Asset Management**: Reggie Chan, CFA, FRICS
-**Reggie's Team**: Adam (Senior Analyst) • Dennis (Strategic Advisor)
+**Reggie's Team**: Adam (Senior Analyst) • Dennis (Strategic Advisor) • +7 Infrastructure Specialists
 
 For issues and feature requests, open a ticket in the repository.
 
