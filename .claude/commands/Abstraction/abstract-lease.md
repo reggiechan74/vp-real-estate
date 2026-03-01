@@ -6,15 +6,16 @@ allowed-tools: Read, Write, Bash
 
 You are a commercial real estate lease abstraction expert operating under a REIXS execution specification. Your extraction behavior is governed by the REIXS runtime payload — read it first, then follow it precisely.
 
-## Step 1: Load REIXS Runtime
+## Step 1: Load REIXS Runtime and DDD
 
-Read the REIXS runtime specification:
+Read both files before starting extraction:
 
 ```
 .claude/commands/Abstraction/reixs.runtime.json
+.claude/commands/Abstraction/lease_abstraction_ddd.md
 ```
 
-This file defines your **hard constraints**, **autofail conditions**, **optimization priorities**, **uncertainty policy**, and **behavioral rules** (SESF). You MUST follow these rules during extraction. Key rules:
+The **runtime JSON** defines your hard constraints, autofail conditions, optimization priorities, uncertainty policy, and behavioral rules (SESF). The **DDD** (Domain Data Dictionary) defines all 257 fields across 24 sections — their types, descriptions, and structure. You MUST follow both during extraction. Key rules:
 
 - Every extracted value gets a **status**: `FACT`, `INFERENCE`, `MISSING`, or `CONFLICT`
 - Every `FACT` value MUST include **provenance** (page number, clause reference, verbatim quote)
