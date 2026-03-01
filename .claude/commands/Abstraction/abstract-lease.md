@@ -1,7 +1,7 @@
 ---
 description: Abstract a commercial lease document (office or industrial) using REIXS-compliant extraction with provenance tracking
 argument-hint: <lease-path> [-json]
-allowed-tools: Read, Write, Bash
+allowed-tools: Read, Write, Bash, WebFetch
 ---
 
 You are a commercial real estate lease abstraction expert operating under a REIXS execution specification. Your extraction behavior is governed by the REIXS runtime payload — read it first, then follow it precisely.
@@ -15,7 +15,7 @@ Read both files before starting extraction:
 .claude/commands/Abstraction/lease_abstraction_ddd.md
 ```
 
-The **runtime JSON** defines your hard constraints, autofail conditions, optimization priorities, uncertainty policy, and behavioral rules (SESF). The **DDD** (Domain Data Dictionary) defines all 257 fields across 24 sections — their types, descriptions, and structure. You MUST follow both during extraction. Key rules:
+The **runtime JSON** defines your hard constraints, autofail conditions, optimization priorities, uncertainty policy, and behavioral rules (SESF). The **DDD** (Domain Data Dictionary) defines all 258 fields across 25 sections — their types, descriptions, and structure. You MUST follow both during extraction. Key rules:
 
 - Every extracted value gets a **status**: `FACT`, `INFERENCE`, `MISSING`, or `CONFLICT`
 - Every `FACT` value MUST include **provenance** (page number, clause reference, verbatim quote)
@@ -57,7 +57,7 @@ For JSON output, also reference the schema: `Templates/{type}/{type}_lease_abstr
 
 ## Step 5: Extract Using REIXS Rules
 
-Extract all 24 sections defined in the REIXS runtime payload. For each extracted field, apply the SESF behavioral rules:
+Extract all 25 sections defined in the DDD. For each extracted field, apply the SESF behavioral rules:
 
 1. **verbatim_financial** — Financial values found verbatim → status=FACT with provenance, extract verbatim + normalized numeric form
 2. **inferred_term** — Values requiring interpretation → status=INFERENCE with confidence + reasoning
@@ -79,14 +79,14 @@ Extract all 24 sections defined in the REIXS runtime payload. For each extracted
 **Markdown (default):**
 - Executive Summary (3-5 sentences: property, parties, term, rent, key provisions)
 - Key Terms at a Glance (critical facts as concise bullets)
-- 24 sections as concise bullets with inline status: `[FACT]`, `[INFERRED]`, `[MISSING]`
-- Critical Dates Summary (table format)
-- Financial Obligations Summary (table format)
+- 25 sections as concise bullets with inline status: `[FACT]`, `[INFERRED]`, `[MISSING]` (note: `INFERENCE` status displays as `[INFERRED]` in markdown)
+- Critical Dates (table format)
+- Financial Obligations (table format)
 - Key Issues & Risks (top 5 critical, top 5-7 favorable, top 5-7 unfavorable, top 10 review items)
 - Target: 30-40KB
 
 **JSON (-json flag):**
-- All 24 sections with proper JSON types (numbers, strings, booleans, arrays, null)
+- All 25 sections with proper JSON types (numbers, strings, booleans, arrays, null)
 - Each field includes: `value`, `status`, `provenance` (if FACT), `confidence` (if INFERENCE), `reasoning` (if INFERENCE/CONFLICT)
 - Dates as ISO 8601 strings, numbers without currency symbols
 - Target: 50-60KB
@@ -101,7 +101,7 @@ Run the REIXS quality checks (from the runtime payload's autofail conditions):
 - [ ] Financial terms have correct currency
 - [ ] No template placeholders left in output
 - [ ] Lease type correctly identified (Industrial vs Office)
-- [ ] All 24 sections addressed (MISSING status for absent sections)
+- [ ] All 25 sections addressed (MISSING status for absent sections)
 - [ ] FACT fields have complete provenance (page, clause, verbatim quote)
 - [ ] Schedule G overrides flagged where applicable
 
@@ -117,8 +117,8 @@ Run the REIXS quality checks (from the runtime payload's autofail conditions):
    - Use underscores, include lease commencement date
    - Example: `El_Monte_Lease_Abstract_2013-12-01.md`
 
-2. Save to: `/workspaces/lease-abstract/Reports/[filename]`
-   - Create directory if needed: `mkdir -p /workspaces/lease-abstract/Reports`
+2. Save to: `Reports/[filename]` (relative to repository root)
+   - Create directory if needed: `mkdir -p Reports`
 
 3. Confirm save and provide the file path
 

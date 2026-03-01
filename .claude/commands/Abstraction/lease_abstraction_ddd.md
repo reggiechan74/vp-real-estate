@@ -10,7 +10,7 @@
 
 ## Sections
 
-The schema defines **24 sections**. Sections 1-21 are extracted from the lease document. Sections 22-24 are derived/analytical.
+The schema defines **25 sections**. Sections 1-21 are extracted from the lease document. Sections 22-25 are derived/analytical.
 
 ### 1. documentInformation
 
@@ -413,7 +413,7 @@ Standard schedule mapping (varies by lease):
 | I | Pre-Authorized Debit (PAD) Authorization |
 | J | Letter of Credit Agreement |
 
-### 22. criticalDatesSummary
+### 22. criticalDates
 
 *Derived section* — compiled from extracted dates across all sections.
 
@@ -426,7 +426,7 @@ Standard schedule mapping (varies by lease):
 
 Standard events include: Lease Commencement, First Rent Payment, Renewal Option Notice, Lease Expiry. Additional events are derived from the lease.
 
-### 23. financialObligationsSummary
+### 23. financialObligations
 
 *Derived section* — calculated from extracted financial data.
 
@@ -455,6 +455,14 @@ Standard events include: Lease Commencement, First Rent Payment, Renewal Option 
 | `itemsRequiringFurtherReview` | array[string] | Items that require legal or business review |
 
 For markdown output: limit to top 5 critical red flags, top 5-7 favorable, top 5-7 unfavorable, top 10 review items.
+
+### 25. notesAndComments
+
+*Optional section* — free-form notes and observations not captured in the structured sections above.
+
+| Field | Type | Description |
+|---|---|---|
+| `notesAndComments` | string | Free-text notes, observations, or commentary from the abstraction process |
 
 ---
 
