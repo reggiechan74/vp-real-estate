@@ -1,0 +1,94 @@
+{
+  "spec_metadata": {
+    "spec_id": "REIXS-LA-NA-001",
+    "version": "1.0.0",
+    "task_type": "Lease Abstraction",
+    "tier": "complex",
+    "author": "Reggie Chan",
+    "date": "2026-03-01"
+  },
+  "task_context": {
+    "objective": "Extract structured lease terms from a commercial lease document (any North American jurisdiction) across 24 standardized sections, producing field-level output with provenance and status tracking in both JSON and markdown formats.",
+    "jurisdiction": "North America",
+    "currency": null,
+    "area_unit": "sq ft (default), sq m (accepted)"
+  },
+  "ofd": {
+    "primary_objective": "Extract all 24 lease sections defined in the DDD with factual accuracy >= 95%, provenance on every FACT-status field, and explicit status tracking on every extracted value.",
+    "hard_constraints": [
+      "NEVER fabricate a term not present in the source document",
+      "NEVER silently resolve conflicting provisions \u2014 flag as CONFLICT with all sources cited",
+      "ALL FACT-status fields MUST carry provenance (page number, clause/section reference)",
+      "NEVER alter financial figures \u2014 extract verbatim, add normalized form as separate field",
+      "Quote specific section/article numbers when referencing lease provisions",
+      "Use \"Not specified\" (markdown) or null (JSON) for absent terms, never leave template placeholders",
+      "Currency MUST be determined from the source document \u2014 no default currency assumed"
+    ],
+    "autofail_conditions": [
+      "Any fabricated lease term (value not traceable to source text)",
+      "Parties (landlord/tenant) misidentified or swapped",
+      "Commencement or expiry date extracted without provenance",
+      "Financial term assigned wrong currency",
+      "Template placeholder left in output (e.g., \"[Insert value]\")"
+    ],
+    "optimization_priority_order": [
+      "Factual correctness \u2014 no fabricated or hallucinated values",
+      "Completeness \u2014 extract every DDD-defined field present in the source",
+      "Provenance quality \u2014 every FACT value traceable to specific page and clause",
+      "Normalization consistency \u2014 dates (ISO 8601), currencies, units in standard format",
+      "Formatting \u2014 consistent style across output"
+    ],
+    "uncertainty_policy": "When a term is ambiguous or not explicitly stated, mark as INFERENCE with confidence 0.0-1.0 and reasoning. If confidence < 0.5, flag for human review. For terms that are absent from the source document, mark as MISSING with null value. Never guess \u2014 prefer MISSING over a plausible but unverified value. When confidence < 0.3, use MISSING rather than low-confidence INFERENCE."
+  },
+  "behavior_rules": {
+    "raw_sesf": "Commercial Lease Abstraction Extraction Rules\n\nMeta: Version 1.0.0 | Date: 2026-03-01 | Domain: Lease Abstraction | Status: active | Tier: micro\n\nPurpose\nDefine extraction, conflict detection, provenance, and normalization rules for North American commercial lease term extraction across 24 standardized sections with dual output format support.\n\nBEHAVIOR extract_lease_terms: Extract and classify lease terms from source document across all 24 DDD-defined sections\n\n  RULE verbatim_financial:\n    WHEN a financial value (rent, deposit, operating cost, tax amount) is found verbatim in the source document\n    THEN status MUST be FACT\n    AND provenance MUST include page number, clause reference, and verbatim quote\n    AND the value MUST be extracted exactly as written in the source\n    AND a normalized numeric form MUST be provided as a separate field\n    AND the currency code MUST be included with every financial value\n\n  RULE inferred_term:\n    WHEN a lease term requires interpretation, calculation, or derivation from other terms\n    THEN status MUST be INFERENCE\n    AND confidence score MUST be provided between 0.0 and 1.0\n    AND reasoning MUST explain how the value was derived\n    AND if confidence < 0.5 the field MUST be flagged for human review\n\n  RULE missing_term:\n    WHEN a DDD-defined field is not found anywhere in the source document\n    THEN status MUST be MISSING\n    AND the value field MUST be null (JSON) or \"Not specified\" (markdown)\n    AND the agent MUST NOT fabricate a plausible value\n\n  RULE conflict_detection:\n    WHEN multiple conflicting values are found for the same field across different sections of the lease\n    THEN status MUST be CONFLICT\n    AND all conflicting values MUST be listed with individual provenance for each\n    AND reasoning MUST explain the nature of the conflict and identify the source sections\n    AND the conflict MUST NOT be silently resolved\n\n  RULE schedule_override:\n    WHEN a Schedule G (or equivalent special provisions schedule) contains a term that contradicts the main body of the lease\n    THEN the Schedule G value MUST be used as the primary extracted value\n    AND the main body value MUST be preserved in a separate override_note field\n    AND status MUST be FACT with provenance pointing to the Schedule G reference\n    AND a flag MUST indicate that a schedule override occurred\n\n  RULE currency_detection:\n    WHEN currency is not explicitly stated alongside a financial value in the source document\n    THEN the agent MUST infer currency from jurisdiction clues in the document (address, governing law, province/state references)\n    AND status MUST be INFERENCE with confidence score and reasoning\n    AND the agent MUST NOT assume a default currency\n\n  RULE date_normalization:\n    WHEN a date is found in any format in the source document (written, numeric, partial)\n    THEN the date MUST be normalized to ISO 8601 format (YYYY-MM-DD)\n    AND the original date text MUST be preserved in the provenance verbatim_quote field\n    AND status MUST be FACT if the date is unambiguous or INFERENCE if interpretation was required\n\n  EXAMPLE standard_rent_extraction:\n    INPUT: Lease document with clause 5.1 on page 12 stating \"The Tenant shall pay base rent of $45.00 per square foot per annum\"\n    EXPECTED: value=\"$45.00 per square foot per annum\", status=FACT, provenance={\"page\": 12, \"section\": \"5.1\", \"verbatim_quote\": \"$45.00 per square foot per annum\"}, normalized_value=45.00, normalized_unit=\"psf/annum\"\n    NOTES: Verbatim financial extraction with full provenance and normalized numeric form\n\n  EXAMPLE conflicting_commencement:\n    INPUT: Lease with \"The Term shall commence on January 1, 2026\" in clause 3.1 (page 8) and \"Effective Date: March 1, 2026\" in clause 1.2 (page 2)\n    EXPECTED: status=CONFLICT, values=[\"2026-01-01\", \"2026-03-01\"], provenance=[{\"page\": 8, \"section\": \"3.1\"}, {\"page\": 2, \"section\": \"1.2\"}], reasoning=\"Conflicting commencement dates found in clause 3.1 (January 1, 2026) and clause 1.2 (March 1, 2026)\"\n    NOTES: Conflicting dates across sections MUST be flagged as CONFLICT and never silently resolved\n\n  EXAMPLE missing_renewal:\n    INPUT: Lease document with no renewal clause, renewal option, or extension provision anywhere in the document\n    EXPECTED: value=null, status=MISSING\n    NOTES: Absent term produces MISSING status with null value \u2014 no fabrication of a plausible renewal term\n\n  EXAMPLE schedule_g_rent_override:\n    INPUT: Lease main body clause 5.1 states base rent of \"$40.00 psf\" but Schedule G item 3 states \"Notwithstanding Section 5.1, the base rent for the first 24 months shall be $35.00 psf\"\n    EXPECTED: value=\"$35.00 psf\", status=FACT, provenance={\"page\": 45, \"section\": \"Schedule G, Item 3\"}, override_note=\"Schedule G overrides clause 5.1 base rent from $40.00 psf to $35.00 psf for first 24 months\", override_flag=true\n    NOTES: Schedule G provisions take precedence over main body terms \u2014 the override MUST be flagged and both values preserved\n\nBEHAVIOR validate_extraction: Validate extracted data for completeness, consistency, and compliance with hard constraints\n\n  RULE completeness_check:\n    WHEN extraction is complete for a document\n    THEN all 24 DDD-defined sections MUST be present in the output\n    AND each section MUST contain at least one field with a non-null status\n    AND if more than 30% of fields are MISSING the document MUST be flagged for escalation\n\n  RULE provenance_integrity:\n    WHEN a field has status FACT\n    THEN provenance MUST NOT be null or empty\n    AND provenance MUST include page number as an integer\n    AND provenance MUST include section or clause reference as a string\n    AND provenance MUST include a verbatim quote from the source text\n\n  ERROR fabricated_value:\n    WHEN an extracted value cannot be traced to any text in the source document\n    SEVERITY critical\n    ACTION reject the extraction and flag for human review\n    MESSAGE \"Extracted value has no source provenance \u2014 possible fabrication detected\"\n\n  ERROR parties_swapped:\n    WHEN the landlord and tenant identities are reversed or misassigned in the output\n    SEVERITY critical\n    ACTION reject the extraction and require re-processing\n    MESSAGE \"Landlord and tenant parties are misidentified or swapped \u2014 critical data integrity failure\"\n\n  ERROR missing_provenance:\n    WHEN a FACT-status field lacks provenance metadata (page, clause, or verbatim quote)\n    SEVERITY critical\n    ACTION fail validation for this field and flag for correction\n    MESSAGE \"FACT-status field requires complete provenance (page, clause, verbatim quote)\"\n\n  ERROR wrong_currency:\n    WHEN a financial value is assigned an incorrect currency code that does not match the source document\n    SEVERITY critical\n    ACTION reject the financial extraction and flag for human review\n    MESSAGE \"Financial value assigned wrong currency \u2014 source document currency does not match extracted currency\"\n\n  ERROR template_placeholder:\n    WHEN the output contains an unresolved template placeholder such as \"[Insert value]\", \"[TBD]\", or \"[PLACEHOLDER]\"\n    SEVERITY critical\n    ACTION reject the output and require re-processing\n    MESSAGE \"Template placeholder detected in output \u2014 all placeholders MUST be replaced with extracted values or null\"\n\nConstraints\n* Extraction MUST process all 24 DDD-defined sections before completion\n* Every FACT-status field MUST carry provenance with page, clause, and verbatim quote\n* Financial values MUST NOT be altered from source \u2014 extract verbatim with separate normalized field\n* Currency MUST be determined from source document context, never assumed\n* Dates MUST be normalized to ISO 8601 while preserving original text in provenance\n* Output MUST conform to either JSON or Markdown contract as specified by caller\n* Schedule G (or equivalent) overrides MUST be detected and flagged\n",
+    "block_count": 1
+  },
+  "output_contract": {
+    "description": "Each extracted field MUST include the following attributes with provenance and status tracking. The output is structured across 24 top-level sections following the DDD schema: (1) documentInformation, (2) parties, (3) premises, (4) term, (5) rent, (6) depositsAndSecurity, (7) operatingCostsAndTaxes, (8) useAndOperations, (9) maintenanceAndRepairs, (10) alterationsAndImprovements, (11) insuranceAndIndemnity, (12) damageAndDestruction, (13) assignmentAndSubletting, (14) defaultAndRemedies, (15) servicesAndUtilities, (16) environmental, (17) subordinationAndAttornment, (18) notices, (19) endOfTerm, (20) specialProvisions, (21) schedulesAndExhibits, (22) criticalDatesSummary, (23) financialObligationsSummary, (24) keyIssuesAndRisks.\nJSON output uses proper JSON types: numbers for numeric values, strings for text and ISO 8601 dates, booleans for true/false, arrays for lists, null for missing values. Markdown output uses inline status indicators [FACT], [INFERRED], [MISSING] after each extracted value, with an Executive Summary, Key Terms at a Glance, 24 section bullet points, Critical Dates table, Financial Obligations table, and Key Issues & Risks section.",
+    "fields": [
+      {
+        "name": "value",
+        "description": "the extracted or derived value (proper JSON types or markdown text)"
+      },
+      {
+        "name": "status",
+        "description": "FACT | INFERENCE | MISSING | CONFLICT"
+      },
+      {
+        "name": "provenance",
+        "description": "{ \"page\": int, \"section\": string, \"verbatim_quote\": string } \u2014 required for FACT status"
+      },
+      {
+        "name": "confidence",
+        "description": "0.0-1.0 \u2014 required for INFERENCE status"
+      },
+      {
+        "name": "reasoning",
+        "description": "string \u2014 required for INFERENCE and CONFLICT status"
+      }
+    ]
+  },
+  "eval_config": {
+    "edd_suite_id": "edd:lease_abstraction_commercial_v1",
+    "min_pass_rate": "95%",
+    "regression_cases": [
+      "basic_office_lease",
+      "basic_industrial_lease",
+      "conflicting_provisions",
+      "missing_sections",
+      "schedule_g_override",
+      "related_party_transaction",
+      "multi_currency_lease"
+    ]
+  },
+  "references": {
+    "ddd_reference": "re-ddd:lease_abstraction_commercial_na@1.0.0",
+    "adr_references": [
+      "ADR-001",
+      "ADR-003",
+      "ADR-004"
+    ]
+  },
+  "validation_status": "warn"
+}
